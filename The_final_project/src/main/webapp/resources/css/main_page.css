@@ -1,0 +1,176 @@
+
+/* :: 2.0 Import All CSS */
+/* :: 3.0 Base CSS */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	display: block;
+	border: none;
+}
+
+a {
+	text-decoration: none;
+	color: #5A5859;
+}
+
+li {
+	list-style: none;
+}
+
+#header {
+	width: 100%;
+	overflow: hidden;
+	float: left;
+}
+
+#header img {
+	width: 180px;
+	float: left;
+}
+
+.header {
+	width: 1640px;
+	margin: 0px 170px 0px 170px;
+	padding: 45px 0px 45px 0px;
+}
+
+.header_menu li {
+	float: right;
+	padding: 0px 60px 60px 0px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.main_img {
+	width: 100%;
+	height: 550px;
+	overflow: hidden;
+	background-image: url(../img/main_img4.png);
+	background-repeat: no-repeat;
+	background-size: 100% 550px;
+}
+
+.main_text {
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+	padding-top: 260px;
+	font-size: 38px;
+	font-weight: bold;
+	color: white;
+}
+
+#menu {
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+	float: left;
+}
+
+#menu img {
+	width: 150px;
+	margin: 0 auto;
+}
+
+#menu button {
+	width: 200px;
+	height: 200px;
+	border: none;
+	border-radius: 100px;
+	background-color: white;
+	box-shadow: 7px 3px 20px #DEDEDE;
+	float: left;
+	margin-right: 128px;
+}
+
+.free {
+	float: left;
+}
+
+.free p {
+	padding-top: 225px;
+	padding-left: 50px;
+	padding-right: 50px;
+	width: 150px;
+	height: 60px;
+	font-size: 20px;
+}
+
+.tip {
+	float: left;
+}
+
+.tip p {
+	padding-top: 225px;
+	padding-left: 55px;
+	padding-right: 55px;
+	width: 150px;
+	height: 60px;
+	font-size: 20px;
+}
+
+.share {
+	float: left;
+}
+
+.share p {
+	padding-top: 225px;
+	padding-left: 50px;
+	padding-right: 50px;
+	width: 150px;
+	height: 60px;
+	font-size: 20px;
+}
+
+.market {
+	float: left;
+}
+
+.market p {
+	padding-top: 225px;
+	padding-left: 50px;
+	padding-right: 50px;
+	width: 150px;
+	height: 60px;
+	font-size: 20px;
+}
+
+.farmer {
+	float: left;
+}
+
+.farmer p {
+	padding-top: 225px;
+	padding-left: 35px;
+	padding-right: 35px;
+	width: 150px;
+	height: 60px;
+	font-size: 20px;
+}
+
+#footer {
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+	background-color: #DEDEDE
+}
+
+#talk {
+	position: fixed;
+	top: 130px;
+	left: 1800px;;
+}
+
+.chat img {
+	width: 90px;
+	height: 90px;
+}
+
+.chat button {
+	border: none;
+}
