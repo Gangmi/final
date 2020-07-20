@@ -4,9 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<!-- Alias 설정 -->
-	
-
+	<typeAliases>
+		<!-- Alias 설정 -->
+		<typeAlias alias="board" type="com.kos.vo.BoardVO" />
+	</typeAliases>
 
 </configuration>
 

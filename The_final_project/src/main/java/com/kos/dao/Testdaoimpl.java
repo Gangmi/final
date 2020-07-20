@@ -8,8 +8,5 @@ public class Testdaoimpl {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public void test2() {
-		String result=sqlSession.selectOne("testmap.test2");
-		System.out.println(result);
-	}
+	
 }
