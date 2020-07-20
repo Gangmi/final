@@ -17,12 +17,16 @@
 					    		authentication-success-handler-ref="loginSuccessHandler"
 						  	-->
 		<sec:logout/>
+		
 	</sec:http>
 	
+	<sec:jdbc-user-service data-source-ref="dataSource" id="userService"
+    	users-by-username-query="SELECT user_id as loginId, user_pw as loginPwd ,1 as enabled FROM user WHERE User_ID=?"
+    	authorities-by-username-query="SELECT user_ID as loginID, authority_role AUTHORITY FROM authority WHERE User_ID=?"/>
+
+
 	<sec:authentication-manager>
-        <sec:authentication-provider user-service-ref="a">
-            <!-- mysql의 password() 함수로 암호화하여 저장한 경우 이를 비교하기 위한 클래스 -->
-            <sec:password-encoder ref=""></sec:password-encoder>
+        <sec:authentication-provider user-service-ref="userService"> 	
         </sec:authentication-provider>
     </sec:authentication-manager>
 </beans>
