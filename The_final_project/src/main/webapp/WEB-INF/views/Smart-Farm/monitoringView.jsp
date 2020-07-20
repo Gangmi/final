@@ -7,13 +7,17 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Keat </title>
+    
     <link rel="stylesheet" href="/resources/css/Smart-Farm/style.css">
+    <style>
+        
+    </style>
 </head>
 <body>
 	<div id="header">
 		<p><a href="#">슈퍼 그랑-조 </a>님 반갑습니다.</p>
 		<section class="header">
-			<a href="1_Main.html.html"><img src="img/logo-2.png" alt="LOGO"></a>
+			<a href="1_Main.html.html"><img src="/resources/img/logo-2.png" alt="LOGO"></a>
 
 			<ul class="header_menu">
 				<li><a href="4Aoutus.html.html">소개</a></li>
@@ -27,7 +31,7 @@
 	<div id="talk">
 		<div class="chat">
 			<button>
-				<img src="img/talk-1.png">
+				<img src="/resources/img/talk-1.png">
 			</button>
 		</div>
 	</div>
@@ -36,18 +40,18 @@
 		<p>나의 스파트 팜</p>
 	
 		<div class="cctv_box">
-			<div class="cctv"><img src="img/xxxxxxxx.jpg"></div>
+			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div>
 			<p>경기도 여주시 금사면 금품2로 485 루돌프 농장</p>
 			<p>031-884-6554</p>
 			<div class="btn">
 				<div class="btn1">
-					<button type="submit"><img src="img/15159159.png">
+					<button type="submit"><img src="/resources/img/15159159.png">
 						<p>물주기</p>
 					</button>
 				</div>
 	
 				<div class="btn2">
-					<button type="submit"><img src="img/1515151131313.png">
+					<button type="submit"><img src="/resources/img/1515151131313.png">
 						<p>수확하기</p>
 					</button>
 				</div>
