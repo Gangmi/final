@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	display: block;
+	border: none;
+}
+
+a {
+	text-decoration: none;
+	color: #5A5859;
+	display: block;
+}
+
+li {
+	list-style: none;
+}
+
+#header {
+	width: 100%;
+	overflow: hidden;
+	float: left;
+	border-bottom: 1px solid #DEDEDE;
+}
+
+#header img {
+	width: 180px;
+	float: left;
+}
+
+.header {
+	width: 85.41%;
+	margin: 0px 170px 0px 170px;
+	padding: 45px 0px 45px 0px;
+}
+
+.header_menu {
+	float: right;
+	margin-right: 110px;
+}
+
+.header_menu li {
+	float: left;
+	padding: 0px 0px 60px 60px;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+}
+
+#side {
+	float: left;
+}
+
+.sub {
+	margin: 60px 0px 0px 170px;
+	float: left;
+}
+
+.sub_menu {
+	width: 180px;
+	height: 100%;
+	position: fixed;
+	overflow: auto;
+	font-weight: bold;
+}
+
+.sub_menu li {
+	text-align: left;
+	line-height: 80px;
+	padding-left: 20px;
+}
+
+.sub_menu a {
+	text-align: left;
+	width: 250px;
+	height: 80px;
+}
+
+.sub_menu li:hover {
+	color: white;
+	background-color: #44526C;
+}
+
+.sub_menu li a:hover {
+	color: white;
+}
+
+.main_box {
+	float: left;
+}
+
+.top_menu {
+	width: 76.54%;
+	float: right;
+	margin: 30px 210px 0px 0px;
+}
+
+.top_menu p {
+	float: left;
+	padding-left: 40px;
+	font-weight: bold;
+	color: #5A5859;
+}
+
+.search_box {
+	float: right;
+}
+
+.search_box .search {
+	width: 300px;
+	height: 30px;
+	float: left;
+	border: none;
+	background-color: #DEDEDE;
+	border-radius: 5px;
+	padding-left: 20px;
+}
+
+.search_box button {
+	border: none;
+}
+
+.search_box img {
+	width: 30px;
+	height: 30px;
+	float: right;
+	background-color: white;
+}
+
+.text_btn {
+	float: right;
+}
+
+.text_btn button {
+	float: right;
+	border: none;
+	background-color: #44526C;
+	font-size: 15px;
+	color: white;
+	width: 90px;
+	height: 30px;
+	margin-top: 15px;
+	margin-right: 210px;
+	border-radius: 5px;
+}
+
+.main_box {
+	float: right;
+	width: 80%;
+	border-bottom: 1px solid #DEDEDE;
+}
+
+.main_box p {
+	float: left;
+	padding: 20px 60px 20px 60px;
+	color: #5A5859;
+}
+
+.main_box p:nth-child(1) {
+	float: left;
+	padding: 20px 0px 20px 0px;
+	color: #44526C;
+}
+
+.main_box p:nth-child(2) {
+	float: left;
+	padding: 20px 310px 20px 310px;
+}
+
+.main_text {
+	width: 80%;
+	float: right;
+}
+
+table {
+	width: 80%;
+	text-align: left;
+}
+
+table {
+	width: 86%;
+	margin: 20px 0px 20px 0px;
+}
+
+#talk {
+	position: fixed;
+	top: 130px;
+	left: 94%;
+	;
+}
+
+.chat img {
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+}
+
+.chat button {
+	border: none;
+	border-radius: 10px;
+}
+
+#footer {
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+	background-color: #DEDEDE;
+	margin-top: 50px;
+}
