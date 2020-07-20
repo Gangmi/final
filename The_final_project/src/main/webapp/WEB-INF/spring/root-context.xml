@@ -20,9 +20,9 @@
 
 		<property name="url" value="${url}" />
 
-		<property name="username" value="${username}" />
+		<property name="username" value="${user}" />
 
-		<property name="password" value="${password}" />
+		<property name="password" value="${pass}" />
 
 	</bean>
 

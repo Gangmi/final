@@ -11,13 +11,13 @@
 <body>
 	<div id="header">
         <section class="header">
-            <a href="#"><img src="resources/img/logo-2.png" alt="LOGO"></a>
+            <a href="/index.jsp"><img src="resources/img/logo-2.png" alt="LOGO"></a>
 
             <ul class="header_menu">
-                <li><a href="#">소개</a></li>
+                <li><a href="aboutus.do">소개</a></li>
                 <li><a href="#">농장위치</a></li>
-                <li><a href="#">회원가입</a></li>
-                <li><a href="#">로그인</a></li>
+                <li><a href="sign_up.do">회원가입</a></li>
+                <li><a href="login.do">로그인</a></li>
             </ul>
         </section>
     </div>
@@ -44,7 +44,7 @@
                 <button>
                     <img src="resources/img/free.png">
                 </button>
-                <p><a href="home.do">자유게시판</a></p>
+                <p><a href="general.do">자유게시판</a></p>
             </div>
 
             <div class="tip">
