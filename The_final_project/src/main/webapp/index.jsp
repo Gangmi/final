@@ -9,6 +9,9 @@
 
 </head>
 <body>
+	<!-- ChatBot 연동 script 삽입 -->
+	<script id="embeddedChatbot" data-botId="Bdv56x" src="https://www.closer.ai/js/webchat.min.js"> </script>
+	
 	<div id="header">
         <section class="header">
             <a href="/index.jsp"><img src="resources/img/logo-2.png" alt="LOGO"></a>
@@ -29,14 +32,14 @@
             </div>
         </div>
         
-        <div id="talk">
+<!--         <div id="talk">
             <div class="chat">
                 <button>
                     <img src="resources/img/talk-1.png">
                 </button>
             </div>
-        </div>
-    </div>
+        </div>  -->
+    </div> 
 
     <div id="menu">
         <section class="header">
