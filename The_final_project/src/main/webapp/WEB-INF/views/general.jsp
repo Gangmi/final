@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/general.css">
+<% %>
 </head>
 <div id="header">
         <section class="header">
             <a href="/the_final_project/index.jsp"><img src="resources/img/logo-2.png" alt="LOGO"></a>
 
             <ul class="header_menu">
-                <li><a href="4Aoutus.html.html">소개</a></li>
+                <li><a href="aboutus.do">소개</a></li>
                 <li><a href="5place.html.html">농장위치</a></li>
                 <li><a href="2Join.html.html">로그아웃</a></li>
                 <li><a href="3Login.html.html">마이페이지</a></li>
