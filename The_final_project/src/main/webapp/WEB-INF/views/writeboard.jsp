@@ -11,7 +11,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="resources/js/general.js"></script>
 <%
-	List<BoardVO> result = (List<BoardVO>) request.getAttribute("boardlist");
+	List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
 %>
 </head>
 <body>
@@ -60,48 +60,35 @@
 			<p>작성일</p>
 			<p>조회</p>
 		</div>
-		<!--글쓰기시에 스크립트로 redirection 됨  -->
+
 		<div class="text_btn">
 			<button id="write_board">글쓰기</button>
 		</div>
 
 	</div>
 
-
-	<!--게시판 글 표시되는 부분  -->
 	<div class="main_text">
-
-		<%
-			if (!result.isEmpty()) {
-			for (BoardVO vo : result) {
-		%>
-
+	<%if(!result.isEmpty()){
+		for(BoardVO vo:result){%>
+	
 		<table>
 			<tr>
 				<th width="130"><%=vo.getB_num()%></th>
-				<th width="659"><a href="readboard.do?b_num=<%=vo.getB_num()%>"><%=vo.getB_title()%></a></th>
+				<th width="659"><%=vo.getB_title()%></th>
 				<th><%=vo.getM_id()%></th>
 				<th width="180"><%=vo.getB_date()%></th>
 				<th width="188"><%=vo.getB_view()%></th>
 			</tr>
 		</table>
-		<%
-			}
-		%>
-		<%
-			}
-		%>
-
+		<%} %>
+	<% } %>
+		
 
 	</div>
-	<div class="page">
-		<%
-			for (int i = 1; i <= result.get(0).getNowpage(); i++) {
-		%>
-		<a href=general.do?b_boardname=free_board&b_nowpage=<%=i%>><%="[" + i + "]"%></a>
-		<%
-			}
-		%>
+	<div>
+	<% for(int i=1; i<=result.get(0).getNowpage(); i++){ %>
+	<a href=general.do?b_nowpage=<%=i%>><%="["+i+"]"%></a>
+	<% }%>
 	</div>
 	<div id="talk">
 		<div class="chat">
@@ -110,7 +97,7 @@
 			</button>
 		</div>
 	</div>
-
+	
 	<div id="footer">
 		<p>@COPYRIGHT_</p>
 	</div>

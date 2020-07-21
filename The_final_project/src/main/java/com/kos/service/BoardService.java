@@ -6,6 +6,6 @@ import com.kos.vo.BoardVO;
 
 public interface BoardService {
 	
-	public List<BoardVO> getBoardList();
+	public List<BoardVO> getBoardList(BoardVO vo);
 
 }

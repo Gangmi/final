@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>project</title>
-<link rel="stylesheet" href="resources/css/main_page.css">
+<link rel="stylesheet" href="resources/css/main_page.css"> 
 
 </head>
 <body>
@@ -44,7 +44,7 @@
                 <button>
                     <img src="resources/img/free.png">
                 </button>
-                <p><a href="general.do">자유게시판</a></p>
+                <p><a href="general.do?b_boardname=free_board">자유게시판</a></p>
             </div>
 
             <div class="tip">

@@ -15,11 +15,11 @@ public class BoardServiceImpl implements BoardService {
 	BoardDaoImpl dao;
 
 	@Override
-	public List<BoardVO> getBoardList() {
+	public List<BoardVO> getBoardList(BoardVO vo) {
 		// TODO Auto-generated method stub
 		
 		
-		return dao.getBoardList();
+		return dao.getBoardList(vo);
 		
 	}
 	

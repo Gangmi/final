@@ -11,11 +11,48 @@ public class BoardVO {
 	private int b_bad;
 	private int b_view;
 	
+	
+	//어떤 게시판인지 구분하는 변수 맵퍼에서 사용
+	private String b_boardname;
+	
+	//해당 게시판의 총게시물 수
+	private int total_board;
+	
+	//현재 페이지 기본 값 1 
+	private int nowpage=1;
+	
+	//현재 보여지는 게시물수 기본값 30
+	private int viewing_count=30;
+
 	//농상인 게시판에서 추가로 사용하는 멤버 변수
 	private String b_select;
 	private String b_seldate;
 	private int b_point;
 	
+	public int getNowpage() {
+		return nowpage;
+	}
+	public void setNowpage(int nowpage) {
+		this.nowpage = nowpage;
+	}
+	public int getTotal_board() {
+		return total_board;
+	}
+	public void setTotal_board(int total_board) {
+		this.total_board = total_board;
+	}
+	public int getViewing_count() {
+		return viewing_count;
+	}
+	public void setViewing_count(int viewing_count) {
+		this.viewing_count = viewing_count;
+	}
+	public String getB_boardname() {
+		return b_boardname;
+	}
+	public void setB_boardname(String b_boardname) {
+		this.b_boardname = b_boardname;
+	}
 	public String getB_num() {
 		return b_num;
 	}
