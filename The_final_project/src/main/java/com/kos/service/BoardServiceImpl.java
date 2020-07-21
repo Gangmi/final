@@ -22,6 +22,19 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getBoardList(vo);
 		
 	}
+
+	@Override
+	public void writeBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		
+		dao.writeBoard(vo);
+		
+	}
+	@Override
+	public BoardVO viewBoard(BoardVO vo) {
+		
+		return dao.viewBoard(vo);
+	}
 	
 	
 	

@@ -16,12 +16,27 @@
 		select *
 		from
 		(select *,@rownum := @rownum+1 AS RNUM
-		from ${b_boardname},(SELECT @rownum :=0)as R )as R
+		from ${b_boardname} as b,(SELECT @rownum :=0)as R order by b.b_num desc)as R
 		where RNUM<![CDATA[>=]]>${startrow}
 		and RNUM<![CDATA[<=]]>${endrow} <if test="search!=null">and b_title LIKE '%'||#{search}||'%'</if>
+		
 
 	</select>
+	<!--게시글을 등록  -->
+	<insert id="writeboard" parameterType="board">
+	insert into ${b_boardname} values(NEXT VALUE FOR free_board_num,#{b_title},#{b_contents},now(),#{m_id},0,0,0)
+	
+	</insert>
+	
+	<!--조회수 올리기  -->
+	<update id="upviewcount" parameterType="board">
+	update ${b_boardname} set b_view=b_view+1 where b_num = ${b_num}
+	
+	</update>
 
-
-
+	<!--게시글 읽기  -->
+	<select id="viewboard" parameterType="board" resultType="board">
+	select * from ${b_boardname} where b_num = ${b_num}
+	</select>
+		
 </mapper>

@@ -64,6 +64,22 @@ public class BoardDaoImpl implements BoardDao {
 		
 		
 	}
+
+
+	@Override
+	public void writeBoard(BoardVO vo) {
+		//글저장하기
+		mybatis.insert("writeboard",vo);
+		
+	}
+
+	@Override
+	public BoardVO viewBoard(BoardVO vo) {
+		//조회수올리기
+		mybatis.update("upviewcount",vo);
+		
+		return mybatis.selectOne("viewboard",vo);
+	}
 	
 
 }
