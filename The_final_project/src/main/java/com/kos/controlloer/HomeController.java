@@ -32,8 +32,4 @@ public class HomeController {
 		return step;
 	}
 
-	@RequestMapping("/")
-	public String start() {
-		return "redirect:index.jsp";
-	}
 }

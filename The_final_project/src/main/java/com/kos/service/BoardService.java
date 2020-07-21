@@ -1,9 +1,11 @@
 package com.kos.service;
 
+import java.util.List;
+
 import com.kos.vo.BoardVO;
 
 public interface BoardService {
 	
-	public BoardVO getBoardList();
+	public List<BoardVO> getBoardList();
 
 }
