@@ -28,11 +28,8 @@ public class HomeController {
 	private Testdaoimpl td;
 	@RequestMapping("/{step}.do")
 	public String forwardPage(@PathVariable String step, ModelAndView mo) {
-		/* td.test2(); */
+		
 		return step;
 	}
-	@RequestMapping("/")
-	public String start() {
-		return "redirect:index.jsp";
-	}
+
 }

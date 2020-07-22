@@ -170,22 +170,19 @@ li {
 	float: left;
 	padding: 20px 310px 20px 310px;
 }
-
+ /* 글박스 */ 
 .main_text {
 	width: 80%;
+	height:1000px;
 	float: right;
 }
 
-table {
-	width: 80%;
-	text-align: left;
-}
-
-table {
+/*게시글테이블  */
+ table {
 	width: 86%;
 	margin: 20px 0px 20px 0px;
 }
-
+ 
 #talk {
 	position: fixed;
 	top: 130px;
@@ -193,7 +190,7 @@ table {
 	;
 }
 
-.chat img {
+/* .chat img {
 	width: 60px;
 	height: 60px;
 	border-radius: 10px;
@@ -202,7 +199,7 @@ table {
 .chat button {
 	border: none;
 	border-radius: 10px;
-}
+} */
 
 #footer {
 	width: 100%;
@@ -212,4 +209,19 @@ table {
 	text-align: center;
 	background-color: #DEDEDE;
 	margin-top: 50px;
+}
+/* 동적페이지 구현부  */
+.paging{
+	display: block;
+	float: left;
+	margin-left: 100px;
+	margin-top: 50px;
+}
+/*글쓰는부분 ->writeboard */
+.writeboardbox{
+	width: 86%;
+	margin-left: 400px;
+	
+	
+	
 }
