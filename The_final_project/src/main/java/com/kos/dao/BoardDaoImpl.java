@@ -22,7 +22,7 @@ public class BoardDaoImpl implements BoardDao {
 		//전체 페이지수 구하기(vo board name)
 		
 		//해당 게시판 전체 게시물 갯수 구하기
-		int total_board_count=mybatis.selectOne("getBoardCount",vo);
+		int total_board_count=mybatis.selectOne("board.getBoardCount",vo);
 		System.out.println(total_board_count+"############# 전체카운트");
 		//전체 카운트에서 현재 보이는 페이지를 나눈 나머지가 1보다 크면 나눈값에 1을 더함
 		int temppage=total_board_count/vo.getViewing_count();
@@ -53,8 +53,9 @@ public class BoardDaoImpl implements BoardDao {
 		hs.put("startrow", start);
 		hs.put("endrow",end);
 		hs.put("b_boardname",vo.getB_boardname());
-		List<BoardVO> result=mybatis.selectList("getBoardList",hs);
-		System.out.println(result.get(0).getB_contents());
+		List<BoardVO> result=mybatis.selectList("board.getBoardList",hs);
+		System.out.println(result.get(0).getContents());
+		System.out.println(result.get(0).getBoardView()+"####################");
 		//nowpage멤버변수를 이용해서 total page를 저장
 		result.get(0).setNowpage(totalpage);
 		
@@ -69,16 +70,18 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void writeBoard(BoardVO vo) {
 		//글저장하기
-		mybatis.insert("writeboard",vo);
+		mybatis.insert("board.writeboard",vo);
 		
 	}
 
 	@Override
 	public BoardVO viewBoard(BoardVO vo) {
 		//조회수올리기
-		mybatis.update("upviewcount",vo);
+		mybatis.update("board.upviewcount",vo);
+		BoardVO result=mybatis.selectOne("board.viewboard",vo);
+		result.getBoardView();
 		
-		return mybatis.selectOne("viewboard",vo);
+		return result;
 	}
 	
 

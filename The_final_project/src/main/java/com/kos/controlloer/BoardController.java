@@ -20,6 +20,7 @@ public class BoardController {
 	@RequestMapping("/general.do")
 	public ModelAndView getBoardList(ModelAndView mv,BoardVO vo) {
 		//게시판 글을 읽어오기 위한 코딩
+		
 		List<BoardVO> result=service.getBoardList(vo);
 		if(result.size()==0) {
 			System.out.println("없음#######################");
@@ -48,10 +49,10 @@ public class BoardController {
 	//글쓸 때 
 	@RequestMapping("/write.do")
 	public ModelAndView writeBoard(ModelAndView mv,BoardVO vo) {
-		System.out.println(vo.getB_title());
-		System.out.println(vo.getB_contents());
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getContents());
 		//임시로 아이디 지정 ->나중에 지우기
-		vo.setM_id("testid");
+		vo.setId("kim");
 		System.out.println(vo.getB_boardname());
 		
 		//사용자가 작성한 글 및 정보 전달
@@ -65,11 +66,14 @@ public class BoardController {
 	//글읽을 떄
 	@RequestMapping("/viewboard.do")
 	public ModelAndView viewBoard(ModelAndView mv ,BoardVO vo) {
+		System.out.println("들어옴");
+		System.out.println(vo.getB_boardname());
+		System.out.println(vo.getBoardno());
 		
 		
 		BoardVO result=service.viewBoard(vo);
-		System.out.println(result.getB_title()+"######################");
-		
+		//System.out.println(result.getTitle()+"######################");
+		System.out.println(result.getBoardView()+"뷰카운트");
 		//다음 페이지 지정
 		mv.setViewName("viewboard");
 		mv.addObject("board",result);
