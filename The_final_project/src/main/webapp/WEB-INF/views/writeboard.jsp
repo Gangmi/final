@@ -41,14 +41,14 @@
 					<tbody>
 						<tr>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="b_title" maxlength="220" /></td>
+								placeholder="글 제목" name="title" maxlength="220" /></td>
 
 						</tr>
 
 						<tr>
 
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="b_contents" maxlength="2048" style="height: 550px; width: 550px;"></textarea></td>
+									name="contents" maxlength="2048" style="height: 550px; width: 550px;"></textarea></td>
 
 						</tr>
 

@@ -41,7 +41,7 @@
 					<tbody>
 						<tr>
 							<td><input type="text" class="form-control"
-								 name="b_title" maxlength="220" value="<%=result.getB_title()%>"  /></td>
+								 name="b_title" maxlength="220" value="<%=result.getTitle()%>"  /></td>
 
 						</tr>
 
@@ -49,7 +49,7 @@
 
 							<td><textarea class="form-control" 
 									name="b_contents" maxlength="2048"
-									style="height: 550px; width: 550px;"><%=result.getB_contents() %></textarea></td>
+									style="height: 550px; width: 550px;"><%=result.getContents() %></textarea></td>
 
 						</tr>
 

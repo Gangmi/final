@@ -61,11 +61,12 @@
 
 		<table>
 			<tr>
-				<th width="130"><%=vo.getB_num()%></th>
-				<th width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&b_num=<%=vo.getB_num()%>"><%=vo.getB_title()%></a></th>
-				<th><%=vo.getM_id()%></th>
-				<th width="180"><%=vo.getB_date()%></th>
-				<th width="188"><%=vo.getB_view()%></th>
+				<th width="130"><%=vo.getBoardno()%></th>
+				<th width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></th>
+				<th><%=vo.getId()%></th>
+				<th width="180"><%=vo.getRegdate()%></th>
+				<th width="188"><%=vo.getBoardView()%></th>
+				
 			</tr>
 		</table>
 		<%
