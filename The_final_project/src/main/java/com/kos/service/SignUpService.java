@@ -22,11 +22,11 @@ public class SignUpService {
 		int result;
 		result = memberDao.memberInsert(memberVo);
 		
-		if (result <= 0) {
+		if (result<1) {
 			throw new Exception();
 		}else {
 			result=authorityDao.roleInsert( memberVo.getId(), AuthorityVO.ROLE_USER);
-			if (result<=0) {
+			if (result<1) {
 				throw new Exception();
 			}else {
 				result = 1;
