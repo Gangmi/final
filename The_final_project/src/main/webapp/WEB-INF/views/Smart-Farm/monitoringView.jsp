@@ -9,9 +9,7 @@
     <title> Keat </title>
     
     <link rel="stylesheet" href="/resources/css/Smart-Farm/style.css">
-    <style>
-        
-    </style>
+   
 </head>
 <body>
 	<div id="header">

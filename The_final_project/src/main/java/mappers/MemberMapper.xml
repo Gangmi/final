@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+
+<!-- mybais 자료형 int/hashmap/string -->
+	<insert id="insert" parameterType="membervo">
+		INSERT INTO member(id,name,nickname,password,post_code,base_address,detail_address,phone_number,birth_day)
+					VALUES(#{id},#{name},#{nickname},#{password},#{postCode},#{baseAddress},#{detailAddress},#{phoneNumber},#{birthDay})
+	</insert>
+	
+	<select id="select" parameterType="membervo" resultType="membervo">
+		SELECT *
+		FROM member 
+		WHERE 1=1
+		<if test="id != null">AND id=#{id}</if>
+		<if test="nickname != null">AND nickName=#{nickname}</if>
+		<if test="password != null">AND password=#{password}</if>
+	</select>
+</mapper>
