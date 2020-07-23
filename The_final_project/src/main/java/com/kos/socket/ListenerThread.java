@@ -177,7 +177,7 @@ class HeartbeatThread extends Thread { // 10초마다 heart beat데이터를 보
 							}
 						}
 				}
-				System.out.println("heartbeat");
+				//System.out.println("heartbeat");
 				Thread.sleep(10000);
 			}
 		} catch (Exception e) {
