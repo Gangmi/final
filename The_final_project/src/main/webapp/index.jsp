@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +18,15 @@
             <ul class="header_menu">
                 <li><a href="aboutus.do">소개</a></li>
                 <li><a href="#">농장위치</a></li>
-                <li><a href="sign_up.do">회원가입</a></li>
-                <li><a href="login.do">로그인</a></li>
+                <sec:authorize access="isAuthenticated()">
+                <li>${sessionScope.memberinfo.id}</li>
+                <li><a href="logout.do">로그아웃</a></li>
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                	<li><a href="sign_up.do">회원가입</a></li>
+                	<li><a href="login.do">로그인</a></li>
+                </sec:authorize>
+                
             </ul>
         </section>
     </div>

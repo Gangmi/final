@@ -61,7 +61,7 @@
                 </div>
                 <sup id="email_check">&nbsp;</sup>
                 <div class="birth">
-                    <input class="login_box" type="date" name="birth" placeholder="생년월일">
+                    <input class="login_box" type="date" name="birthDay" placeholder="생년월일">
                 </div>
 
 
