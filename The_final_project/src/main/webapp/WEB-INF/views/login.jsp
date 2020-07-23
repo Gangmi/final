@@ -21,7 +21,7 @@
 
 		<p>LOGO에 로그인 하여 다양한 정보를 얻으세요.</p>
 	</div>
-	<form action="loginProcess" method="post">
+	<form action="loginProcess.do" method="post">
 		<div class="login">
 			<div class="id">
 				<label>아이디</label><br> <input class="id_box" type="text" name="id"

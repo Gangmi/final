@@ -17,20 +17,23 @@
 		<sec:intercept-url pattern="/login.do" access="isAnonymous()"/>
 		<sec:intercept-url pattern="/sign_up.do" access="isAnonymous()"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
-		<sec:form-login username-parameter="id"
-						password-parameter="password"
-						login-processing-url="/loginProcess"
-						login-page="/login.do"
-						authentication-success-handler-ref="loginSuccessHandler"
-						authentication-failure-handler-ref="loginFailureHandler"
-						/> 
-						  	
-		<sec:logout invalidate-session="true" />
+		<sec:form-login username-parameter="id" 
+ 						password-parameter="password" 
+ 						login-processing-url="/loginProcess.do"
+ 						login-page="/login.do"
+ 						authentication-failure-url="/login_fail.do"
+ 						/> 
+<!--  						default-target-url="/login_act.do" -->
+ 						
+<!-- 						authentication-success-handler-ref="loginSuccessHandler" -->
+<!-- 						authentication-failure-handler-ref="loginFailureHandler" -->
+						
+ 		<sec:logout invalidate-session="true" logout-url="/logout.do" /> <!--logout-success-url="/logout_act.do" -->
 		
 		<sec:session-management>
-        	<sec:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+        	<sec:concurrency-control max-sessions="1"  expired-url="/logout.do"/>
         </sec:session-management>
-<!--         <sec:access-denied-handler ref=""/> -->
+        <sec:access-denied-handler error-page="/asd.do"/> 
 	</sec:http>
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
