@@ -16,7 +16,7 @@
 %>
 </head>
 <body>
-	<jsp:include page="Board/header.jsp" />
+	<jsp:include page="header.jsp" />
 	<jsp:include page="Board/side.jsp" />
 	<div class="writeboardbox">
 

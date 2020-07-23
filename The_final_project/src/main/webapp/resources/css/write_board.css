@@ -1,0 +1,177 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	display: block;
+	border: none;
+}
+
+a {
+	text-decoration: none;
+	color: #5A5859;
+	display: block;
+}
+
+li {
+	list-style: none;
+}
+
+#header {
+	width: 100%;
+	overflow: hidden;
+	float: left;
+	border-bottom: 1px solid #DEDEDE;
+}
+
+#header img {
+	width: 180px;
+	float: left;
+}
+
+.header {
+	width: 85.41%;
+	margin: 0px 170px 0px 170px;
+	padding: 45px 0px 45px 0px;
+}
+
+.header_menu {
+	float: right;
+	margin-right: 110px;
+}
+
+.header_menu li {
+	float: left;
+	padding: 0px 0px 60px 60px;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+}
+
+#side {
+	float: left;
+}
+
+.sub {
+	margin: 60px 0px 0px 170px;
+	float: left;
+}
+
+.sub_menu {
+	width: 180px;
+	height: 100%;
+	position: fixed;
+	overflow: auto;
+	font-weight: bold;
+}
+
+.sub_menu li {
+	text-align: left;
+	line-height: 80px;
+	padding-left: 20px;
+}
+
+.sub_menu a {
+	text-align: left;
+	width: 250px;
+	height: 80px;
+}
+
+.sub_menu li:hover {
+	color: white;
+	background-color: #44526C;
+}
+
+.sub_menu li a:hover {
+	color: white;
+}
+
+.main_box {
+	width: 85.41%;
+	float: left;
+}
+
+.top_menu {
+	width: 69.01%;
+	float: right;
+	margin: 85px 210px 30px 0px;
+	border: 1px solid #DEDEDE;
+	height: 30px;
+	line-height: 30px;
+}
+
+.search_box select {
+	width: 1325px;
+	height: 30px;
+	border: none;
+	padding-left: 10px;
+	font-size: 15px;
+	color: #5A5859;
+	margin: 0 auto;
+}
+
+.title {
+	margin-top: 30px;
+	border: 1px solid #DEDEDE;
+	height: 30px;
+	padding-left: 10px;
+	font-size: 15px;
+	color: #5A5859;
+}
+
+.text_btn {
+	float: right;
+}
+
+.text_btn button {
+	float: right;
+	border: none;
+	background-color: #44526C;
+	font-size: 15px;
+	color: white;
+	width: 90px;
+	height: 30px;
+	margin-top: 30px;
+	margin-right: 210px;
+	border-radius: 5px;
+}
+
+.text_btn button:nth-child(2) {
+	float: right;
+	border: none;
+	background-color: #44526C;
+	font-size: 15px;
+	color: white;
+	width: 90px;
+	height: 30px;
+	margin-top: 30px;
+	margin-right: 20px;
+	border-radius: 5px;
+}
+
+.main_box {
+	float: right;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+
+.main_menu {
+	border: 1px solid #DEDEDE;
+	width: 86.01%;
+	height: 500px;
+	overflow-y: scroll;
+}
+
+
+
+#footer {
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+	background-color: #DEDEDE;
+	margin-top: 50px;
+}
