@@ -1,13 +1,17 @@
 package com.kos.controlloer;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -111,7 +115,9 @@ public class BoardController {
 					try{
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
-						String uploadPath = req.getServletContext().getRealPath("/img");
+						//이부분 getsession 먼저 해줘야함 servlet을 사용하지 않는 jsp는 이런식으로 먼저 세션을 가져와야함
+						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
+					
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
