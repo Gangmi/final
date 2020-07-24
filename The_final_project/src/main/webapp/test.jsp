@@ -9,5 +9,6 @@
 <body>
 <a href="Smart-Farm.do">smartFarm</a>
 <a href="requestData.do">test</a>
+<a href="updateAccount.do">updateAccount</a>
 </body>
 </html>
