@@ -1,0 +1,65 @@
+<%@page import="com.kos.vo.BoardVO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--css및 다른 자원  -->
+
+
+<%
+	String boardname = (String) request.getAttribute("b_boardname");
+%>
+<script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
+<title>자유게시판</title>
+<script type="text/javascript" src="resources/js/write.js"></script>
+</head>
+<body>
+	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+
+	
+	<section class="hero-section">
+	
+		<div class="container">
+		<h3>글쓰기</h3>
+			<div class="top_menu">
+				<div class="search_box">
+					<select>
+						<option>자유시게판</option>
+						<option>팁게시판</option>
+						<option>분양시게판</option>
+						<option>장터시게판</option>
+						<option>농사 IN 시게판</option>
+					</select>
+				</div>
+				<div class="title">
+					제목 쓰기 <input type="text" name="title" />
+				</div>
+			</div>
+		</div>
+		</section>
+
+
+<section class="hero-section">
+		<div class="container">
+			<div class="main_box">
+
+				<form action="write.do?b_boardname=free_board" method="post"
+					id="frm">
+					<textarea name="contents" id="editor"></textarea>
+					<script type="text/javascript">
+						
+					</script>
+					<input type="button" id="savebutton" value="서버전송" />
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+	<script src="/resources/js/board/write.js"></script>
+<body />
+
+</html>

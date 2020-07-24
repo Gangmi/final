@@ -6,37 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<link rel="stylesheet" href="resources/css/general.css">
+<!--게시판 페이지 기본 css  -->
+<link rel="stylesheet" href="/resources/css/boardcss/general.css">
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="resources/js/general.js"></script>
+
 <%
 	//게시판 값 받아오는 곳
-List<BoardVO> result = (List<BoardVO>) request.getAttribute("boardlist");
+List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
 String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title>자유게시판</title>
 
-<!-- Css Styles -->
-<link rel="stylesheet" href="/resources/css/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/flaticon.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/owl.carousel.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/nice-select.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/jquery-ui.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/magnific-popup.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/slicknav.min.css"
-	type="text/css">
-<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -50,6 +31,9 @@ String boardname = (String) request.getAttribute("b_boardname");
 			<h3>자유게시판</h3>
 			<br />
 			<div class="table-wrapper">
+			<div class="writebtn">
+			<button class="btn btn-success" id="writeboard">글쓰기</button>
+			</div>
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -80,12 +64,18 @@ String boardname = (String) request.getAttribute("b_boardname");
 						}
 					%>
 					<%
+						}else{
+					%>
+					<%
 						}
 					%>
+					
+					
 					</tbody>
 					
 				</table>
 			</div>
+			<!--페이징 부분  -->
 			<div class="paging">
 				<%
 					for (int i = 1; i <= result.get(0).getNowpage(); i++) {
@@ -97,15 +87,10 @@ String boardname = (String) request.getAttribute("b_boardname");
 			</div>
 		</div>
 	</section>
-
-
-	<!-- Hero Section End -->
-
-	<!-- 어바웃어스 -->
-
-	<!-- About Us Section End -->
+	<!-- footer  -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-	<!-- 자바스크립트 -->
-	
+	<!--자바 스크립트 추가 부분  -->
+	<script type="text/javascript" src="/resources/js/board/general.js"></script>
+
 </body>
 </html>
