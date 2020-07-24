@@ -21,9 +21,10 @@
  						password-parameter="password" 
  						login-processing-url="/loginProcess.do"
  						login-page="/login.do"
+ 						default-target-url="/login_act.do"
  						authentication-failure-url="/login_fail.do"
  						/> 
-<!--  						default-target-url="/login_act.do" -->
+
  						
 <!-- 						authentication-success-handler-ref="loginSuccessHandler" -->
 <!-- 						authentication-failure-handler-ref="loginFailureHandler" -->

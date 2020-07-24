@@ -12,7 +12,7 @@ import com.kos.vo.AuthorityVO;
 import com.kos.vo.MemberVO;
 
 @Service
-public class SignUpService {
+public class MemberService {
 	@Autowired
 	MemberDao memberDao;
 	@Autowired
