@@ -11,6 +11,7 @@
 
 </head>
 <body>
+<jsp:include page="../views/header.jsp"></jsp:include>
 	<div id="header">
         <section class="header">
             <a href="/index.jsp"><img src="resources/img/logo-2.png" alt="LOGO"></a>
@@ -84,12 +85,15 @@
                 <p><a href="#">농사 IN 게시판</a></p>
             </div>
         </section>
-        
     </div>
-
-    <div id="footer">
-        <p>@COPYRIGHT_</p>
-    </div>
-
+ <!-- 자바스크립트 -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
