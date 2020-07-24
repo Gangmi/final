@@ -46,51 +46,52 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 	<section class="hero-section">
 		<div class="container">
-			<h3>Table</h3>
-			<h4>Default</h4>
+
+			<h3>자유게시판</h3>
+			<br />
 			<div class="table-wrapper">
-				<table>
+				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Price</th>
+							<th width="130">글번호</th>
+							<th width="659">제목</th>
+							<th>작성자</th>
+							<th width="180">작성일</th>
+							<th width="188">조회수</th>
 						</tr>
 					</thead>
+					<%
+						if (!result.isEmpty()) {
+						for (BoardVO vo : result) {
+						// 시간 나누기
+						String[] dat=vo.getRegdate().split(" ");
+						vo.setRegdate(dat[0]);
+					%>
 					<tbody>
 						<tr>
-							<td>Item One</td>
-							<td>Ante turpis integer aliquet porttitor.</td>
-							<td>29.99</td>
-						</tr>
-						<tr>
-							<td>Item Two</td>
-							<td>Vis ac commodo adipiscing arcu aliquet.</td>
-							<td>19.99</td>
-						</tr>
-						<tr>
-							<td>Item Three</td>
-							<td>Morbi faucibus arcu accumsan lorem.</td>
-							<td>29.99</td>
-						</tr>
-						<tr>
-							<td>Item Four</td>
-							<td>Vitae integer tempus condimentum.</td>
-							<td>19.99</td>
-						</tr>
-						<tr>
-							<td>Item Five</td>
-							<td>Ante turpis integer aliquet porttitor.</td>
-							<td>29.99</td>
+							<td width="130"><%=vo.getBoardno()%></td>
+							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
+							<td width="180"><%=vo.getId()%></td>
+							<td width="180"><%=vo.getRegdate()%></td>
+							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
 					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="2"></td>
-							<td>100.00</td>
-						</tr>
-					</tfoot>
+					<%
+						}
+					%>
+					<%
+						}
+					%>
 				</table>
+			</div>
+			<div class="paging">
+				<%
+					for (int i = 1; i <= result.get(0).getNowpage(); i++) {
+				%>
+				<a href=general.do?b_boardname=free_board&b_nowpage= <%=i%>><%="[" + i + "]"%></a>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</section>
@@ -103,13 +104,6 @@ String boardname = (String) request.getAttribute("b_boardname");
 	<!-- About Us Section End -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	<!-- 자바스크립트 -->
-	<script src="/resources/js/jquery-3.3.1.min.js"></script>
-	<script src="/resources/js/bootstrap.min.js"></script>
-	<script src="/resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="/resources/js/jquery.nice-select.min.js"></script>
-	<script src="/resources/js/jquery-ui.min.js"></script>
-	<script src="/resources/js/jquery.slicknav.js"></script>
-	<script src="/resources/js/owl.carousel.min.js"></script>
-	<script src="/resources/js/main.js"></script>
+	
 </body>
 </html>

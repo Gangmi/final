@@ -47,6 +47,7 @@ public class BoardController {
 		// 다음 페이지로 넘길 값을 설정
 		mv.addObject("boardlist", result); // 받아온 게시판 게시물
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름
+		
 		return mv;
 
 	}
