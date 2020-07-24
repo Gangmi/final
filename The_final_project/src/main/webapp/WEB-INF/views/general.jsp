@@ -60,6 +60,8 @@ String boardname = (String) request.getAttribute("b_boardname");
 							<th width="188">조회수</th>
 						</tr>
 					</thead>
+					
+					<tbody>
 					<%
 						if (!result.isEmpty()) {
 						for (BoardVO vo : result) {
@@ -67,7 +69,6 @@ String boardname = (String) request.getAttribute("b_boardname");
 						String[] dat=vo.getRegdate().split(" ");
 						vo.setRegdate(dat[0]);
 					%>
-					<tbody>
 						<tr>
 							<td width="130"><%=vo.getBoardno()%></td>
 							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
@@ -75,13 +76,14 @@ String boardname = (String) request.getAttribute("b_boardname");
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
+						<%
+						}
+					%>
+					<%
+						}
+					%>
 					</tbody>
-					<%
-						}
-					%>
-					<%
-						}
-					%>
+					
 				</table>
 			</div>
 			<div class="paging">
