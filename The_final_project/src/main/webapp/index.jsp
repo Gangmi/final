@@ -25,7 +25,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	
-
+ 
 	<!-- Hero Section Begin -->
 
 	<section class="hero-section">
@@ -80,10 +80,10 @@
 					<div class="about-pic">
 						<div class="row">
 							<div class="col-sm-6">
-								<img src="img/about/about-1.jpg" alt="">
+								<img src="/resources/img/about/about-1.jpg" alt="">
 							</div>
 							<div class="col-sm-6">
-								<img src="img/about/about-2.jpg" alt="">
+								<img src="/resources/img/about/about-2.jpg" alt="">
 							</div>
 						</div>
 					</div>
