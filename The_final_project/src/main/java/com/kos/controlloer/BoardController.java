@@ -33,7 +33,7 @@ public class BoardController {
 	BoardServiceImpl service;
 
 	// 게시판 들어오면
-	@RequestMapping("/general.do")
+	@RequestMapping("/callboard.do")
 	public ModelAndView getBoardList(ModelAndView mv, BoardVO vo) {
 		// 게시판 글을 읽어오기 위한 코딩
 
@@ -47,6 +47,7 @@ public class BoardController {
 		// 다음 페이지로 넘길 값을 설정
 		mv.addObject("boardlist", result); // 받아온 게시판 게시물
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름
+		
 		return mv;
 
 	}

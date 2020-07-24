@@ -88,9 +88,9 @@
 								<li class="active"><a href="./index.html">Home</a></li>
 								<li><a href="./rooms.html">스마트팜</a></li>
 								<li><a href="./about-us.html">About Us</a></li>
-								<li><a href="./pages.html">게시판</a>
+								<li><a href="#">게시판</a>
 									<ul class="dropdown">
-										<li><a href="./room-details.html">자유게시판</a></li>
+										<li><a href="callboard.do?b_boardname=free_board">자유게시판</a></li>
 										<li><a href="./blog-details.html">팁게시판</a></li>
 										<li><a href="#">장터 게시판</a></li>
 										<li><a href="#">분양 게시판</a></li>
