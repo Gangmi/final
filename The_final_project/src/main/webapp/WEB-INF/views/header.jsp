@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/flaticon.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
