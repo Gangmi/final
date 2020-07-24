@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
+	<div id="preloder">
+        <div class="loader"></div>
+    </div>
+	
 	<div class="offcanvas-menu-overlay"></div>
 	<div class="canvas-open">
 		<i class="icon_menu"></i>
@@ -16,7 +19,15 @@
 			<i class="icon_close"></i>
 		</div>
 		<div class="search-icon  search-switch">
-			<i class="icon_search"></i>
+			<sec:authorize access="isAnonymous()">
+				<a href="login.do">로그인</a> &nbsp;&nbsp;
+								<a href="sign_up.do">회원가입</a>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
+								<a href="updateInfo.do">회원정보수정</a>
+			</sec:authorize>
+			&nbsp;&nbsp;<i class="icon_search"></i>
 		</div>
 		<div class="header-configure-area">
 			<div class="language-option">
@@ -89,6 +100,14 @@
 							</ul>
 						</nav>
 						<div class="nav-right search-switch">
+							<sec:authorize access="isAnonymous()">
+								<a href="login.do">로그인</a> &nbsp;&nbsp;
+								<a href="sign_up.do">회원가입</a>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
+								<a href="updateAccount.do">회원정보수정</a>
+							</sec:authorize>
 							<i class="icon_search"></i>
 						</div>
 					</div>

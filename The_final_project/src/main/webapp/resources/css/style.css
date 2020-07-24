@@ -1969,7 +1969,7 @@ ul, ol {
 }
 /* Medium Device: 1200px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1199px) and (max-width: 1 199px) {
 	.testimonial-slider.owl-carousel .owl-nav button {
 		left: -150px;
 	}
@@ -1983,7 +1983,7 @@ ul, ol {
 		bottom: 80px;
 	}
 }
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 1199px) {
 	.top-nav {
 		display: none;
 	}
