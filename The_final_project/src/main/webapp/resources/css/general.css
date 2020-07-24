@@ -170,19 +170,19 @@ li {
 	float: left;
 	padding: 20px 310px 20px 310px;
 }
- /* 글박스 */ 
+/* 글박스 */
 .main_text {
 	width: 80%;
-	height:1000px;
+	height: 1000px;
 	float: right;
 }
 
 /*게시글테이블  */
- table {
+table {
 	width: 86%;
 	margin: 20px 0px 20px 0px;
 }
- 
+
 #talk {
 	position: fixed;
 	top: 130px;
@@ -200,7 +200,6 @@ li {
 	border: none;
 	border-radius: 10px;
 } */
-
 #footer {
 	width: 100%;
 	height: 20px;
@@ -211,17 +210,80 @@ li {
 	margin-top: 50px;
 }
 /* 동적페이지 구현부  */
-.paging{
+.paging {
 	display: block;
 	float: left;
 	margin-left: 100px;
 	margin-top: 50px;
 }
 /*글쓰는부분 ->writeboard */
-.writeboardbox{
+.writeboardbox {
 	width: 86%;
 	margin-left: 400px;
-	
-	
-	
+}
+/* Table */
+.table-wrapper {
+	-webkit-overflow-scrolling: touch;
+	overflow-x: auto;
+}
+
+table {
+	margin: 0 0 2em 0;
+	width: 100%;
+}
+
+table tbody tr {
+	border: solid 1px rgba(160, 160, 160, 0.3);
+	border-left: 0;
+	border-right: 0;
+}
+
+table tbody tr:nth-child(2n + 1) {
+	background-color: rgba(160, 160, 160, 0.075);
+}
+
+table td {
+	padding: 0.75em 0.75em;
+}
+
+table th {
+	color: #3c3b3b;
+	font-size: 0.9em;
+	font-weight: 700;
+	padding: 0 0.75em 0.75em 0.75em;
+	text-align: left;
+}
+
+table thead {
+	border-bottom: solid 2px rgba(160, 160, 160, 0.3);
+}
+
+table tfoot {
+	border-top: solid 2px rgba(160, 160, 160, 0.3);
+}
+
+table.alt {
+	border-collapse: separate;
+}
+
+table.alt tbody tr td {
+	border: solid 1px rgba(160, 160, 160, 0.3);
+	border-left-width: 0;
+	border-top-width: 0;
+}
+
+table.alt tbody tr td:first-child {
+	border-left-width: 1px;
+}
+
+table.alt tbody tr:first-child td {
+	border-top-width: 1px;
+}
+
+table.alt thead {
+	border-bottom: 0;
+}
+
+table.alt tfoot {
+	border-top: 0;
 }
