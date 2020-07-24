@@ -35,7 +35,7 @@
 					</select>
 				</div>
 				<div class="title">
-					제목 쓰기 <input type="text" name="title" />
+					
 				</div>
 			</div>
 		</div>
@@ -47,12 +47,13 @@
 			<div class="main_box">
 
 				<form action="write.do?b_boardname=free_board" method="post"
-					id="frm">
+					id="frm" enctype="multipart/form-data">
+					<input type="text" name="title" />
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript">
 						
 					</script>
-					<input type="button" id="savebutton" value="서버전송" />
+					<button type="submit" id="savebutton"  >dz</button>
 				</form>
 			</div>
 		</div>
