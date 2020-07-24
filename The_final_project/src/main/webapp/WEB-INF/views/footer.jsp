@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<footer class="footer-section">
 	<div class="container">
 		<div class="footer-text">
 			<div class="row">
@@ -93,6 +94,6 @@
 			</form>
 		</div>
 	</div>
-
+</footer>
 </body>
 </html>
