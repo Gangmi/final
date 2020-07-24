@@ -42,41 +42,7 @@
 					</div>
 				</div>
 
-				<!--원래 있던 예약 폼-->
-				<!--
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-                    <div class="booking-form">
-                        <h3>Booking Your Hotel</h3>
-                        <form action="#">
-                            <div class="check-date">
-                                <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="check-date">
-                                <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="select-option">
-                                <label for="guest">Guests:</label>
-                                <select id="guest">
-                                    <option value="">2 Adults</option>
-                                    <option value="">3 Adults</option>
-                                </select>
-                            </div>
-                            <div class="select-option">
-                                <label for="room">Room:</label>
-                                <select id="room">
-                                    <option value="">1 Room</option>
-                                    <option value="">2 Room</option>
-                                </select>
-                            </div>
-                            <button type="submit">Check Availability</button>
-                        </form>
-                    </div>
-                </div>
-                -->
+				
 
 			</div>
 		</div>
@@ -84,7 +50,7 @@
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-1.jpg"></div>
 			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-2.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="/resources/css/images/hero/hero-3.jpg"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-3.jpg"></div>
 		</div>
 	</section>
 
@@ -128,13 +94,13 @@
 	<!-- About Us Section End -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	<!-- 자바스크립트 -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/jquery.slicknav.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="/resources/js/bootstrap.min.js"></script>
+	<script src="/resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="/resources/js/jquery.nice-select.min.js"></script>
+	<script src="/resources/js/jquery-ui.min.js"></script>
+	<script src="/resources/js/jquery.slicknav.js"></script>
+	<script src="/resources/js/owl.carousel.min.js"></script>
+	<script src="/resources/js/main.js"></script>
 </body>
 </html>
