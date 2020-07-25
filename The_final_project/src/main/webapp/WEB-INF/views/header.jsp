@@ -37,7 +37,7 @@
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
-								<a href="updateInfo.do">회원정보수정</a>
+								<a href=updateAccount.do>회원정보수정</a>
 			</sec:authorize>
 			&nbsp;&nbsp;<i class="icon_search"></i>
 		</div>
@@ -58,7 +58,7 @@
 			<ul>
 				<li class="active"><a href="./index.html">Home</a></li>
 				<li><a href="./rooms.html">Rooms</a></li>
-				<li><a href="./about-us.html">About Us</a></li>
+				<li><a href="./about-us.do">About Us</a></li>
 				<li><a href="./pages.html">Pages</a>
 					<ul class="dropdown">
 						<li><a href="./room-details.html">Room Details</a></li>
@@ -87,7 +87,7 @@
 			<div class="row">
 				<div class="col-lg-2">
 					<div class="logo">
-						<a href="./index.html"> <!--로고 들어가는섹션--> <img
+						<a href="index.do"> <!--로고 들어가는섹션--> <img
 							src="/resources/img/logo.png" alt="">
 						</a>
 					</div>
@@ -97,9 +97,9 @@
 						<nav class="mainmenu">
 							<ul>
 								<!--네비게이션 메뉴-->
-								<li class="active"><a href="./index.html">Home</a></li>
+								<li class="active"><a href="index.do">Home</a></li>
 								<li><a href="./rooms.html">스마트팜</a></li>
-								<li><a href="./about-us.html">About Us</a></li>
+								<li><a href="./about-us.do">About Us</a></li>
 								<li><a href="#">게시판</a>
 									<ul class="dropdown">
 										<li><a href="callboard.do?b_boardname=free_board">자유게시판</a></li>
