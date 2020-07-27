@@ -48,7 +48,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 					
 					<tbody>
 					<%
-						if ((int)request.getAttribute("confirm")==1) {
+						if ((Integer)request.getAttribute("confirm")==1) {
 							
 							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
 							
@@ -60,8 +60,8 @@ String boardname = (String) request.getAttribute("b_boardname");
 					%>
 						<tr>
 							<td width="130"><%=vo.getBoardno()%></td>
-							<td width="659"><a href="viewboardtemp.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
-							<td width="180"><%=vo.getId()%></td>
+							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
+							<td width="180"><%=vo.getNickname()%></td>
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
@@ -82,7 +82,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			</div>
 			<!--페이징 부분  -->
 			<div class="paging">
-			<%if((int)request.getAttribute("confirm")==1){ 
+			<%if((Integer)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
 				for(int i=1; i<=result.get(0).getNowpage();i++){
 			%>

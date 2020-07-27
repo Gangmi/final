@@ -10,11 +10,19 @@ public class BoardVO implements Board {
 	private int boardView;
 	
 	private int boardLike;
-	private int boardBad; 
+	private int boardBad;
+	private String nickname;
 	
 	
 	
 	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	//어떤 게시판인지 구분하는 변수 맵퍼에서 사용
 	private String b_boardname;
 	
@@ -123,6 +131,18 @@ public class BoardVO implements Board {
 	}
 	public void setSelected(String selected) {
 		this.selected = selected;
+	}
+	
+	//영문 게시판 이름을 한글로 치환하는 메소드 원할 때 추가 하세요
+	public static String changeword(String name) {
+		String result="";
+		if (name.equals("free_board")){
+			result="자유게시판";
+		}
+		
+		
+		
+		return result;
 	}
 	
 	

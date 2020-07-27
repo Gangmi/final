@@ -87,7 +87,7 @@ public class BoardController {
 		System.out.println(vo.getTitle() + "제목");
 		System.out.println(vo.getContents() + "내용##############");
 		// 임시로 아이디 지정 ->나중에 지우기
-		vo.setId("kim");
+		//vo.setId("kim");
 		System.out.println(vo.getB_boardname());
 
 
@@ -127,7 +127,7 @@ public class BoardController {
 
 	}
 	
-	@RequestMapping("writerepl.do")
+	@RequestMapping("/writerepl.do")
 	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo) {
 		System.out.println("writerepl.do들어옴");
 		System.out.println(vo.getB_boardname());
@@ -135,7 +135,9 @@ public class BoardController {
 		//댓글 저장
 		service.writeRepl(vo);
 		// 다음 페이지 지정
-		mv.setViewName("index");
+		mv.setViewName("viewboardtemp");
+		mv.addObject("b_boardname",vo.getB_boardname());
+		mv.addObject("boardno", vo.getBoardno());
 	
 		return mv;
 
