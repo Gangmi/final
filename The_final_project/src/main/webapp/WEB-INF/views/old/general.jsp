@@ -17,8 +17,8 @@ String boardname = (String) request.getAttribute("b_boardname");
 <title><%=boardname%></title>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
-	<jsp:include page="Board/side.jsp" />
+	<jsp:include page="/WEB-INF/views/header.jsp" />
+	<jsp:include page="/WEB-INF/views/Board/side.jsp" />
 
 
 

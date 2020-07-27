@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kos.dao.BoardDaoImpl;
 import com.kos.vo.BoardVO;
+import com.kos.vo.PlantVO;
 import com.kos.vo.UploadImageVO;
 
 @Service
@@ -47,6 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		 
 		
 	}
+
 	
 	
 	

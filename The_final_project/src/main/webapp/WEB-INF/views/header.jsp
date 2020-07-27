@@ -108,7 +108,7 @@
 										<li><a href="#">분양 게시판</a></li>
 										<li><a href="callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 									</ul></li>
-								<li><a href="./blog.html">식물사전</a></li>
+								<li><a href="plant.do">식물사전</a></li>
 								<li><a href="./contact.html">제휴농장위치</a></li>
 							</ul>
 						</nav>
