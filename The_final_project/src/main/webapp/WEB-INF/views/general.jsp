@@ -13,8 +13,7 @@
 
 <%
 	//게시판 값 받아오는 곳
-List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
-String boardname = (String) request.getAttribute("b_boardname");
+
 %>
 <title>자유게시판</title>
 
@@ -39,7 +38,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 						<tr>
 							<th width="130">글번호</th>
 							<th width="659">제목</th>
-							<th>작성자</th>
+							<th width="180">작성자</th>
 							<th width="180">작성일</th>
 							<th width="188">조회수</th>
 						</tr>
@@ -47,11 +46,15 @@ String boardname = (String) request.getAttribute("b_boardname");
 					
 					<tbody>
 					<%
-						if (!result.isEmpty()) {
-						for (BoardVO vo : result) {
-						// 시간 나누기
-						String[] dat=vo.getRegdate().split(" ");
-						vo.setRegdate(dat[0]);
+						if ((int)request.getAttribute("confirm")==1) {
+							
+							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
+							String boardname = (String) request.getAttribute("b_boardname");
+							
+							for (BoardVO vo : result) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							vo.setRegdate(dat[0]);
 					%>
 						<tr>
 							<td width="130"><%=vo.getBoardno()%></td>
@@ -60,8 +63,8 @@ String boardname = (String) request.getAttribute("b_boardname");
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
-						<%
-						}
+					<%
+							}
 					%>
 					<%
 						}else{
@@ -77,13 +80,16 @@ String boardname = (String) request.getAttribute("b_boardname");
 			</div>
 			<!--페이징 부분  -->
 			<div class="paging">
-				<%
-					for (int i = 1; i <= result.get(0).getNowpage(); i++) {
-				%>
+			<%if((int)request.getAttribute("confirm")==1){ 
+				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
+				for(int i=0; i<=result.get(0).getNowpage();i++){
+			%>
+			
 				<a href=general.do?b_boardname=free_board&b_nowpage= <%=i%>><%="[" + i + "]"%></a>
-				<%
-					}
-				%>
+			<%} 
+			}
+			%>	
+				
 			</div>
 		</div>
 	</section>

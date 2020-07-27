@@ -54,11 +54,11 @@ public class BoardDaoImpl implements BoardDao {
 		hs.put("endrow",end);
 		hs.put("b_boardname",vo.getB_boardname());
 		List<BoardVO> result=mybatis.selectList("board.getBoardList",hs);
-		System.out.println(result.get(0).getContents());
-		System.out.println(result.get(0).getBoardView()+"####################");
-		//nowpage멤버변수를 이용해서 total page를 저장
-		result.get(0).setNowpage(totalpage);
 		
+		//nowpage멤버변수를 이용해서 total page를 저장
+		if(result.size()>0) {
+		result.get(0).setNowpage(totalpage);
+		}
 		
 		return result;
 	

@@ -55,9 +55,11 @@ public class BoardController {
 		if(result.size()>0) {
 		mv.addObject("boardlist", result); // 받아온 게시판 게시물
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름
-		
+		mv.addObject("confirm",1);
 		return mv;
 		}else {
+			System.out.println("들어옴######################");
+			mv.addObject("confirm",0);
 			return mv;
 		}
 
