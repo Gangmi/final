@@ -9,7 +9,7 @@
 </head>
 <body>
 <div>
-	회원님의 아이디는 ${find_email} 입니다.
+	회원님의 비밀번호는 ${find_pw} 로 초기화 되었습니다.
 </div>
 <button id="goto_findPW">비밀번호 찾기</button>
 <button id="goto_login">닫기</button>

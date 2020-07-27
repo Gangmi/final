@@ -153,11 +153,10 @@ public class MemberController {
 	public String createCertificationSession(MemberVO memberVo, HttpSession session) {
 		String str = "";
 		try {
+			session.removeAttribute("certification");
 			String ctfc = memberService.createCertification(memberVo);
 			session.setAttribute("certification", ctfc);
-				
-			
-			sendMailService.setSendMailService("jink9404@gmail.com","비밀번호");
+			sendMailService.setSendMailService("@gmail.com","PW");
 			sendMailService.sendMail(memberVo.getEmail(), "test", ctfc);
 
 			Timer timer = new Timer(true);
@@ -191,6 +190,27 @@ public class MemberController {
 			session.removeAttribute("certification");
 			model.addAttribute("find_email", memberVo.getId());
 			return "find-id-success";
+		} else {
+			return "find-id-fail";
+		}
+	}
+	
+	@RequestMapping(value = "/find_pw_act.do")
+	public String findPw(MemberVO memberVo, String certification, Model model, HttpSession session) {
+		String pw="";
+		if (certification.toUpperCase().equals((String) session.getAttribute("certification"))) {
+			memberVo = memberService.checkID(memberVo);
+			try{
+				pw = memberService.createCertification(memberVo);
+				memberVo.setPassword(bCryptPasswordEncoder.encode(pw));
+				memberService.updateAccount(memberVo);
+				session.removeAttribute("certification");
+				model.addAttribute("find_pw", pw);
+				return "find-pw-success";
+			}
+			catch (Exception e) {
+				return "find-id-fail";
+			}
 		} else {
 			return "find-id-fail";
 		}
