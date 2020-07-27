@@ -119,6 +119,7 @@ public class BoardController {
 			return mv;
 		}
 		mv.setViewName("viewboard");
+		mv.addObject("boardname",vo.getB_boardname());
 		mv.addObject("board", result);
 
 		return mv;
@@ -163,7 +164,9 @@ public class BoardController {
 						//파일가져오기
 						byte[] bytes = file.getBytes();
 						//저장경로 지정
-						String uploadPath = req.getRealPath("/")+"resources/uploadimage";
+						String uploadPath = req.getSession().getServletContext().getRealPath("")+"/resources/uploadimage";
+						//String uploadPath = "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
+						
 						
 						System.out.println(uploadPath);
 						//디렉토리 만듦
