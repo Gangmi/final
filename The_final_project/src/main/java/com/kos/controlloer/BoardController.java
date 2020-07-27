@@ -109,12 +109,22 @@ public class BoardController {
 		// System.out.println(result.getTitle()+"######################");
 		System.out.println(result.getBoardView() + "뷰카운트");
 		// 다음 페이지 지정
+		if(vo.getB_boardname().equals("nongsain")) {
+			mv.setViewName("viewboardNongsain");
+			mv.addObject("board", result);
+
+			return mv;
+		}
 		mv.setViewName("viewboard");
 		mv.addObject("board", result);
 
 		return mv;
 
+
+	}
+
 	} 
+
 //	@RequestMapping("imageUpload.do")
 //	public void imageUpload(HttpServletRequest request, HttpServletResponse response,
 //			@RequestParam MultipartFile upload) throws Exception{
@@ -163,6 +173,8 @@ public class BoardController {
 //
 //
 //	}
+
+
 
 
 	// 이미지 업로드에서 사용하는 컨트롤러
@@ -261,5 +273,35 @@ public class BoardController {
 	 * printWriter.close(); } } } } } return null; }
 	 */
 	
+	/*
+	 * @RequestMapping(value=".do", method=RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String fileUpload(HttpServletRequest req,
+	 * HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws
+	 * Exception { JsonObject json = new JsonObject(); PrintWriter printWriter =
+	 * null; OutputStream out = null; MultipartFile file =
+	 * multiFile.getFile("upload"); if(file != null){ if(file.getSize() > 0 &&
+	 * StringUtils.isNotBlank(file.getName())){
+	 * if(file.getContentType().toLowerCase().startsWith("image/")){ try{ String
+	 * fileName = file.getName(); byte[] bytes = file.getBytes(); //이부분 getsession
+	 * 먼저 해줘야함 servlet을 사용하지 않는 jsp는 이런식으로 먼저 세션을 가져와야함 String uploadPath =
+	 * req.getSession().getServletContext().getRealPath("/img");
+	 * 
+	 * File uploadFile = new File(uploadPath); if(!uploadFile.exists()){
+	 * uploadFile.mkdirs(); } fileName = UUID.randomUUID().toString(); uploadPath =
+	 * uploadPath + "/" + fileName; out = new FileOutputStream(new
+	 * File(uploadPath)); out.write(bytes);
+	 * 
+	 * printWriter = resp.getWriter(); resp.setContentType("text/html"); String
+	 * fileUrl = req.getContextPath() + "/img/" + fileName;
+	 * 
+	 * // json 데이터로 등록 // {"uploaded" : 1, "fileName" : "test.jpg", "url" :
+	 * "/img/test.jpg"} // 이런 형태로 리턴이 나가야함. json.addProperty("uploaded", 1);
+	 * json.addProperty("fileName", fileName); json.addProperty("url", fileUrl);
+	 * 
+	 * printWriter.println(json); }catch(IOException e){ e.printStackTrace();
+	 * }finally{ if(out != null){ out.close(); } if(printWriter != null){
+	 * printWriter.close(); } } } } } return null; }
+	 */
 
 }

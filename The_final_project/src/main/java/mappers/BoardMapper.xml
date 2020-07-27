@@ -36,7 +36,17 @@
 
 	<!--게시글 읽기  -->
 	<select id="viewboard" parameterType="board" resultType="board">
-	select boardno,title,contents,regdate,id,board_like,board_bad,board_view from ${b_boardname} where boardno = ${boardno}
+	<choose>
+		<when test = "b_boardname eq 'nongsain'.toString()">
+		select boardno,title,contents,regdate,id,board_view,seleted,select_date,select_point from ${b_boardname} where boardno = ${boardno}
+
+		</when>
+
+		<otherwise>
+		select boardno,title,contents,regdate,id,board_like,board_bad,board_view from ${b_boardname} where boardno = ${boardno}
+
+		</otherwise>
+	</choose>	
 	</select>
 		
 </mapper>
