@@ -23,8 +23,8 @@
 	
  	<div>
  	댓글 입력해라 래끼야 <p/>
- 	<for maction="writerepl.do?b_boardname=<%=boardname%>&boardno=<%=boardno%>">
-      <p><textarea cols="50" rows="5"></textarea></p>
+ 	<form action="writerepl.do?b_boardname=<%=boardname%>&boardno=<%=boardno%>" method="post">
+      <p><textarea id="contents" cols="50" rows="5"></textarea></p>
       <p><input type="submit" value="Submit"></p>
     </form>
  	</div>

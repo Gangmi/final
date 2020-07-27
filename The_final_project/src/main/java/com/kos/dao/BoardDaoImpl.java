@@ -133,7 +133,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	public void writeRepl(BoardVO vo) {
 		
-		
+		mybatis.insert("board.writerepl",vo);
 	}
 	
 

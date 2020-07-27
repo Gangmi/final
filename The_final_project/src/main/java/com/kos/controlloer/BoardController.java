@@ -126,17 +126,16 @@ public class BoardController {
 
 	}
 	
-	@RequestMapping("/writerepl.do")
+	@RequestMapping("writerepl.do")
 	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo) {
-		System.out.println("들어옴");
+		System.out.println("writerepl.do들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
 		//댓글 저장
 		service.writeRepl(vo);
 		// 다음 페이지 지정
-		mv.setViewName("viewboard");
-		
-
+		mv.setViewName("index");
+	
 		return mv;
 
 	}
