@@ -16,7 +16,7 @@
 		select *
 		from
 		(select *,@rownum := @rownum+1 AS RNUM
-		from ${b_boardname} as b,(SELECT @rownum :=0)as R order by boardno desc)as R
+		from (select boardno,title,contents,regdate,f.id,m.nickname from ${b_boardname} as f join member as m on f.id=m.id) as b,(SELECT @rownum :=0)as R order by boardno desc)as R
 		where RNUM<![CDATA[>=]]>${startrow}
 		and RNUM<![CDATA[<=]]>${endrow} <if test="search!=null">and b_title LIKE '%'||#{search}||'%'</if>
 		

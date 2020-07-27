@@ -17,8 +17,11 @@
 
 /*내용  */
 #contents{
-	border : 1px solid #eee;
+	
 	margin-top: 50px;
 	height : 250px;
 	
+}
+#boardname a {
+	color: #03c75a;
 }
