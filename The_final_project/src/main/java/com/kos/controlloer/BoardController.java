@@ -87,7 +87,7 @@ public class BoardController {
 		System.out.println(vo.getTitle() + "제목");
 		System.out.println(vo.getContents() + "내용##############");
 		// 임시로 아이디 지정 ->나중에 지우기
-		vo.setId("kim");
+		//vo.setId("kim");
 		System.out.println(vo.getB_boardname());
 
 
