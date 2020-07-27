@@ -45,8 +45,9 @@
 		<div class="container">
 			<div class="main_box">
 			
-				<form action="write.do?b_boardname=<%=boardname%>" method="post"
+				<form action="/write.do" method="post"
 					id="frm" enctype="multipart/form-data">
+					<input type="hidden" name="b_boardname" value="<%=boardname%>"/>
 					<input type="text" name="title"/>
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript">

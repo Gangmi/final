@@ -94,10 +94,10 @@ public class BoardController {
 		// 사용자가 작성한 글 및 정보 전달
 		
 		service.writeBoard(vo);
-
+		System.out.println("입력하고 돌아옴");
 
 		// 넘기기
-		mv.setViewName("redirect:/general.do?b_boardname="+vo.getB_boardname());
+		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
 
