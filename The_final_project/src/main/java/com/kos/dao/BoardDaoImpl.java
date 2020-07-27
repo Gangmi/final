@@ -129,6 +129,12 @@ public class BoardDaoImpl implements BoardDao {
 		mybatis.insert("board.imagestore",imgvo);
 		
 	}
+
+
+	public void writeRepl(BoardVO vo) {
+		
+		
+	}
 	
 
 }

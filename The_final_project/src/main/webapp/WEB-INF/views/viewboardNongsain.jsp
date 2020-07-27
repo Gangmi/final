@@ -9,10 +9,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>project</title>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/resources/js/board/nongsain.js"></script>
 
-
-
+<title>viewboardNongsain</title>
 
 </head>
 <body>
@@ -29,9 +29,19 @@ BoardVO result = (BoardVO) request.getAttribute("board");
  	<%=result.getContents() %>
  	</div> 	
 	<div>
- 	<button type="button">
+ 	<button id ="openBtn" type="button" >
    		답변하기
 	</button>
+ 	</div>
+ 	<div id="dapgul">
+ 	글 입력 해라 래끼야</p>
+ 	<button id="hideBtn">닫기</button>
+ 	</div>
+ 	<div>
+ 	<for maction="write.do?b_boardname">
+      <p><textarea cols="50" rows="5"></textarea></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
  	</div>
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
