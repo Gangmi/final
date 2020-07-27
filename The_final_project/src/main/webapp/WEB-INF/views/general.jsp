@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script src="resources/js/general.js"></script>
 
 <%

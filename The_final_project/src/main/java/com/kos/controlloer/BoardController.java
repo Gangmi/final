@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -38,9 +38,7 @@ public class BoardController {
 		// 게시판 글을 읽어오기 위한 코딩
 
 		List<BoardVO> result = service.getBoardList(vo);
-		if (result.size() == 0) {
-			System.out.println("없음#######################");
-		}
+	
 		// 다음에 갈 페이지 지정
 		if(vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
@@ -54,10 +52,14 @@ public class BoardController {
 		mv.setViewName("general");
 
 		// 다음 페이지로 넘길 값을 설정
+		if(result.size()>0) {
 		mv.addObject("boardlist", result); // 받아온 게시판 게시물
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름
 		
 		return mv;
+		}else {
+			return mv;
+		}
 
 	}
 
@@ -85,7 +87,9 @@ public class BoardController {
 		
 
 		// 사용자가 작성한 글 및 정보 전달
-		service.writeBoard(vo);
+		
+			service.writeBoard(vo);
+
 
 		// 넘기기
 		mv.setViewName("redirect:/general.do?b_boardname=" + vo.getB_boardname());
@@ -114,7 +118,11 @@ public class BoardController {
 
 		return mv;
 
+
 	}
+
+	} 
+
 //	@RequestMapping("imageUpload.do")
 //	public void imageUpload(HttpServletRequest request, HttpServletResponse response,
 //			@RequestParam MultipartFile upload) throws Exception{
@@ -163,28 +171,34 @@ public class BoardController {
 //
 //
 //	}
+
+
+
+
 	// 이미지 업로드에서 사용하는 컨트롤러
-	@RequestMapping(value="fileupload.do", method=RequestMethod.POST)
+	@RequestMapping(value = "/imageUpload.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, 
-                 MultipartHttpServletRequest multiFile) throws Exception {
+	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws Exception {
+		System.out.println("durl"+"###############################");
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
-		OutputStream out = null;
+		OutputStream out = null; 
 		MultipartFile file = multiFile.getFile("upload");
+		System.out.println(file);
 		if(file != null){
 			if(file.getSize() > 0 && StringUtils.isNotBlank(file.getName())){
 				if(file.getContentType().toLowerCase().startsWith("image/")){
 					try{
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
-						//이부분 getsession 먼저 해줘야함 servlet을 사용하지 않는 jsp는 이런식으로 먼저 세션을 가져와야함
-						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
-					
+						System.out.println(req.getRealPath("/"));
+						String uploadPath = req.getRealPath("/")+"resources/uploadimage";
+						System.out.println(uploadPath);
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
 						}
+						
 						fileName = UUID.randomUUID().toString();
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
@@ -192,7 +206,8 @@ public class BoardController {
                         
                         printWriter = resp.getWriter();
                         resp.setContentType("text/html");
-                        String fileUrl = req.getContextPath() + "/img/" + fileName;
+                        String fileUrl =req.getContextPath()+"\\resources\\uploadimage\\"+fileName;
+                        System.out.println(fileUrl);
                         
                         // json 데이터로 등록
                         // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
@@ -217,6 +232,44 @@ public class BoardController {
 		}
 		return null;
 	}	
+        
+   
+	
+	
+	
+	
+	
+	
+	/*
+	 * @RequestMapping(value=".do", method=RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String fileUpload(HttpServletRequest req,
+	 * HttpServletResponse resp, MultipartHttpServletRequest multiFile) throws
+	 * Exception { JsonObject json = new JsonObject(); PrintWriter printWriter =
+	 * null; OutputStream out = null; MultipartFile file =
+	 * multiFile.getFile("upload"); if(file != null){ if(file.getSize() > 0 &&
+	 * StringUtils.isNotBlank(file.getName())){
+	 * if(file.getContentType().toLowerCase().startsWith("image/")){ try{ String
+	 * fileName = file.getName(); byte[] bytes = file.getBytes(); //이부분 getsession
+	 * 먼저 해줘야함 servlet을 사용하지 않는 jsp는 이런식으로 먼저 세션을 가져와야함 String uploadPath =
+	 * req.getSession().getServletContext().getRealPath("/img");
+	 * 
+	 * File uploadFile = new File(uploadPath); if(!uploadFile.exists()){
+	 * uploadFile.mkdirs(); } fileName = UUID.randomUUID().toString(); uploadPath =
+	 * uploadPath + "/" + fileName; out = new FileOutputStream(new
+	 * File(uploadPath)); out.write(bytes);
+	 * 
+	 * printWriter = resp.getWriter(); resp.setContentType("text/html"); String
+	 * fileUrl = req.getContextPath() + "/img/" + fileName;
+	 * 
+	 * // json 데이터로 등록 // {"uploaded" : 1, "fileName" : "test.jpg", "url" :
+	 * "/img/test.jpg"} // 이런 형태로 리턴이 나가야함. json.addProperty("uploaded", 1);
+	 * json.addProperty("fileName", fileName); json.addProperty("url", fileUrl);
+	 * 
+	 * printWriter.println(json); }catch(IOException e){ e.printStackTrace();
+	 * }finally{ if(out != null){ out.close(); } if(printWriter != null){
+	 * printWriter.close(); } } } } } return null; }
+	 */
 	
 	/*
 	 * @RequestMapping(value=".do", method=RequestMethod.POST)
