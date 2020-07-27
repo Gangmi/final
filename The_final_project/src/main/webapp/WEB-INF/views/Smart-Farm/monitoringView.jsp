@@ -12,20 +12,7 @@
    
 </head>
 <body>
-	<div id="header">
-		<p><a href="#">슈퍼 그랑-조 </a>님 반갑습니다.</p>
-		<section class="header">
-			<a href="1_Main.html.html"><img src="/resources/img/logo-2.png" alt="LOGO"></a>
-
-			<ul class="header_menu">
-				<li><a href="4Aoutus.html.html">소개</a></li>
-				<li><a href="5place.html.html">농장위치</a></li>
-				<li><a href="2Join.html.html">로그아웃</a></li>
-				<li><a href="3Login.html.html">마이페이지</a></li>
-			</ul>
-		</section>
-	</div>
-
+	<jsp:include page="../header.jsp"/>
 	<div id="talk">
 		<div class="chat">
 			<button>
@@ -66,10 +53,7 @@
 	            
 	</div>
 
-	<div id="footer">
-		<p>@COPYRIGHT_</p>
-	</div>
-    
+	<jsp:include page="../footer.jsp"/>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
 	<script src='https://cdn3.devexpress.com/jslib/17.1.6/js/dx.all.js'></script>
 	<script  src="/resources/js/script.js"></script>

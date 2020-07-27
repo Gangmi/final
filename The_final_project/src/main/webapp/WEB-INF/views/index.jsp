@@ -93,6 +93,8 @@
 	</section>
 	<!-- About Us Section End -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-	
+	<script type="text/javascript">
+	$('.mainmenu ul li').find('a[href="/index.do"]').parent().addClass('active');
+	</script>
 </body>
 </html>

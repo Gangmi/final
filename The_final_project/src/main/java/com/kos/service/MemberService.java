@@ -1,5 +1,6 @@
 package com.kos.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import com.kos.dao.MemberDao;
 import com.kos.vo.AuthorityVO;
 import com.kos.vo.MemberVO;
 
-@Service
+@Service("MemberService")
 public class MemberService {
 	@Autowired
 	MemberDao memberDao;
@@ -47,5 +48,25 @@ public class MemberService {
 	
 	public Integer updateAccount(MemberVO memberVo) {
 		return memberDao.memberUpdate(memberVo);
+	}
+	
+	@Transactional
+	public String createCertification(MemberVO memberVo) throws Exception {
+		memberVo=this.checkID(memberVo);
+		String certificationStr="";
+		if(memberVo == null) {
+			throw new Exception();
+		}else {
+			for(int i = 0; i<6; i++) {
+				char ch = (char) (Math.random()*43+48);
+				if(ch >= ':' && ch<='@' ) {
+					i--;
+					continue;
+				}
+					
+				certificationStr +=ch;
+			}
+		}
+		return certificationStr;
 	}
 }
