@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
+
 <meta charset="UTF-8">
 <title>project</title>
 
@@ -18,9 +20,11 @@
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<%BoardVO result=(BoardVO)request.getAttribute("board"); %>
-	<div class=container>
- 	<%=result.getContents()%>
-	</div>
+	<section class="hero-section">
+		<div class=container id=contents>
+ 			<%=result.getContents()%>
+		</div>
+	</section>
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	

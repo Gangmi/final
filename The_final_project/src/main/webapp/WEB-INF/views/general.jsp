@@ -24,16 +24,16 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 
 	<!-- Hero Section Begin -->
-	<button class="btn btn-success" id="writeboard">글쓰기</button>
+	
 
 	<section class="hero-section">
 		<div class="container">
-
+		
 			<h3>자유게시판</h3>
 			<br />
 			<div class="table-wrapper">
 			<div class="writebtn">
-			
+			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			</div>
 				<table class="table table-striped">
 					<thead>
@@ -84,7 +84,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			<div class="paging">
 			<%if((int)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
-				for(int i=0; i<=result.get(0).getNowpage();i++){
+				for(int i=1; i<=result.get(0).getNowpage();i++){
 			%>
 			
 				<a href=general.do?b_boardname=free_board&b_nowpage= <%=i%>><%="[" + i + "]"%></a>
