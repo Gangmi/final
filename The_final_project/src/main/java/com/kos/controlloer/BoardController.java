@@ -24,7 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
 import com.kos.service.BoardServiceImpl;
+import com.kos.vo.Board;
 import com.kos.vo.BoardVO;
+import com.kos.vo.UploadImageVO;
 
 
 @Controller
@@ -36,7 +38,7 @@ public class BoardController {
 	@RequestMapping("/callboard.do")
 	public ModelAndView getBoardList(ModelAndView mv, BoardVO vo) {
 		// 게시판 글을 읽어오기 위한 코딩
-
+		System.out.println("emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
 		List<BoardVO> result = service.getBoardList(vo);
 	
 		// 다음에 갈 페이지 지정
@@ -88,12 +90,10 @@ public class BoardController {
 		vo.setId("kim");
 		System.out.println(vo.getB_boardname());
 
-		
-		
 
 		// 사용자가 작성한 글 및 정보 전달
 		
-			service.writeBoard(vo);
+		service.writeBoard(vo);
 
 
 		// 넘기기
@@ -127,93 +127,65 @@ public class BoardController {
 	}
 
 
-
-//	@RequestMapping("imageUpload.do")
-//	public void imageUpload(HttpServletRequest request, HttpServletResponse response,
-//			@RequestParam MultipartFile upload) throws Exception{
-//
-//		//http hearder 설정
-//		response.setCharacterEncoding("utf-8");
-//		response.setContentType("text/html;charset=utf-8");
-//		//http body
-//		//업로드한 파일 이름
-//		String fileName = upload.getOriginalFilename();
-//		
-//
-//		//바이트 배열로 변환
-//		byte[] bytes = upload.getBytes();
-//		//이미지를 업로드할 디렉토리(배포 경로로 설정)
-//
-//		String uploadPath = "C:\\Users\\uoygn\\Desktop\\WebDevelop\\Shop\\blog\\src\\main\\webapp\\resources\\uploadimage";
-//
-//		
-//
-//		//서버에 저장됨
-//
-//		OutputStream out = new FileOutputStream(new File(uploadPath + fileName)); //java.io
-//
-//		out.write(bytes);
-//
-//		String callback = request.getParameter("CKEditorFuncNum");
-//
-//		
-//
-//		PrintWriter printWriter = response.getWriter();
-//
-//		String fileUrl = request.getContextPath() + "/uploadimage/" + fileName;
-//
-//		System.out.println("fileUrl: " + fileUrl);
-//
-//		printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction("
-//
-//		+callback+",'"+fileUrl+"','이미지가 업로드 되었습니다.')" + "</script>");
-//
-//		
-//
-//		//스트림닫기
-//
-//		printWriter.flush();
-//
-//
-//	}
-
-
-
-
 	// 이미지 업로드에서 사용하는 컨트롤러
 	@RequestMapping(value = "/imageUpload.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,BoardVO vo) throws Exception {
-		System.out.println("durl"+"###############################");
+		
+		
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null; 
 		MultipartFile file = multiFile.getFile("upload");
 		System.out.println(file);
+		//파일이 있는지 확인
 		if(file != null){
+			//파일이름이 없는지 확인
 			if(file.getSize() > 0 && StringUtils.isNotBlank(file.getName())){
+				
 				if(file.getContentType().toLowerCase().startsWith("image/")){
 					try{
+						//파일이름 가져오기
 						String fileName = file.getName();
+						//파일가져오기
 						byte[] bytes = file.getBytes();
-						System.out.println(req.getRealPath("/"));
+						//저장경로 지정
 						String uploadPath = req.getRealPath("/")+"resources/uploadimage";
+						
 						System.out.println(uploadPath);
+						//디렉토리 만듦
 						File uploadFile = new File(uploadPath);
+						
+						//업로드하는 파일의 경로가 없으면 만든다
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
 						}
 						
+						//파일이름 랜덤생성
 						fileName = UUID.randomUUID().toString();
+						
+						//파일 저장경로지정및 저장
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
                         out.write(bytes);
+                        
                         
                         printWriter = resp.getWriter();
                         resp.setContentType("text/html");
                         String fileUrl =req.getContextPath()+"\\resources\\uploadimage\\"+fileName;
                         System.out.println(fileUrl);
+                        //이미지 파일의 상태를 저장하기위한 service 호출 부분
+                      
+                        //각 게시판에 따라서 분기를 나눔
                         
+                        UploadImageVO imgvo=new UploadImageVO();
+                        if(vo.getB_boardname().equals("free_board")) {
+                        	imgvo.setBoardno(BoardVO.FREE_BOARD);
+                        }
+                        
+                        imgvo.setBoardname(vo.getB_boardname());
+                        imgvo.setImgName(fileName);
+                        service.storeImage(imgvo);
                         // json 데이터로 등록
                         // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
                         // 이런 형태로 리턴이 나가야함.

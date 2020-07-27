@@ -8,9 +8,6 @@ $(document).ready(function() {
 
 	});
 	
-	$("#savebutton").click(function(){
-		window.location.href="write.do?b_boardname=free_board"
-	});
 
 	
 });

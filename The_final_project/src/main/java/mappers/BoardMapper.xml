@@ -24,7 +24,7 @@
 	</select>
 	<!--게시글을 등록  -->
 	<insert id="writeboard" parameterType="board">
-	insert into ${b_boardname}(title,contents,id) values(#{title},#{contents},#{id})
+	insert into ${b_boardname} (title,contents,id) values(#{title},#{contents},#{id})
 	
 	</insert>
 	
@@ -48,5 +48,34 @@
 		</otherwise>
 	</choose>	
 	</select>
+	
+	<!--다음게시물 번호 가져오기  -->
+	<select id="getNextNum" parameterType="hashmap" resultType="int">
+	SELECT AUTO_INCREMENT
+
+	FROM information_schema.tables
+
+	WHERE table_name = #{boardname}
+
+	AND table_schema = DATABASE();
+
+	</select>
+	
+	<!--이미지 상태 저장  -->
+	<insert id="imagestore" parameterType="img">
+	insert into img_status(boardno,writeno,img_name,istemp) values(#{boardno},#{writeno},#{imgName},0)
+	</insert>
+	
+	<!-- 글이 저장 될 때 업데이트가 될 이미지가 있는지 확인  -->
+	<select id="isthereimg" parameterType="hashmap" resultType="img">
+	select * from img_status where boardno=#{boardno} and writeno=#{writeno}
+	</select>
+	
+	<!-- 글이 저장 될 떄 이미지 상태 업데이트  -->
+	<update id="notemp" parameterType="hashmap">
+	update img_status set istemp=1 where boardno=#{boardno} and writeno=#{writeno}
+	
+	</update>
+	
 		
 </mapper>

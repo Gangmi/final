@@ -13,16 +13,18 @@
 
 <%
 	//게시판 값 받아오는 곳
-
+String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title>자유게시판</title>
 
 </head>
 <body>
+	<input id="boardname" type="hidden" value="<%=boardname%>">
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 
 	<!-- Hero Section Begin -->
+	<button class="btn btn-success" id="writeboard">글쓰기</button>
 
 	<section class="hero-section">
 		<div class="container">
@@ -31,7 +33,7 @@
 			<br />
 			<div class="table-wrapper">
 			<div class="writebtn">
-			<button class="btn btn-success" id="writeboard?b_boardname=">글쓰기</button>
+			
 			</div>
 				<table class="table table-striped">
 					<thead>
@@ -49,7 +51,7 @@
 						if ((int)request.getAttribute("confirm")==1) {
 							
 							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
-							String boardname = (String) request.getAttribute("b_boardname");
+							
 							
 							for (BoardVO vo : result) {
 							// 시간 나누기
@@ -64,7 +66,7 @@
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
 					<%
-							}
+							}	
 					%>
 					<%
 						}else{

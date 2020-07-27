@@ -35,9 +35,7 @@
 						<option>농사 IN 시게판</option>
 					</select>
 				</div>
-				<div class="title">
-					
-				</div>
+				
 			</div>
 		</div>
 		</section>
@@ -49,12 +47,11 @@
 			
 				<form action="write.do?b_boardname=<%=boardname%>" method="post"
 					id="frm" enctype="multipart/form-data">
-					<input type="text" name="title" />
+					<input type="text" name="title"/>
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript">
-						
 					</script>
-					<button type="submit" id="savebutton"  >dz</button>
+					<button type="submit" id="savebutton">dz</button>
 				</form>
 			</div>
 		</div>

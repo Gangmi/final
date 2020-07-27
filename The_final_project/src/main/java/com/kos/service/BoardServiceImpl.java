@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kos.dao.BoardDaoImpl;
 import com.kos.vo.BoardVO;
+import com.kos.vo.UploadImageVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -38,6 +39,13 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO viewBoard(BoardVO vo) {
 		
 		return dao.viewBoard(vo);
+	}
+
+	@Override
+	public void storeImage(UploadImageVO imgvo) {
+		 dao.storeImage(imgvo);
+		 
+		
 	}
 	
 	

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@page import="com.kos.vo.BoardVO" %>	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +17,10 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-	
- 
-	
+	<%BoardVO result=(BoardVO)request.getAttribute("board"); %>
+	<div class=container>
+ 	<%=result.getContents()%>
+	</div>
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	
