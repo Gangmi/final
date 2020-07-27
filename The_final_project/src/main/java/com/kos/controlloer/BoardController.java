@@ -38,9 +38,7 @@ public class BoardController {
 		// 게시판 글을 읽어오기 위한 코딩
 
 		List<BoardVO> result = service.getBoardList(vo);
-		if (result.size() == 0) {
-			System.out.println("없음#######################");
-		}
+	
 		// 다음에 갈 페이지 지정
 		if(vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
@@ -54,10 +52,14 @@ public class BoardController {
 		mv.setViewName("general");
 
 		// 다음 페이지로 넘길 값을 설정
+		if(result.size()>0) {
 		mv.addObject("boardlist", result); // 받아온 게시판 게시물
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름
 		
 		return mv;
+		}else {
+			return mv;
+		}
 
 	}
 
