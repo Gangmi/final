@@ -21,9 +21,13 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<%BoardVO result=(BoardVO)request.getAttribute("board"); %>
 	<section class="hero-section">
+		<div class="container">
+			
+		</div>
 		<div class=container id=contents>
  			<%=result.getContents()%>
 		</div>
+		
 	</section>
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
