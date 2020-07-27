@@ -125,7 +125,21 @@ public class BoardController {
 
 
 	}
+	
+	@RequestMapping("/writerepl.do")
+	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo) {
+		System.out.println("들어옴");
+		System.out.println(vo.getB_boardname());
+		System.out.println(vo.getBoardno());
+		//댓글 저장
+		service.writeRepl(vo);
+		// 다음 페이지 지정
+		mv.setViewName("viewboard");
+		
 
+		return mv;
+
+	}
 
 	// 이미지 업로드에서 사용하는 컨트롤러
 	@RequestMapping(value = "/imageUpload.do", method=RequestMethod.POST)
