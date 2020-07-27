@@ -60,7 +60,7 @@ public class BoardDaoImpl implements BoardDao {
 		if(result.size()>0) {
 		result.get(0).setNowpage(totalpage);
 		}
-		System.out.println(result.get(0).getNickname());
+	
 		return result;
 	
 		
