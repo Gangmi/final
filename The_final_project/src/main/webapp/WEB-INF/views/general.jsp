@@ -31,7 +31,7 @@
 			<br />
 			<div class="table-wrapper">
 			<div class="writebtn">
-			<button class="btn btn-success" id="writeboard">글쓰기</button>
+			<button class="btn btn-success" id="writeboard?b_boardname=">글쓰기</button>
 			</div>
 				<table class="table table-striped">
 					<thead>

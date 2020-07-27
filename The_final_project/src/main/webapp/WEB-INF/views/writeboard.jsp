@@ -14,9 +14,10 @@
 %>
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
 <title>자유게시판</title>
-<script type="text/javascript" src="resources/js/write.js"></script>
+
 </head>
 <body>
+	<input id=boardname type="hidden" value=<%=boardname%>>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 	
@@ -45,8 +46,8 @@
 <section class="hero-section">
 		<div class="container">
 			<div class="main_box">
-
-				<form action="write.do?b_boardname=free_board" method="post"
+			
+				<form action="write.do?b_boardname=<%=boardname%>" method="post"
 					id="frm" enctype="multipart/form-data">
 					<input type="text" name="title" />
 					<textarea name="contents" id="editor"></textarea>
