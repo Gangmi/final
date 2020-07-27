@@ -9,8 +9,9 @@
 <meta charset="UTF-8">
 
 <%
-	String boardname = (String) request.getAttribute("b_boardname");
-	String boardno = (String) request.getAttribute("boardno");
+	String boardname = (String) request.getParameter("b_boardname");
+	String boardno = (String) request.getParameter("boardno");
+	
 %>
 <title>project</title>
 
