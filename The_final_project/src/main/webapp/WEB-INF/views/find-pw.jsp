@@ -12,11 +12,15 @@
     </style>
 </head>
 <body>
-    <form action="find_id_act.do" id="findId" method="post" target="result">
+    <form action="find_pw_act.do" id="findPw" method="post" target="result">
         <table>
             <tr>
                 <td>이름</td>
                 <td><input type="text" name="name"/></td>
+            </tr>
+            <tr>
+            	<td>아이디</td>
+            	<td><input type="text" name="id"/></td>
             </tr>
             <tr>
                 <td>이메일</td>
@@ -30,9 +34,10 @@
                 <td id="info"></td>
             </tr>
             <tr>
-               <td colspan="3">
-                   <button type="button" id="btnFind"disabled>아이디 찾기</button>
-              	   <a href="find-pw.do"><button type="button">비밀번호 찾기</button></a>
+               <td colspan="2">
+                   <button type="button" id="btnFind" disabled>비밀번 찾기</button>
+               </td>
+               <td>
                	   <button type="button" id="windowClose"> 닫기</button>
                </td>
             </tr>
@@ -58,7 +63,7 @@
              }
              
         	window.open("", "result", "height=300, width=600, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, left=50, top=50");
-            $('#findId').submit();
+            $('#findPw').submit();
         });
         $("#certification").click(function(){
         	var re=/[가-힣]{2,5}/g;
@@ -68,11 +73,15 @@
                 alert("이름을 작성하세요.");
                return false;
             }
+            if($('input[name="id"]').val() =="" ||$('input[name="id"]').val()==undefined ){
+                alert("ID를 작성하세요.");
+                return false;
+             }
             if($('input[name="email"]').val().match(re1)==null){
                 alert("email 작성하세요.");
                return false;
             }
-            var querry = $('#findId').serialize();
+            var querry = $('#findPw').serialize();
             $('#certification').attr('disabled',true);
             var min = Number($('#min').html());
             var sec = Number($('#sec').html());
