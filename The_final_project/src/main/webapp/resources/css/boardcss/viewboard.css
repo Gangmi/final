@@ -1,3 +1,24 @@
+/*게시물의 제일 큰 div  */
+#board{
+	border : 1px solid #eee;
+	margin-top: 50px;
+	height : 800px;
+}
+
+/*제목  */
+#title{
+	border-bottom: 1px solid #eee;
+}
+
+#title h2{
+	font-weight: 400;
+    margin-top: 30px;
+}
+
+/*내용  */
 #contents{
 	border : 1px solid #eee;
+	margin-top: 50px;
+	height : 250px;
+	
 }
