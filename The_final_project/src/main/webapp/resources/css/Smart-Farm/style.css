@@ -1,0 +1,264 @@
+* {
+margin: 0;
+padding: 0;
+}
+img {
+display: block;
+border: none;
+}
+
+a {
+text-decoration: none;
+color: #5A5859;
+}
+
+li {
+list-style: none;
+}
+
+#header {
+width: 100%;
+overflow: hidden;
+float: left;
+}
+
+#header img {
+width: 180px;
+float: left;
+}
+
+.header {
+width: 85.41%;
+margin: 0px 170px 0px 170px;
+padding: 45px 0px 45px 0px;
+}
+
+#header p {
+float: right;
+margin-right: 205px;
+}
+
+.header_menu {
+float: right;
+margin-right: 110px;
+}
+
+.header_menu li {
+float: left;
+padding: 0px 0px 60px 60px;
+margin: 0 auto;
+text-align: center;
+font-weight: bold;
+}
+
+
+#menu {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    float: left;
+}
+
+#menu img {
+    width: 150px;
+    margin: 0 auto;
+}
+
+#menu button {
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 100px;
+    background-color: white;
+    box-shadow: 7px 3px 20px #DEDEDE;
+    float: left;
+    margin-right: 128px;
+}
+
+#main {
+    width: 82%;
+    margin: 0 auto;
+}
+
+.cctv_box {
+    width: 60%;
+    overflow: hidden;
+    float: left;
+}
+
+.btn {
+    width: 500px;
+    float: left;
+    margin-top: 30px;}
+
+.cctv_box .btn1 {
+    float: left;
+}
+
+.btn button {
+    width: 150px;
+    height: 60px;
+    background-color: #44526C;
+    border: none;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 120px;
+}
+
+.btn1 button p {
+    color: white;
+    float: right;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 17px;
+    padding-right: 20px;
+}
+
+.btn2 button p {
+    color: white;
+    float: right;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 17px;
+    padding-right: 10px;
+}
+
+.btn img {
+    width: 60px;
+    height: 60px;
+    float: left;
+}
+
+
+.cctv {
+    width: 800px;
+    height: 450px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.cctv img {
+    width: 800px;
+    height: 450px;
+    opacity: 0.5;
+    border-radius: 10px;
+}
+
+.main_info {
+    width: 40%;
+    float: right;
+}
+
+.info {
+
+    overflow: hidden;
+    float: left;
+    margin-top: 50px;
+}
+
+.info img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 60px;
+
+}
+
+table {
+    float: left;
+    margin-top: 50px;
+    margin-left: 90px;
+}
+
+#footer {
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+    background-color: #DEDEDE
+}
+
+#talk {
+    position: fixed;
+    top: 130px;
+    left: 94%;
+}
+
+.chat img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.chat button {
+    border: none;
+border-radius: 10px;
+}
+
+.gauge-container {
+  padding: 20px;
+  margin-top: 80px;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.gauge {
+  background-image: -webkit-linear-gradient(50deg, #212629, #395467);
+  background-image: -o-linear-gradient(50deg, #212629, #395467);
+  background-image: linear-gradient(140deg, #212629, #395467);
+  
+  height: 220px;
+  width: 300px;
+}
+.gauge .dxg-range.dxg-background-range {
+  fill: url(#gradientGauge);
+}
+.gauge .dxg-line {
+  -webkit-transform: scaleX(1.04) scaleY(1.03) translate(-4px, -4px);
+  transform: scaleX(1.04) scaleY(1.03) translate(-4px, -4px);
+}
+.gauge .dxg-line path:first-child,
+.gauge .dxg-line path:last-child {
+  display: #FFF;
+}
+.gauge .dxg-line path:nth-child(2),
+.gauge .dxg-line path:nth-child(6) {
+  stroke: #ed811c;
+}
+.gauge .dxg-line path:nth-child(3),
+.gauge .dxg-line path:nth-child(5) {
+  stroke: #a7db29;
+}
+.gauge .dxg-line path:nth-child(4) {
+  stroke: #25cd6b;
+}
+.gauge .dxg-elements text:first-child {
+  -webkit-transform: translate(19px, 13px);
+  transform: translate(19px, 13px);
+}
+.gauge .dxg-elements text:last-child {
+  -webkit-transform: translate(-27px, 14px);
+  transform: translate(-27px, 14px);
+}
+.gauge .dxg-value-indicator path {
+  -webkit-transform: scale(1.2) translate(0, -5px);
+  transform: scale(1.2) translate(0, -5px);
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+}
+.gauge .dxg-value-indicator .dxg-title {
+  text-transform: uppercase;
+}
+.gauge .dxg-value-indicator .dxg-title text:first-child {
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+}
+.gauge .dxg-value-indicator .dxg-spindle-border:nth-child(4),
+.gauge .dxg-value-indicator .dxg-spindle-hole:nth-child(5) {
+  -webkit-transform: translate(0, -109px);
+  transform: translate(0, -109px);
+}
+.gauge .dxg-value-indicator .dxg-spindle-hole {
+  fill: #26323a;
+}

@@ -23,6 +23,7 @@
 		WHERE 1=1
 		<if test="id != null">AND id=#{id}</if>
 		<if test="nickname != null">AND nickName=#{nickname}</if>
+		<if test="email != null">AND email=#{email}</if>
 	</select>
 	
 	<update id="update" parameterType="membervo">
