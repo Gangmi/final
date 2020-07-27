@@ -19,7 +19,7 @@
 		<br>
 		<p>LOGO에 로그인 하여 다양한 정보를 얻으세요.</p>
 	</div>
-	<form action="loginProcess.do" method="post">
+	<form action="/loginProcess.do" method="post">
 		<label>아이디</label>
 		<input type="text" name="id" placeholder="아이디">
 		<br> 
@@ -31,11 +31,20 @@
 		<label>비밀번호</label> 
 		<input type="password" name="password" placeholder="비밀번호">
 		<br> 
-		<a href="#">비밀번호를 잊으셨나요?</a>
+		<a href="find-id.do" id=findId>비밀번호를 잊으셨나요?</a>
 		<br> 
 		<a href="#"><button class="btn btn-success" type="submit">로그인</button></a>
 	</form>
 	<br><br><br><br><br>	
 	<jsp:include page="./footer.jsp"/>
+		
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#findId').click(function(e){
+				e.preventDefault();
+				window.open("find-id.do", "findID", "height=500, width=700, menubar=no, scrollbars=yes, resizable=no, toolbar=no, status=no, left=50, top=50");
+			});
+		});
+	</script>
 </body>
 </html>
