@@ -5,8 +5,16 @@
 
 <!-- mybais 자료형 int/hashmap/string -->
 	<insert id="insert" parameterType="membervo">
-		INSERT INTO member(id,name,nickname,password,post_code,base_address,detail_address,phone_number,birth_day)
-					VALUES(#{id},#{name},#{nickname},#{password},#{postCode},#{baseAddress},#{detailAddress},#{phoneNumber},#{birthDay})
+		INSERT INTO member(id,name,nickname,password,post_code,base_address,detail_address,phone_number,email
+		<if test='birthDay!=""'>
+		,birth_day
+		</if>
+		)
+					VALUES(#{id},#{name},#{nickname},#{password},#{postCode},#{baseAddress},#{detailAddress},#{phoneNumber},#{email}
+					<if test='birthDay!=""'>
+					,#{birthDay}
+					</if>
+					)
 	</insert>
 	
 	<select id="select" parameterType="membervo" resultType="membervo">
@@ -15,6 +23,17 @@
 		WHERE 1=1
 		<if test="id != null">AND id=#{id}</if>
 		<if test="nickname != null">AND nickName=#{nickname}</if>
-		<if test="password != null">AND password=#{password}</if>
 	</select>
+	
+	<update id="update" parameterType="membervo">
+		UPDATE member SET 	 name=#{name}				,nickname=#{nickname}
+							,password=#{password}		,post_code=#{postCode}
+							,base_address=#{baseAddress},detail_address=#{detailAddress}
+							,phone_number=#{phoneNumber}
+							<if test='birthDay!=""'>
+							,birth_day=#{birthDay}
+							</if>
+						
+		WHERE id=#{id}
+	</update>
 </mapper>

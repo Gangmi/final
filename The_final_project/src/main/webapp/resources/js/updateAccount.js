@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    var idCheck=false;
-    var idCheck2=false;
     var fullNameCheck=false;
     var nickCheck=false;
     var nickCheck2=false;
@@ -37,52 +35,6 @@ $(document).ready(function () {
             e.preventDefault();
 
         }    
-    });
-    
-    //아이디 유효성 체크
-    $('#id').keyup(function(){
-        var re=/^[a-z](?=.*\d)\w{4,10}/g;
-        if($('#id').val().match(re)!=null){
-            $("#id_check").css({"color":"blue"});
-            idCheck2=true;   
-        }
-        else{
-            $("#id_check").html("첫영문자 소문자 영문, 적어도 1개 이상의 숫자의 5자리 아이디");
-            $("#id_check").css({"color":"red"});
-            idCheck2=false;
-        }
-    });
-    
-    //ID 중복체크 AJAX로 
-    $('#id').blur(function(){
-        $.ajax({
-            url: "CheckID.do",
-            type: "POST",
-            data:  "id="+$("#id").val(),
-            success: function(data){
-                if(data=="사용중인 아이디입니다."){
-                    $("#id_check").html(data);
-                    $("#id_check").css({"color":"red"});
-                    idCheck=false;
-                }
-                else if(data=="사용가능한 아이디입니다." && idCheck2==true){
-                    $("#id_check").html(data);
-                    $("#id_check").css({"color":"blue"});
-                    idCheck=true;
-                }
-                else if(idCheck2==false){
-                    $("#id_check").html("첫영문자 소문자 영문, 적어도 1개 이상의 숫자의 5~11자리 아이디");
-                    $("#id_check").css({"color":"red"});
-                    idCheck2=false;
-                }
-            },
-            error: function (request, status, error){ 
-                
-                $("#id_check").html("서버에러");
-                $("#id_check").css({"color":"red"});
-                idCheck=false;
-            } 
-        });
     });
     
     //
@@ -202,10 +154,6 @@ $(document).ready(function () {
     $('#signUp').submit(function(event){
         if (fullNameCheck==false || $("#fullName").val()==""){
             alert("이름을 확인하세요.");
-            return false;
-        }
-        else if (idCheck==false || $("#id").val()==""||idCheck2==false){
-            alert("아이디를 확인하세요.");
             return false;
         }else if (nickCheck==false || nickCheck2==false || $("#nickName").val()==""){
             alert("별명을 확인하세요.");

@@ -8,17 +8,23 @@ public class MemberVO {
 	private String 	postCode;
 	private String 	baseAddress;
 	private String	detailAddress;
+	private String	email;
+	private String 	phoneNumber;
+	private int		point;
+	private String	birthDay;
+	private String 	signUpDate;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getDetailAddress() {
 		return detailAddress;
 	}
 	public void setDetailAddress(String detailAddress) {
 		this.detailAddress = detailAddress;
 	}
-	private String 	phoneNumber;
-	private int		point;
-	private String	birthDay;
-	private String 	signUpDate;
-	
 	public String getId() {
 		return id;
 	}

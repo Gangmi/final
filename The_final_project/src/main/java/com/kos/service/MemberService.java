@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kos.dao.AuthorityDao;
@@ -42,5 +43,9 @@ public class MemberService {
 			return null;
 		else
 			return idList.get(0);
+	}
+	
+	public Integer updateAccount(MemberVO memberVo) {
+		return memberDao.memberUpdate(memberVo);
 	}
 }

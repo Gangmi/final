@@ -25,7 +25,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int memberUpdate(MemberVO memberVo) {
-		return 0;
+		return mybatis.update("Member.update",memberVo);
 	}
 
 }
