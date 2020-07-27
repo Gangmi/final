@@ -12,14 +12,14 @@
 	</select>
 
 	<!--해당 게시판의 현재 조건에 따른 게시물 검색 -->
-	<select id="getBoardList" parameterType="hashmap" resultType="board">
-		select *
-		from
-		(select *,@rownum := @rownum+1 AS RNUM
-		from (select boardno,title,contents,regdate,f.id,m.nickname from ${b_boardname} as f join member as m on f.id=m.id) as b,(SELECT @rownum :=0)as R order by boardno desc)as R
-		where RNUM<![CDATA[>=]]>${startrow}
-		and RNUM<![CDATA[<=]]>${endrow} <if test="search!=null">and b_title LIKE '%'||#{search}||'%'</if>
-		
+	<select id="getBoardList" parameterType="paging" resultType="board">
+		select b.* 
+		from (
+		SELECT
+		@rownum:=@rownum+1 as rnum, b.*
+		FROM (select boardno,title,contents,regdate,f.id,m.nickname from ${boardname} as f join member as m on f.id=m.id order by regdate desc) b, (SELECT @rownum:=0) TMP
+		order by rnum desc) as b
+		where rnum<![CDATA[>=]]>${start} and rnum<![CDATA[<=]]>${end}<if test="searchword!=null">and b_title LIKE '%'||#{searchword}||'%'</if>
 
 	</select>
 	<!--게시글을 등록  -->

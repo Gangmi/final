@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kos.vo.BoardVO;
+import com.kos.vo.PagingVO;
 import com.kos.vo.UploadImageVO;
 
 @Repository
@@ -23,42 +24,21 @@ public class BoardDaoImpl implements BoardDao {
 		//전체 페이지수 구하기(vo board name)
 		
 		//해당 게시판 전체 게시물 갯수 구하기
-		int total_board_count=mybatis.selectOne("board.getBoardCount",vo);
-		System.out.println(total_board_count+"############# 전체카운트");
-		//전체 카운트에서 현재 보이는 페이지를 나눈 나머지가 1보다 크면 나눈값에 1을 더함
-		int temppage=total_board_count/vo.getViewing_count();
-		int addpage=total_board_count%vo.getViewing_count();
-		int totalpage=0;
+		int total=mybatis.selectOne("board.getBoardCount",vo);
+		PagingVO page= new PagingVO(total, vo.getNowpage(), vo.getViewing_count());
 		
-		//나머지가있으면
-		if(addpage>0) {
-			totalpage=(temppage+1);
 		
-		//없으면
-		}else {
-			totalpage=temppage;
-		}
-		System.out.println(totalpage);
+		
+		System.out.println(page.getLastPage());
 	
 		
 		//현재페이지와 보여지는 갯수에따른 게시물 검색(hashmap)
-		
-		int end = vo.getNowpage() * vo.getViewing_count();
-	
-		
-		int start = end - (vo.getViewing_count() - 1);
-		
-		//hashmap에 담기
-		HashMap hs = new HashMap();
-		
-		hs.put("startrow", start);
-		hs.put("endrow",end);
-		hs.put("b_boardname",vo.getB_boardname());
-		List<BoardVO> result=mybatis.selectList("board.getBoardList",hs);
+		page.setBoardname(vo.getB_boardname());
+		List<BoardVO> result=mybatis.selectList("board.getBoardList",page);
 		
 		//nowpage멤버변수를 이용해서 total page를 저장
 		if(result.size()>0) {
-		result.get(0).setNowpage(totalpage);
+		result.get(0).setNowpage(page.getLastPage());
 		}
 	
 		return result;

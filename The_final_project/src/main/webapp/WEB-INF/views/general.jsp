@@ -92,7 +92,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 				for(int i=1; i<=result.get(0).getNowpage();i++){
 			%>
 			
-				<a href="callboard.do?b_boardname=<%=boardname%>&b_nowpage=<%=i%>"><%="[ "+i+" ]"%></a>
+				<a href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%>"><%="[ "+i+" ]"%></a>
 			<%} 
 			}
 			%>	
