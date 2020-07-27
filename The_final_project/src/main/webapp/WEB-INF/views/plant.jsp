@@ -85,18 +85,17 @@
 				
 			%>
 				<tr> 
-					
 					<td><%=vo.getPlantId()%></td>
 					<td><%=vo.getPlantCate()%></td> 
 					<td><%=vo.getPlantTitles()%></td>  
 					<td><%=vo.getPlantInfo()%></td>
-				</tr> 
+				</tr>  
 			<%     
-				}
-			%> 
+				} 
+			%>  
 			
 			<tr>
-				<td>Berglunds snabbkop</td>
+				<td>Berglunds snabbkop</td> 
 				<td>Sweden</td> 
 				<td>d</td> 
 				<td>d</td>
