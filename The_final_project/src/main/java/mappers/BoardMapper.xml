@@ -79,7 +79,7 @@
 	
 	<!--댓글 저장  -->
 	<insert id="writerepl" parameterType="board">
-	insert into #{b_boardname}(boardno,id,contents) values(#{boardno},#{id},#{contents})
+	insert into ${b_boardname}(boardno,id,contents) values(#{boardno},#{id},#{contents})
 	</insert>
 		
 </mapper>
