@@ -1,11 +1,13 @@
 $(document).ready(function() {
-
+	
 	CKEDITOR.replace('editor', {
-		filebrowserUploadUrl : 'fileupload.do',
+		filebrowserUploadUrl : '/imageUpload.do?b_boardname='+$('#boardname').val(),
 		
 		height : '500px',
-		filebrowserImageUploadUrl : '/upload/ckeditor_upload.asp'
+		//filebrowserImageUploadUrl : '/upload/ckeditor_upload.asp'
 
 	});
+	
 
+	
 });

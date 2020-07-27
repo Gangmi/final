@@ -8,26 +8,27 @@
 <meta charset="UTF-8">
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script src="resources/js/general.js"></script>
 
 <%
 	//게시판 값 받아오는 곳
-List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
 String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title>자유게시판</title>
 
 </head>
 <body>
+	<input id="boardname" type="hidden" value="<%=boardname%>">
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 
 	<!-- Hero Section Begin -->
+	
 
 	<section class="hero-section">
 		<div class="container">
-
+		
 			<h3>자유게시판</h3>
 			<br />
 			<div class="table-wrapper">
@@ -39,7 +40,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 						<tr>
 							<th width="130">글번호</th>
 							<th width="659">제목</th>
-							<th>작성자</th>
+							<th width="180">작성자</th>
 							<th width="180">작성일</th>
 							<th width="188">조회수</th>
 						</tr>
@@ -47,21 +48,25 @@ String boardname = (String) request.getAttribute("b_boardname");
 					
 					<tbody>
 					<%
-						if (!result.isEmpty()) {
-						for (BoardVO vo : result) {
-						// 시간 나누기
-						String[] dat=vo.getRegdate().split(" ");
-						vo.setRegdate(dat[0]);
+						if ((int)request.getAttribute("confirm")==1) {
+							
+							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
+							
+							
+							for (BoardVO vo : result) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							vo.setRegdate(dat[0]);
 					%>
 						<tr>
 							<td width="130"><%=vo.getBoardno()%></td>
-							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
+							<td width="659"><a href="viewboardtemp.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
 							<td width="180"><%=vo.getId()%></td>
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
-						<%
-						}
+					<%
+							}	
 					%>
 					<%
 						}else{
@@ -77,13 +82,16 @@ String boardname = (String) request.getAttribute("b_boardname");
 			</div>
 			<!--페이징 부분  -->
 			<div class="paging">
-				<%
-					for (int i = 1; i <= result.get(0).getNowpage(); i++) {
-				%>
+			<%if((int)request.getAttribute("confirm")==1){ 
+				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
+				for(int i=1; i<=result.get(0).getNowpage();i++){
+			%>
+			
 				<a href=general.do?b_boardname=free_board&b_nowpage= <%=i%>><%="[" + i + "]"%></a>
-				<%
-					}
-				%>
+			<%} 
+			}
+			%>	
+				
 			</div>
 		</div>
 	</section>

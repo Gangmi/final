@@ -1,6 +1,6 @@
 package com.kos.vo;
 
-public class BoardVO {
+public class BoardVO implements Board {
 	
 	private int boardno;
 	private String title;
@@ -10,7 +10,7 @@ public class BoardVO {
 	private int boardView;
 	
 	private int boardLike;
-	private int boardBad;
+	private int boardBad; 
 	
 	
 	

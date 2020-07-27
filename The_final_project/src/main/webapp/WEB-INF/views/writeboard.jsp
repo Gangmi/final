@@ -14,9 +14,10 @@
 %>
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script>
 <title>자유게시판</title>
-<script type="text/javascript" src="resources/js/write.js"></script>
+
 </head>
 <body>
+	<input id=boardname type="hidden" value=<%=boardname%>>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 	
@@ -34,9 +35,7 @@
 						<option>농사 IN 시게판</option>
 					</select>
 				</div>
-				<div class="title">
-					제목 쓰기 <input type="text" name="title" />
-				</div>
+				
 			</div>
 		</div>
 		</section>
@@ -45,14 +44,15 @@
 <section class="hero-section">
 		<div class="container">
 			<div class="main_box">
-
-				<form action="write.do?b_boardname=free_board" method="post"
-					id="frm">
+			
+				<form action="/write.do" method="post"
+					id="frm" enctype="multipart/form-data">
+					<input type="hidden" name="b_boardname" value="<%=boardname%>"/>
+					<input type="text" name="title"/>
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript">
-						
 					</script>
-					<input type="button" id="savebutton" value="서버전송" />
+					<button type="submit" id="savebutton">dz</button>
 				</form>
 			</div>
 		</div>

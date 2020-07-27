@@ -13,5 +13,21 @@
 		<typeAlias type="com.kos.vo.AuthorityVO" alias="authorityvo"/>
 		<typeAlias alias="board" type="com.kos.vo.BoardVO" />
 		<typeAlias type="com.kos.vo.FarmVO" alias="farmvo"/>
+		<typeAlias alias="img" type="com.kos.vo.UploadImageVO"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 	</typeAliases>
 </configuration>

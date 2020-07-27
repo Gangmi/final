@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kos.vo.BoardVO;
+import com.kos.vo.UploadImageVO;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -54,11 +55,11 @@ public class BoardDaoImpl implements BoardDao {
 		hs.put("endrow",end);
 		hs.put("b_boardname",vo.getB_boardname());
 		List<BoardVO> result=mybatis.selectList("board.getBoardList",hs);
-		System.out.println(result.get(0).getContents());
-		System.out.println(result.get(0).getBoardView()+"####################");
-		//nowpage멤버변수를 이용해서 total page를 저장
-		result.get(0).setNowpage(totalpage);
 		
+		//nowpage멤버변수를 이용해서 total page를 저장
+		if(result.size()>0) {
+		result.get(0).setNowpage(totalpage);
+		}
 		
 		return result;
 	
@@ -69,8 +70,36 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void writeBoard(BoardVO vo) {
-		//글저장하기
+		HashMap hs = new HashMap();
+		
+		//게시판 분기 나누기
+		int boardno=0;
+		if(vo.getB_boardname().equals("free_board")) {
+			boardno=1;
+		}
+		hs.put("boardno",boardno);
+		
+		
+		//게시판 이름 가져오기
+		hs.put("boardname", vo.getB_boardname());
+		
+		
+		//저장될 글번호 가져오기
+		int writeno=mybatis.selectOne("board.getNextNum",hs);
+		hs.put("writeno", writeno);
+		
+		//저장상태가 바뀔 이미지가 있는지 확인
+		List<UploadImageVO> result=mybatis.selectList("isthereimg", hs);
+		
+		//저장상태 바꿀 이미지가 있다면, update함
+		if(result.size()>0) {
+			mybatis.update("notemp",hs);
+		}
+		//글 저장
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getContents());
 		mybatis.insert("board.writeboard",vo);
+		
 		
 	}
 
@@ -82,6 +111,29 @@ public class BoardDaoImpl implements BoardDao {
 		result.getBoardView();
 		
 		return result;
+	}
+
+
+	@Override
+	public void storeImage(UploadImageVO imgvo) {
+		//다음에 해당 게시판에 들어갈 글번호 부르기
+		HashMap hs = new HashMap();
+		hs.put("boardname", imgvo.getBoardname());
+		int writeno=mybatis.selectOne("board.getNextNum",hs);
+		
+		//받아온 글 번호 지정
+		imgvo.setWriteno(writeno);
+		
+		
+		
+		mybatis.insert("board.imagestore",imgvo);
+		
+	}
+
+
+	public void writeRepl(BoardVO vo) {
+		
+		mybatis.insert("board.writerepl",vo);
 	}
 	
 
