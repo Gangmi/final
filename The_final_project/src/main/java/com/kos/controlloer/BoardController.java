@@ -1,4 +1,4 @@
-package com.kos.controlloer;
+﻿package com.kos.controlloer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -126,7 +126,7 @@ public class BoardController {
 
 	}
 
-	 
+
 
 //	@RequestMapping("imageUpload.do")
 //	public void imageUpload(HttpServletRequest request, HttpServletResponse response,
