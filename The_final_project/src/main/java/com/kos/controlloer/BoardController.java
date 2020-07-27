@@ -121,7 +121,7 @@ public class BoardController {
 
 	}
 
-	} 
+	
 
 //	@RequestMapping("imageUpload.do")
 //	public void imageUpload(HttpServletRequest request, HttpServletResponse response,
