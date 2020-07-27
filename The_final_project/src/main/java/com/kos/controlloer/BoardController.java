@@ -140,10 +140,21 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/writerepl.do")
-	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo) {
+	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
 		System.out.println("writerepl.do들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
+		if(vo.getB_boardname().equals("free_board")) {
+			vo.setB_boardname("free_repl");
+		}
+		if(vo.getB_boardname().equals("tip_board")) {
+			vo.setB_boardname("tip_repl");
+		}
+		if(vo.getB_boardname().equals("parcel_board")) {
+			vo.setB_boardname("parcel_repl");
+		}
+		
+		vo.setId(((MemberVO)session.getAttribute("memberinfo")).getId());
 		//댓글 저장
 		service.writeRepl(vo);
 		// 다음 페이지 지정
