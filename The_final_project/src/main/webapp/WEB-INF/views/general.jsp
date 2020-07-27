@@ -1,3 +1,4 @@
+<%@page import="com.kos.vo.MemberVO"%>
 <%@page import="com.kos.vo.BoardVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,31 +10,35 @@
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
 
-<script src="resources/js/general.js"></script>
 
 <%
 	//게시판 값 받아오는 곳
 String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title>자유게시판</title>
+<%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
 </head>
 <body>
 	<input id="boardname" type="hidden" value="<%=boardname%>">
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+	<input type="hidden" id="confirmsession" value="<%=session.getAttribute("memberinfo")%>"></input>
+
+
+
 
 
 	<!-- Hero Section Begin -->
-	<button class="btn btn-success" id="writeboard">글쓰기</button>
+	
 
 	<section class="hero-section">
 		<div class="container">
-
+		
 			<h3>자유게시판</h3>
 			<br />
 			<div class="table-wrapper">
 			<div class="writebtn">
-			
+			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			</div>
 				<table class="table table-striped">
 					<thead>
@@ -48,7 +53,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 					
 					<tbody>
 					<%
-						if ((int)request.getAttribute("confirm")==1) {
+						if ((Integer)request.getAttribute("confirm")==1) {
 							
 							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
 							
@@ -61,7 +66,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 						<tr>
 							<td width="130"><%=vo.getBoardno()%></td>
 							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
-							<td width="180"><%=vo.getId()%></td>
+							<td width="180"><%=vo.getNickname()%></td>
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
@@ -82,12 +87,12 @@ String boardname = (String) request.getAttribute("b_boardname");
 			</div>
 			<!--페이징 부분  -->
 			<div class="paging">
-			<%if((int)request.getAttribute("confirm")==1){ 
+			<%if((Integer)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
-				for(int i=0; i<=result.get(0).getNowpage();i++){
+				for(int i=1; i<=result.get(0).getNowpage();i++){
 			%>
 			
-				<a href=general.do?b_boardname=free_board&b_nowpage= <%=i%>><%="[" + i + "]"%></a>
+				<a href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%>"><%="[ "+i+" ]"%></a>
 			<%} 
 			}
 			%>	

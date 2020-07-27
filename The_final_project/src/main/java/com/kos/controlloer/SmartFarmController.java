@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
+@RequestMapping("/smartfarmer")
 public class SmartFarmController {
-	@RequestMapping("/Smart-Farm.do")
+	@RequestMapping("/monitoringView.do")
 	public String test() {
 		return "/Smart-Farm/monitoringView";
 	}

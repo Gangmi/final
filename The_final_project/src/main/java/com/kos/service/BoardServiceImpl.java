@@ -49,6 +49,12 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+
+	public void writeRepl(BoardVO vo) {
+		dao.writeRepl(vo);
+		
+	}
+
 	
 	
 	
