@@ -6,16 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kos.dao.BoardDaoImpl;
+import com.kos.dao.BoardDao;
+
 import com.kos.vo.BoardVO;
 import com.kos.vo.PlantVO;
 import com.kos.vo.UploadImageVO;
 
-@Service
+@Service("BoardService")
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	BoardDaoImpl dao;
+	BoardDao dao;
 
 	@Override
 	public List<BoardVO> getBoardList(BoardVO vo) {
@@ -61,11 +62,15 @@ public class BoardServiceImpl implements BoardService {
 		return dao.updateBoard(vo);
 	}
 
-	@Override
+	
 	public void deleteBoard(BoardVO vo) {
 
-		dao.deleteBoard(vo);
-
+		try {
+			dao.deleteBoard(vo);
+		} catch (Exception e) {			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

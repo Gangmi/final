@@ -7,13 +7,15 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kos.vo.BoardVO;
 import com.kos.vo.ImageDetectVO;
 import com.kos.vo.PagingVO;
+import com.kos.vo.ReplNameVO;
 import com.kos.vo.UploadImageVO;
 
-@Repository
+@Repository("BoardDao")
 public class BoardDaoImpl implements BoardDao {
 
 	@Autowired
@@ -131,43 +133,92 @@ public class BoardDaoImpl implements BoardDao {
 		return mybatis.update("board.updateboard", vo);
 	}
 
-	@Override
-	//글 삭제시에
-	public void deleteBoard(BoardVO vo) {
-		//트랜잭션 처리를 위한 오토 커밋 false
-		//mybatis.getSqlSessionFactory().openSession(false);
-		
-		//댓글 삭제
-		mybatis.delete("board.deletereple", vo);
-		
-		//글삭제
-		mybatis.delete("board.deleteboard",vo);
+	@Transactional
+	public void deleteBoard(BoardVO vo) throws Exception {
+		// 트랜잭션 처리를 위한 오토 커밋 false
+		// mybatis.getSqlSessionFactory().openSession(false);
 
-		//이미지파일 삭제
+		System.out.println("=============delete 시작===========");
+		String rawboardname = vo.getB_boardname();
+		// 댓글 검색 및 삭제를 위해 그게 맞는 이름으로 boardname을 변경
+		ReplNameVO re = new ReplNameVO(vo);
+		vo.setB_boardname(re.changeName());
+
+		// 삭제할 댓글이 있는지를 먼저 확인
+		int replcnt = mybatis.selectOne("countrepl", vo);
+
+		System.out.println(replcnt + "댓글갯수");
+
+		// 만약 댓글이있으면
+		if (replcnt > 0) {
+			System.out.println("댓글이있다");
+			// 댓글을 삭제
+			int result = mybatis.delete("board.deleterepl", vo);
+			System.out.println(result);
+			// 만약 댓글이 있는데 삭제가 안되면, 멈춤
+			if (result < 1) {
+				System.out.println("댓글 삭제가 안됐다");
+				throw new Exception();
+			}
+		}
+
+		vo.setB_boardname(rawboardname);
+		// 글을 삭제
+		int deletecon = mybatis.delete("deleteboard", vo);
+		// 만약 글이 삭제되지 않으면
+		if (deletecon < 1) {
+			throw new Exception();
+		}
+
+		// 이미지 테이블의 해당 글 번호를 가진 이미지 정보를 가져옴
+		ImageDetectVO img = new ImageDetectVO(vo);
+		HashMap hs = img.detecting();
+		List<UploadImageVO> imginfo = mybatis.selectList("selectimg", hs);
+
+		// 만약 이미지가 있으면
+		if (imginfo.size() > 0) {
+			for (UploadImageVO row : imginfo) {
+				
+				String filePath = "D:\\springwork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\The_final_project\\resources\\uploadimage\\";
+
+				File deleteFile = new File(filePath+row.getImgName());
+
+				// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+				if (deleteFile.exists()) {
+
+					// 파일을 삭제합니다.
+					try {
+					deleteFile.delete();
+					}catch(Exception e){
+						
+					}
+					System.out.println("파일을 삭제하였습니다.");
+
+				} else {
+					System.out.println("파일이 존재하지 않습니다.");
+					throw new Exception();
+				}
+
+			}
+		}
+		
+		
+		
+		
+		
+
+		// 댓글 삭제 쿼리 날림
+
+		// 글삭제
+		// mybatis.delete("board.deleteboard",vo);
+
+		// 이미지파일 삭제
 		// 파일의 경로 + 파일명
-//        String filePath = "D:\\springwork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\The_final_project\\/resources/uploadimage";
-//        
-//        File deleteFile = new File(filePath);
-// 
-//        // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
-//        if(deleteFile.exists()) {
-//            
-//            // 파일을 삭제합니다.
-//            deleteFile.delete(); 
-//            
-//            System.out.println("파일을 삭제하였습니다.");
-//            
-//        } else {
-//            System.out.println("파일이 존재하지 않습니다.");
-//        }
-//		
-//		
-//		//db이미지 삭제
-//		mybatis.delete("board.deleteboard", vo);
 		
-		
-		
-		//글삭제
+		// db이미지 삭제
+		//mybatis.delete("board.deleteboard", vo);
+
+		// 글삭제
 
 	}
 

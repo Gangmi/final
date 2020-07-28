@@ -17,5 +17,9 @@ public interface BoardDao {
 
 	public int updateBoard(BoardVO vo);
 
-	public void deleteBoard(BoardVO vo);
+	public void deleteBoard(BoardVO vo)throws Exception;
+
+	public void writeRepl(BoardVO vo);
+
+	public List<BoardVO> viewBoardRepl(BoardVO vo);
 }
