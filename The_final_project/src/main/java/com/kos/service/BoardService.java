@@ -12,5 +12,6 @@ public interface BoardService {
 	BoardVO viewBoard(BoardVO vo);
 	public void storeImage(UploadImageVO imgvo);
 	public int updateBoard(BoardVO vo);
+	public void deleteBoard(BoardVO vo);
 
 }

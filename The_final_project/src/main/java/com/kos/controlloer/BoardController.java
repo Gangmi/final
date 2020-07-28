@@ -363,5 +363,51 @@ public class BoardController {
 		}
 		return null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//글삭제시
+	@RequestMapping("/deleteboard.do")
+	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
+		
+		service.deleteBoard(vo);
+		mv.setViewName("redirect:/callboard.do?"+vo.getB_boardname());
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

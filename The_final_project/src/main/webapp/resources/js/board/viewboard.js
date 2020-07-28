@@ -36,7 +36,7 @@ $(document).ready(function() {
 		var boardname=$('#bname').val();
 		var boardno=$('#boardno').val();
 		
-		window.location.href="delete.do?boardname="+boardname+"&boardno="+boardno;
+		window.location.href="deleteboard.do?b_boardname="+boardname+"&boardno="+boardno;
 		
 	});
 	

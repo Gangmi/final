@@ -124,7 +124,28 @@
 		from member member inner join ${b_boardname} ${b_boardname}
 		ON member.id = ${b_boardname}.id where boardno = ${boardno}
 	</select>
-		
-	<delete id="">
+	
+	
+	
+	
+	
+	<!-- 댓글삭제  -->
+	
+	
+	
+	<!--글삭제  -->
+	<delete id="deleteboard" parameterType="board">
+	delete from ${b_boardname} where boardno=${boardno}
+	
 	</delete>
+	
+	<!-- 이미지 데이터 베이스 삭제  -->	
+	<delete id="deleteimage" parameterType="board">
+	delete from ${b_boardname} where boardno=${boardno}
+	
+	
+	</delete>
+	
+		
+	
 </mapper>
