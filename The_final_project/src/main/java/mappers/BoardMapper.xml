@@ -12,79 +12,112 @@
 	</select>
 
 	<!--해당 게시판의 현재 조건에 따른 게시물 검색 -->
-	<select id="getBoardList" parameterType="paging" resultType="board">
-		select b.* 
-		from (
-		SELECT
-		@rownum:=@rownum+1 as rnum, b.*
-		FROM (select boardno,title,contents,regdate,f.id,m.nickname from ${boardname} as f join member as m on f.id=m.id order by regdate desc) b, (SELECT @rownum:=0) TMP
-		order by rnum desc) as b
-		where rnum<![CDATA[>=]]>${start} and rnum<![CDATA[<=]]>${end}<if test="searchword!=null">and b_title LIKE '%'||#{searchword}||'%'</if>
+	<select id="getBoardList" parameterType="paging"
+		resultType="board">
+		<!-- select b.* from ( SELECT @rownum:=@rownum+1 as rnum, b.* FROM (select 
+			boardno,title,contents,regdate,f.id,m.nickname from ${boardname} as f join 
+			member as m on f.id=m.id order by regdate desc) b, (SELECT @rownum:=0) TMP 
+			order by rnum desc) as b where rnum<![CDATA[>=]]>${start} and rnum<![CDATA[<=]]>${end}<if 
+			test="searchword!=null">and b_title LIKE '%'||#{searchword}||'%'</if> -->
+
+		select f.*
+		from(SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM,
+		T.*
+		FROM (select
+		* from (select
+		boardno,title,contents,regdate,f.id,board_view,board_like,board_bad,m.nickname
+		from ${boardname} as f join member as m on f.id=m.id)as T,(SELECT
+		@ROWNUM := 0 ) TMP order by regdate desc) as T
+		ORDER BY regdate desc)
+		as f
+
+		where f.ROWNUM<![CDATA[>=]]>${start}
+		and f.ROWNUM<![CDATA[<=]]>${end}
+		<if test="searchword!=null">and b_title LIKE '%'||#{searchword}||'%'</if>
+		;
+
 
 	</select>
-	<!--게시글을 등록  -->
+	<!--게시글을 등록 -->
 	<insert id="writeboard" parameterType="board">
-	insert into ${b_boardname} (title,contents,id) values(#{title},#{contents},#{id})
-	
+		insert into ${b_boardname}
+		(title,contents,id)
+		values(#{title},#{contents},#{id})
+
 	</insert>
-	
-	<!--조회수 올리기  -->
+
+	<!--조회수 올리기 -->
 	<update id="upviewcount" parameterType="board">
-	update ${b_boardname} set board_view=board_view+1 where boardno = ${boardno}
-	
+		update ${b_boardname} set
+		board_view=board_view+1 where boardno = ${boardno}
+
 	</update>
 
-	<!--게시글 읽기  -->
+	<!--게시글 읽기 -->
 	<select id="viewboard" parameterType="board" resultType="board">
-	<choose>
-		<when test = "b_boardname eq 'nongsain'.toString()">
-		select boardno,title,contents,regdate,id,board_view,seleted,select_date,select_point from ${b_boardname} where boardno = ${boardno}
+		<choose>
+			<when test="b_boardname eq 'nongsain'.toString()">
+				select
+				boardno,title,contents,regdate,id,board_view,seleted,select_date,select_point
+				from ${b_boardname} where boardno = ${boardno}
 
-		</when>
+			</when>
 
-		<otherwise>
-		select boardno,title,contents,regdate,id,board_like,board_bad,board_view from ${b_boardname} where boardno = ${boardno}
+			<otherwise>
+				select
+				boardno,title,contents,regdate,id,board_like,board_bad,board_view
+				from ${b_boardname} where boardno = ${boardno}
 
-		</otherwise>
-	</choose>	
+			</otherwise>
+		</choose>
 	</select>
-	
-	<!--다음게시물 번호 가져오기  -->
+
+	<!--다음게시물 번호 가져오기 -->
 	<select id="getNextNum" parameterType="hashmap" resultType="int">
-	SELECT AUTO_INCREMENT
+		SELECT AUTO_INCREMENT
 
-	FROM information_schema.tables
+		FROM information_schema.tables
 
-	WHERE table_name = #{boardname}
+		WHERE table_name =
+		#{boardname}
 
-	AND table_schema = DATABASE();
+		AND table_schema = DATABASE();
 
 	</select>
-	
-	<!--이미지 상태 저장  -->
+
+	<!--이미지 상태 저장 -->
 	<insert id="imagestore" parameterType="img">
-	insert into img_status(boardno,writeno,img_name,istemp) values(#{boardno},#{writeno},#{imgName},0)
+		insert into
+		img_status(boardno,writeno,img_name,istemp)
+		values(#{boardno},#{writeno},#{imgName},0)
 	</insert>
-	
-	<!-- 글이 저장 될 때 업데이트가 될 이미지가 있는지 확인  -->
+
+	<!-- 글이 저장 될 때 업데이트가 될 이미지가 있는지 확인 -->
 	<select id="isthereimg" parameterType="hashmap" resultType="img">
-	select * from img_status where boardno=#{boardno} and writeno=#{writeno}
+		select * from img_status where boardno=#{boardno} and
+		writeno=#{writeno}
 	</select>
-	
-	<!-- 글이 저장 될 떄 이미지 상태 업데이트  -->
+
+	<!-- 글이 저장 될 떄 이미지 상태 업데이트 -->
 	<update id="notemp" parameterType="hashmap">
-	update img_status set istemp=1 where boardno=#{boardno} and writeno=#{writeno}
-	
+		update img_status set istemp=1
+		where boardno=#{boardno} and
+		writeno=#{writeno}
+
 	</update>
-	
-	<!--댓글 저장  -->
+
+	<!--댓글 저장 -->
 	<insert id="writerepl" parameterType="board">
-	insert into ${b_boardname}(boardno,id,contents) values(#{boardno},#{id},#{contents})
+		insert into
+		${b_boardname}(boardno,id,contents)
+		values(#{boardno},#{id},#{contents})
 	</insert>
+
 	
 	<!-- 댓글 가져오기 -->
 	<select id="viewBoardRepl" parameterType="board" resultType="board">
 		select * from ${b_boardname} where boardno = ${boardno}
 	</select>
 		
+
 </mapper>

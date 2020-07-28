@@ -15,6 +15,7 @@
 		<typeAlias type="com.kos.vo.FarmVO" alias="farmvo"/>
 		<typeAlias type="com.kos.vo.UploadImageVO"  alias="img"/>
 		<typeAlias type="com.kos.vo.PagingVO" alias="paging"/>
+		<typeAlias type="com.kos.vo.PlantVO" alias="plant" />
 
 
 
@@ -29,5 +30,6 @@
 
 
 		
+
 	</typeAliases>
 </configuration>
