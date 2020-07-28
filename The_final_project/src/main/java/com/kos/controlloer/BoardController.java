@@ -385,8 +385,9 @@ public class BoardController {
 	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
 		
 		service.deleteBoard(vo);
-		mv.setViewName("redirect:/callboard.do?"+vo.getB_boardname());
-		
+		System.out.println("댓글삭제 나옴+^^^^^^^^^^^^^^^^");
+		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
+		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
 	

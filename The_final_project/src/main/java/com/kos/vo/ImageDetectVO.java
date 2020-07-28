@@ -24,7 +24,7 @@ BoardVO vo;
 		hs.put("boardname", vo.getB_boardname());
 		
 		
-		//저장될 글번호 가져오기
+		//글번호 가져오기
 		
 		hs.put("writeno", vo.getBoardno());
 		
