@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/board/boardrepl.js"></script>
 <meta charset="UTF-8">
 
@@ -31,7 +31,7 @@
  	<div>
  	댓글 입력해라 래끼야 <p/>
  	<form id="commentInsertForm" name="commentInsertForm" ><%-- action="writerepl.do?b_boardname=<%=boardname%>&boardno=<%=boardno%>" method="post"> --%>
- 		<input type="hidden" name="boardname" value="<%=boardname%>">
+ 		<input type="hidden" name="b_boardname" value="<%=boardname%>">
  		<input type="hidden" name="boardno" value="<%=boardno%>">
       <p><textarea name="contents" cols="50" rows="5"></textarea></p>
       <p><input type="button"  id="commentInsertBtn" name="commentInsertBtn" value="댓글 입력"></p>
