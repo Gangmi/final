@@ -96,17 +96,27 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void storeImage(UploadImageVO imgvo) {
-		//다음에 해당 게시판에 들어갈 글번호 부르기
 		HashMap hs = new HashMap();
 		hs.put("boardname", imgvo.getBoardname());
-		int writeno=mybatis.selectOne("board.getNextNum",hs);
+		//만약 글을 새로쓰는것이면, 다음에 해당 게시판에 들어갈 글번호 부르기
+		if(imgvo.getWriteno()==0) {
+			int writeno=mybatis.selectOne("board.getNextNum",hs);
+			mybatis.insert("board.imagestore",imgvo);
+			
+		//글을 수정하는것이면, 현재 글의 번호로 이미지를 저장
+		}else {
+			mybatis.update("board.imagestore",imgvo);
+			
+			
+		}
 		
-		//받아온 글 번호 지정
-		imgvo.setWriteno(writeno);
+		
+		
+	
 		
 		
 		
-		mybatis.insert("board.imagestore",imgvo);
+		
 		
 	}
 
@@ -121,6 +131,13 @@ public class BoardDaoImpl implements BoardDao {
 		// TODO Auto-generated method stub
 		
 		return mybatis.selectList("board.viewBoardRepl",vo);
+	}
+
+
+	@Override
+	public int updateBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return mybatis.update("board.updateboard",vo);
 	}
 	
 

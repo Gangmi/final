@@ -41,7 +41,7 @@ if(session.getAttribute("memberinfo")!=null){
 		<!--현재 게시판 표시  -->
 			<div id="boardname" class="container">
 				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
-				<input type="hidden" id="boardname" value="<%=result.getB_boardname()%>">
+				<input type="hidden" id="bname" value="<%=(String)request.getAttribute("boardname")%>">
 				<a href=#><%=BoardVO.changeword((String)request.getAttribute("boardname"))%>></a>
 			</div>
 		<!--글제목부분  -->
