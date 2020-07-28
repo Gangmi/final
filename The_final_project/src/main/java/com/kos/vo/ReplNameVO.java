@@ -19,5 +19,6 @@ public class ReplNameVO {
 		if (vo.getB_boardname().equals("parcel_board")) {
 			result = "parcel_repl";
 		}
+		return result;
 	}
 }

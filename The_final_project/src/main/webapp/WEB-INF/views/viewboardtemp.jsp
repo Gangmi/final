@@ -33,13 +33,13 @@
  	<form id="commentInsertForm" name="commentInsertForm" ><%-- action="writerepl.do?b_boardname=<%=boardname%>&boardno=<%=boardno%>" method="post"> --%>
  		<input type="hidden" name="b_boardname" value="<%=boardname%>">
  		<input type="hidden" name="boardno" value="<%=boardno%>">
-      <p><textarea name="contents" cols="50" rows="5"></textarea></p>
+      <p><textarea id="#comment" name="contents" cols="50" rows="5"></textarea></p>
       <p><input type="button"  id="commentInsertBtn" name="commentInsertBtn" value="댓글 입력"></p>
       <!-- <p><input type="submit" value="Submit"></p> -->
     </form>
  	</div>
-	<div>
-		<%try{
+	<div id="repl">
+<%-- 		<%try{
 		List<BoardVO> repl = (List<BoardVO>) request.getAttribute("repl");
 		
 			for(BoardVO vo: repl){ %>
@@ -51,7 +51,7 @@
 		}catch(NullPointerException e){%>
 			없어열<p/>
 		<%}finally{}%><!--null 예외처리  -->
-		
+		 --%>
 	</div>
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
