@@ -11,10 +11,11 @@
 	<typeAliases>
 		<typeAlias type="com.kos.vo.MemberVO" alias="membervo"/>
 		<typeAlias type="com.kos.vo.AuthorityVO" alias="authorityvo"/>
-		<typeAlias alias="board" type="com.kos.vo.BoardVO" />
+		<typeAlias type="com.kos.vo.BoardVO" alias="board"/>
 		<typeAlias type="com.kos.vo.FarmVO" alias="farmvo"/>
-		<typeAlias alias="img" type="com.kos.vo.UploadImageVO"/>
-
+		<typeAlias type="com.kos.vo.UploadImageVO"  alias="img"/>
+		<typeAlias type="com.kos.vo.PagingVO" alias="paging"/>
+		<typeAlias type="com.kos.vo.PlantVO" alias="plant" />
 
 
 
@@ -29,5 +30,6 @@
 
 
 		
+
 	</typeAliases>
 </configuration>

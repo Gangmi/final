@@ -1,3 +1,4 @@
+<%@page import="com.kos.vo.MemberVO"%>
 <%@page import="com.kos.vo.BoardVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,18 +10,22 @@
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
 
-<script src="resources/js/general.js"></script>
 
 <%
 	//게시판 값 받아오는 곳
 String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title>자유게시판</title>
+<%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
 </head>
 <body>
 	<input id="boardname" type="hidden" value="<%=boardname%>">
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+	<input type="hidden" id="confirmsession" value="<%=session.getAttribute("memberinfo")%>"></input>
+
+
+
 
 
 	<!-- Hero Section Begin -->
@@ -87,7 +92,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 				for(int i=1; i<=result.get(0).getNowpage();i++){
 			%>
 			
-				<a href=general.do?b_boardname=free_board&b_nowpage= <%=i%>><%="[" + i + "]"%></a>
+				<a href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%>"><%="[ "+i+" ]"%></a>
 			<%} 
 			}
 			%>	

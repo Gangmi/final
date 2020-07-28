@@ -18,8 +18,8 @@
 <script type="text/javascript" src="resources/js/write.js"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp" />
-	<jsp:include page="Board/side.jsp" />
+	<jsp:include page="/WEB-INF/views/header.jsp" />
+	<jsp:include page="/WEB-INF/views/Board/side.jsp" />
 	<div class="top_menu">
 		<div class="search_box">
 			<select>

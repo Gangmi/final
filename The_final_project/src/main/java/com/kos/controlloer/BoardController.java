@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import com.google.gson.JsonObject;
 import com.kos.service.BoardServiceImpl;
 import com.kos.vo.Board;
 import com.kos.vo.BoardVO;
+import com.kos.vo.MemberVO;
 import com.kos.vo.UploadImageVO;
 
 
@@ -82,12 +84,22 @@ public class BoardController {
 
 	// 글쓸 때
 	@RequestMapping("/write.do")
-	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response) {
+	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response,HttpSession session) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println(vo.getTitle() + "제목");
 		System.out.println(vo.getContents() + "내용##############");
 		// 임시로 아이디 지정 ->나중에 지우기
 		//vo.setId("kim");
+		
+		MemberVO info=(MemberVO)session.getAttribute("memberinfo");
+		if(!info.getId().isEmpty()){
+			vo.setId(info.getId());
+		}else {
+			PrintWriter out = response.getWriter();
+			 
+			out.println("<script>alert('세션이 만료되거나 로그인 상태가 아닙니다.'); location.href='index.do';</script>");
+			 
+		}
 		System.out.println(vo.getB_boardname());
 
 
@@ -128,10 +140,21 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/writerepl.do")
-	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo) {
+	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
 		System.out.println("writerepl.do들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
+		if(vo.getB_boardname().equals("free_board")) {
+			vo.setB_boardname("free_repl");
+		}
+		if(vo.getB_boardname().equals("tip_board")) {
+			vo.setB_boardname("tip_repl");
+		}
+		if(vo.getB_boardname().equals("parcel_board")) {
+			vo.setB_boardname("parcel_repl");
+		}
+		
+		vo.setId(((MemberVO)session.getAttribute("memberinfo")).getId());
 		//댓글 저장
 		service.writeRepl(vo);
 		// 다음 페이지 지정
