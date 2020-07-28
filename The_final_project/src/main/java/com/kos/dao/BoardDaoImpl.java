@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kos.vo.BoardVO;
+import com.kos.vo.ImageDetectVO;
 import com.kos.vo.PagingVO;
 import com.kos.vo.UploadImageVO;
 
@@ -133,10 +134,21 @@ public class BoardDaoImpl implements BoardDao {
 		return mybatis.selectList("board.viewBoardRepl",vo);
 	}
 
-
+	//게시판 글 수정시에
 	@Override
 	public int updateBoard(BoardVO vo) {
-		// TODO Auto-generated method stub
+		//게시판 정보를 통해서 해당 글의 이미지 정보를 찾기 위한 클래스
+		ImageDetectVO dec = new ImageDetectVO(vo);
+		
+		HashMap hs=dec.detecting();
+		//저장상태가 바뀔 이미지가 있는지 확인
+		List<UploadImageVO> result=mybatis.selectList("isthereimg", hs);
+				
+		//저장상태 바꿀 이미지가 있다면, update함
+		if(result.size()>0) {
+			mybatis.update("notemp",hs);
+		}
+		
 		return mybatis.update("board.updateboard",vo);
 	}
 	

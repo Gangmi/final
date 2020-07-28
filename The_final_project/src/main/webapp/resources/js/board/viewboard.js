@@ -32,7 +32,9 @@ $(document).ready(function() {
 	
 	//삭제 버튼을 눌렀을 때
 	$('#deleteboard').click(function(){
-		
+		//확인이 필요한 값 가져오기
+		var boardname=$('#bname').val();
+		var boardno=$('#boardno').val();
 		
 		window.location.href="delete.do?boardname="+boardname+"&boardno="+boardno;
 		

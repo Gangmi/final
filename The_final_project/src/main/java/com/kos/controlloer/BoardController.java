@@ -117,6 +117,9 @@ public class BoardController {
 	// 글읽을 떄
 	@RequestMapping("/viewboard.do")
 	public ModelAndView viewBoard(ModelAndView mv, BoardVO vo) {
+		if(vo.getB_boardname()==null) {
+			vo.setB_boardname("free_board");
+		}
 		System.out.println("들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
@@ -208,6 +211,7 @@ public class BoardController {
 
 			out.println("<script>alert('수정이 완료 되었습니다.'); </script>");
 		}
+		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
 
