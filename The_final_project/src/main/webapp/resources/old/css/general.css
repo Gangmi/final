@@ -210,12 +210,18 @@ table {
 	margin-top: 50px;
 }
 /* 동적페이지 구현부  */
-.paging {
-	display: block;
-	float: left;
+#paging {
+	/* display: block;
 	margin-left: 100px;
-	margin-top: 50px;
+	margin-top: 50px; */
+	width: 200px;
 }
+#pages {
+	
+}
+
+
+
 /*글쓰는부분 ->writeboard */
 .writeboardbox {
 	width: 86%;

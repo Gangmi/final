@@ -88,17 +88,27 @@ String boardname = (String) request.getAttribute("b_boardname");
 				</table>
 			</div>
 			<!--페이징 부분  -->
-			<div class="paging">
+			<div class="center-block" id="paing">
+			
 			<%if((Integer)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
-				for(int i=1; i<=result.get(0).getNowpage();i++){
+				int pagelimit=0;
+				if(result.get(0).getNowpage()>10){
+					pagelimit=10;
+				}else{
+					pagelimit=result.get(0).getNowpage();
+				}
+				for(int i=1; i<=pagelimit;i++){
 			%>
 			
-				<a href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%>"><%="[ "+i+" ]"%></a>
-			<%} 
-			}
+				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%>" id="pages" role="button"><%=i%></a>
+			<%
+				} 
 			%>	
-				
+			<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=result.get(0).getNowpage()%>" id="pages" role="button">끝으로</a>
+			<% 	
+				}
+			%>
 			</div>
 		</div>
 	</section>
