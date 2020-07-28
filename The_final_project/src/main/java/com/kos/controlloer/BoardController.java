@@ -84,7 +84,7 @@ public class BoardController {
 
 	// 글쓸 때
 	@RequestMapping("/write.do")
-	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response) {
+	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response,HttpSession session)throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println(vo.getTitle() + "제목");
 		System.out.println(vo.getContents() + "내용##############");
