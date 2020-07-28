@@ -24,19 +24,19 @@
 	<section class="hero-section">
 
 		<div class="container" id="board">
-		
+		<!--현재 게시판 표시  -->
 			<div id="boardname" class="container">
 				<a href=#><%=BoardVO.changeword((String)request.getAttribute("boardname"))%>></a>
 			</div>
-
+		<!--글제목부분  -->
 			<div class="container" id="title">
 				<h2><%=result.getTitle()%></h2>
 			</div>
 			
 			<div class="container">
-				<p></p>
+				<p><%=result.getNickname()%></p>
 			</div>
-			
+		<!--글내용  -->
 			<div class=container id=contents>
 				<%=result.getContents()%>
 			</div>

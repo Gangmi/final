@@ -42,7 +42,7 @@ public class BoardController {
 		// 게시판 글을 읽어오기 위한 코딩
 		System.out.println("emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
 		List<BoardVO> result = service.getBoardList(vo);
-	
+		
 		// 다음에 갈 페이지 지정
 		if(vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
@@ -89,7 +89,7 @@ public class BoardController {
 		System.out.println(vo.getTitle() + "제목");
 		System.out.println(vo.getContents() + "내용##############");
 		// 임시로 아이디 지정 ->나중에 지우기
-		//vo.setId("kim");
+		//vo.setId("kim"); 
 		
 		MemberVO info=(MemberVO)session.getAttribute("memberinfo");
 		if(!info.getId().isEmpty()){
@@ -121,6 +121,10 @@ public class BoardController {
 		System.out.println(vo.getBoardno());
 
 		BoardVO result = service.viewBoard(vo);
+		//닉네임 추가
+		result.setNickname(vo.getNickname());
+		
+		
 		// System.out.println(result.getTitle()+"######################");
 		System.out.println(result.getBoardView() + "뷰카운트");
 		// 다음 페이지 지정
