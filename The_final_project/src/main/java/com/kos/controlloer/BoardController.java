@@ -145,34 +145,8 @@ public class BoardController {
 
 	}
 	
-	@RequestMapping("/viewboardtemp.do")
-	public ModelAndView viewBoardRepl(ModelAndView mv, BoardVO vo) {
-		System.out.println("viewBoardRepl들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
-		if(vo.getB_boardname().equals("free_board")) {
-			vo.setB_boardname("free_repl");
-		}
-		if(vo.getB_boardname().equals("tip_board")) {
-			vo.setB_boardname("tip_repl");
-		}
-		if(vo.getB_boardname().equals("parcel_board")) {
-			vo.setB_boardname("parcel_repl");
-		}
-
-		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
-		// 다음 페이지 지정
-		mv.setViewName("viewboardtemp");
-		mv.addObject("boardname",vo.getB_boardname());
-		mv.addObject("repl", result);
-
-		return mv;
-
-
-	}
-	
 	@RequestMapping("/writerepl.do")
-	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
+	public String writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
 		System.out.println("writerepl.do들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
@@ -198,9 +172,66 @@ public class BoardController {
 
 		mv.addObject("boardno", vo.getBoardno());
 		mv.addObject("repl", result);
-		return mv;
+		return "success";
 
 	}
+	
+//	@RequestMapping("/viewboardtemp.do")
+//	public ModelAndView viewBoardRepl(ModelAndView mv, BoardVO vo) {
+//		System.out.println("viewBoardRepl들어옴");
+//		System.out.println(vo.getB_boardname());
+//		System.out.println(vo.getBoardno());
+//		if(vo.getB_boardname().equals("free_board")) {
+//			vo.setB_boardname("free_repl");
+//		}
+//		if(vo.getB_boardname().equals("tip_board")) {
+//			vo.setB_boardname("tip_repl");
+//		}
+//		if(vo.getB_boardname().equals("parcel_board")) {
+//			vo.setB_boardname("parcel_repl");
+//		}
+//
+//		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
+//		// 다음 페이지 지정
+//		mv.setViewName("viewboardtemp");
+//		mv.addObject("boardname",vo.getB_boardname());
+//		mv.addObject("repl", result);
+//
+//		return mv;
+//
+//
+//	}
+//	
+//	@RequestMapping("/writerepl.do")
+//	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
+//		System.out.println("writerepl.do들어옴");
+//		System.out.println(vo.getB_boardname());
+//		System.out.println(vo.getBoardno());
+//		if(vo.getB_boardname().equals("free_board")) {
+//			vo.setB_boardname("free_repl");
+//		}
+//		if(vo.getB_boardname().equals("tip_board")) {
+//			vo.setB_boardname("tip_repl");
+//		}
+//		if(vo.getB_boardname().equals("parcel_board")) {
+//			vo.setB_boardname("parcel_repl");
+//		}
+//		
+//		vo.setId(((MemberVO)session.getAttribute("memberinfo")).getId());
+//		//댓글 저장
+//		service.writeRepl(vo);
+//		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
+//		// 다음 페이지 지정
+//
+//		mv.setViewName("viewboardtemp");
+//
+//		mv.addObject("b_boardname",vo.getB_boardname());
+//
+//		mv.addObject("boardno", vo.getBoardno());
+//		mv.addObject("repl", result);
+//		return mv;
+//
+//	}
 
 	// 이미지 업로드에서 사용하는 컨트롤러
 	@RequestMapping(value = "/imageUpload.do", method=RequestMethod.POST)
