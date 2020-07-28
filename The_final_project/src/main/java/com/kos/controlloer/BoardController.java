@@ -84,22 +84,12 @@ public class BoardController {
 
 	// 글쓸 때
 	@RequestMapping("/write.do")
-	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response,HttpSession session) throws IOException {
+	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response) {
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println(vo.getTitle() + "제목");
 		System.out.println(vo.getContents() + "내용##############");
 		// 임시로 아이디 지정 ->나중에 지우기
 		//vo.setId("kim");
-		
-		MemberVO info=(MemberVO)session.getAttribute("memberinfo");
-		if(!info.getId().isEmpty()){
-			vo.setId(info.getId());
-		}else {
-			PrintWriter out = response.getWriter();
-			 
-			out.println("<script>alert('세션이 만료되거나 로그인 상태가 아닙니다.'); location.href='index.do';</script>");
-			 
-		}
 		System.out.println(vo.getB_boardname());
 
 
@@ -139,6 +129,32 @@ public class BoardController {
 
 	}
 	
+	@RequestMapping("/viewboardtemp.do")
+	public ModelAndView viewBoardRepl(ModelAndView mv, BoardVO vo) {
+		System.out.println("viewBoardRepl들어옴");
+		System.out.println(vo.getB_boardname());
+		System.out.println(vo.getBoardno());
+		if(vo.getB_boardname().equals("free_board")) {
+			vo.setB_boardname("free_repl");
+		}
+		if(vo.getB_boardname().equals("tip_board")) {
+			vo.setB_boardname("tip_repl");
+		}
+		if(vo.getB_boardname().equals("parcel_board")) {
+			vo.setB_boardname("parcel_repl");
+		}
+
+		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
+		// 다음 페이지 지정
+		mv.setViewName("viewboardtemp");
+		mv.addObject("boardname",vo.getB_boardname());
+		mv.addObject("repl", result);
+
+		return mv;
+
+
+	}
+	
 	@RequestMapping("/writerepl.do")
 	public ModelAndView writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
 		System.out.println("writerepl.do들어옴");
@@ -157,11 +173,15 @@ public class BoardController {
 		vo.setId(((MemberVO)session.getAttribute("memberinfo")).getId());
 		//댓글 저장
 		service.writeRepl(vo);
+		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
 		// 다음 페이지 지정
+
 		mv.setViewName("viewboardtemp");
+
 		mv.addObject("b_boardname",vo.getB_boardname());
+
 		mv.addObject("boardno", vo.getBoardno());
-	
+		mv.addObject("repl", result);
 		return mv;
 
 	}

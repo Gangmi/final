@@ -11,10 +11,11 @@
 <meta charset="UTF-8">
 
 <%
+
 	String boardname = (String) request.getParameter("b_boardname");
 	String boardno = (String) request.getParameter("boardno");
-	List<BoardVO> repl = (List<BoardVO>) request.getParameter("repl");
-%>
+	
+	%>
 <title>project</title>
 
 
@@ -32,10 +33,19 @@
     </form>
  	</div>
 	<div>
-		<%for(BoardVO vo: repl){ %>
+		<%try{
+		List<BoardVO> repl = (List<BoardVO>) request.getAttribute("repl");
+		
+			for(BoardVO vo: repl){ %>
 			<!-- 댓글 리스트 가져오기 -->
-			<%=vo.get %>
-		<%} %>
+			<%=vo.getId() %><p/>
+			<%=vo.getContents() %><p/>
+			<%=vo.getRegdate() %><p/>
+			<%}
+		}catch(NullPointerException e){%>
+			없어열<p/>
+		<%}finally{}%><!--null 예외처리  -->
+		
 	</div>
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

@@ -112,8 +112,15 @@ public class BoardDaoImpl implements BoardDao {
 
 
 	public void writeRepl(BoardVO vo) {
-		
+		System.out.println("board.writerepl");
 		mybatis.insert("board.writerepl",vo);
+	}
+
+
+	public List<BoardVO> viewBoardRepl(BoardVO vo) {
+		// TODO Auto-generated method stub
+		
+		return mybatis.selectList("board.viewBoardRepl",vo);
 	}
 	
 

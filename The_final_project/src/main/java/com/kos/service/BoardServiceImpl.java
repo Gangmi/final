@@ -52,6 +52,11 @@ public class BoardServiceImpl implements BoardService {
 		dao.writeRepl(vo);
 		
 	}
+
+	public List<BoardVO> viewBoardRepl(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return dao.viewBoardRepl(vo);
+	}
 	
 	
 	
