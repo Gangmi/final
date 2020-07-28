@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.kos.vo.BoardVO"%>
+<%@page import="com.kos.vo.MemberVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
@@ -38,7 +39,7 @@
 		
 			for(BoardVO vo: repl){ %>
 			<!-- 댓글 리스트 가져오기 -->
-			<%=vo.getId() %><p/>
+			<%=vo.getNickname() %>            <%if(((MemberVO)session.getAttribute("memberinfo")).getId().equals(vo.getId())){%> <input type="submit" value="X"> <%}  %>         <p/>
 			<%=vo.getContents() %><p/>
 			<%=vo.getRegdate() %><p/>
 			<%}
