@@ -114,7 +114,7 @@
 									</ul></li>
 
 								<li><a href="plant.do">식물사전</a></li>
-								<li><a href="./contact.html">제휴농장위치</a></li>
+								<li><a href="/farm-map.do">제휴농장위치</a></li>
 
 							</ul>
 						</nav>
