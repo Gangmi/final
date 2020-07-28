@@ -65,7 +65,9 @@ String boardname = (String) request.getAttribute("b_boardname");
 					%>
 						<tr>
 							<td width="130"><%=vo.getBoardno()%></td>
-							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>"><%=vo.getTitle()%></a></td>
+
+							<td width="659"><a href="viewboardtemp.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+
 							<td width="180"><%=vo.getNickname()%></td>
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
