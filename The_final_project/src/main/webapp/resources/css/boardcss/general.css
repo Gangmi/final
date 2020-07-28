@@ -1,4 +1,25 @@
 @charset "UTF-8";
+/*글쓰기 버튼  */
 .writebtn {
-	float:right
+	float:right;
+}
+
+#pager {
+	width: 100%;
+	text-align: center;
+}
+
+td a {
+	color: black;
+	 
+}
+
+td a:hover{
+	color: black;
+	text-decoration: underline;
+}
+
+#bno {
+	color: gray;
+	
 }
