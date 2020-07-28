@@ -12,4 +12,5 @@ public interface BoardDao {
 	public void writeBoard(BoardVO vo);
 	public BoardVO viewBoard(BoardVO vo);
 	public void storeImage(UploadImageVO imgvo);
+	public int updateBoard(BoardVO vo);
 }

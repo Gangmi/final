@@ -16,11 +16,12 @@ $(document).ready(function() {
 	//수정 버튼을 클릭했을 때
 	$('#modifyboard').click(function(){
 		//확인이 필요한 값 가져오기
-		var boardname=$('#boardname').val();
+		var boardname=$('#bname').val();
 		var boardno=$('#boardno').val();
+		alert(boardname+boardno)
 		
 		if($('#writer').val()==$('#confirmsession').val()){
-			window.location.href="modifyboard.do?boardname="+boardname+"&boardno="+boardno;
+			window.location.href="modifyboard.do?b_boardname="+boardname+"&boardno="+boardno;
 		}else{
 			alert("글수정은 작성자 id로만 가능합니다.");
 			window.location.href="login.do";
@@ -31,7 +32,9 @@ $(document).ready(function() {
 	
 	//삭제 버튼을 눌렀을 때
 	$('#deleteboard').click(function(){
-		
+		//확인이 필요한 값 가져오기
+		var boardname=$('#bname').val();
+		var boardno=$('#boardno').val();
 		
 		window.location.href="delete.do?boardname="+boardname+"&boardno="+boardno;
 		

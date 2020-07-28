@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kos.vo.BoardVO;
+import com.kos.vo.ImageDetectVO;
 import com.kos.vo.PagingVO;
 import com.kos.vo.UploadImageVO;
 
@@ -96,17 +97,27 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void storeImage(UploadImageVO imgvo) {
-		//다음에 해당 게시판에 들어갈 글번호 부르기
 		HashMap hs = new HashMap();
 		hs.put("boardname", imgvo.getBoardname());
-		int writeno=mybatis.selectOne("board.getNextNum",hs);
+		//만약 글을 새로쓰는것이면, 다음에 해당 게시판에 들어갈 글번호 부르기
+		if(imgvo.getWriteno()==0) {
+			int writeno=mybatis.selectOne("board.getNextNum",hs);
+			mybatis.insert("board.imagestore",imgvo);
+			
+		//글을 수정하는것이면, 현재 글의 번호로 이미지를 저장
+		}else {
+			mybatis.update("board.imagestore",imgvo);
+			
+			
+		}
 		
-		//받아온 글 번호 지정
-		imgvo.setWriteno(writeno);
+		
+		
+	
 		
 		
 		
-		mybatis.insert("board.imagestore",imgvo);
+		
 		
 	}
 
@@ -121,6 +132,24 @@ public class BoardDaoImpl implements BoardDao {
 		// TODO Auto-generated method stub
 		
 		return mybatis.selectList("board.viewBoardRepl",vo);
+	}
+
+	//게시판 글 수정시에
+	@Override
+	public int updateBoard(BoardVO vo) {
+		//게시판 정보를 통해서 해당 글의 이미지 정보를 찾기 위한 클래스
+		ImageDetectVO dec = new ImageDetectVO(vo);
+		
+		HashMap hs=dec.detecting();
+		//저장상태가 바뀔 이미지가 있는지 확인
+		List<UploadImageVO> result=mybatis.selectList("isthereimg", hs);
+				
+		//저장상태 바꿀 이미지가 있다면, update함
+		if(result.size()>0) {
+			mybatis.update("notemp",hs);
+		}
+		
+		return mybatis.update("board.updateboard",vo);
 	}
 	
 

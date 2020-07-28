@@ -105,6 +105,10 @@
 		writeno=#{writeno}
 
 	</update>
+	<update id="updateboard" parameterType="board">
+		update ${b_boardname} set title=#{title},contents=#{contents} where boardno=#{boardno}
+	</update>
+	
 
 	<!--댓글 저장 -->
 	<insert id="writerepl" parameterType="board">
