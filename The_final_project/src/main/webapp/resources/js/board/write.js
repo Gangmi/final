@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+	//에디터 사용 부분
 	CKEDITOR.replace('editor', {
 		filebrowserUploadUrl : '/imageUpload.do?b_boardname='+$('#boardname').val(),
 		
@@ -8,6 +8,5 @@ $(document).ready(function() {
 
 	});
 	
-
 	
 });
