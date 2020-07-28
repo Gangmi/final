@@ -5,39 +5,78 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/flaticon.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
     <style>
         #timer {
             visibility:hidden;
         }
+        #findId tr td {
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+        
+        .find-container {
+            padding: 50px;
+            display: inline-block;
+            background-color: ivory;
+            width:auto;
+            text-align: center;
+            margin: auto;
+            border-radius: 50px;
+        }
+        .find-form form{
+            
+        }
     </style>
 </head>
 <body>
-    <form action="find_id_act.do" id="findId" method="post" target="result">
-        <table>
-            <tr>
-                <td>이름</td>
-                <td><input type="text" name="name"/></td>
-            </tr>
-            <tr>
-                <td>이메일</td>
-                <td><input type="email" name="email"/></td>
-                <td>    <button id="certification" type="button" >인증번호 받기</button>
-                <span id="timer"><span id="min">03</span>:<span id="sec">00</span></span></td>
-            </tr>
-            <tr>
-                <td>인증번호</td>
-                <td><input type="text" name="certification"/></td>
-                <td id="info"></td>
-            </tr>
-            <tr>
-               <td colspan="3">
-                   <button type="button" id="btnFind"disabled>아이디 찾기</button>
-              	   <a href="find-pw.do"><button type="button">비밀번호 찾기</button></a>
-               	   <button type="button" id="windowClose"> 닫기</button>
-               </td>
-            </tr>
-        </table>
-    </form>
+    <div class="find-container">
+       <div><h2>아이디 찾기</h2></div>
+       <div class="find-form">
+        <form action="find_id_act.do" class=".form-inline" id="findId" method="post" target="result">
+            <table class="">
+                <colgroup>
+                <col width=130px/>
+                <col/>
+                <col width=200px/>
+	            </colgroup>
+                <tr>
+                    <td><label for="name">이름</label></td>
+                    <td><input type="text" class="form-control" name="name"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label for="email">이메일</label></td>
+                    <td><input type="email" class="form-control" name="email"/></td>
+                    <td><button id="certification" class="btn btn-info" type="button" >인증번호 받기</button>
+                    <span id="timer"><span id="min">03</span>:<span id="sec">00</span></span></td>
+                </tr>
+                <tr>
+                    <td><label for="">인증번호</label></td>
+                    <td><input type="text" class="form-control" name="certification"/></td>
+                    <td id="info"></td>
+                </tr>
+                <tr>
+                   <td colspan="2">
+                       <button type="button" class="btn btn-success" id="btnFind" disabled>아이디 찾기</button>
+                       <a href="find-pw.do">비밀번호 찾기</a>
+                   </td>
+                   <td><button type="button" class="btn btn-outline-primary" id="windowClose"> 닫기</button></td>
+                </tr>
+            </table>
+        </form>
+        </div>
+    </div>
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<script src="/resources/js/jquery.magnific-popup.min.js"></script>
