@@ -93,7 +93,7 @@
 				<div class="col-lg-2">
 					<div class="logo">
 						<a href="/index.do"> <!--로고 들어가는섹션--> <img
-							src="/resources/img/logo.png" alt="">
+							src="/resources/img/mainlogo.png" alt="">
 						</a>
 					</div>
 				</div>
