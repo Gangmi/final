@@ -22,7 +22,7 @@ public class SmartFarmController {
 		StringBuffer msg = new StringBuffer();
 		String path = "/Users/myeongjin/Desktop/new";
 		File folder = new File(path);
-		File sensordata = new File(path+"/sensor.data");
+		File sensordata = new File(path+"/sensor00001.txt");
 		if (!folder.exists()) {
 			try {
 				folder.mkdir();
