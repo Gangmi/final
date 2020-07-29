@@ -40,19 +40,23 @@ if(session.getAttribute("memberinfo")!=null){
 		<div class="container" id="board">
 		<!--현재 게시판 표시  -->
 			<div id="boardname" class="container">
+				
 				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
 				<input type="hidden" id="bname" value="<%=(String)request.getAttribute("boardname")%>">
-				<a href=#><%=BoardVO.changeword((String)request.getAttribute("boardname"))%>></a>
+				<a href=callboard.do?b_boardname=free_board><%=BoardVO.changeword((String)request.getAttribute("boardname"))%>></a>
+				<div class="pull-right" id="boardname_right">
+					<p>조회 <%=result.getViewing_count()%></p>
+				</div>
 			</div>
 		<!--글제목부분  -->
 			<div class="container" id="title">
 				<h2><%=result.getTitle()%></h2>
+				<input type="hidden" id="writer" value="<%=result.getId()%>">
+				<p class="nick"><%=result.getNickname()%></p><p class="regdate"><%=result.getRegdate() %></p>
+				
 			</div>
 			
-			<div class="container">
-				<input type="hidden" id="writer" value="<%=result.getId()%>">
-				<p><%=result.getNickname()%></p>
-			</div>
+			
 		<!--글내용  -->
 			<div class=container id=contents>
 				<%=result.getContents()%>
