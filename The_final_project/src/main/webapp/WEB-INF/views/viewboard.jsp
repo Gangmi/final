@@ -72,7 +72,7 @@ if (session.getAttribute("memberinfo") != null) {
 			<!--글내용  -->
 			<div class=container id=contents>
 				<%=result.getContents()%>
-				<div class="pull-right" id="likebad">
+				<div class="container" id="likebad">
 					<i class="fas fa-thumbs-up"></i> 
 					<i class="fas fa-thumbs-down"></i>
 				</div>

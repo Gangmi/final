@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/index.css" type="text/css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -34,7 +35,7 @@
 
 				<div class="col-lg-6">
 					<div class="hero-text">
-						<h1>여기에 우리이름</h1>
+						<h1>여름지긔ㅋ  </h1>
 						<p>내용</p>
 						<!--
                         <a href="#" class="primary-btn">Discover Now</a>
@@ -48,9 +49,13 @@
 		</div>
 		<!--케러셀 슬라이드 이미지 부분-->
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-1.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-2.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-3.jpg"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진1.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진2.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진3.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진4.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진5.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진6.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진7.png"></div>
 		</div>
 	</section>
 
