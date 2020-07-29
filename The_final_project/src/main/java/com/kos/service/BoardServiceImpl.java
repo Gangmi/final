@@ -78,4 +78,9 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	public void modifyRepl(BoardVO vo) {
+		dao.modifyRepl(vo);
+		
+	}
+
 }

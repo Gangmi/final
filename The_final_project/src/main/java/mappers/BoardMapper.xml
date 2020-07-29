@@ -136,7 +136,10 @@
 	delete from ${b_boardname} where replno=${replno}	
 	</delete>
 	
-	
+	<!-- 댓글수정  -->
+	<delete id="modifyRepl" parameterType="board">
+	update ${b_boardname} set contents= #{contents}  where replno=${replno}	
+	</delete>
 	
 	 <!--글삭제  -->
 	 

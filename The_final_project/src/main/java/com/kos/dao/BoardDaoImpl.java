@@ -117,7 +117,12 @@ public class BoardDaoImpl implements BoardDao {
 	//댓글삭제
 	public void delRepl(BoardVO vo) {
 		System.out.println("board.delRepl");
-		mybatis.insert("board.deleterepl2", vo);
+		mybatis.delete("board.deleterepl2", vo);
+	}
+	//댓글수정
+	public void modifyRepl(BoardVO vo) {
+		System.out.println("board.modifyRepl");
+		mybatis.update("board.modifyRepl", vo);
 	}
 
 	// 게시판 글 수정시에

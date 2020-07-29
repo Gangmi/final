@@ -197,14 +197,11 @@ public class BoardController {
 	@ResponseBody
 	public String writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
 
-		System.out.println("writerepl.do들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
+
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		vo.setId(((MemberVO) session.getAttribute("memberinfo")).getId());
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
+
 		// 댓글 저장
 		service.writeRepl(vo);
 
@@ -215,12 +212,9 @@ public class BoardController {
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
 	public List<BoardVO> viewRepl(ModelAndView mv, BoardVO vo) {
-		System.out.println("viewBoardRepl들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
+
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
-
 		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
 		System.out.println(result);
 
@@ -232,12 +226,17 @@ public class BoardController {
 	@RequestMapping("/delrepl.do")
 	@ResponseBody
 	public void delRepl(ModelAndView mv, BoardVO vo) {
-		System.out.println("delrepl들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
 
 		service.delRepl(vo);		
 
+	}
+	
+	//댓글 수정
+	@RequestMapping("/modifyrepl.do")
+	@ResponseBody
+	public void modifyRepl(ModelAndView mv, BoardVO vo) {
+
+		service.modifyRepl(vo);		
 
 	}
 
