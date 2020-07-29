@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#repl").append(getCommentList());
+	getCommentList();
 	$("#commentInsertBtn").click(function(){
 		 $.ajax({
 		        type:'POST',
@@ -23,18 +23,17 @@ $(document).ready(function() {
 			type:'GET',
 			url : "/viewrepl.do",
 			data:$('#commentInsertForm').serialize(),
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 			success : function(data){
 				var html =''; 
 				var cCnt = data.length;
-				alert(data);
 				
 				if(data.length>0){
 					for(i=0; i<data.length; i++){
-						html+= "<div>";
-						html+="<div>"+data[i];
-						html+="<div>";
-						html+="<div>";
+						html+= "<div class='contain'>";
+						html+="<div>"+data[i].nickname+"</div>";
+						html+="<div>"+data[i].contents+"</div>";
+						html+="<div>"+data[i].regdate+"</div>";
+						html+="</div>";
 						
 							
 					}
@@ -46,7 +45,7 @@ $(document).ready(function() {
 		                html += "</div>";
 				}
 				$("#cCnt").html(cCnt);
-	            $("#commentList").html(html);
+	            $("#repl").html(html);
 			},
 			error:function(request,status,error){
 	            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
