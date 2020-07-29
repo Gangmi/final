@@ -3,9 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Plant">
 
-	<select id="selectPlant" parameterType="plant" resultType="plant">
-		SELECT *
-		FROM plant_information.plant
-	</select>
-
-</mapper>  
+	<!-- 1~30번째 까지의 리스트를 가져오는 쿼리 -->
+	<select id="selectPlant" parameterType="paging" resultType="plant">
+		select f.* from (
+		select @ROWNUM := @ROWNUM + 1 AS ROWNUM, plant_id,plant_cate,plant_titles from plant_information.plant ,(SELECT @ROWNUM := 0 )TMP) as f
+		where f.ROWNUM<![CDATA[>=]]>${start} and f.ROWNUM<![CDATA[<=]]>${end}
+	</select> 
+ 
+	<!--해당 사전의 전체 게시물 갯수 쿼리 --> 
+	<select id="getPlantCount" parameterType="plant" resultType="int">
+		select count(*) from plant_information.plant
+	</select>    
+	
+</mapper>         
