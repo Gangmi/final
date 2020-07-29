@@ -66,43 +66,22 @@
 
 	<section class="aboutus-section spad">
 		<div class="container">
-			<div class="col-lg3 weather">
+		
+			<div class="container weather">
                 <br><br>
                 <h2> 현재 날씨 </h2>
-                <div class="weather-icon">
-                    <img id='weather-icon' src="http://openweathermap.org/img/wn/01d@2x.png" alt="">
-                </div>
-                <div><span id='location'>광명시</span><br>	<span id="temperature"></span></div>
-                    <button id = "searchMyWeather">우리동네 날씨</button><br/>
+	                <div class="weather-icon">
+	                    <img id='weather-icon' src="http://openweathermap.org/img/wn/01d@2x.png" alt="">
+	                </div>
+                	<div>
+                		<span id='location'>광명시</span>
+                		<br>	
+                		<span id="temperature"></span>
+                	</div>
+                    <button class="btn btn-success" id = "searchMyWeather">우리동네 날씨</button><br/>
             </div>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="about-text">
-						<div class="section-title">
-							<span>여기에 우리 페이지 간단소개</span>
-							<h2>슬로건</h2>
-						</div>
-						<p class="f-para">내용</p>
-						<p class="s-para">내용2</p>
-						<!--
-                        <a href="#" class="primary-btn about-btn">Read More</a>
-                        -->
-					</div>
-				</div>
-				<!--어바웃어스 옆에 사진-->
-				<div class="col-lg-6">
-					<div class="about-pic">
-						<div class="row">
-							<div class="col-sm-6">
-								<img src="/resources/img/about/about-1.jpg" alt="">
-							</div>
-							<div class="col-sm-6">
-								<img src="/resources/img/about/about-2.jpg" alt="">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            
+			
 		</div>
 	</section>
 	
