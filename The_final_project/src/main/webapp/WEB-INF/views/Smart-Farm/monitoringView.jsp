@@ -30,7 +30,7 @@
 			<p>031-884-6554</p>
 			<div class="btn">
 				<div class="btn1">
-					<button type="submit"><img src="/resources/img/15159159.png">
+					<button type="button" id="givewater"><img src="/resources/img/15159159.png">
 						<p>물주기</p>
 					</button>
 				</div>

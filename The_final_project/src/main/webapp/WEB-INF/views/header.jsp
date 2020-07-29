@@ -37,13 +37,13 @@
 		</div>
 		<div>
 			<sec:authorize access="isAnonymous()">
-				<a href="login.do">로그인</a> &nbsp;&nbsp;
-								<a href="sign_up.do">회원가입</a>
+				<a href="/login.do">로그인</a> &nbsp;&nbsp;
+								<a href="/sign_up.do">회원가입</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<span>${sessionScope.memberinfo.name } 님</span>&nbsp;&nbsp;
-				<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
-				<a href=updateAccount.do>정보수정</a>
+				<a href="/logout.do">로그아웃</a>&nbsp;&nbsp;
+				<a href=/updateAccount.do>정보수정</a>
 			</sec:authorize>
 		</div>
 		<div class="header-configure-area">
@@ -122,12 +122,12 @@
 						<div class="nav-right">
 							<sec:authorize access="isAnonymous()">
 								<a href="login.do">로그인</a> &nbsp;&nbsp;
-												<a href="sign_up.do">회원가입</a>
+												<a href="/sign_up.do">회원가입</a>
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
 								<span>${sessionScope.memberinfo.name } 님</span>&nbsp;&nbsp;
-								<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
-								<a href=updateAccount.do>정보수정</a>
+								<a href="/logout.do">로그아웃</a>&nbsp;&nbsp;
+								<a href=/updateAccount.do>정보수정</a>
 							</sec:authorize>
 						</div>
 						<div class="nav-right search-switch">
