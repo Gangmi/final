@@ -12,13 +12,13 @@
 	<jsp:include page="./header.jsp"></jsp:include>
 	 <section class="hero-section">
         <div class="big-logo">
-		<a href="index.do"> <img src="" alt="Logo"></a>
+		<a href="index.do"> <img src="/resources/img/mainlogo.png" alt="Logo"></a>
 	</div>
 	
 	<div class="container">
 		<h1 class="font-cabin">로그인을 해주세요.</h1>
 		<br>
-		<p>LOGO에 로그인 하여 다양한 정보를 얻으세요.</p>
+		<p>여름지기에 로그인 하여 다양한 정보를 얻으세요.</p>
 	</div>
 	<form action="/loginProcess.do" method="post">
 		<label> </label>

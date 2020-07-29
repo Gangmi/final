@@ -114,9 +114,9 @@
 										<li><a href="callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 									</ul></li>
 
-								<li><a href="plant.do">식물사전</a></li>
+								<li><a href="plant.do?nowpage=1">식물사전</a></li>
 								<li><a href="/farm-map.do">제휴농장위치</a></li>
-
+ 
 							</ul>
 						</nav>
 						<div class="nav-right">

@@ -5,25 +5,18 @@ public class PlantVO implements Plant {
 	private String plantCate;
 	private String plantTitles;
 	private String plantInfo;
-	
-	//어떤 게시판인지 구분하는 변수 맵퍼에서 사용
-	private String b_boardname;
+	 
 	
 	//해당 게시판의 총게시물 수
 	private int total_plant;
 		
-	//현재 페이지 기본 값 1 
+	//현재 페이지 기본 값 1  
 	private int nowpage=1; 
-		
+		 
 	//현재 보여지는 게시물수 기본값 30 
-	private int viewing_count=15;
-	
-	public String getB_boardname() {
-		return b_boardname;
-	}
-	public void setB_boardname(String b_boardname) {
-		this.b_boardname = b_boardname;
-	}
+	private int viewing_count=30;
+ 
+	  
 	public int getTotal_plant() {
 		return total_plant;
 	}
@@ -61,10 +54,10 @@ public class PlantVO implements Plant {
 		this.plantTitles = plantTitles;
 	}
 	public String getPlantInfo() {
-		return plantInfo;
+		return plantInfo; 
 	}
 	public void setPlantInfo(String plantInfo) {
 		this.plantInfo = plantInfo;
-	}
+	} 
 	
 }

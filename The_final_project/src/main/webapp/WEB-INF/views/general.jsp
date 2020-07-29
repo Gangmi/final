@@ -43,7 +43,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th width="130">글번호</th>
+							<th width="150">글번호</th>
 							<th width="659">제목</th>
 							<th width="180">작성자</th>
 							<th width="180">작성일</th>
@@ -66,7 +66,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 						<tr>
 							<td width="130" id="bno"><%=vo.getBoardno()%></td>
 
-							<td width="659"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+							<td width="659" class="titles"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
 
 							<td width="180"><%=vo.getNickname()%></td>
 							<td width="180"><%=vo.getRegdate()%></td>
