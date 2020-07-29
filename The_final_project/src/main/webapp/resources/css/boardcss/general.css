@@ -3,9 +3,14 @@
 .writebtn {
 	float:right;
 }
-
+tr th {
+	text-align: center;
+}
 #pager {
 	width: 100%;
+	text-align: center;
+}
+#bno{
 	text-align: center;
 }
 
@@ -13,6 +18,11 @@ td a {
 	color: black;
 	 
 }
+
+tr td:not(.titles) {
+	text-align: center;
+}
+
 
 td a:hover{
 	color: black;

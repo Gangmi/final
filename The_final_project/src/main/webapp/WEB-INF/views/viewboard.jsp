@@ -81,12 +81,15 @@ if (session.getAttribute("memberinfo") != null) {
 			
 
 		</div>
-
+		
 		<div class="container" id="button_container">
 			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			<button class="btn btn-primary" id="modifyboard">수정</button>
 			<button class="btn btn-warning" id="deleteboard">삭제</button>
 			<button class="btn btn" id="writerepl">댓글쓰기</button>
+			<div class="pull-right">
+				<a href="" class="btn btn-success" role="button">목록으로</a>
+			</div>
 		</div>
 	</section>
 	<!-- footer-->

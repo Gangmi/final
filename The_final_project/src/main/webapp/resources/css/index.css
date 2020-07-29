@@ -1,3 +1,14 @@
+.hero-text{
+	margin-bottom: 100px;
+}
+
 .hero-text h1{
-	color: #DEDEDE !important;
+	color: #3a3a3a !important;
+}
+.hero-text span{
+	color: #3a3a3a;
+	font-size: 20px;
+	font-weight:bold;
+	font-family: BatangChe;  
+
 }

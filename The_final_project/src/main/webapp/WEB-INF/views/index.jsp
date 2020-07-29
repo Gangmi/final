@@ -35,8 +35,9 @@
 
 				<div class="col-lg-6">
 					<div class="hero-text">
-						<h1>여름지긔ㅋ  </h1>
-						<p>내용</p>
+						<span>종합 농업 커뮤니티</span>
+						<h1>여름지기  </h1>
+						
 						<!--
                         <a href="#" class="primary-btn">Discover Now</a>
                         -->
@@ -49,7 +50,7 @@
 		</div>
 		<!--케러셀 슬라이드 이미지 부분-->
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진1.png"></div>
+			
 			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진2.png"></div>
 			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진3.png"></div>
 			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진4.png"></div>
