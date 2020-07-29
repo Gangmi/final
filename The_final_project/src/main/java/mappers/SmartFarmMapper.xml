@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SmartFarm">
+
+	<select id="select" parameterType="smartfarmdevicevo" resultType="smartfarmdevicevo">
+		SELECT * FROM smart_farm where id =#{id}
+	</select>
+
+	<update id="update" parameterType="smartfarmdevicevo">
+		UPDATE smart_farm SET
+		<if test="id!=null">
+			id=#{id}
+		</if>
+		<if test="regdate	">
+			,REGDATE=#{regdate}
+		</if>
+		<if test="sRentdate!=null">
+			,RENTDATE=#{rentdate}
+		</if>
+		<if test="sSupwater!=null">
+			,WATERDATE=#{waterdate}
+		</if>
+		WHERE id=#{id}
+	</update>
+</mapper>  
