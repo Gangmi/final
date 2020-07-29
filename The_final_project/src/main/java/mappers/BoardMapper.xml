@@ -125,10 +125,15 @@
 	</select>
 	
 	
-	<!-- 댓글삭제  -->
+	<!-- 댓글전체삭제  -->
 	<delete id="deleterepl" parameterType="board">
 	delete from ${b_boardname} where boardno=${boardno}
 	
+	</delete>
+	
+	<!-- 댓글삭제  -->
+	<delete id="deleterepl2" parameterType="board">
+	delete from ${b_boardname} where replno=${replno}	
 	</delete>
 	
 	

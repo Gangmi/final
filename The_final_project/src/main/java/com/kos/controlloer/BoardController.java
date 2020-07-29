@@ -192,7 +192,7 @@ public class BoardController {
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
-
+	//댓글 작성
 	@RequestMapping("/writerepl.do")
 	@ResponseBody
 	public String writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
@@ -211,10 +211,10 @@ public class BoardController {
 		return "success";
 
 	}
-	
+	//댓글 목록
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
-	public List<BoardVO> viewBoardRepl(ModelAndView mv, BoardVO vo) {
+	public List<BoardVO> viewRepl(ModelAndView mv, BoardVO vo) {
 		System.out.println("viewBoardRepl들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
@@ -228,7 +228,18 @@ public class BoardController {
 
 
 	}
-	
+	//댓글 삭제
+	@RequestMapping("/delrepl.do")
+	@ResponseBody
+	public void delRepl(ModelAndView mv, BoardVO vo) {
+		System.out.println("delrepl들어옴");
+		System.out.println(vo.getB_boardname());
+		System.out.println(vo.getBoardno());
+
+		service.delRepl(vo);		
+
+
+	}
 
 
 

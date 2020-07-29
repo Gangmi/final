@@ -40,6 +40,14 @@ public class BoardVO implements Board {
 	private String selectDate;
 	private int selectPoint;
 	
+	private int replno;
+	
+	public int getReplno() {
+		return replno;
+	}
+	public void setReplno(int replno) {
+		this.replno = replno;
+	}
 	public int getBoardView() {
 		return boardView;
 	}

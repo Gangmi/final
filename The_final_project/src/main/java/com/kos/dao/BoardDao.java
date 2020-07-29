@@ -22,4 +22,6 @@ public interface BoardDao {
 	public void writeRepl(BoardVO vo);
 
 	public List<BoardVO> viewBoardRepl(BoardVO vo);
+
+	public void delRepl(BoardVO vo);
 }

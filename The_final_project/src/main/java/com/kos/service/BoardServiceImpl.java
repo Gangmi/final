@@ -73,4 +73,9 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	public void delRepl(BoardVO vo) {
+		dao.delRepl(vo);
+		
+	}
+
 }

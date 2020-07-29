@@ -103,16 +103,21 @@ public class BoardDaoImpl implements BoardDao {
 		}
 
 	}
-
+	//댓글 작성
 	public void writeRepl(BoardVO vo) {
 		System.out.println("board.writerepl");
 		mybatis.insert("board.writerepl", vo);
 	}
-
+	//댓글 가져오기
 	public List<BoardVO> viewBoardRepl(BoardVO vo) {
 		// TODO Auto-generated method stub
 
 		return mybatis.selectList("board.viewBoardRepl", vo);
+	}
+	//댓글삭제
+	public void delRepl(BoardVO vo) {
+		System.out.println("board.delRepl");
+		mybatis.insert("board.deleterepl2", vo);
 	}
 
 	// 게시판 글 수정시에
@@ -221,5 +226,5 @@ public class BoardDaoImpl implements BoardDao {
 		// 글삭제
 
 	}
-
+	
 }
