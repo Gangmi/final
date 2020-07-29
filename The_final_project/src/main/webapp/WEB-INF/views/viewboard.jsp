@@ -73,8 +73,14 @@ if (session.getAttribute("memberinfo") != null) {
 			<div class=container id=contents>
 				<%=result.getContents()%>
 				<div class="container" id="likebad">
-					<i class="fas fa-thumbs-up"></i> 
-					<i class="fas fa-thumbs-down"></i>
+				
+					<div class="container" id="like">
+					<i class="fas fa-thumbs-up fa-4x"></i>
+					</div>
+					
+					<div class="container" id="bad">
+					<i class="fas fa-thumbs-down fa-4x"></i>
+					</div>
 				</div>
 			</div>
 			<!--하단 버튼 부분  -->
