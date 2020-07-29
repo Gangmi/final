@@ -243,6 +243,7 @@ public class BoardController {
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
 		System.out.println(file + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		System.out.println(vo.getBoardname());
 		// 파일이 있는지 확인
 		if (file != null) {
 			// 파일이름이 없는지 확인
@@ -284,7 +285,7 @@ public class BoardController {
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
 						// 각 게시판에 따라서 분기를 나눔
-
+						
 						if (vo.getBoardname().equals("free_board")) {
 							vo.setBoardno(BoardVO.FREE_BOARD);
 						}

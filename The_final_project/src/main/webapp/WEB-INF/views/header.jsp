@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">

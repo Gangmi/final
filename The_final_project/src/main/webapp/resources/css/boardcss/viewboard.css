@@ -2,7 +2,6 @@
 #board{
 	border : 1px solid #eee;
 	margin-top: 50px;
-	height : 800px;
 	width: 50%;
 }
 
@@ -21,7 +20,7 @@
 #contents{
 	
 	margin-top: 50px;
-	height : 250px;
+	
 	
 }
 /*현재 보고있는 글의 게시판 이름  */
@@ -35,13 +34,17 @@
 	
 	}
 /*댓글 정보 표시 부분  */
-#replinfo{
-	margin-bottom: 30px;
+#replinfosec{
+	margin-top: 70px;
+	display: inline;
+	font-size: 15px;
 }
-/*조회수 표시  */
+/*조회수 표시부분  */
 #boardname_right p{
+	
    margin-top: 20px;
    font-size: 15px;
+   
 }
 /*아래 글쓰기 수정 삭제버튼  */
 #button_container{
@@ -64,3 +67,9 @@
 .regdate{
 	font-size: 15px;
 }
+/* #likebad{
+	width:800px;
+	margin:0 auto;
+} */
+	
+

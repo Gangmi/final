@@ -47,6 +47,7 @@
 			
 				<form action="/write.do" method="post"
 					id="frm" enctype="multipart/form-data">
+					<input type="hidden" name="boardname" value="<%=boardname%>"/>
 					<input type="hidden" name="b_boardname" value="<%=boardname%>"/>
 					<input type="text" name="title"/>
 					<textarea name="contents" id="editor"></textarea>
