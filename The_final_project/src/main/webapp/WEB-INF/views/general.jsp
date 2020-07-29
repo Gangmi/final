@@ -40,7 +40,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			<div class="writebtn">
 			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			</div>
-				<table class="table table-striped">
+				<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
 							<th width="130">글번호</th>
@@ -64,7 +64,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 							vo.setRegdate(dat[0]);
 					%>
 						<tr>
-							<td width="130"><%=vo.getBoardno()%></td>
+							<td width="130" id="bno"><%=vo.getBoardno()%></td>
 
 							<td width="659"><a href="viewboardtemp.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
 
@@ -88,7 +88,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 				</table>
 			</div>
 			<!--페이징 부분  -->
-			<div class="center-block" id="paing">
+			<div class="container" id="pager">
 			
 			<%if((Integer)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
