@@ -1,0 +1,23 @@
+.hero-section { text-align: center;
+                        width: 500px;
+                        overflow: hidden;
+                        margin: 0 auto;}
+        
+        .big-logo { margin: 20px;}
+        
+        .font-cabin { font-size: 45px;
+                      padding: 10px;}
+
+        
+        input { border: 1px solid #DEDEDE;
+                border-radius: 5px;
+                width: 250px;
+                height: 40px;
+                margin: 0px 0px 15px 0px;
+                padding-left: 10px;}
+        
+        form { width: 250px;
+            overflow: hidden;
+            margin: 0 auto;}
+        
+        .btn1 { margin: 20px;}

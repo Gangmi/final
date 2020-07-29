@@ -3,6 +3,7 @@
 	border : 1px solid #eee;
 	margin-top: 50px;
 	height : 800px;
+	width: 50%;
 }
 
 /*제목  */
@@ -11,6 +12,7 @@
 }
 
 #title h2{
+	font-size: 50px;
 	font-weight: 400;
     margin-top: 30px;
 }
@@ -23,11 +25,42 @@
 	
 }
 /*현재 보고있는 글의 게시판 이름  */
-#boardname a {
-	color: #03c75a;
+#boardname{
+	margin-top: 15px;
 }
 
-#button_container button{
-	margin-left: 10px;
+	#boardname a {
+		color: #03c75a;
+		font-size: 20px;
+	
+	}
+/*댓글 정보 표시 부분  */
+#replinfo{
+	margin-bottom: 30px;
+}
+/*조회수 표시  */
+#boardname_right p{
+   margin-top: 20px;
+   font-size: 15px;
+}
+/*아래 글쓰기 수정 삭제버튼  */
+#button_container{
+	width:50%;
+}	
+
+	/*버튼들 위치 조정  */
+	#button_container button{
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+	
+/* 닉네임 부분  */
+.nick{
 	margin-top: 10px;
+	font-size: 17px;
+	font-weight: 200;
+}
+/*작성날짜 부분  */
+.regdate{
+	font-size: 15px;
 }
