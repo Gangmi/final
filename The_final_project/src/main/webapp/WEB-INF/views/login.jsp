@@ -5,22 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/oldcss/login.css">
+<link rel="stylesheet" href="/resources/css/login/login.css">
 <title>Insert title here</title>
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
-	<div class="big-logo">
+	 <section class="hero-section">
+        <div class="big-logo">
 		<a href="index.do"> <img src="" alt="Logo"></a>
 	</div>
 	
-	<div>
+	<div class="container">
 		<h1 class="font-cabin">로그인을 해주세요.</h1>
 		<br>
 		<p>LOGO에 로그인 하여 다양한 정보를 얻으세요.</p>
 	</div>
 	<form action="/loginProcess.do" method="post">
-		<label>아이디</label>
+		<label> </label>
 		<input type="text" name="id" placeholder="아이디">
 		<br> 
 		<c:if test="${not empty requestScope.loginfail }">
@@ -28,14 +29,18 @@
 				${requestScope.loginfail } 
 			</div>
 		</c:if>
-		<label>비밀번호</label> 
+		<label></label>
 		<input type="password" name="password" placeholder="비밀번호">
 		<br> 
 		<a href="find-id.do" id=findId>비밀번호를 잊으셨나요?</a>
-		<br> 
-		<a href="#"><button class="btn btn-success" type="submit">로그인</button></a>
+		<br>
+        <div class="btn1">
+            <a href="#"><button class="btn btn-success" type="submit">로그인</button></a>
+            <a href="#"><button class="btn btn-success" type="submit">회원가입</button></a>
+        </div>
 	</form>
 	<br><br><br><br><br>	
+    </section>
 	<jsp:include page="./footer.jsp"/>
 		
 	<script type="text/javascript">
