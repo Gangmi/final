@@ -1,5 +1,8 @@
 package com.kos.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoardVO implements Board {
 	
 	private int boardno;
@@ -144,13 +147,37 @@ public class BoardVO implements Board {
 	//영문 게시판 이름을 한글로 치환하는 메소드 원할 때 추가 하세요
 	public static String changeword(String name) {
 		String result="";
+		System.out.println(name);
 		if (name.equals("free_board")){
 			result="자유게시판";
 		}
 		
+		if (name.equals("tip_board")){
+			result="팁게시판";
+		}
+		
+		if (name.equals("nongsain")){
+			result="농사in게시판";
+		}
+		
+		
 		
 		
 		return result;
+	}
+	
+	//전체 게시판의 이름을 리스트로 돌려주는 메소드
+	public List<String> allBoardList(){
+		ArrayList<String> list = new ArrayList<String>();
+		
+		list.add(0, "free_board");
+		list.add(1, "tip_board");
+		list.add(2, "nongsain");
+		list.add(3, "parcel_board");
+		
+		
+		
+		return list;
 	}
 	
 	

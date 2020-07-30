@@ -10,7 +10,7 @@ public class PagingVO {
 	private int lastPage; 			// 마지막 페이지
 	private int start; 				// SQL 검색시 시작
 	private int end; 				// SQL 검색시 끝
-	private int cntPage; 			// 보여질 페이징 수
+	private int cntPage=5; 			// 보여질 페이징 수
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
 	private String searchword;
 
@@ -123,18 +123,31 @@ public class PagingVO {
 		calcStartEnd(getNowpage(), getCntPerPage());
 	}
 
-	// 마지막 페이지 계산
+	// 진짜마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
 		setLastPage((int) Math.ceil((double) total / (double) cntPerPage));
 	}
 
-	/*
-	 * //보여지기 시작페이지 수 계산 [1] [2] [3] [4] [5] >> public void calcStartEndPage(int
-	 * nowPage, int cntPage) { setEndpage(((int)Math.ceil((double)nowPage /
-	 * (double)cntPage)) * cntPage); if (getLastPage() < getEndpage()) {
-	 * setEndPage(getLastPage()); } setStartPage(getEndPage() - cntPage + 1); if
-	 * (getStartPage() < 1) { setStartPage(1); } }
-	 */
+	// 보여지기 시작페이지 수 계산 [1] [2] [3] [4] [5] >>
+	public void calcStartEndPage(int nowPage, int cntPage) {
+		
+		//보여줄마지막 페이지
+		// 보여줄 마지막 페이지 = (int)현재페이지 / 사용자에게 보여줄 페이지수=5 * 5 
+		// 만약 진짜 마지막페이지가 보여줄 마지막 페이지보다 작다면
+		// 보여줄 마지막 페이지는 진짜 마지막 페이지로 한다.
+		setEndpage(((int) Math.ceil((double) nowPage / (double) cntPage)) * cntPage);
+		if (getLastPage() < getEndpage()) {
+			setEndpage(getLastPage());
+		}
+		
+		// 보여줄 마지막 페이지에서 보여줄 페이지수를빼고 1을 더한것을 시작 페이지로 한다.
+		//ex) 
+		//만약
+		setStartpage(getEndpage() - cntPage + 1);
+		if (getStartpage() < 1) {
+			setStartpage(1);
+		}
+	}
 
 	// DB 쿼리에서 사용할 start, end값 계산
 	public void calcStartEnd(int nowPage, int cntPerPage) {

@@ -15,7 +15,7 @@
 	//게시판 값 받아오는 곳
 String boardname = (String) request.getAttribute("b_boardname");
 %>
-<title>자유게시판</title>
+<title></title>
 <%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
 </head>
@@ -34,7 +34,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 	<section class="hero-section">
 		<div class="container">
 		
-			<h3>자유게시판</h3>
+			<h3><%=BoardVO.changeword(boardname)%></h3>
 			<br />
 			<div class="table-wrapper">
 			<div class="writebtn">

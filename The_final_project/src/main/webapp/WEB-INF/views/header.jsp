@@ -108,9 +108,9 @@
 								<li><a href="#">게시판</a>
 									<ul class="dropdown">
 										<li><a href="callboard.do?b_boardname=free_board">자유게시판</a></li>
-										<li><a href="./blog-details.html">팁게시판</a></li>
+										<li><a href="callboard.do?b_boardname=tip_board">팁게시판</a></li>
 										<li><a href="#">장터 게시판</a></li>
-										<li><a href="#">분양 게시판</a></li>
+										<li><a href="callboard.do?b_boardname=parcel_board">분양 게시판</a></li>
 										<li><a href="callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 									</ul></li>
 

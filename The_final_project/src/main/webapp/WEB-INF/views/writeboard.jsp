@@ -53,7 +53,7 @@
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript">
 					</script>
-					<button type="submit" id="savebutton">dz</button>
+					<button class="btn btn-success" type="submit" id="savebutton">확인</button>
 				</form>
 			</div>
 		</div>

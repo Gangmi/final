@@ -194,12 +194,40 @@ public class BoardController {
 	}
 	
 	
-//	@RequestMapping("/index.do")
-//	public ModelAndView getAllBoardList(ModelAndView mv) {
-//		
-//		
-//		return mv;
-//	}
+	@RequestMapping("/index.do")
+	public ModelAndView getAllBoardList(ModelAndView mv) {
+		
+		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
+		BoardVO vo = new BoardVO();
+		vo.setNowpage(1);
+		vo.setViewing_count(10);
+		
+		
+		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
+		for(String row:vo.allBoardList()) {
+			
+			//게시판이름을 세팅한다.
+			vo.setB_boardname(row);
+			
+			//세팅된 게시판에 있는 것들을 가져온다.
+			Object rawboard =service.getBoardList(vo);
+			
+			//받아온 데이터가 있으면
+			if(rawboard!=null) {
+				mv.addObject(row,rawboard);
+				mv.addObject(row+"con", 1);
+			//만약 없다면	
+			}else {
+				mv.addObject(row+"con", 0);
+			}
+			
+			
+		}
+		
+		mv.setViewName("index");
+		
+		return mv;
+	}
 	
 	
 	
