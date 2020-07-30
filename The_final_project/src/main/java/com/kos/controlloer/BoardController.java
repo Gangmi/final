@@ -269,7 +269,12 @@ public class BoardController {
 	@ResponseBody
 	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
 			UploadImageVO vo) throws Exception {
-
+		
+		
+		
+		
+		
+		
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
@@ -289,7 +294,7 @@ public class BoardController {
 						byte[] bytes = file.getBytes();
 						// 저장경로 지정
 						String uploadPath = req.getSession().getServletContext().getRealPath("")
-								+ "/resources/uploadimage";
+								+ "\\resources\\uploadimage";
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
