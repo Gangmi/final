@@ -137,10 +137,21 @@ $(document).ready(function() {
 		
 		//아이디에서 글자에서 숫자만 추출한다.
 		var string = $(this).parents().parents().parents('div').attr('id');
-		alert(string);
 		var no=string.replace(/[^0-9]/g,'');
-		
-		
+		$.ajax({
+			type:'POST',
+			url : "/viewrepl.do",
+			data:"b_boardname="+b_boardname+"&replno="+no,
+			success : function(data){
+			html+= "<div class='contain' style='display:inline'; id="+data[0].replno+">";
+			html+="<p class='nickname' >"+data[0].nickname+"<div class='dropdown'><span class='replmodify dropdown-toggle' data-toggle='dropdown' aria-expanded='true'/>";
+			html+='<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">';
+			html+='<li role="presentation"><a role="menuitem" href="#" tabindex="-1" class="modifyRepl" id=modify'+data[0].replno+'>수정</a></li>';
+			html+='<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="delRepl" id=del'+data[0].replno+' >삭제</a></li></ul></div>';
+			html+="</p><p class='repl'>"+data[0].contents+"</p>";
+			html+=""+data[0].regdate+"";
+			html+="</div>";
+			});
 		$("#"+replno).html(html);
 	});
 	
