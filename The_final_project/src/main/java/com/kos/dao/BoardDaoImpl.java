@@ -94,6 +94,7 @@ public class BoardDaoImpl implements BoardDao {
 		// 만약 글을 새로쓰는것이면, 다음에 해당 게시판에 들어갈 글번호 부르기
 		if (imgvo.getWriteno() == 0) {
 			int writeno = mybatis.selectOne("board.getNextNum", hs);
+			imgvo.setWriteno(writeno);
 			mybatis.insert("board.imagestore", imgvo);
 
 			// 글을 수정하는것이면, 현재 글의 번호로 이미지를 저장
