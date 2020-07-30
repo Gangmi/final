@@ -8,22 +8,38 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kos.service.PlantService;
 import com.kos.service.PlantServiceImpl;
+import com.kos.vo.PagingVO;
 import com.kos.vo.PlantVO;
 
 @Controller
 public class PlantController { 
-	
+
 	@Autowired 
 	PlantServiceImpl service; 
-	 
-	@RequestMapping("plant.do")
-	public ModelAndView PlantList(PlantVO vo) {
-		ModelAndView mv = new ModelAndView();
-		List<PlantVO> list = service.selectPlant(vo);
-		mv.setViewName("plant");
-		mv.addObject("list", list); 
-		return mv; 
 
-	} 
-} 
+	//DB에 저장되어있는 데이터를 가져와서 보여줌
+	@RequestMapping("plant.do")  
+	public ModelAndView PlantList(PagingVO vo) {
+		if(vo.getNowpage()<0) {
+			vo.setNowpage(1);
+		}
+		ModelAndView mv = new ModelAndView();
+		List<PlantVO> list = (List<PlantVO>)service.selectPlant(vo);
+//		System.out.println(list.get(0).getPlantId());
+		
+		mv.setViewName("plant");       
+		    
+		// 다음 페이지로 넘길 리스트가 제대로 받아와 졌는지 확인
+		if (list.size() > 0) {  
+			mv.addObject("plantlist", list); // 받아온 게시판 게시물
+			mv.addObject("confirm", 1); // 값이 제대로 넘어간것을 표현
+  
+			return mv;   
  
+		} else { 
+			// 제대로 들어오지 않았다면
+			mv.addObject("confirm", 0);
+			return mv;
+		}
+	} 
+}

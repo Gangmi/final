@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/index.css" type="text/css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -34,8 +35,9 @@
 
 				<div class="col-lg-6">
 					<div class="hero-text">
-						<h1>여기에 우리이름</h1>
-						<p>내용</p>
+						<span>종합 농업 커뮤니티</span>
+						<h1>여름지기  </h1>
+						
 						<!--
                         <a href="#" class="primary-btn">Discover Now</a>
                         -->
@@ -48,9 +50,13 @@
 		</div>
 		<!--케러셀 슬라이드 이미지 부분-->
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-1.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-2.jpg"></div>
-			<div class="hs-item set-bg" data-setbg="/resources/img/hero/hero-3.jpg"></div>
+			
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진2.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진3.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진4.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진5.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진6.png"></div>
+			<div class="hs-item set-bg" data-setbg="/resources/img/index/사진7.png"></div>
 		</div>
 	</section>
 
@@ -61,44 +67,116 @@
 
 	<section class="aboutus-section spad">
 		<div class="container">
-			<div class="col-lg3 weather">
+		
+			<div class="weather">
                 <br><br>
+                <h2 id="todaydate"></h2>
                 <h2> 현재 날씨 </h2>
-                <div class="weather-icon">
-                    <img id='weather-icon' src="http://openweathermap.org/img/wn/01d@2x.png" alt="">
-                </div>
-                <div><span id='location'>광명시</span><br>	<span id="temperature"></span></div>
-                    <button id = "searchMyWeather">우리동네 날씨</button><br/>
+	                <div class="weather-icon">
+	                    <img id='weather-icon' src="http://openweathermap.org/img/wn/01d@2x.png" alt="">
+	               		<div class="datesection" >
+            				
+            			</div>
+            
+	                </div>
+                	<div>
+                		<span id='location'>광명시</span>
+                		<br>	
+                		<span id="temperature"></span>
+                	</div>
+                    <button class="btn btn-success" id = "searchMyWeather">우리동네 날씨</button><br/>
             </div>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="about-text">
-						<div class="section-title">
-							<span>여기에 우리 페이지 간단소개</span>
-							<h2>슬로건</h2>
-						</div>
-						<p class="f-para">내용</p>
-						<p class="s-para">내용2</p>
-						<!--
-                        <a href="#" class="primary-btn about-btn">Read More</a>
-                        -->
-					</div>
-				</div>
-				<!--어바웃어스 옆에 사진-->
-				<div class="col-lg-6">
-					<div class="about-pic">
-						<div class="row">
-							<div class="col-sm-6">
-								<img src="/resources/img/about/about-1.jpg" alt="">
-							</div>
-							<div class="col-sm-6">
-								<img src="/resources/img/about/about-2.jpg" alt="">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            
+            
+			
 		</div>
+	</section>
+	
+	<!-- 전체 게시판 정보 띄우는 곳  -->
+	<section id="allboards">
+		<div class="container upboards">
+		
+		
+			<div class="freeboard">
+				<h2>자유게시판</h2>
+				<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+				</table>
+				
+		
+			</div>
+		
+			<div class="tipboard">
+				<h2>팁게시판</h2>
+				<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+						
+					</table>
+				
+			
+			</div>
+		
+	</div>
+	
+	<div class="container downboards">
+			<div class="freeboard">
+			<h2>농사in 게시판</h2>
+			<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+							<th>글번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+			</table>
+			
+	
+		</div>
+		<div class="tipboard">
+			<h2>분양게시판</h2>
+			<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+					
+				</table>
+			
+		
+		</div>
+	</div>
+	
+	
+	
+	
 	</section>
 	
 	<!-- About Us Section End -->
@@ -173,6 +251,51 @@
 			      }
 
 			}
+
+
+
+
+			//오늘 날짜 표시하기
+			var today=new Date();
+			var year=today.getFullYear();
+			var month=today.getMonth();
+			var date=today.getDate();
+			var day= today.getDay();
+			var realday=""
+			switch (day){
+			case 0 : realday="일요일";
+			break;
+			case 1 : realday="월요일";
+			break;
+			case 2 : realday="화요일";
+			break;
+			case 3 : realday="수요일";
+			break;
+			case 4 : realday="목요일";
+			break;
+			case 5 : realday="금요일";
+			break;
+			case 6 : realday="토요일";
+			break;
+			default:
+				realday="요일정보를 가져올 수 없습니다."
+			}
+			
+			
+			var html=year+"년   "+(month+1)+"월   "+date+"일   "+realday
+			$('#todaydate').html(html);
+
+
+
+
+
+
+			
+
+
+
+
+			
 	});
 	
 	</script>

@@ -6,7 +6,7 @@ public class PagingVO {
 	private int startpage; 			// 시작 페이지
 	private int endpage; 			// 끝 페이지
 	private int total; 				// 게시글 총 갯수
-	private int cntPerPage = 20; 	// 페이지당 글 갯수
+	private int cntPerPage = 30; 	// 페이지당 글 갯수
 	private int lastPage; 			// 마지막 페이지
 	private int start; 				// SQL 검색시 시작
 	private int end; 				// SQL 검색시 끝
@@ -14,9 +14,11 @@ public class PagingVO {
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
 	private String searchword;
 
-	// gettger setter
-	
-	
+	// gettger setter 
+	 
+	public PagingVO(){
+		
+	}  
 	
 	
 	public String getSearchword() {
@@ -54,7 +56,7 @@ public class PagingVO {
 
 	public int getEndpage() {
 		return endpage;
-	}
+	} 
 
 	public void setEndpage(int endpage) {
 		this.endpage = endpage;
@@ -137,7 +139,7 @@ public class PagingVO {
 	// DB 쿼리에서 사용할 start, end값 계산
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage + 1);
+		setStart(getEnd() - cntPerPage - 1);
 	}
 
 }

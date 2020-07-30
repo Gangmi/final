@@ -151,8 +151,20 @@ $(function () {
       			});
     		}
     	})
-    },2000);
+    },1000);
  			    		  
+	$("#givewater").click(function(){
+		alert('test');
+		$.ajax({
+    		type:"GET",
+    		url:"givewater.do",
+    		datatype:"json",
+    		contentType:'application/json;charset=UTF-8',
+    		success:function(data){
+    			alert("물 주는중");
+    		}
+    	});
+    });
 
     $('#random').click(function () {
 

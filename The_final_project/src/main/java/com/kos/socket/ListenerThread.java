@@ -37,6 +37,10 @@ public class ListenerThread extends Thread {
 		this.start();
 	}
 
+	public List<String> getListSockname() {
+		return listSockname;
+	}
+
 	public static ListenerThread getInstance() {
 		if (instance == null) {
 			instance = new ListenerThread();
@@ -51,14 +55,30 @@ public class ListenerThread extends Thread {
 		System.out.println("***************************************");
 		try {
 			serversocket = new ServerSocket(60000);
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject;
 			while (true) {
+				String receivedData;
+				String deviceName = null;
 				Socket connectedClientSocket = serversocket.accept();
-				connectedCount++;
+				BufferedReader br = new BufferedReader(new InputStreamReader(connectedClientSocket.getInputStream()));
+				if ((receivedData = br.readLine()) != null) {
+					jsonObject = (JSONObject)jsonParser.parse(receivedData);
+					deviceName=(String)jsonObject.get("name");
+					if(listSockname.contains(deviceName)) {
+						mapSock.get(deviceName).close();
+						mapSock.remove(deviceName);
+						listSockname.remove(deviceName);
+						System.out.println("중복 삭제");
+					}else {
+						connectedCount++;
+					}
+				}
 				InetAddress ip = connectedClientSocket.getInetAddress();
-				mapSock.put(ip.toString(), connectedClientSocket);
-				listSockname.add(connectedClientSocket.getInetAddress().toString());
+				mapSock.put(deviceName, connectedClientSocket);
+				listSockname.add(deviceName);
 				ReceivedThread socketThread = new ReceivedThread(connectedClientSocket, listSockname);
-				System.out.println(connectedClientSocket.getInetAddress().toString() + "\n접속 수" + connectedCount);
+				System.out.println(deviceName + "\n접속 수" + connectedCount);
 				socketThread.start();
 			}
 		} catch (Exception e) {
@@ -101,7 +121,7 @@ public class ListenerThread extends Thread {
 			String path = "/Users/myeongjin/Desktop/new";
 			File directory = new File(path);
 			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonObject;
+			JSONObject jsonObject = null;
 			
 			
 			if (!directory.exists()) {
@@ -114,7 +134,7 @@ public class ListenerThread extends Thread {
 						jsonObject = (JSONObject)jsonParser.parse(receivedData);
 						FileWriter fw = new FileWriter(new File(directory + "/sensor"+jsonObject.get("name")+".txt"), false);
 						fw.write(receivedData);
-						System.out.println(jsonObject.get("name"));
+						System.out.println(receivedData);
 						fw.close();
 					}
 				}
@@ -123,9 +143,9 @@ public class ListenerThread extends Thread {
 			} finally {
 				try {
 					br.close();
-					System.out.println(connectedClientSocket.getInetAddress().toString() + " closed");
-					mapSock.remove(connectedClientSocket.getInetAddress().toString());
-					this.listSockname.remove(connectedClientSocket.getInetAddress().toString());
+					System.out.println(connectedClientSocket.getInetAddress().toString()+" " + jsonObject.get("name")+" closed");
+					mapSock.remove((String)jsonObject.get("name"));
+					this.listSockname.remove((String)jsonObject.get("name"));
 					connectedClientSocket.close();
 					connectedCount--;
 				} catch (Exception e2) {
@@ -156,12 +176,11 @@ class HeartbeatThread extends Thread { // 10초마다 heart beat데이터를 보
 
 	public void run() {
 		String sendData = "/heartbeat \r\n";
+
 		try {
 
 			while (true) {
 				for (String sockname : this.listSockname) {
-
-					System.out.println(sockname);
 					if (this.mapSock.containsKey(sockname))
 						synchronized (this.mapSock.get(sockname)) {
 							Socket tmpsock = this.mapSock.get(sockname);

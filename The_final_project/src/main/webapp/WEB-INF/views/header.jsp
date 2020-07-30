@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
@@ -36,13 +37,13 @@
 		</div>
 		<div>
 			<sec:authorize access="isAnonymous()">
-				<a href="login.do">로그인</a> &nbsp;&nbsp;
-								<a href="sign_up.do">회원가입</a>
+				<a href="/login.do">로그인</a> &nbsp;&nbsp;
+								<a href="/sign_up.do">회원가입</a>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<span>${sessionScope.memberinfo.name } 님</span>&nbsp;&nbsp;
-				<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
-				<a href=updateAccount.do>정보수정</a>
+				<a href="/logout.do">로그아웃</a>&nbsp;&nbsp;
+				<a href=/updateAccount.do>정보수정</a>
 			</sec:authorize>
 		</div>
 		<div class="header-configure-area">
@@ -92,7 +93,7 @@
 				<div class="col-lg-2">
 					<div class="logo">
 						<a href="/index.do"> <!--로고 들어가는섹션--> <img
-							src="/resources/img/logo.png" alt="">
+							src="/resources/img/mainlogo.png" alt="">
 						</a>
 					</div>
 				</div>
@@ -113,20 +114,20 @@
 										<li><a href="callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 									</ul></li>
 
-								<li><a href="plant.do">식물사전</a></li>
+								<li><a href="plant.do?nowpage=1">식물사전</a></li>
 								<li><a href="/farm-map.do">제휴농장위치</a></li>
-
+ 
 							</ul>
 						</nav>
 						<div class="nav-right">
 							<sec:authorize access="isAnonymous()">
 								<a href="login.do">로그인</a> &nbsp;&nbsp;
-												<a href="sign_up.do">회원가입</a>
+												<a href="/sign_up.do">회원가입</a>
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
 								<span>${sessionScope.memberinfo.name } 님</span>&nbsp;&nbsp;
-								<a href="logout.do">로그아웃</a>&nbsp;&nbsp;
-								<a href=updateAccount.do>정보수정</a>
+								<a href="/logout.do">로그아웃</a>&nbsp;&nbsp;
+								<a href=/updateAccount.do>정보수정</a>
 							</sec:authorize>
 						</div>
 						<div class="nav-right search-switch">
