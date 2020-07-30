@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.Marshaller.Listener;
 
 import org.slf4j.Logger;
@@ -31,5 +32,10 @@ public class HomeController {
 		
 		return step;
 	}
-
+	
+	@RequestMapping("/index.do")
+	public String mainPage( ModelAndView mo,HttpServletRequest request) {
+		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
+		return "index";
+	}
 }

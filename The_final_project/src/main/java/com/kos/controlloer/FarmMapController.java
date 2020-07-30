@@ -14,7 +14,10 @@ import com.kos.vo.FarmVO;
 public class FarmMapController {
 	@Autowired
 	FarmDao farmDao;
-	
+	/*
+	 * farm-map.jsp 
+	 * DB에 저장되있는 농장리스트를 반환한다.
+	 */
 	@RequestMapping("/farm-map.do")
 	public String farmMap(FarmVO farmVo,Model model) {
 		List<FarmVO> list = farmDao.selectFarmList(farmVo);

@@ -34,11 +34,7 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-	    <servlet-name>SocketServlet</servlet-name>
-	    <servlet-class>com.kos.socket.SocketServlet</servlet-class>
-	    <load-on-startup>1</load-on-startup>
-	</servlet>
+	
 	
  	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

@@ -100,7 +100,7 @@ $(document).ready(function() {
 		var nickname = $("#"+replno).children('.nickname').text();
 		
 		html+="<div class='contain' id="+replno+">";
-		html+="<div>"+nickname+"&emsp;&emsp;&emsp;&emsp;&emsp;<a class='storeReplModify'' href='#'>저장</a>&emsp;<a class='cancleReplModify' href='#'>취소</a></div>";
+		html+="<div>"+nickname+"&emsp;&emsp;&emsp;&emsp;&emsp;<a class='storeReplModify' href='#'>저장</a>&emsp;<a class='cancleReplModify' href='#'>취소</a></div>";
 		html+="<div><textarea cols='50' rows='3'>"+repl+"</textarea></div>";
 		html+="</div>";
 		$("#"+replno).html(html);
@@ -119,19 +119,19 @@ $(document).ready(function() {
 			
 
 			getModifyRepl(b_boardname,no);
-//			$.ajax({
-//				type:'POST',
-//				url:'/modifyrepl.do',
-//				data:"b_boardname="+b_boardname+"&replno="+no+"&contents="+contents,
-//				success : function(data){
-//					$("#repl").append(getCommentList());
-//				},
-//				error:function(request,status,error){
-//		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-//		       }
-//			});
+			$.ajax({
+				type:'POST',
+				url:'/modifyrepl.do',
+				data:"b_boardname="+b_boardname+"&replno="+no+"&contents="+contents,
+				success : function(data){
+					$("#repl").append(getCommentList());
+				},
+				error:function(request,status,error){
+		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			});
 		});
-	
+	//취소
 	$(document).on("click",".cancleReplModify",function(evt){
 		var b_boardname = $('input[name=b_boardname]').val();
 		
@@ -149,9 +149,10 @@ $(document).ready(function() {
 			html+='<li role="presentation"><a role="menuitem" href="#" tabindex="-1" class="modifyRepl" id=modify'+data[0].replno+'>수정</a></li>';
 			html+='<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="delRepl" id=del'+data[0].replno+' >삭제</a></li></ul></div>';
 			html+="</p><p class='repl'>"+data[0].contents+"</p>";
-			html+=""+data[0].regdate+"";
+			html+=data[0].regdate;
 			html+="</div>";
-			});
+			}
+		});
 		$("#"+replno).html(html);
 	});
 	

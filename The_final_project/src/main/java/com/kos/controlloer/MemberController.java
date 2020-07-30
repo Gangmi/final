@@ -146,23 +146,27 @@ public class MemberController {
 	}
 
 	/*
-	 * find-id.jsp Member table 에서 이름과 이메일이 매치되면 해당 이메일로 랜덤 인증번호 보냄.
+	 * find-id.jsp find-pw.jsp
+	 *  Member table 에서 이름과 이메일이 매치되면 해당 이메일로 랜덤 인증번호 보냄.
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/certification-session.do", produces = "application/text; charset=utf8")
 	public String createCertificationSession(MemberVO memberVo, HttpSession session) {
 		String str = "";
 		try {
+			//기존세션에 인증키가 있으면 지우고 시작. 인증키가 중복이 되면 안
 			session.removeAttribute("certification");
 			String ctfc = memberService.createCertification(memberVo);
 			session.setAttribute("certification", ctfc);
+			//인증키를 메일로 전송
 			sendMailService.setSendMailService("@gmail.com","PW");
 			sendMailService.sendMail(memberVo.getEmail(), "test", ctfc);
-
+			//3분이 지나면 자동으로 인증세션을 지운다.
 			Timer timer = new Timer(true);
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
+					//인증키가 유효한 인증키인지 확인
 					if (session.getAttribute("certification") != null) {
 						if (ctfc.equals((String) session.getAttribute("certification"))) {
 							session.removeAttribute("certification");
@@ -176,6 +180,11 @@ public class MemberController {
 		return str;
 	}
 
+	/*
+	 * find-id.jsp
+	 * 해당 페이지에서 3분이상 머물면 자바스크립트가 대신 타임아웃을 건다.
+	 * 해당페이지를 알 수 없는 방법으로 빠져나가게 되면, 위의 createCertificationSession의 타임아웃에 의해 세션이 지워진다.
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/timeout-session.do")
 	public String timeoutsession(HttpSession session) {
@@ -183,6 +192,9 @@ public class MemberController {
 		return null;
 	}
 
+	/*
+	 * 세션의 인증키와 사용자가 입력한 인증키가 같으면 메일정보 find-id-succes.jsp로 넘긴다.
+	 */
 	@RequestMapping(value = "/find_id_act.do")
 	public String findId(MemberVO memberVo, String certification, Model model, HttpSession session) {
 		if (certification.toUpperCase().equals((String) session.getAttribute("certification"))) {

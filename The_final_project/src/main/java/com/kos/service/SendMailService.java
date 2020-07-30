@@ -13,6 +13,9 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 
+/*
+ * 메일 보내기 service
+ */
 @Service("SendMailService")
 public class SendMailService {
 	private String user = "@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
