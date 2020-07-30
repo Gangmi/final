@@ -192,6 +192,19 @@ public class BoardController {
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
+	
+	
+//	@RequestMapping("/index.do")
+//	public ModelAndView getAllBoardList(ModelAndView mv) {
+//		
+//		
+//		return mv;
+//	}
+	
+	
+	
+	
+	
 	//댓글 작성
 	@RequestMapping("/writerepl.do")
 	@ResponseBody
@@ -208,6 +221,10 @@ public class BoardController {
 		return "success";
 
 	}
+	
+	
+	
+	
 	//댓글 목록
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
@@ -232,7 +249,6 @@ public class BoardController {
 
 	}
 
-	//index.do가 요청될 때
 	
 
 
