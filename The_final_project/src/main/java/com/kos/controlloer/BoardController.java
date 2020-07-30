@@ -228,6 +228,9 @@ public class BoardController {
 
 
 	}
+	//index.do가 요청될 때
+	
+
 	
 
 
@@ -342,6 +345,10 @@ public class BoardController {
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
+	
+	
+	
+	
 	
 	
 	

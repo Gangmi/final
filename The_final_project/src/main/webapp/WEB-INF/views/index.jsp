@@ -68,11 +68,16 @@
 	<section class="aboutus-section spad">
 		<div class="container">
 		
-			<div class="container weather">
+			<div class="weather">
                 <br><br>
+                <h2 id="todaydate"></h2>
                 <h2> 현재 날씨 </h2>
 	                <div class="weather-icon">
 	                    <img id='weather-icon' src="http://openweathermap.org/img/wn/01d@2x.png" alt="">
+	               		<div class="datesection" >
+            				
+            			</div>
+            
 	                </div>
                 	<div>
                 		<span id='location'>광명시</span>
@@ -82,8 +87,96 @@
                     <button class="btn btn-success" id = "searchMyWeather">우리동네 날씨</button><br/>
             </div>
             
+            
 			
 		</div>
+	</section>
+	
+	<!-- 전체 게시판 정보 띄우는 곳  -->
+	<section id="allboards">
+		<div class="container upboards">
+		
+		
+			<div class="freeboard">
+				<h2>자유게시판</h2>
+				<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+				</table>
+				
+		
+			</div>
+		
+			<div class="tipboard">
+				<h2>팁게시판</h2>
+				<table class="table table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+						
+					</table>
+				
+			
+			</div>
+		
+	</div>
+	
+	<div class="container downboards">
+			<div class="freeboard">
+			<h2>농사in 게시판</h2>
+			<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+							<th>글번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+			</table>
+			
+	
+		</div>
+		<div class="tipboard">
+			<h2>분양게시판</h2>
+			<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+					
+				</table>
+			
+		
+		</div>
+	</div>
+	
+	
+	
+	
 	</section>
 	
 	<!-- About Us Section End -->
@@ -158,6 +251,51 @@
 			      }
 
 			}
+
+
+
+
+			//오늘 날짜 표시하기
+			var today=new Date();
+			var year=today.getFullYear();
+			var month=today.getMonth();
+			var date=today.getDate();
+			var day= today.getDay();
+			var realday=""
+			switch (day){
+			case 0 : realday="일요일";
+			break;
+			case 1 : realday="월요일";
+			break;
+			case 2 : realday="화요일";
+			break;
+			case 3 : realday="수요일";
+			break;
+			case 4 : realday="목요일";
+			break;
+			case 5 : realday="금요일";
+			break;
+			case 6 : realday="토요일";
+			break;
+			default:
+				realday="요일정보를 가져올 수 없습니다."
+			}
+			
+			
+			var html=year+"년   "+(month+1)+"월   "+date+"일   "+realday
+			$('#todaydate').html(html);
+
+
+
+
+
+
+			
+
+
+
+
+			
 	});
 	
 	</script>

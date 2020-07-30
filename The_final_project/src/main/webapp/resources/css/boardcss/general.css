@@ -33,3 +33,12 @@ td a:hover{
 	color: gray;
 	
 }
+
+#boardtable th{
+	table-layout: fixed;
+	
+}
+#boardtable td{
+	text-overflow: ellipsis;
+}
+

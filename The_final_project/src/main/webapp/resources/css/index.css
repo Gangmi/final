@@ -12,3 +12,57 @@
 	font-family: BatangChe;  
 
 }
+/*날씨 부분  */
+.weather{
+	width:50%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+/*인덱스의 게시판 표시 부분  */
+ .upboards{
+	text-align: center;
+	width:100%;
+	margin: 0 auto;
+	height: 500px;
+} 
+
+.upboards div{
+	float:left;
+	width:40%;
+	
+	
+}
+th{
+	
+}
+
+.tipboard{
+	 margin-left: 20%; 
+}
+
+
+.downboards{
+	text-align: center;
+	width:100%;
+	margin: 0 auto;
+	height: 500px;
+} 
+
+.downboards div{
+	float:left;
+	width:40%;
+	
+	
+}
+
+#allboards{
+	
+	height: 800px;
+	
+}
+
+#todaydate{
+	font-weight: 500;
+}

@@ -40,7 +40,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			<div class="writebtn">
 			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			</div>
-				<table class="table table-hover table-condensed">
+				<table class="table table-hover table-condensed" id="boardtable">
 					<thead>
 						<tr>
 							<th width="150">글번호</th>
