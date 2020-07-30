@@ -17,6 +17,9 @@
 <!-- 		<sec:intercept-url pattern="/login.do" access="isAnonymous()"/> -->
 <!-- 		<sec:intercept-url pattern="/sign_up.do" access="isAnonymous()"/> -->
 		<sec:intercept-url pattern="/**" access="permitAll"/>
+		<!-- 인터셉트 할 url pattern(경로) access 접근 권한자 permitAll -> true -->
+		
+		<!-- spring security custom login page login.jsp form의 parameter -->
 		<sec:form-login username-parameter="id" 
  						password-parameter="password" 
  						login-processing-url="/loginProcess.do"
@@ -24,20 +27,29 @@
  						default-target-url="/login_act.do"
  						authentication-failure-url="/login_fail.do"
  						/> 
-
- 						
-<!-- 						authentication-success-handler-ref="loginSuccessHandler" -->
-<!-- 						authentication-failure-handler-ref="loginFailureHandler" -->
-						
+		<!-- 
+			username-parameter = form name 사용자ID
+			password-parameter = form name 비밀번호
+			login-processing-url = "임의 url" form action spring-security.xml 과 login.jsp의 action과 동일해야 함
+			login-page = 로그인 페이지 경로
+			authentication-failure-url 로그인 실패시 처리 url
+		 -->
+	
  		<sec:logout invalidate-session="true" logout-url="/logout.do" /> <!--logout-success-url="/logout_act.do" -->
-		
+		<!--
+			logou시 invalidate-session = 모든 세션 지우기
+			logout-url 로그아웃 후처리 url
+		 -->
 		<sec:session-management>
-        	<sec:concurrency-control max-sessions="1"  expired-url="/logout.do"/>
+        	<sec:concurrency-control max-sessions="1"  expired-url="/login.do"/>
         </sec:session-management>
         <sec:access-denied-handler error-page="/asd.do"/> 
 	</sec:http>
 
+
+	<!-- 암호화 객체 -->
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+	<!-- 데이터베이스에 저장된 로그인 정보 확 -->
 	<sec:jdbc-user-service data-source-ref="dataSource" id="userService"
     	users-by-username-query="SELECT id as loginId, password as loginPwd ,1 as enabled FROM member WHERE ID=?"
     	authorities-by-username-query="SELECT id as loginID, role AUTHORITY FROM authority WHERE ID=?"/>

@@ -26,7 +26,7 @@ public class ListenerThread extends Thread {
 	private int connectedCount;
 	private HashMap<String, Socket> mapSock;
 	private List<String> listSockname;
-
+	private static String Path;
 	private ListenerThread() {
 		super();
 		connectedCount = 0;
@@ -41,8 +41,9 @@ public class ListenerThread extends Thread {
 		return listSockname;
 	}
 
-	public static ListenerThread getInstance() {
+	public static ListenerThread getInstance(String path) {
 		if (instance == null) {
+			Path = path;
 			instance = new ListenerThread();
 		}
 		return instance;
@@ -104,10 +105,11 @@ public class ListenerThread extends Thread {
 		private Socket connectedClientSocket;
 		private List<String> listSockname;
 		private BufferedReader br;
-
+		private String Path;
 		public ReceivedThread(Socket connectedClientSocket, List<String> listSockname) {
 			this.connectedClientSocket = connectedClientSocket;
 			this.listSockname = listSockname;
+			Path = ListenerThread.Path;
 			try {
 				br = new BufferedReader(new InputStreamReader(connectedClientSocket.getInputStream()));
 			} catch (Exception e) {
@@ -118,11 +120,11 @@ public class ListenerThread extends Thread {
 		@Override
 		public void run() {
 			String receivedData = null;
-			String path = "/Users/myeongjin/Desktop/new";
+			String path = Path;
 			File directory = new File(path);
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = null;
-			
+			System.out.println(path);
 			
 			if (!directory.exists()) {
 				directory.mkdirs();
