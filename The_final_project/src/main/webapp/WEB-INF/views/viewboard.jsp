@@ -50,7 +50,7 @@ if (session.getAttribute("memberinfo") != null) {
 				<div class="pull-right" id="boardname_right">
 					<p>
 						조회
-						<%=result.getViewing_count()%></p>
+						<%=result.getBoardView()%></p>
 					<div id="replinfosec">
 
 						<i class="fas fa-comment"></i> <span>댓글</span> <br> <br>
@@ -110,7 +110,7 @@ if (session.getAttribute("memberinfo") != null) {
 			<button class="btn btn-warning" id="deleteboard">삭제</button>
 			<button class="btn btn" id="writerepl">댓글쓰기</button>
 			<div class="pull-right">
-				<a href="" class="btn btn-success" role="button">목록으로</a>
+				<a href="callboard.do?b_boardname=<%=(String) request.getAttribute("boardname")%>" class="btn btn-success" role="button">목록으로</a>
 			</div>
 		</div>
 	</section>

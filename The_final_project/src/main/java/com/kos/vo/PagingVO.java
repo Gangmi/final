@@ -135,18 +135,29 @@ public class PagingVO {
 		// 보여줄 마지막 페이지 = (int)현재페이지 / 사용자에게 보여줄 페이지수=5 * 5 
 		// 만약 진짜 마지막페이지가 보여줄 마지막 페이지보다 작다면
 		// 보여줄 마지막 페이지는 진짜 마지막 페이지로 한다.
-		setEndpage(((int) Math.ceil((double) nowPage / (double) cntPage)) * cntPage);
-		if (getLastPage() < getEndpage()) {
-			setEndpage(getLastPage());
-		}
+//		setEndpage(((int) Math.ceil((double) nowPage / (double) cntPage)) * cntPage);
+//		if (getLastPage() < getEndpage()) {
+//			setEndpage(getLastPage());
+//		}
 		
 		// 보여줄 마지막 페이지에서 보여줄 페이지수를빼고 1을 더한것을 시작 페이지로 한다.
 		//ex) 
 		//만약
-		setStartpage(getEndpage() - cntPage + 1);
-		if (getStartpage() < 1) {
-			setStartpage(1);
-		}
+//		setStartpage(getEndpage() - cntPage + 1);
+//		if (getStartpage() < 1) {
+//			setStartpage(1);
+//		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	// DB 쿼리에서 사용할 start, end값 계산
