@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>project</title>  
-  
-</head> 
+<title>project</title> 
+ 
+</head>
 <body>
 	<jsp:forward page="index.do" /> 
-</body>    
-</html>     
-       
+</body>  
+</html>
+    

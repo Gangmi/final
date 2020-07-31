@@ -233,13 +233,25 @@ public class BoardController {
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
-		System.out.println(result);
 
 		return result;
 
 
 	}
 
+	@RequestMapping("/getrepl.do")
+	@ResponseBody
+	public BoardVO getRepl(ModelAndView mv, BoardVO vo) {
+		System.out.println(vo.getB_boardname()+"++++++++++++++++getRepl");
+		System.out.println(vo.getReplno());
+		ReplNameVO re = new ReplNameVO(vo);
+		vo.setB_boardname(re.changeName());
+		System.out.println(vo.getB_boardname());
+		BoardVO result = (BoardVO)service.getRepl(vo);
+		System.out.println(result);
+		return result;
+
+	}
 	//댓글 삭제
 	@RequestMapping("/delrepl.do")
 	@ResponseBody

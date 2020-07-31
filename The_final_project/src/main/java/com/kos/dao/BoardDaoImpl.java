@@ -126,6 +126,13 @@ public class BoardDaoImpl implements BoardDao {
 		mybatis.update("board.modifyRepl", vo);
 	}
 
+	public BoardVO getRepl(BoardVO vo) {
+		System.out.println("board.getRepl");
+		BoardVO result = mybatis.selectOne("board.getRepl", vo);
+		System.out.println(result+"|||||||||||dapImpl");
+		return result;
+
+	}
 	// 게시판 글 수정시에
 	@Override
 	public int updateBoard(BoardVO vo) {

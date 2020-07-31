@@ -98,6 +98,7 @@
 		writeno=#{writeno}
 
 	</update>
+	
 	<update id="updateboard" parameterType="board">
 		update ${b_boardname} set title=#{title},contents=#{contents} where boardno=#{boardno}
 	</update>
@@ -116,9 +117,15 @@
 		select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
 		from member member inner join ${b_boardname} ${b_boardname}
 		ON member.id = ${b_boardname}.id where boardno = ${boardno}
-		<if test="replno!=null"> where replno = ${replno} </if>
+		
 	</select>
 	
+	<select id="getRepl" parameterType="board" resultType="board">
+		select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
+		from member member inner join ${b_boardname} ${b_boardname}
+		ON member.id = ${b_boardname}.id 
+		where ${b_boardname}.replno = ${replno} 
+	</select>
 	
 	<!--댓글 갯수 확인 쿼리  -->
 	<select id="countrepl" parameterType="board" resultType="int">

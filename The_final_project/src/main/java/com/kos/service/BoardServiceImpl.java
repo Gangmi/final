@@ -83,4 +83,9 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	public BoardVO getRepl(BoardVO vo) {
+		System.out.println("service");
+		return dao.getRepl(vo);
+	}
+
 }

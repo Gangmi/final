@@ -26,4 +26,6 @@ public interface BoardDao {
 	public void delRepl(BoardVO vo);
 
 	public void modifyRepl(BoardVO vo);
+
+	public BoardVO getRepl(BoardVO vo);
 }
