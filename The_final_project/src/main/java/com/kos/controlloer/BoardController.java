@@ -41,9 +41,18 @@ public class BoardController {
 	@RequestMapping("/callboard.do")
 	public ModelAndView getBoardList(ModelAndView mv, BoardVO vo) {
 		// 게시판 글을 읽어오기 위한 코딩
-		System.out.println("emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println(vo.getSearchword()+"emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
 		List<BoardVO> result = service.getBoardList(vo);
-
+		
+		//검색어 검색이 있다면
+		
+		if(!vo.getSearchword().equals("")) {
+			System.out.println("검색어가 있다.");
+			mv.addObject("searchword", vo.getSearchword());
+		}
+		
+		
+		
 		// 다음에 갈 페이지 지정
 		if (vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
@@ -334,8 +343,8 @@ public class BoardController {
 						// 파일가져오기
 						byte[] bytes = file.getBytes();
 						// 저장경로 지정
-						String uploadPath = req.getSession().getServletContext().getRealPath("")
-								+ "\\resources\\uploadimage";
+						String uploadPath = req.getRealPath("/")
+								+ "resources\\uploadimage";
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 

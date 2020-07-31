@@ -28,8 +28,13 @@ public class BoardDaoImpl implements BoardDao {
 
 		// 해당 게시판 전체 게시물 갯수 구하기
 		int total = mybatis.selectOne("board.getBoardCount", vo);
+		System.out.println("토탈갯수"+total);
 		PagingVO page = new PagingVO(total, vo.getNowpage(), vo.getViewing_count());
-
+		if(vo.getSearchword()!=null) {
+			System.out.println("검색어로 조회 들어옴");
+			page.setSearchword(vo.getSearchword());
+		}
+		System.out.println(page.getSearchword());
 		System.out.println(page.getLastPage());
 
 		// 현재페이지와 보여지는 갯수에따른 게시물 검색(hashmap)

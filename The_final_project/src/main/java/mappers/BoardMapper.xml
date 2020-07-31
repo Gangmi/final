@@ -7,8 +7,9 @@
 
 	<!--해당 게시판의 전체 게시물 갯수 쿼리 -->
 	<select id="getBoardCount" parameterType="board" resultType="int">
-		select count(*) from ${b_boardname}
+		select count(*) from ${b_boardname} <if test="searchword!=null">WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
 	</select>
+
 
 	<!--해당 게시판의 현재 조건에 따른 게시물 검색 -->
 	<select id="getBoardList" parameterType="paging" resultType="board">
@@ -16,17 +17,14 @@
 		select f.*
 		from(SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM,
 		T.*
-		FROM (select
-		* from (select
+		FROM (
+		select * 
+		from (
+		select
 		f.boardno,f.title,f.contents,f.regdate,f.id,f.board_view,<if test='!boardname.equals("nongsain")'>f.board_like,f.board_bad,</if>m.nickname
-		from ${boardname} as f join member as m on f.id=m.id)as T,(SELECT
-		@ROWNUM := 0 ) TMP order by regdate desc) as T
-		ORDER BY regdate desc)
-		as f
-
-		where f.ROWNUM<![CDATA[>=]]>${start}
-		and f.ROWNUM<![CDATA[<=]]>${end}
-		<if test="searchword!=null">and b_title LIKE '%'||#{searchword}||'%'</if>
+		from ${boardname}  as f join member as m on f.id=m.id <if test="searchword!=null"> WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%') </if>) as T, (SELECT @ROWNUM := 0 ) TMP order by regdate desc) as T ORDER BY regdate desc)
+		as f where f.ROWNUM<![CDATA[>=]]>${start} and f.ROWNUM<![CDATA[<=]]>${end}
+		
 		
 
 

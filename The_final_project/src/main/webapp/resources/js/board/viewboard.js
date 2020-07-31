@@ -18,7 +18,7 @@ $(document).ready(function() {
 		//확인이 필요한 값 가져오기
 		var boardname=$('#bname').val();
 		var boardno=$('#boardno').val();
-		alert(boardname+boardno)
+		
 		
 		if($('#writer').val()==$('#confirmsession').val()){
 			window.location.href="modifyboard.do?b_boardname="+boardname+"&boardno="+boardno;

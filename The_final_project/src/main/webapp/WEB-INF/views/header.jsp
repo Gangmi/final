@@ -103,7 +103,9 @@
 							<ul>
 								<!--네비게이션 메뉴-->
 								<li> <!-- class="active" --><a href="/index.do">Home</a></li>
+								<sec:authorize access="hasAuthority('ROLE_SMART_FARMER')">
 								<li><a href="/smartfarmer/monitoringView.do">스마트팜</a></li>
+								</sec:authorize>
 								<li><a href="./about-us.do">About Us</a></li>
 								<li><a href="#">게시판</a>
 									<ul class="dropdown">

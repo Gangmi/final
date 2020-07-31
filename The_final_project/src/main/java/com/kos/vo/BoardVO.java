@@ -15,10 +15,17 @@ public class BoardVO implements Board {
 	private int boardLike;
 	private int boardBad;
 	private String nickname;
+	private String searchword="";
 	
 	
 	
 	
+	public String getSearchword() {
+		return searchword;
+	}
+	public void setSearchword(String searchword) {
+		this.searchword = searchword;
+	}
 	public String getNickname() {
 		return nickname;
 	}

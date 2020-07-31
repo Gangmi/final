@@ -36,6 +36,14 @@ String boardname = (String) request.getAttribute("b_boardname");
 		
 			<h3><%=BoardVO.changeword(boardname)%></h3>
 			<br />
+			<%
+			if(request.getAttribute("searchword")!=null){
+				String searchword=(String)request.getAttribute("searchword");
+			%>
+			<h4><%=searchword%></h4>
+			<%
+			} 
+			%>
 			<div class="table-wrapper">
 			<div class="writebtn">
 			<button class="btn btn-success" id="writeboard">글쓰기</button>
@@ -102,21 +110,33 @@ String boardname = (String) request.getAttribute("b_boardname");
 				for(int i=1; i<=pagelimit;i++){
 			%>
 			
-				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%>" id="pages" role="button"><%=i%></a>
+				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
 			<%
 				} 
 			%>	
-			<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=result.get(0).getNowpage()%>" id="pages" role="button">끝으로</a>
+			<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=result.get(0).getNowpage()%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button">끝으로</a>
 			<% 	
 				}
 			%>
 			</div>
 		</div>
+		<div class="search_area">
+		
+			<form action="callboard.do">
+				<input type="hidden" name="b_boardname" value="<%=boardname%>">
+				
+				<input type="text" name="searchword" class="" placeholder="검색어를 입력 해 주세요"></input>		
+				<button type="submit" class="btn btn-success">검색</button>
+			</form>
+			
+		</div>
+			
 	</section>
+	
 	<!-- footer  -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	<!--자바 스크립트 추가 부분  -->
 	<script type="text/javascript" src="/resources/js/board/general.js"></script>
-
+	
 </body>
 </html>
