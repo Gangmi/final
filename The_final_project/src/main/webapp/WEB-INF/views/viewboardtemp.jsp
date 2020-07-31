@@ -30,7 +30,7 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	
  	<div>
- 	댓글 입력해라 래끼야 <p/>
+ 	<p>댓글 <p/>
  	<form id="commentInsertForm" name="commentInsertForm" ><%-- action="writerepl.do?b_boardname=<%=boardname%>&boardno=<%=boardno%>" method="post"> --%>
  		<input type="hidden" name="b_boardname" value="<%=boardname%>">
  		<input type="hidden" name="boardno" value="<%=boardno%>">

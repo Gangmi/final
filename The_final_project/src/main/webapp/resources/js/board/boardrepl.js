@@ -52,24 +52,9 @@ $(document).ready(function() {
 		});
 	});
 	
-//	$(document).on("mousedown",".modifyRepl",function(evt){
-//		//$('#79').on('click', function(){
-//			//보드이름에 따른 댓글 디비를 저장할 변수
-//		
-//			var b_boardname = $('input[name=b_boardname]').val();			
-//						
-//			//아이디에서 글자에서 숫자만 추출한다.
-//			var string = $(this).attr('id');
-//			var no=string.replace(/[^0-9]/g,'');
-//			
-//			$("#"+no).remove();
-//
-//
-//		});
 	
 	//수정 버튼을 눌렀을때
 	$(document).on("click",".modifyRepl",function(evt){
-		//$('#79').on('click', function(){
 			//보드이름에 따른 댓글 디비를 저장할 변수
 		
 			var b_boardname = $('input[name=b_boardname]').val();
@@ -78,32 +63,30 @@ $(document).ready(function() {
 			var string = $(this).attr('id');
 			var no=string.replace(/[^0-9]/g,'');
 			
-
 			getModifyRepl(b_boardname,no);
-//			$.ajax({
-//				type:'POST',
-//				url:'/modifyrepl.do',
-//				data:"b_boardname="+b_boardname+"&replno="+no+"&contents="+contents,
-//				success : function(data){
-//					$("#repl").append(getCommentList());
-//				},
-//				error:function(request,status,error){
-//		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-//		       }
-//			});
+
 		});
 	
 	//수정 버튼을 누르면 나오는 html
 	function getModifyRepl(b_boardname,replno){
 		var html ='';
 		var repl = $("#"+replno).children('.repl').text();
-		var nickname = $("#"+replno).children('.nickname').text();
-		
-		html+="<div class='contain' id="+replno+">";
-		html+="<div>"+nickname+"&emsp;&emsp;&emsp;&emsp;&emsp;<a class='storeReplModify' href='#'>저장</a>&emsp;<a class='cancleReplModify' href='#'>취소</a></div>";
-		html+="<div><textarea cols='50' rows='3'>"+repl+"</textarea></div>";
-		html+="</div>";
-		$("#"+replno).html(html);
+			
+		$.ajax({
+			type:'POST',
+			url : "/getrepl.do",
+			data:"b_boardname="+b_boardname+"&replno="+replno,
+			dataType:"JSON",
+			success : function(data){
+				var html="";
+				
+				html+="<div class='contain' id="+data.replno+">";
+				html+="<div><p class='nickname' >"+data.nickname+"&emsp;&emsp;&emsp;&emsp;&emsp;<a class='storeReplModify' href='#'>저장</a>&emsp;<a class='cancleReplModify' href='#'>취소</a></div>";
+				html+="<div><textarea cols='50' rows='3' id=repl"+data.replno+">"+data.contents+"</textarea></div>";
+				html+="</div>";
+			$("#"+replno).html(html);
+			}
+		});
 	}
 	
 	//수정에서 저장버튼을 누르면
@@ -113,16 +96,27 @@ $(document).ready(function() {
 		
 			var b_boardname = $('input[name=b_boardname]').val();
 			
-			//아이디에서 글자에서 숫자만 추출한다.
-			var string = $(this).attr('id');
-			var no=string.replace(/[^0-9]/g,'');
+			if(b_boardname=="free_board"){
+				b_boardname="free_repl";
+			}
+			if(b_boardname=="tip_board"){
+				b_boardname="tip_repl";
+			}
+			if(b_boardname=="parcel_board"){
+				b_boardname="parcel_repl";
+			}
 			
+			//아이디에서 글자에서 숫자만 추출한다.
+			var string = $(this).parents().parents().parents().parents().attr('id');
+			var replno=string.replace(/[^0-9]/g,'');			
 
-			getModifyRepl(b_boardname,no);
+			getModifyRepl(b_boardname,replno);
+			var contents = $("#repl"+replno).val();
+			
 			$.ajax({
 				type:'POST',
 				url:'/modifyrepl.do',
-				data:"b_boardname="+b_boardname+"&replno="+no+"&contents="+contents,
+				data:"b_boardname="+b_boardname+"&replno="+replno+"&contents="+contents,
 				success : function(data){
 					$("#repl").append(getCommentList());
 				},
@@ -146,7 +140,7 @@ $(document).ready(function() {
 			dataType:"JSON",
 			success : function(data){
 				var html="";
-				html+= "<div class='contain' id="+data.replno+">";
+				html+="<div class='contain' id="+data.replno+">";
 				html+="<p class='nickname' >"+data.nickname+"<div class='dropdown'><span class='replmodify dropdown-toggle' data-toggle='dropdown' aria-expanded='true'/>";
 				html+='<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">';
 				html+='<li role="presentation"><a role="menuitem" href="#" tabindex="-1" class="modifyRepl" id=modify'+data.replno+'>수정</a></li>';

@@ -257,7 +257,7 @@ public class BoardController {
 	//댓글 목록
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
-	public List<BoardVO> viewRepl(ModelAndView mv, BoardVO vo) {
+	public List<BoardVO> viewRepl(BoardVO vo) {
 
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
@@ -268,23 +268,23 @@ public class BoardController {
 
 	}
 
+	//수정할 댓글 내용 가져오기
 	@RequestMapping("/getrepl.do")
 	@ResponseBody
-	public BoardVO getRepl(ModelAndView mv, BoardVO vo) {
-		System.out.println(vo.getB_boardname()+"++++++++++++++++getRepl");
-		System.out.println(vo.getReplno());
+	public BoardVO getRepl(BoardVO vo) {
+		
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
-		System.out.println(vo.getB_boardname());
+
 		BoardVO result = (BoardVO)service.getRepl(vo);
-		System.out.println(result);
+
 		return result;
 
 	}
 	//댓글 삭제
 	@RequestMapping("/delrepl.do")
 	@ResponseBody
-	public void delRepl(ModelAndView mv, BoardVO vo) {
+	public void delRepl(BoardVO vo) {
 
 		service.delRepl(vo);		
 
@@ -297,7 +297,7 @@ public class BoardController {
 	//댓글 수정
 	@RequestMapping("/modifyrepl.do")
 	@ResponseBody
-	public void modifyRepl(ModelAndView mv, BoardVO vo) {
+	public void modifyRepl(BoardVO vo) {
 
 		service.modifyRepl(vo);		
 
