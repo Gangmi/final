@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
 import com.kos.service.BoardServiceImpl;
+import com.kos.socket.ListenerThread;
 import com.kos.vo.Board;
 import com.kos.vo.BoardVO;
 import com.kos.vo.MemberVO;
@@ -195,8 +196,8 @@ public class BoardController {
 	
 	
 	@RequestMapping("/index.do")
-	public ModelAndView getAllBoardList(ModelAndView mv) {
-		
+	public ModelAndView getAllBoardList(ModelAndView mv,HttpServletRequest request) {
+		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);

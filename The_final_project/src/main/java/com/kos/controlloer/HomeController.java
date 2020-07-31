@@ -33,9 +33,9 @@ public class HomeController {
 		return step;
 	}
 	
-	@RequestMapping("/index.do")
-	public String mainPage( ModelAndView mo,HttpServletRequest request) {
-		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
-		return "index";
-	}
+//	@RequestMapping("/index.do")
+//	public String mainPage( ModelAndView mo,HttpServletRequest request) {
+//		
+//		return "index";
+//	}
 }
