@@ -15,7 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/board/boardrepl.js"></script>
 <link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
-<link rel="stylesheet" href="/resources/css/boardcss/repl.css"></script>
+<link rel="stylesheet" href="/resources/css/boardcss/repl.css">
 
 <%
 	MemberVO user = null;

@@ -86,7 +86,7 @@ $(document).ready(function() {
 				html+="                <div class='p-2'><img src='https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg' alt='user' width='40' class='rounded-circle'></div>";
 				html+="                <div class='comment-text w-100'>";
 				html+="                    <p class='nickname' >"+data.nickname+"</p> ";
-				html+=" 						<textarea id=repl"+data.replno+" class='form-control ml-1 shadow-none textarea'></textarea>";
+				html+=" 						<textarea id=repl"+data.replno+" class='form-control ml-1 shadow-none textarea'>"+data.contents+"</textarea>";
 				html+="                    <div class='comment-footer'> <button type='button' class='storeReplModify btn btn-cyan btn-sm'>저장</button> <button type='button' class='cancleReplModify btn btn-cyan btn-sm'>취소</button></div>";
 				html+="                </div>";
 				html+="            </div> <!-- Comment Row --> ";              
@@ -99,7 +99,6 @@ $(document).ready(function() {
 	
 	//수정에서 저장버튼을 누르면
 	$(document).on("click",".storeReplModify",function(evt){
-		//$('#79').on('click', function(){
 			//보드이름에 따른 댓글 디비를 저장할 변수
 		
 			var b_boardname = $('input[name=b_boardname]').val();
@@ -118,7 +117,6 @@ $(document).ready(function() {
 			var string = $(this).parents().parents().parents().parents().attr('id');
 			var replno=string.replace(/[^0-9]/g,'');			
 
-			getModifyRepl(b_boardname,replno);
 			var contents = $("#repl"+replno).val();
 			
 			$.ajax({
@@ -127,10 +125,8 @@ $(document).ready(function() {
 				data:"b_boardname="+b_boardname+"&replno="+replno+"&contents="+contents,
 				success : function(data){
 					$("#repl").append(getCommentList());
-
 				},
 				error:function(request,status,error){
-					alert("공백은 저장이 불가 합니다.");
 		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		       }
 			});
