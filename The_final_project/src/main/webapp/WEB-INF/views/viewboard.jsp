@@ -11,7 +11,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/resources/js/board/boardrepl.js"></script>
 <link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
+<link rel="stylesheet" href="/resources/css/boardcss/repl.css"></script>
+
 <%
 	MemberVO user = null;
 String userid = "";
@@ -26,6 +31,8 @@ if (session.getAttribute("memberinfo") != null) {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+
+
 	<%
 		BoardVO result = null;
 	if ((BoardVO) request.getAttribute("board") != null) {
@@ -113,7 +120,58 @@ if (session.getAttribute("memberinfo") != null) {
 				<a href="" class="btn btn-success" role="button">목록으로</a>
 			</div>
 		</div>
+
+<div>
+	
+ 	<%
+
+	String boardname = (String) request.getParameter("b_boardname");
+	String boardno = (String) request.getParameter("boardno");
+	
+	%>
+	<!-- 댓글 입력창 -->
+   <form id="commentInsertForm" name="commentInsertForm" >
+    <div class="row d-flex justify-content-center mt-100 mb-100">
+      
+ 		<input type="hidden" name="b_boardname" value="<%=boardname%>">
+ 		<input type="hidden" name="boardno" value="<%=boardno%>">     
+        <div class="col-lg-6">
+        	<div class="card">
+            <div class="d-flex flex-column comment-section">
+                <div class="bg-white">
+                    <div class="d-flex flex-row fs-12">                      
+                        <div style="display: inline;"class="like p-2"><i class="fas fa-comment"></i><span class="ml-1">댓글</span></div>                      
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea id="comment" name="contents" class="form-control ml-1 shadow-none textarea"></textarea></div>
+                    <div class="mt-2 text-right"><button id="commentInsertBtn" name="commentInsertBtn" class="btn btn-primary btn-sm shadow-none" type="button">댓글쓰기</button></div>
+                </div>
+            </div>
+            </div>
+        </div>
+     
+    </div>
+    </form>
+    <!-- 댓글 입력 끝 -->
+    <!--댓글목록 시작 -->
+    <div  class="row d-flex justify-content-center mt-100 mb-100">
+	  <div  class='col-lg-6' >
+		<div id="repl" class='card' >
+		<!-- 여기에 댓글 추가됨 -->
+		</div>
+      </div>
+	</div>
+	<!-- 댓글 끝 -->
+
+		
 	</section>
+	
+	
+	
+
+
+	
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="/resources/js/board/viewboard.js"></script>
