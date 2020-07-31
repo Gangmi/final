@@ -116,9 +116,7 @@ $(document).ready(function() {
 			//아이디에서 글자에서 숫자만 추출한다.
 			var string = $(this).parents().parents().parents().parents().attr('id');
 			var replno=string.replace(/[^0-9]/g,'');			
-
 			var contents = $("#repl"+replno).val();
-			
 			$.ajax({
 				type:'POST',
 				url:'/modifyrepl.do',
@@ -173,10 +171,11 @@ $(document).ready(function() {
 			success : function(data){
 				var html =''; 
 				var cCnt = data.length;
-				
+				var userid = $('#confirmsession').attr('value');
 				
 				
 				if(data.length>0){
+					
 					for(i=0; i<data.length; i++){
 
 						html+="        <div class='contain comment-widgets' id="+data[i].replno+">";
@@ -185,7 +184,9 @@ $(document).ready(function() {
 						html+="                <div class='p-2'><img src='https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg' alt='user' width='40' class='rounded-circle'></div>";
 						html+="                <div class='comment-text w-100'>";
 						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span class='m-b-15 d-block'>"+data[i].contents+" </span>";
-						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span><%if userid == '"+data[i]+"' <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>";
+						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span> ";
+						if(userid == data[i].id){html+=" <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>"}
+						html+="</div>"
 						html+="                </div>";
 						html+="            </div> <!-- Comment Row --> ";              
 						html+="        </div> <!-- Card -->";

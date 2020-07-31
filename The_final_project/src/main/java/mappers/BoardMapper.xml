@@ -145,7 +145,7 @@
 	
 	<!-- 댓글수정  -->
 	<delete id="modifyRepl" parameterType="board">
-	update ${b_boardname} set contents= ${contents},regdate= SYSDATE()  where replno=${replno}	
+	update ${b_boardname} set contents= #{contents},regdate= SYSDATE()  where replno=${replno}	
 	</delete>
 	
 	 <!--글삭제  -->
