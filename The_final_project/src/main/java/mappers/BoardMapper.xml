@@ -18,7 +18,7 @@
 		T.*
 		FROM (select
 		* from (select
-		f.boardno,f.title,f.contents,f.regdate,f.id,f.board_view,f.board_like,f.board_bad,m.nickname
+		f.boardno,f.title,f.contents,f.regdate,f.id,f.board_view,<if test='!boardname.equals("nongsain")'>f.board_like,f.board_bad,</if>m.nickname
 		from ${boardname} as f join member as m on f.id=m.id)as T,(SELECT
 		@ROWNUM := 0 ) TMP order by regdate desc) as T
 		ORDER BY regdate desc)

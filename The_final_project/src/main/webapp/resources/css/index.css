@@ -66,3 +66,22 @@ th{
 #todaydate{
 	font-weight: 500;
 }
+
+table{
+	font-size: 15px;
+}
+
+#more {
+	float:right;
+	text-align: right;
+}
+/*표글자색  */
+#bno {
+	color: gray;
+	
+}
+td a {
+	color: black;
+	 
+}
+

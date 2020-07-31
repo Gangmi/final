@@ -41,26 +41,30 @@ if (session.getAttribute("memberinfo") != null) {
 			<div id="boardname" class="container">
 
 				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
-				<input type="hidden" id="bname" value="<%=(String) request.getAttribute("boardname")%>">
-				<!-- 게시판이름  --> 
+				<input type="hidden" id="bname"
+					value="<%=(String) request.getAttribute("boardname")%>">
+				<!-- 게시판이름  -->
 				<a href=callboard.do?b_boardname=free_board><%=BoardVO.changeword((String) request.getAttribute("boardname"))%>></a>
-				
+
 				<!--조회수 표시  -->
 				<div class="pull-right" id="boardname_right">
-					<p>조회 <%=result.getViewing_count()%></p>
+					<p>
+						조회
+						<%=result.getViewing_count()%></p>
+					<div id="replinfosec">
+
+						<i class="fas fa-comment"></i> <span>댓글</span> <br> <br>
+
+
+						<i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span><%=result.getBoardLike()%></span>&nbsp;&nbsp;
+						<i class="fas fa-thumbs-down"></i> <span>싫어요</span> <span><%=result.getBoardBad()%></span>
+
+					</div>
 				</div>
 			</div>
 			<!--글제목부분  -->
-			<div class="container" id="title">
-				<div class="pull-right" id="replinfosec">
+			<div class="" id="title">
 
-					<i class="fas fa-comment"></i> <span>댓글</span> <br> <br>
-
-
-					<i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span><%=result.getBoardLike()%></span>&nbsp;&nbsp;
-					<i class="fas fa-thumbs-down"></i> <span>싫어요</span> <span><%=result.getBoardBad()%></span>
-
-				</div>
 				<h2><%=result.getTitle()%></h2>
 				<input type="hidden" id="writer" value="<%=result.getId()%>">
 				<p class="nick"><%=result.getNickname()%></p>
@@ -72,22 +76,34 @@ if (session.getAttribute("memberinfo") != null) {
 			<!--글내용  -->
 			<div class=container id=contents>
 				<%=result.getContents()%>
-				<div class="container" id="likebad">
 				
-					<div class="container" id="like">
-					<i class="fas fa-thumbs-up fa-4x"></i>
-					</div>
+				
+				<div  id="likebad">
+
+
+			<i class="fas fa-thumbs-up fa-2x"></i> 
+			<i class="fas fa-thumbs-down fa-2x"></i>
+			<br>
+			<br>
+			<span>좋아요</span>
 					
-					<div class="container" id="bad">
-					<i class="fas fa-thumbs-down fa-4x"></i>
-					</div>
-				</div>
+
+			<span class="bad">싫어요</span>	
+
+
+
+
+		</div>
+				
+				
 			</div>
 			<!--하단 버튼 부분  -->
 			
-
+		
 		</div>
 		
+		
+
 		<div class="container" id="button_container">
 			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			<button class="btn btn-primary" id="modifyboard">수정</button>

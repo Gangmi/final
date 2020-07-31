@@ -18,7 +18,7 @@
 
 /*내용  */
 #contents{
-	
+	text-align:left;
 	margin-top: 50px;
 	
 	
@@ -35,15 +35,19 @@
 	}
 /*댓글 정보 표시 부분  */
 #replinfosec{
-	margin-top: 70px;
+	margin-top:80px;
 	display: inline;
-	font-size: 15px;
+	font-size: 14px;
+	float:right;
+	
 }
 /*조회수 표시부분  */
 #boardname_right p{
 	
    margin-top: 20px;
-   font-size: 15px;
+   font-size: 13px;
+   text-align: right;
+   margin-left: 20px;
    
 }
 /*아래 글쓰기 수정 삭제버튼  */
@@ -72,16 +76,23 @@
 .regdate{
 	font-size: 15px;
 }
-#like{
-	
-	
-	
-	
-} 
-#bad{
-	
 
+#likebad{
+	width:100%;
+	text-align:center;
 	
-} 
+	margin-top: 150px;
+	margin-bottom: 30px;
+}
+
+
+
+.fa-thumbs-down{
+	margin-left: 50px;
+}
+.bad{
+	margin-left: 50px;
+}
+
 	
 

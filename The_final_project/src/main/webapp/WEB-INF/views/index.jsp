@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kos.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -22,6 +24,13 @@
 <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/index.css" type="text/css">
+
+<%
+
+
+%>
+
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -109,9 +118,39 @@
 							</tr>
 						</thead>
 						<tbody>
+						<%
+						if((Integer)request.getAttribute("free_boardcon")!=0){
+							
+							List<BoardVO> result =(List<BoardVO>)request.getAttribute("free_board");
+							
+							
+							for (BoardVO vo : result) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							String dat2=dat[0].substring(5,10);
+							vo.setRegdate(dat2);
+					%>
+						<tr>
+							<td  id="bno"><%=vo.getBoardno()%></td>
+
+
+							<td class="titles"><a href="viewboard.do?b_boardname=free_board&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+
+							<td ><%=vo.getNickname()%></td>
+							<td ><%=vo.getRegdate()%></td>
+							
+						</tr>
+					<%
+							}	
+						}	
+					%>
+					
+					
 						</tbody>
 				</table>
-				
+				<div id="more">
+				<a href="/callboard.do?b_boardname=free_board">더보기+</a>
+				</div>
 		
 			</div>
 		
@@ -127,9 +166,39 @@
 							</tr>
 						</thead>
 						<tbody>
+						<%
+						if((Integer)request.getAttribute("tip_boardcon")!=0){
+							
+							List<BoardVO> result =(List<BoardVO>)request.getAttribute("tip_board");
+							
+							
+							for (BoardVO vo : result) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							String dat2=dat[0].substring(5,10);
+							vo.setRegdate(dat2);
+					%>
+						<tr>
+							<td  id="bno"><%=vo.getBoardno()%></td>
+
+
+							<td class="titles"><a href="viewboard.do?b_boardname=tip_board&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+
+							<td ><%=vo.getNickname()%></td>
+							<td ><%=vo.getRegdate()%></td>
+							
+						</tr>
+					<%
+							}	
+						}	
+					%>
+					
 						</tbody>
 						
 					</table>
+					<div id="more">
+						<a href="/callboard.do?b_boardname=tip_board">더보기+</a>
+					</div>
 				
 			
 			</div>
@@ -149,8 +218,38 @@
 						</tr>
 					</thead>
 					<tbody>
+						<%
+						if((Integer)request.getAttribute("nongsaincon")!=0){
+							
+							List<BoardVO> result =(List<BoardVO>)request.getAttribute("nongsain");
+							
+							
+							for (BoardVO vo : result) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							String dat2=dat[0].substring(5,10);
+							vo.setRegdate(dat2);
+					%>
+						<tr>
+							<td  id="bno"><%=vo.getBoardno()%></td>
+
+
+							<td class="titles"><a href="viewboard.do?b_boardname=nongsain&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+
+							<td ><%=vo.getNickname()%></td>
+							<td ><%=vo.getRegdate()%></td>
+							
+						</tr>
+					<%
+							}	
+						}	
+					%>
+					
 					</tbody>
 			</table>
+			<div id="more">
+						<a href="/callboard.do?b_boardname=nongsain">더보기+</a>
+					</div>
 			
 	
 		</div>
@@ -166,9 +265,39 @@
 						</tr>
 					</thead>
 					<tbody>
+						<%
+						if((Integer)request.getAttribute("parcel_boardcon")!=0){
+							
+							List<BoardVO> result =(List<BoardVO>)request.getAttribute("parcel_board");
+							
+							
+							for (BoardVO vo : result) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							String dat2=dat[0].substring(5,10);
+							vo.setRegdate(dat2);
+					%>
+						<tr>
+							<td  id="bno"><%=vo.getBoardno()%></td>
+
+
+							<td class="titles"><a href="viewboard.do?b_boardname=parcel_board&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+
+							<td ><%=vo.getNickname()%></td>
+							<td ><%=vo.getRegdate()%></td>
+							
+						</tr>
+					<%
+							}	
+						}	
+					%>
+					
 					</tbody>
 					
 				</table>
+				<div id="more">
+						<a href="/callboard.do?b_boardname=parcel_board">더보기+</a>
+					</div>
 			
 		
 		</div>
