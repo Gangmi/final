@@ -12,7 +12,7 @@ public class PagingVO {
 	private int end; 				// SQL 검색시 끝
 	private int cntPage=5; 			// 보여질 페이징 수
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
-	private String searchword;
+	private String searchword="";
 
 	// gettger setter 
 	 
@@ -130,6 +130,14 @@ public class PagingVO {
 
 	// 보여지기 시작페이지 수 계산 [1] [2] [3] [4] [5] >>
 	public void calcStartEndPage(int nowPage, int cntPage) {
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//보여줄마지막 페이지
 		// 보여줄 마지막 페이지 = (int)현재페이지 / 사용자에게 보여줄 페이지수=5 * 5 

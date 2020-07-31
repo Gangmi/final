@@ -41,4 +41,17 @@ td a:hover{
 #boardtable td{
 	text-overflow: ellipsis;
 }
+/*글 검색기능  */
+.search_area {
+	margin-top :20px;
+	text-align: center;
+}
+
+/*  */
+.search_area input{
+	width:200px;
+	
+	}
+	
+
 
