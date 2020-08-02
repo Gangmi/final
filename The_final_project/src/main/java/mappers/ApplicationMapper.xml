@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Aplication">
+
+	<insert id="FarmerInsert" parameterType="farmerapplicationvo">
+		INSERT INTO farmer_certificate
+		(farmer_name,farmer_id,farmland_address,farmland_corporation_name,farmland_tel,farmland_corporation_number,certificate_image_url,apply_date)
+		VALUES
+		(#{farmerName},#{farmerId},#{farmlandAddress},#{farmlandCorporationName},#{farmlandTel},#{farmlandCorporationNumber},#{certificateImageUrl},now())
+		
+	</insert>
+	
+</mapper>
