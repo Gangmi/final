@@ -149,7 +149,7 @@ $(document).ready(function() {
 				html+="            <div class='d-flex flex-row comment-row m-t-0'>";
 				html+="                <div class='p-2'><img src='https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg' alt='user' width='40' class='rounded-circle'></div>";
 				html+="                <div class='comment-text w-100'>";
-				html+="                    <p class='nickname' >"+data.nickname+"</p> <span class='m-b-15 d-block'>"+data.contents+" </span>";
+				html+="                    <p class='nickname' >"+data.nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data.contents+" </span>";
 				html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data.regdate+"</span> <button type='button' id=modify"+data.replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data.replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>";
 				html+="                </div>";
 				html+="            </div> <!-- Comment Row --> ";              
@@ -183,7 +183,7 @@ $(document).ready(function() {
 						html+="            <div class='d-flex flex-row comment-row m-t-0'>";
 						html+="                <div class='p-2'><img src='https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg' alt='user' width='40' class='rounded-circle'></div>";
 						html+="                <div class='comment-text w-100'>";
-						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span class='m-b-15 d-block'>"+data[i].contents+" </span>";
+						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data[i].contents+" </span>";
 						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span> ";
 						//접속한 유저와 같아야 수정 취소 버튼이 나온다.	
 						if(userid == data[i].id){html+=" <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>"}
