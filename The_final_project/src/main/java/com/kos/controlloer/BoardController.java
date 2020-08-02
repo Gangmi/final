@@ -87,6 +87,7 @@ public class BoardController {
 		// 다음페이지 지정
 		mv.setViewName("writeboard");
 		// 현재 게시판의 이름 전달
+		
 		mv.addObject("b_boardname", vo.getB_boardname());
 		return mv;
 	}
@@ -238,6 +239,36 @@ public class BoardController {
 		
 		return mv;
 	}
+	
+	//글에 좋아요 를 눌렀을 때
+	@RequestMapping(value= "/likebad.do")
+	@ResponseBody
+	public String likeBad(BoardVO vo) {
+		
+		//실행된 결과 확인
+		if(service.likeOrBad(vo)) {
+			return "success";
+			
+			
+			
+		}else {
+			return "false";
+		}
+			
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

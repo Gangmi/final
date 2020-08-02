@@ -17,6 +17,9 @@ BoardVO vo;
 		if(vo.getB_boardname().equals("free_board")) {
 			boardno=1;
 		}
+		if(vo.getB_boardname().equals("tip_board")) {
+			boardno=2;
+		}
 		hs.put("boardno",boardno);
 		
 		

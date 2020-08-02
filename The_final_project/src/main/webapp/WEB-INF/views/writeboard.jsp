@@ -27,12 +27,12 @@
 		<h3>글쓰기</h3>
 			<div class="top_menu">
 				<div class="search_box">
-					<select>
-						<option>자유시게판</option>
-						<option>팁게시판</option>
-						<option>분양시게판</option>
-						<option>장터시게판</option>
-						<option>농사 IN 시게판</option>
+					<select id="boardselect">
+						<option value="free_board" <%if(boardname.equals("free_board")){ %>selected="selected"<%} %> >자유시게판</option>
+						<option value="tip_board"<%if(boardname.equals("tip_board")){ %>selected="selected"<%} %>>팁게시판</option>
+						<option value="parcel_baord"<%if(boardname.equals("parcel_board")){ %>selected="selected"<%} %>>분양시게판</option>
+						<%-- <option <%if(boardname.equals("free_board")){ %>selected="selected"<%} %>>장터시게판</option> --%>
+						<option value="nongsain" <%if(boardname.equals("nongsain")){ %>selected="selected"<%} %>>농사 IN 시게판</option>
 					</select>
 				</div>
 				
@@ -47,11 +47,11 @@
 			
 				<form action="/write.do" method="post"
 					id="frm" enctype="multipart/form-data">
-					<input type="hidden" name="boardname" value="<%=boardname%>"/>
-					<input type="hidden" name="b_boardname" value="<%=boardname%>"/>
+					<%-- <input type="hidden" name="boardname" value="<%=boardname%>"/> --%>
+					<input type="hidden" id="form-boarname" name="b_boardname"/>
 					<input type="text" name="title"/>
 					<textarea name="contents" id="editor"></textarea>
-					<script type="text/javascript">
+					<script type="text/javascript"> 
 					</script>
 					<button class="btn btn-success" type="submit" id="savebutton">확인</button>
 				</form>

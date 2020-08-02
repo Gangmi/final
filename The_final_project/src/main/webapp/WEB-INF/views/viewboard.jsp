@@ -49,7 +49,7 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
 				<input type="hidden" id="bname"
-					value="<%=(String) request.getAttribute("boardname")%>">
+					value="<%=(String)request.getAttribute("boardname")%>">
 				<!-- 게시판이름  -->
 				<a href=callboard.do?b_boardname=free_board><%=BoardVO.changeword((String) request.getAttribute("boardname"))%>></a>
 
@@ -87,10 +87,10 @@ if (session.getAttribute("memberinfo") != null) {
 				
 				<div  id="likebad">
 
-
+			<!-- 좋아요 싫어요 버튼  -->
 			<i class="fas fa-thumbs-up fa-2x"></i> 
 			<i class="fas fa-thumbs-down fa-2x"></i>
-			<br>
+			
 			<br>
 			<span>좋아요</span>
 					

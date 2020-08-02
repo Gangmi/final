@@ -28,4 +28,10 @@ public interface BoardDao {
 	public void modifyRepl(BoardVO vo);
 
 	public BoardVO getRepl(BoardVO vo);
+	
+	public int detectLikeOrBad(BoardVO vo);
+
+	public int updateLikeBad(BoardVO vo) throws Exception;
+
+
 }
