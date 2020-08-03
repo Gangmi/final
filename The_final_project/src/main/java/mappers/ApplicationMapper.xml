@@ -11,10 +11,24 @@
 		
 	</insert>
 	
+	<insert id="SmartFarmInsert" parameterType="smartfarmapplicationvo">
+		INSERT INTO smart_Farm_certificate
+		(id, apply_date, start_date, due_date)
+		VALUES
+		(#{id},now(),#{startDate},#{dueDate})
+	</insert>
+	
 	<select id="FarmerSelect" parameterType="farmerapplicationvo" resultType="farmerapplicationvo">
 		SELECT * FROM farmer_certificate WHERE 1=1
 		<if test="farmerId != null">
 		AND farmer_id=#{farmerId}
+		</if>
+		order by apply_date DESC
+	</select>
+	<select id="SmartFarmSelect" parameterType="smartfarmapplicationvo" resultType="smartfarmapplicationvo">
+		SELECT * FROM smart_Farm_certificate WHERE 1=1
+		<if test="id != null">
+		AND id=#{id}
 		</if>
 		order by apply_date DESC
 	</select>

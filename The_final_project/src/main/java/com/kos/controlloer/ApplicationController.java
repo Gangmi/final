@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kos.service.ApplicationService;
 import com.kos.vo.FarmerApplicationVO;
+import com.kos.vo.SmartFarmApplicationVO;
 
 @Controller
 public class ApplicationController {
@@ -27,6 +28,19 @@ public class ApplicationController {
 		try {
 			
 			session.setAttribute("application", service.applyFarmer(vo));
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "500error";
+		}
+		return "farmer-application-success";
+	}
+	
+	@RequestMapping(value = "/smart-farmApplication.do", method = RequestMethod.POST)
+	public String updatetest(SmartFarmApplicationVO vo,HttpSession session) {
+		System.out.println(vo.getId()+"asd");
+		try {
+			
+			session.setAttribute("application", service.applySmartFarm(vo));
 		}catch (Exception e) {
 			e.printStackTrace();
 			return "500error";
