@@ -16,10 +16,17 @@ public class BoardVO implements Board {
 	private int boardBad;
 	private String nickname;
 	private String searchword="";
+	private int confirmnum;
 	
 	
 	
 	
+	public int getConfirmnum() {
+		return confirmnum;
+	}
+	public void setConfirmnum(int confirmnum) {
+		this.confirmnum = confirmnum;
+	}
 	public String getSearchword() {
 		return searchword;
 	}
@@ -185,6 +192,19 @@ public class BoardVO implements Board {
 		
 		
 		return list;
+	}
+	//이름에 따라서 게시판의 번호를 가져오는 메소드
+	public static String getBoardnoByBoardname(BoardVO vo) {
+		String result="";
+		String boardname=vo.getB_boardname();
+		
+		switch (boardname) {
+			case "free_board" : result="1"; 
+			break;
+			case "tip_board" : result="2";
+			break;
+		}
+		return result;
 	}
 	
 	

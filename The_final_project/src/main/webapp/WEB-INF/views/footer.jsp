@@ -16,8 +16,7 @@
 								</a>
 							</div>
 							<p>
-								We inspire and reach millions of travelers<br /> across 90
-								local websites
+								sns를 통해 여름지기의 정보들을 공유 해 보세요!
 							</p>
 							<div class="fa-social">
 								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
@@ -33,15 +32,15 @@
 							<h6>Contact Us</h6>
 							<ul>
 								<li>(12) 345 67890</li>
-								<li>info.colorlib@gmail.com</li>
-								<li>856 Cordia Extension Apt. 356, Lake, United State</li>
+								<li>yeorumjigi@gmail.com</li>
+								<li>서울시 금천구 가산동 426-5</li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-lg-3 offset-lg-1">
 						<div class="ft-newslatter">
 							<h6>New latest</h6>
-							<p>Get the latest updates and offers.</p>
+							<p>구독을 통해 최신 업데이트 사항을 받아보실 수 있습니다.</p>
 							<form action="#" class="fn-form">
 								<input type="text" placeholder="Email">
 								<button type="submit">
@@ -53,7 +52,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="copyright-option">
+		<!-- <div class="copyright-option">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-7">
@@ -67,7 +66,7 @@
 					<div class="col-lg-5">
 						<div class="co-text">
 							<p>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 								Copyright &copy;
 								<script>
 									document.write(new Date().getFullYear());
@@ -75,13 +74,13 @@
 								All rights reserved | This template is made with <i
 									class="fa fa-heart" aria-hidden="true"></i> by <a
 									href="https://colorlib.com" target="_blank">Colorlib</a>
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
 							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="search-model">
 			<div class="h-100 d-flex align-items-center justify-content-center">
 				<div class="search-close-switch">

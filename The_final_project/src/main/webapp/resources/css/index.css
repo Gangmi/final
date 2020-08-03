@@ -57,6 +57,13 @@ th{
 	
 }
 
+@media screen and (max-width:990px){
+     div{
+     	
+     } 
+            
+}
+
 #allboards{
 	
 	height: 800px;
@@ -84,4 +91,11 @@ td a {
 	color: black;
 	 
 }
+/*반응형  */
+
+
+
+
+
+
 
