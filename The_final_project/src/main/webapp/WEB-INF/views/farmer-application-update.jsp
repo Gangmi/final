@@ -8,6 +8,7 @@
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>
+ <jsp:include page="./side.jsp"></jsp:include>
     <h1>농부 신청</h1>
     <textarea readonly="readonly">
     	파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.
@@ -17,10 +18,6 @@
     <form action="/farmerApplication.do" method="post" name="form" enctype="multipart/form-data">
         <table>
             <caption></caption>
-            <colgroup>
-            	<col>
-            	<col width="100">
-            </colgroup>
             <tr>
                 <td>이름</td>
                 <td><input type="text" name="farmerName" value="${sessionScope.memberinfo.name }"/></td>
@@ -35,8 +32,8 @@
             </tr>
             <tr>
                 <td>경작지 주소</td>
-                <td><input type="text" name="farmlandAddress" readonly="readonly"><button id="find_postcode_btn" type="button">주소찾기</button></td>
-               
+                <td><input type="text" name="farmlandAddress"></td>
+                <td><button id="find_postcode_btn" type="button">주소찾기 ></button></td>
             </tr>
             <tr>
                 <td>농업경영체 등록번호</td>

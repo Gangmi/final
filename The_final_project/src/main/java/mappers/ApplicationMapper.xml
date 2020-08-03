@@ -11,4 +11,11 @@
 		
 	</insert>
 	
+	<select id="FarmerSelect" parameterType="farmerapplicationvo" resultType="farmerapplicationvo">
+		SELECT * FROM farmer_certificate WHERE 1=1
+		<if test="farmerId != null">
+		AND farmer_id=#{farmerId}
+		</if>
+		order by apply_date DESC
+	</select>
 </mapper>

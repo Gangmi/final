@@ -15,5 +15,6 @@
 <a href="requestData.do">test</a>
 <a href="updateAccount.do">updateAccount</a>
 <a href="farmer-application.do">farmer-application.jsp</a>
+<a href="my-page.do">mypage</a>
 </body>
 </html>

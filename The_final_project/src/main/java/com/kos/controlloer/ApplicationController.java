@@ -3,6 +3,7 @@ package com.kos.controlloer;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,17 @@ import com.kos.vo.FarmerApplicationVO;
 public class ApplicationController {
 	@Autowired
 	ApplicationService service;
-	@RequestMapping(value = "/test.do", method = RequestMethod.POST)
-	public String updatetest(FarmerApplicationVO vo,@RequestParam(value = "file1")MultipartFile file1,HttpServletRequest request) {
+	@RequestMapping(value = "/farmerApplication.do", method = RequestMethod.POST)
+	public String updatetest(FarmerApplicationVO vo,@RequestParam(value = "file1")MultipartFile file1,HttpServletRequest request,HttpSession session) {
 		vo.setFilePath(request.getSession().getServletContext().getRealPath("/resources/farmer_certificate"));
 		vo.setFile(file1);
-		service.applyFarmer(vo);
-		
-		return "application_view";
+		try {
+			
+			session.setAttribute("application", service.applyFarmer(vo));
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "500error";
+		}
+		return "farmer-application-success";
 	}
 }
