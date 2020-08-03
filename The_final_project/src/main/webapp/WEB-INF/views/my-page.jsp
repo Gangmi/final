@@ -6,77 +6,143 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-        .my-info{
-            width: 400px;
-            height: 250px;
-            margin: auto;
-            display: inline-block;
-            text-align: center0
-            padding: 51px;
+
+
+        
+        section{
+        	height: 500px;
+        	
+        
         }
-        .my-info .my-profile-img{
-            width: 150px;
-            height: 100%;
-            position: relative;
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        .main_btn img {
+            display: block;
+            border: none;
+            width:80%;
+            height: 80%;
+           margin: 0 auto;
+        }
+
+	/* 각버튼 float설정  */
+        .free {
             float: left;
-            
+        }
+        .tip {
+            float: left;
+        }
+        .share {
+            float: left;
+        }
+        .market {
+            float: left;
         }
         
-        .my-info .my-private{
-            height: 100%;
-            position: relative;
-            float: left;
-        }
         
-        .my-info .info-update{
-            position: relative;
-            float: right;
+        
+        /*항목 전체 div  */
+        .main_btn{
+        margin-top: 100px;
+       
         }
+
+       .main_btn div{
+       
+       text-align: center;
+       margin-left: 135px;
+       }
+       
+       .main_btn div p{
+       font-size: 25px;
+       
+       }
+        
+        
+        .main_btn button{
+        
+        width: 300px;
+        height: 300px;
+        border-radius: 150px;
+        background-color: white;
+        
+       	
+        }
+        .main_btn a{
+        color: black;
+        
+        }
+        .main_btn a:hover{
+        color: black;
+        text-decoration: underline;
+        }
+
+        
+       /*마이페이지 써있는 공간  */ 
+      .my-page{
+      	margin-top: 50px;
+     	text-align: center;
+     	margin-right: 10px;
+      
+      }
+      @media only screen and (max-width: 800px){
+      .my-page{
+      	margin-top: 50px;
+     	margin-left: 20px;
+      
+      }	
+      }
+     
+        
+        
     </style>
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
-	<jsp:include page="./side.jsp"/>
-    <div class="my-info">
-        <span><h3>나의 회원정보</h3></span>
-        <hr>
-        <div class="my-profile-img">이미지 영역</div>
-        <div class="my-private">
-            <span>아이디</span> <span>${sessionScope.memberinfo.id }</span>  <br> 
-            <span>회원명</span> <span>${sessionScope.memberinfo.name}</span> <br>
-            <span>이메일</span> <span>${sessionScope.memberinfo.email}</span> <br>
-            <span>휴대폰</span> <span>${sessionScope.memberinfo.phoneNumber}</span> <br>
+<%-- 	<jsp:include page="./side.jsp"/> --%>
+	   
+        <div class="my-page">
+        	<h3>마이페이지</h3>
         </div>
-        <a class="info-update" href="/updateAccount.do"> 정보 수정하기</a>
+        <section class="main_btn">
+       
+        
+            <div class="free">
+                <button>
+                    <img src="/resources/old/img/free_grey.png" alt="free">
+                </button>
+                <p><a href="/updateAccount.do">회원 정보 수정</a></p>
+            </div>
 
-    </div>
-    <div class="my-info">
-        <span><h3>농부 신청 현황</h3></span>
-        <hr>
-        
-        <div class="my-private">
-            <span>이름</span> <span>sample</span>  <br> 
-            <span>경작지 명</span> <span>sample</span> <br>
-            <span>농장 연락처</span> <span>sample</span> <br>
-            <span>농장 주소</span> <span>sample</span> <br>
-            <span>농업경영체 등록번호</span> <span>sample</span> <br>
-            <span>신청 및 수정일</span> <br>
-            <span>승인 일</span>
-        </div>
-        <sub><a class="info-update" href="/farmer-application-update.do"> 정보 수정하기</a></sub>
-    </div>
-    <br>
-    <div class="my-info">
-        <span><h3>스마트팜 신청 현황</h3></span>
-        <hr>
-        
-        <div class="my-private">
-            <span>이름</span> <span>sample</span>  <br> 
-            <span>신청일</span> <span>sample</span> <br>
-            <span>승인일</span> <span>sample</span> <br>
-        </div>
-        <sub><a class="info-update" href="#"> 정보 수정하기</a></sub>
-    </div>
+            <div class="tip">
+                <button>
+                    <img src="/resources/old/img/tip_grey.png" alt="tip">
+                </button>
+                <p><a href="/farmer-application.do">농부신청 관리</a></p>
+            </div>
+
+            <div class="share">
+                <button>
+                    <img src="/resources/old/img/share_grey.png" alt="share">
+                </button>
+                <p><a href="#">스마트팜 신청 관리</a></p>
+            </div>
+
+            <div class="market">
+                <button>
+                    <img src="/resources/old/img/market_grey.png" alt="market">
+                </button>
+                <p><a href="#">내가쓴 글 보기</a></p>
+            </div>
+
+          
+           
+        </section>
+    
 <jsp:include page="./footer.jsp"/>
 </body>
 </html>

@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 .vertical-menu {
-  width: 200px;
-  position: absolute;
-  right: 100px;
-  
+  	width: 200px;
+	
+	float:right;
+ 	right: 100px;
+  	margin-right: 300px;
+  	margin-top: 100px;
 }
 
 .vertical-menu a {
@@ -31,6 +33,12 @@
 }
 .vertical-menu ul{
     list-style:none;
+}
+
+@media screen and (max-width:1075px){
+	.vertical-menu ul{
+		visibility: hidden;
+		} 
 }
 </style>
 </head>
