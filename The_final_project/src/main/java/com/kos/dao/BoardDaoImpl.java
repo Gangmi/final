@@ -39,6 +39,10 @@ public class BoardDaoImpl implements BoardDao {
 
 		// 현재페이지와 보여지는 갯수에따른 게시물 검색(hashmap)
 		page.setBoardname(vo.getB_boardname());
+		
+		System.out.println(page.getStart()+"시작페이지~~~~~~~~~~~");
+		System.out.println(page.getEnd());
+		
 		List<BoardVO> result = mybatis.selectList("board.getBoardList", page);
 
 		// nowpage멤버변수를 이용해서 total page를 저장
