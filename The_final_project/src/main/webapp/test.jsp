@@ -16,5 +16,6 @@
 <a href="updateAccount.do">updateAccount</a>
 <a href="farmer-application.do">farmer-application.jsp</a>
 <a href="my-page.do">mypage</a>
+<a href="smartfarm-application.do">smartfarm-application.jsp</a>
 </body>
 </html>
