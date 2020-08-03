@@ -47,32 +47,23 @@
 			</sec:authorize>
 		</div>
 		<div class="header-configure-area">
-			<div class="language-option">
-				<img src="img/flag.jpg" alt=""> <span>EN <i
-					class="fa fa-angle-down"></i></span>
-				<div class="flag-dropdown">
-					<ul>
-						<li><a href="#">Zi</a></li>
-						<li><a href="#">Fr</a></li>
-					</ul>
-				</div>
-			</div>
-			<a href="#" class="bk-btn">Booking Now</a>
+			<a href="#" class="bk-btn">마이 페이지</a>
 		</div>
 		<nav class="mainmenu mobile-menu">
 			<ul>
 				<li class="active"><a href="./index.html">Home</a></li>
-				<li><a href="./rooms.html">Rooms</a></li>
-				<li><a href="./about-us.do">About Us</a></li>
-				<li><a href="./pages.html">Pages</a>
+				<li><a href="./rooms.html">AboutUs</a></li>
+				
+				<li><a href="./pages.html">게시판</a>
 					<ul class="dropdown">
-						<li><a href="./room-details.html">Room Details</a></li>
-						<li><a href="#">Deluxe Room</a></li>
-						<li><a href="#">Family Room</a></li>
-						<li><a href="#">Premium Room</a></li>
+						<li><a href="./room-details.html">자유게시판</a></li>
+						<li><a href="#">tip 게시판</a></li>
+						<li><a href="#">장터게시판</a></li>
+						<li><a href="#">분양게시판</a></li>
+						<li><a href="#">농사in게시판</a></li>
 					</ul></li>
-				<li><a href="./blog.html">News</a></li>
-				<li><a href="./contact.html">Contact</a></li>
+				<li><a href="./blog.html">식물사전</a></li>
+				<li><a href="./contact.html">제휴농장</a></li>
 			</ul>
 		</nav>
 		<div id="mobile-menu-wrap"></div>

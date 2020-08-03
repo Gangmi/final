@@ -13,6 +13,10 @@ public class PagingVO {
 	private int cntPage=5; 			// 보여질 페이징 수
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
 	private String searchword="";
+	
+	private int totalblock;
+	private int nowblock;
+	
 
 	// gettger setter 
 	 
@@ -122,6 +126,11 @@ public class PagingVO {
 		// calcStartEndPage(getNowpage(), cntPage);
 		calcStartEnd(getNowpage(), getCntPerPage());
 	}
+	// DB 쿼리에서 사용할 start, end값 계산
+	public void calcStartEnd(int nowPage, int cntPerPage) {
+		setEnd(nowPage * cntPerPage);
+		setStart(getEnd() - cntPerPage - 1);
+	}	
 
 	// 진짜마지막 페이지 계산
 	public void calcLastPage(int total, int cntPerPage) {
@@ -130,6 +139,8 @@ public class PagingVO {
 
 	// 보여지기 시작페이지 수 계산 [1] [2] [3] [4] [5] >>
 	public void calcStartEndPage(int nowPage, int cntPage) {
+	//현재 페이지와 블록당보여줄 페이지수 전체 카운트, 페이지당 보여줄 갯수
+	
 		
 		
 		
@@ -159,19 +170,8 @@ public class PagingVO {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
 	}
 
-	// DB 쿼리에서 사용할 start, end값 계산
-	public void calcStartEnd(int nowPage, int cntPerPage) {
-		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage - 1);
-	}
+	
 
 }

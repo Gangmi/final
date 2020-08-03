@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <!--css및 다른 자원  -->
 
-
+<link rel="stylesheet" href="/resources/css/boardcss/writeboard.css">
 <%
 	String boardname = (String) request.getAttribute("b_boardname");
 %>
@@ -20,10 +20,7 @@
 	<input id=boardname type="hidden" value=<%=boardname%>>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
-	
-	<section class="hero-section">
-	
-		<div class="container">
+	<div class="write-title">
 		<h3>글쓰기</h3>
 			<div class="top_menu">
 				<div class="search_box">
@@ -38,11 +35,14 @@
 				
 			</div>
 		</div>
-		</section>
+	
+	
+		
+		
 
-
-<section class="hero-section">
-		<div class="container">
+<section class="whole-write-section">
+		
+		<div class="">
 			<div class="main_box">
 			
 				<form action="/write.do" method="post"
