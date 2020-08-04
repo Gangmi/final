@@ -51,12 +51,8 @@ public class BoardController {
 			System.out.println("검색어가 있다.");
 			mv.addObject("searchword", vo.getSearchword());
 		}
-		if(vo.getB_boardname().equals("nongsain")) {
-			mv.setViewName("nongsain");
-		}else {
-			mv.setViewName("general");
-		}
 		
+		mv.setViewName("general");
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름추가
 
 		// 다음 페이지로 넘길 리스트가 제대로 받아와 졌는지 확인
@@ -80,7 +76,6 @@ public class BoardController {
 		// 다음페이지 지정
 		mv.setViewName("writeboard");
 		// 현재 게시판의 이름 전달
-		
 		mv.addObject("b_boardname", vo.getB_boardname());
 		return mv;
 	}
@@ -228,36 +223,6 @@ public class BoardController {
 		return mv;
 	}
 	
-	//글에 좋아요 를 눌렀을 때
-	@RequestMapping(value= "/likebad.do")
-	@ResponseBody
-	public String likeBad(BoardVO vo) {
-		
-		//실행된 결과 확인
-		if(service.likeOrBad(vo)) {
-			return "success";
-			
-			
-			
-		}else {
-			return "false";
-		}
-			
-	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -301,7 +266,7 @@ public class BoardController {
 		public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
 			ReplNameVO re = new ReplNameVO(vo);
 			vo.setB_boardname(re.changeName());
-//			String id = ((MemberVO) session.getAttribute("memberinfo")).getId();
+			String id = ((MemberVO) session.getAttribute("memberinfo")).getId();
 			List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
 //			if(id == null) {
 //				result.get(0).setId("");
