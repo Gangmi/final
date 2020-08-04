@@ -74,7 +74,9 @@ public class BoardController {
 	@RequestMapping("/writeboard.do")
 	public ModelAndView callWritePage(ModelAndView mv, BoardVO vo) {
 		// 다음페이지 지정
+		
 		mv.setViewName("writeboard");
+
 		// 현재 게시판의 이름 전달
 		mv.addObject("b_boardname", vo.getB_boardname());
 		return mv;
@@ -90,7 +92,7 @@ public class BoardController {
 		// 임시로 아이디 지정 ->나중에 지우기
 
 		// vo.setId("kim");
-
+		System.out.println(vo.getB_boardname());
 		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
 		if (!info.getId().isEmpty()) {
 			vo.setId(info.getId());
@@ -131,8 +133,11 @@ public class BoardController {
 		// System.out.println(result.getTitle()+"######################");
 		System.out.println(result.getBoardView() + "뷰카운트");
 		// 다음 페이지 지정
-	
-		mv.setViewName("viewboard");
+		if(vo.getB_boardname().equals("nongsain")) {
+			mv.setViewName("nongsain");
+		}else {
+			mv.setViewName("viewboard");
+		}
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
 
