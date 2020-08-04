@@ -101,7 +101,9 @@ public class BoardServiceImpl implements BoardService {
 		page.setB_boardname(vo.getB_boardname());
 		page.setBoardno(vo.getBoardno());
 		List<BoardVO> result = dao.viewBoardRepl(page);
+		if( result.size()!=0){
 		result.get(0).setNowpage(page.getLastPage());//페이징 버튼 만들 떄 필요
+		}
 		return result;
 	}
 	

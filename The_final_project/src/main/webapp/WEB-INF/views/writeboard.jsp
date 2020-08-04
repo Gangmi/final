@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <!--css및 다른 자원  -->
 
-<link rel="stylesheet" href="/resources/css/boardcss/writeboard.css">
+<link rel="stylesheet" href="/resources/css//boardcss/writeboard.css">
 <%
 	String boardname = (String) request.getAttribute("b_boardname");
 %>

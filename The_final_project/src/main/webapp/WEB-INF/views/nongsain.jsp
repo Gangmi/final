@@ -1,5 +1,6 @@
 <%@page import="javax.swing.text.Document"%>
 <%@page import="com.kos.vo.MemberVO"%>
+<%@page import="java.util.List"%>
 <%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,8 +16,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/board/boardrepl.js"></script>
+<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
 <link rel="stylesheet" href="/resources/css/boardcss/repl.css">
+<link rel="stylesheet" href="/resources/css/boardcss/writeboard.css">
 
 <%
 	MemberVO user = null;
@@ -71,9 +74,8 @@ if (session.getAttribute("memberinfo") != null) {
 				</div>
 			</div>
 			<!--글제목부분  -->
-			<div class="" id="title">
-
-				<h2><i class="fab fa-quora"></i>       <%=result.getTitle()%></h2>
+			<div class="" id="title">				
+				<h2>Q     <%=result.getTitle()%></h2>
 				<input type="hidden" id="writer" value="<%=result.getId()%>">
 				<p class="nick"><%=result.getNickname()%></p>
 				<p class="regdate"><%=result.getRegdate()%></p>
@@ -124,53 +126,112 @@ if (session.getAttribute("memberinfo") != null) {
 	String boardno = (String) request.getParameter("boardno");
 	
 	%>
+	<div class="container" id="board">
+	소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button>
+	</div>
+	
+	<%-- <div class="write-title">
+		<h3>글쓰기</h3>
+		<label>게시판 선택</label>
+			<div class="top_menu">
+				<div class="search_box">
+					<select id="boardselect">
+						<option value="free_board" <%if(boardname.equals("free_board")){ %>selected="selected"<%} %> >자유시게판</option>
+						<option value="tip_board"<%if(boardname.equals("tip_board")){ %>selected="selected"<%} %>>팁게시판</option>
+						<option value="parcel_board"<%if(boardname.equals("parcel_board")){ %>selected="selected"<%} %>>분양시게판</option>
+						<option <%if(boardname.equals("free_board")){ %>selected="selected"<%} %>>장터시게판</option>
+						<option value="nongsain" <%if(boardname.equals("nongsain")){ %>selected="selected"<%} %>>농사 IN 시게판</option>
+					</select>
+				</div>
+				
+			</div>
+		</div> --%>
+		<section class="whole-write-section">
+		
+		<div class="">
+			<div class="main_box">
+			
+				<form action="/write.do" method="post"
+					id="frm" enctype="multipart/form-data">
+					<%-- <input type="hidden" name="boardname" value="<%=boardname%>"/> --%>
+					<input type="hidden" id="form-boarname" name="b_boardname" value="<%=boardname%>"/>
+					<label for="title">제목</label>
+					<input type="text" name="title" id="title"/>
+					<textarea name="contents" id="editor"></textarea>
+					<script type="text/javascript"> 
+					</script>
+					<button class="btn btn-success" type="submit" id="savebutton">확인</button>
+					<a href="callboard.do?b_boardname=<%=boardname%>" class="btn btn-primary" id="cancelwrite" role="button">취소</a>
+					
+				</form>
+			</div>
+		</div>
+	</section>
+	
 	<!-- 댓글 입력창 -->
-   <form id="commentInsertForm" name="commentInsertForm" >
-    <div class="row d-flex justify-content-center mt-100 mb-100">
-      	<!-- 게시판이름과 게시판글번호 를 폼으로 넘김 -->
- 		<input type="hidden" name="b_boardname" value="<%=boardname%>">
- 		<input type="hidden" name="boardno" value="<%=boardno%>">     
-        <div class="col-lg-6">
-        	<div class="card">
-            <div class="d-flex flex-column comment-section">
-                <div class="bg-white">
-                    <div class="d-flex flex-row fs-12">                      
-                        <div style="display: inline;"class="like p-2"><i class="fas fa-comment"></i><span class="ml-1">댓글</span></div>                      
-                    </div>
-                </div>
-                <div class="p-2">
-                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea id="comment" name="contents"  class="form-control ml-1 shadow-none textarea"></textarea></div>
-                    <div class="mt-2 text-right"><button id="commentInsertBtn" name="commentInsertBtn" class="btn btn-primary btn-sm shadow-none" type="button">댓글쓰기</button></div>
-                </div>
-            </div>
-            </div>
-        </div>
-     
-    </div>
+   <div class="container" id="board">
+			<!--현재 게시판 표시  -->
+			<div id="boardname" class="container">
+
+				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
+				<input type="hidden" id="bname"
+					value="<%=(String) request.getAttribute("boardname")%>">
+
+				<!--조회수 표시  -->
+				<div class="pull-right" id="boardname_right">
+
+					<div id="replinfosec">
+						<button class="btn btn-success answer" id="">채택하기</button>
+					</div>
+				</div>
+			</div>
+			<!--글제목부분  -->
+			<div class="" id="title">
+
+				<h2>A      <%=result.getTitle()%></h2>
+				<input type="hidden" id="writer" value="<%=result.getId()%>">
+				<p class="nick"><%=result.getNickname()%></p>
+				<p class="regdate"><%=result.getRegdate()%></p>
+
+			</div>
+
+
+			<!--글내용  -->
+			<div class=container id=contents>
+				<%=result.getContents()%>
+				
+				
+				<div  id="likebad">
+
+
+			<br>
+			<br>
+
+
+
+
+		</div>
+				
+				
+			</div>
+			<!--하단 버튼 부분  -->
+			
+		
+		</div>
     </form>
     <!-- 댓글 입력 끝 -->
     <!--댓글목록 시작 -->
-    <div  class="row d-flex justify-content-center mt-100 mb-100">
-	  <div  class='col-lg-6' >
-		<div id="repl" class='card' >
-		<!-- 여기에 댓글 추가됨 -->
-		</div>
-      </div>
-	</div>
+   
 	<!-- 댓글 끝 -->
-	<div class="replpaging" id="replpaging">
-			
-	</div> 
+	
 		
 	</section>
 	
-	
-	
-
 
 	
 	<!-- footer-->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	<script type="text/javascript" src="/resources/js/board/viewboard.js"></script>
+	<script src="/resources/js/board/write.js"></script>
 </body>
 </html>

@@ -137,3 +137,10 @@ body {
 .replpaging{
 	text-align: center;
 }
+.answer{
+	float: right;
+}
+
+.question{
+	display: inline;
+}

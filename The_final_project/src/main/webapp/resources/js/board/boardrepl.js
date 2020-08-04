@@ -190,7 +190,7 @@ $(document).ready(function() {
 						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data[i].contents+" </span>";
 						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span> ";
 						//접속한 유저와 같아야 수정 취소 버튼이 나온다.	
-						if(userid == data[0].id){html+=" <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>"};
+						if(userid == data[i].id){html+=" <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>"};
 						html+="						</div>"
 						html+="                </div>";
 						html+="            </div> <!-- Comment Row --> ";    

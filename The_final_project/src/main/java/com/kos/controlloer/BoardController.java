@@ -259,7 +259,7 @@ public class BoardController {
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
-//		result.setId(((MemberVO) session.getAttribute("memberinfo")).getId());
+
 
 		return result;
 
@@ -271,16 +271,8 @@ public class BoardController {
 		public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
 			ReplNameVO re = new ReplNameVO(vo);
 			vo.setB_boardname(re.changeName());
-//			String id = ((MemberVO) session.getAttribute("memberinfo")).getId();
 			List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
-			if((MemberVO) session.getAttribute("memberinfo") == null) {
-				result.get(0).setId("");
-			}
 
-			else{
-				String id = ((MemberVO) session.getAttribute("memberinfo")).getId();
-				result.get(0).setId(((MemberVO) session.getAttribute("memberinfo")).getId());
-			}
 			return result;
 
 		}
