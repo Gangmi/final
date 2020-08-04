@@ -161,7 +161,17 @@ public class PagingVO {
 
 	// 보여지기 시작페이지 수 계산 [1] [2] [3] [4] [5] >>
 	public void calcStartEndPage(int nowPage, int cntPage) {
-	//현재 페이지와 블록당보여줄 페이지수 전체 카운트, 페이지당 보여줄 갯수
+		//현재 페이지와 블록당보여줄 페이지수 전체 카운트, 페이지당 보여줄 갯수
+	
+		//전체 블록 계산
+		totalblock=(int)Math.ceil(((double)lastPage/(double)cntPage));
+		
+		//현재 페이지를 보여줄 페이지로 나눈 값을 올림하면 현재 블록
+		nowblock=(int)Math.ceil((double)nowPage/(double)cntPage);
+	
+	
+	}
+
 	
 		
 		
@@ -191,8 +201,6 @@ public class PagingVO {
 		
 		
 		
-		
-	}
-
+	
 
 }
