@@ -13,5 +13,6 @@ public interface BoardService {
 	public void storeImage(UploadImageVO imgvo);
 	public int updateBoard(BoardVO vo);
 	public void deleteBoard(BoardVO vo);
+	public boolean likeOrBad(BoardVO vo);
 
 }

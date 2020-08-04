@@ -9,6 +9,7 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
+	<jsp:include page="./side.jsp"/>
 	<form id="updateAccount" name="updateAccount" action="updateAccount_act.do"
 		method="post">
 		<div>

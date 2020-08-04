@@ -31,4 +31,10 @@ public interface BoardDao {
 	public BoardVO getRepl(BoardVO vo);
 
 	public int viewBoardReplCount(BoardVO vo);
+
+	public int detectLikeOrBad(BoardVO vo);
+
+	public int updateLikeBad(BoardVO vo) throws Exception;
+
+
 }

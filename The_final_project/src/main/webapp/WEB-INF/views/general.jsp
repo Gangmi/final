@@ -101,10 +101,15 @@ String boardname = (String) request.getAttribute("b_boardname");
 			
 			<%if((Integer)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
+				
 				int pagelimit=0;
+				
+				//만약 전체페이지가 10보다 크면
 				if(result.get(0).getNowpage()>10){
+					//보여지는 페이지를 10페이지로 제한
 					pagelimit=10;
 				}else{
+					//아니라면, 가져온 페이지로 끝페이지를 지정
 					pagelimit=result.get(0).getNowpage();
 				}
 				for(int i=1; i<=pagelimit;i++){

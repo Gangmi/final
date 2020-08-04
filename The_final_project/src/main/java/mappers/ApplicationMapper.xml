@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Aplication">
+
+	<insert id="FarmerInsert" parameterType="farmerapplicationvo">
+		INSERT INTO farmer_certificate
+		(farmer_name,farmer_id,farmland_address,farmland_corporation_name,farmland_tel,farmland_corporation_number,certificate_image_url,apply_date)
+		VALUES
+		(#{farmerName},#{farmerId},#{farmlandAddress},#{farmlandCorporationName},#{farmlandTel},#{farmlandCorporationNumber},#{certificateImageUrl},now())
+		
+	</insert>
+	
+	<insert id="SmartFarmInsert" parameterType="smartfarmapplicationvo">
+		INSERT INTO smart_Farm_certificate
+		(id, apply_date, start_date, due_date)
+		VALUES
+		(#{id},now(),#{startDate},#{dueDate})
+	</insert>
+	
+	<select id="FarmerSelect" parameterType="farmerapplicationvo" resultType="farmerapplicationvo">
+		SELECT * FROM farmer_certificate WHERE 1=1
+		<if test="farmerId != null">
+		AND farmer_id=#{farmerId}
+		</if>
+		order by apply_date DESC
+	</select>
+	<select id="SmartFarmSelect" parameterType="smartfarmapplicationvo" resultType="smartfarmapplicationvo">
+		SELECT * FROM smart_Farm_certificate WHERE 1=1
+		<if test="id != null">
+		AND id=#{id}
+		</if>
+		order by apply_date DESC
+	</select>
+</mapper>

@@ -17,8 +17,8 @@
 		<typeAlias type="com.kos.vo.PagingVO" alias="paging"/>
 		<typeAlias type="com.kos.vo.PlantVO" alias="plant" />
 		<typeAlias type="com.kos.vo.SmartFarmDeviceVO" alias="smartfarmdevicevo" />
-
-
+		<typeAlias type="com.kos.vo.FarmerApplicationVO" alias="farmerapplicationvo"/>
+		<typeAlias type="com.kos.vo.SmartFarmApplicationVO" alias="smartfarmapplicationvo"/>
 
 
 

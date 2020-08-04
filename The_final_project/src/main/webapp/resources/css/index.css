@@ -22,15 +22,16 @@
 
 /*인덱스의 게시판 표시 부분  */
  .upboards{
-	text-align: center;
-	width:100%;
-	margin: 0 auto;
+	
 	height: 500px;
+	
 } 
 
 .upboards div{
 	float:left;
-	width:40%;
+	width: 500px;
+	margin-left: 45px;
+	
 	
 	
 }
@@ -39,27 +40,39 @@ th{
 }
 
 .tipboard{
-	 margin-left: 20%; 
+margin-left: 50px;
 }
 
 
 .downboards{
-	text-align: center;
-	width:100%;
-	margin: 0 auto;
+	margin-top: 50px;
 	height: 500px;
+	display: block;
 } 
 
 .downboards div{
 	float:left;
-	width:40%;
+	width: 500px;
+	
+	margin-left: 45px;
+	margin-top: 50px;
 	
 	
+}
+@media only screen and (max-width:1202px){
+	
+	
+	
+   #allboards div div{
+   	text-align: center;
+   }
+            
 }
 
 #allboards{
 	
-	height: 800px;
+	height: 1000px;
+	text-align: center;
 	
 }
 
@@ -84,4 +97,11 @@ td a {
 	color: black;
 	 
 }
+/*반응형  */
+
+
+
+
+
+
 

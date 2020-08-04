@@ -77,6 +77,8 @@
 	font-size: 15px;
 }
 
+
+/*좋아요 싫어요 버튼  */
 #likebad{
 	width:100%;
 	text-align:center;
@@ -86,13 +88,20 @@
 }
 
 
+#likebad i {
+	cursor: pointer;
+	}
 
 .fa-thumbs-down{
 	margin-left: 50px;
 }
 .bad{
-	margin-left: 50px;
+	margin-left: 40px;
 }
+#likebad span{
+
+}
+
 
 	
 

@@ -69,11 +69,9 @@
 
 		FROM information_schema.tables
 
-		WHERE table_name =
-		#{boardname}
+		WHERE table_name = #{boardname}
 
 		AND table_schema = DATABASE();
-
 	</select>
 
 	<!--이미지 상태 저장 -->
@@ -173,12 +171,34 @@
 	</select>
 	
 	<!--이미지 데이터 베이스 삭제--> 	
-	<delete id="deleteimage" parameterType="board">
-	
-	
+	<delete id="deleteimage" parameterType="hashmap">
+	delete from img_status where boardno=${boardno} and writeno=${writeno}
 	
 	</delete>
-	 
+	
+	<!--좋아요 싫어요를 한 기록이 있는지 확인  -->
+	<select id="detectLikeOrBad" parameterType="board" resultType="int">
+	select count(*)
+	from likebad_manage
+	where boardno=#{b_boardname} and writeno=#{boardno} and id=#{id} 
+	
+	</select>
+	
+	<!--좋아요 싫어요 올리기  -->
+	<update id="updateLikeBad" parameterType="board">
+	update ${b_boardname} set <if test="confirmnum==1">board_like=board_like+1</if><if test="confirmnum==2">board_bad=board_bad+1</if>where boardno=#{boardno}
+	
+	</update>
+	
+	<!-- 좋아요 싫어요를 했다는 표시  -->
+	<insert id="insertLikeBad" parameterType="board">
+	insert into likebad_manage (boardno,writeno,id) values(${b_boardname},${boardno},#{id})
+	
+	
+	
+	</insert>
+	
+	
 		
 	
 </mapper>

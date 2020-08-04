@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/*글쓰기 표시와 해당게시판 select박스  */
+.write-title{
+	display: block;
+	width:50%;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	
+}
+
+
+
+
+/*글쓰는 에디터부분  */
+.whole-write-section{
+	width: 50%;
+	margin: 0 auto;
+}
