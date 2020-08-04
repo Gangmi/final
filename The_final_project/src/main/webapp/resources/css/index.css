@@ -30,7 +30,7 @@
 .upboards div{
 	float:left;
 	width: 500px;
-	margin-left: 45px;
+	
 	
 	
 	
@@ -55,10 +55,17 @@ margin-left: 50px;
 	float:left;
 	width: 500px;
 	
-	margin-left: 45px;
 	
 	
 	
+	
+}
+.freeboard{
+	margin-left: 10px;
+}
+.tipboard{
+	
+	margin-left: 125px;
 }
 /*반응형  */
 @media only screen and (max-width:1202px){
