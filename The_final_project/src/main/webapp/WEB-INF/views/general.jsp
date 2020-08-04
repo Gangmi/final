@@ -62,36 +62,6 @@ String boardname = (String) request.getAttribute("b_boardname");
 					<%
 						if ((Integer)request.getAttribute("confirm")==1) {
 							
-							List<BoardVO> notice =(List<BoardVO>) request.getAttribute("notice");
-							
-							
-							for (BoardVO vo : notice) {
-							// 시간 나누기
-							String[] dat=vo.getRegdate().split(" ");
-							vo.setRegdate(dat[0]);
-					%>
-						<tr>
-							<td width="130" id="bno">공지</td>
-
-
-							<td width="659" class="titles"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>">[공지] <%=vo.getTitle()%></a></td>
-
-							<td width="180"><%=vo.getNickname()%></td>
-							<td width="180"><%=vo.getRegdate()%></td>
-							<td width="188"><%=vo.getBoardView()%></td>
-						</tr>
-					<%
-							}	
-					%>
-					<%
-						}
-					%>
-					
-					
-					
-					<%
-						if ((Integer)request.getAttribute("confirm")==1) {
-							
 							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
 							
 							
@@ -114,9 +84,11 @@ String boardname = (String) request.getAttribute("b_boardname");
 							}	
 					%>
 					<%
+						}else{
+					%>
+					<%
 						}
 					%>
-					
 					
 					
 					</tbody>
