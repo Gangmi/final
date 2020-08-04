@@ -67,7 +67,7 @@ public class BoardDaoImpl implements BoardDao {
 
 		// 게시판 이름 가져오기
 		hs.put("boardname", vo.getB_boardname());
-
+		System.out.println(vo.getB_boardname());
 		// 저장될 글번호 가져오기
 		int writeno = mybatis.selectOne("board.getNextNum", hs);
 		hs.put("writeno", writeno);

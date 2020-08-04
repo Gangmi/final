@@ -66,14 +66,14 @@ if (session.getAttribute("memberinfo") != null) {
 
 						<%-- <i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span><%=result.getBoardLike()%></span>&nbsp;&nbsp;
 						<i class="fas fa-thumbs-down"></i> <span>싫어요</span> <span><%=result.getBoardBad()%></span> --%>
-
+						
 					</div>
 				</div>
 			</div>
 			<!--글제목부분  -->
 			<div class="" id="title">
 
-				<i class="fab fa-quora"></i><h2><%=result.getTitle()%></h2>
+				<h2><i class="fab fa-quora"></i>       <%=result.getTitle()%></h2>
 				<input type="hidden" id="writer" value="<%=result.getId()%>">
 				<p class="nick"><%=result.getNickname()%></p>
 				<p class="regdate"><%=result.getRegdate()%></p>
@@ -89,14 +89,8 @@ if (session.getAttribute("memberinfo") != null) {
 				<div  id="likebad">
 
 
-			<i class="fas fa-thumbs-up fa-2x"></i> 
-			<i class="fas fa-thumbs-down fa-2x"></i>
 			<br>
 			<br>
-			<span>좋아요</span>
-					
-
-			<span class="bad">싫어요</span>	
 
 
 
