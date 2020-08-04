@@ -17,10 +17,17 @@ public class BoardVO implements Board {
 	private String nickname;
 	private String searchword="";
 	private int confirmnum;
+	private int block;
 	
 	
 	
 	
+	public int getBlock() {
+		return block;
+	}
+	public void setBlock(int block) {
+		this.block = block;
+	}
 	public int getConfirmnum() {
 		return confirmnum;
 	}

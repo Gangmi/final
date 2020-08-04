@@ -17,6 +17,22 @@ public class PagingVO {
 	private int boardno;
 	private String b_boardname;
 
+	public int getTotalblock() {
+		return totalblock;
+	}
+
+	public void setTotalblock(int totalblock) {
+		this.totalblock = totalblock;
+	}
+
+	public int getNowblock() {
+		return nowblock;
+	}
+
+	public void setNowblock(int nowblock) {
+		this.nowblock = nowblock;
+	}
+
 	private int totalblock;
 	private int nowblock;
 	
@@ -145,7 +161,7 @@ public class PagingVO {
 		this.cntPerPage = cntPerPage;
 
 		calcLastPage(getTotal(), getCntPerPage());
-		// calcStartEndPage(getNowpage(), cntPage);
+		calcStartEndPage(getNowpage(), cntPage);
 		calcStartEnd(getNowpage(), getCntPerPage());
 	}
 	// DB 쿼리에서 사용할 start, end값 계산

@@ -48,6 +48,7 @@ public class BoardDaoImpl implements BoardDao {
 		// nowpage멤버변수를 이용해서 total page를 저장
 		if (result.size() > 0) {
 			result.get(0).setNowpage(page.getLastPage());
+			result.get(0).setBlock(page.getNowblock());
 		}
 
 		return result;
