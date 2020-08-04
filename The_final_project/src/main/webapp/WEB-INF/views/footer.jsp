@@ -100,5 +100,25 @@
 	<script src="/resources/js/jquery.slicknav.js"></script>
 	<script src="/resources/js/owl.carousel.min.js"></script>
 	<script src="/resources/js/main.js"></script>
+	<script type="text/javascript">
+	var url = "ws://192.168.0.11:8080/chat/${sessionScope.memberinfo.id}";
+	var ws;
+
+		 if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
+             console.log("WebSocket is already opened.");
+		 }else{
+			 ws = new WebSocket(url);
+		}
+		 ws.onopen = function(e) {
+	            console.log(e);
+	            console.log("소켓 접속 성공");
+	        }
+		 ws.onclose = function(e) {
+	            if (e.type == "close") {
+	            	console.log("소켓 종료");
+	            }
+	        }
+
+	</script>
 </body>
 </html>
