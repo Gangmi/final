@@ -44,14 +44,23 @@ public class BoardVO implements Board {
 	
 	//현재 보여지는 게시물수 기본값 30
 	private int viewing_count=30;
+	private int viewing_replcount=10;
+
+	
 
 	//농사인 게시판에서 추가로 사용하는 멤버 변수
 	private String selected;
 	private String selectDate;
 	private int selectPoint;
 	
-	private int replno;
+	private int replno;//댓글번호 
 	
+	public int getViewing_replcount() {
+		return viewing_replcount;
+	}
+	public void setViewing_replcount(int viewing_replcount) {
+		this.viewing_replcount = viewing_replcount;
+	}
 	public int getReplno() {
 		return replno;
 	}

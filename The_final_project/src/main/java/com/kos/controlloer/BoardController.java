@@ -29,6 +29,7 @@ import com.kos.socket.ListenerThread;
 import com.kos.vo.Board;
 import com.kos.vo.BoardVO;
 import com.kos.vo.MemberVO;
+import com.kos.vo.PagingVO;
 import com.kos.vo.ReplNameVO;
 import com.kos.vo.UploadImageVO;
 
@@ -50,20 +51,12 @@ public class BoardController {
 			System.out.println("검색어가 있다.");
 			mv.addObject("searchword", vo.getSearchword());
 		}
-		
-		
-		
-		// 다음에 갈 페이지 지정
-		if (vo.getB_boardname().equals("nongsain")) {
+		if(vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
-
-			// 다음 페이지로 넘길 값을 설정
-			mv.addObject("boardlist", result); // 받아온 게시판 게시물
-			mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름
-
-			return mv;
+		}else {
+			mv.setViewName("general");
 		}
-		mv.setViewName("general");
+		
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름추가
 
 		// 다음 페이지로 넘길 리스트가 제대로 받아와 졌는지 확인
@@ -128,9 +121,9 @@ public class BoardController {
 	// 글읽을 떄
 	@RequestMapping("/viewboard.do")
 	public ModelAndView viewBoard(ModelAndView mv, BoardVO vo) {
-		if(vo.getB_boardname()==null) {
-			vo.setB_boardname("free_board");
-		}
+//		if(vo.getB_boardname()==null) {
+//			vo.setB_boardname("free_board");
+//		}
 		System.out.println("들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
@@ -142,12 +135,7 @@ public class BoardController {
 		// System.out.println(result.getTitle()+"######################");
 		System.out.println(result.getBoardView() + "뷰카운트");
 		// 다음 페이지 지정
-		if (vo.getB_boardname().equals("nongsain")) {
-			mv.setViewName("viewboardNongsain");
-			mv.addObject("board", result);
-
-			return mv;
-		}
+	
 		mv.setViewName("viewboard");
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
@@ -246,7 +234,7 @@ public class BoardController {
 	//댓글 작성
 	@RequestMapping("/writerepl.do")
 	@ResponseBody
-	public String writeRepl(ModelAndView mv, BoardVO vo,HttpSession session) {
+	public String writeRepl( BoardVO vo,HttpSession session) {
 
 
 		ReplNameVO re = new ReplNameVO(vo);
@@ -266,16 +254,34 @@ public class BoardController {
 	//댓글 목록
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
-	public List<BoardVO> viewRepl(BoardVO vo) {
-
+	public List<BoardVO> viewRepl(BoardVO vo,HttpSession session) {
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
+//		result.get(0).setId(((MemberVO) session.getAttribute("memberinfo")).getId());
 
 		return result;
 
 
 	}
+	//댓글 목록
+		@RequestMapping("/viewreplpage.do")
+		@ResponseBody
+		public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
+			ReplNameVO re = new ReplNameVO(vo);
+			vo.setB_boardname(re.changeName());
+//			String id = ((MemberVO) session.getAttribute("memberinfo")).getId();
+			List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
+//			if(id == null) {
+//				result.get(0).setId("");
+//			}
+//
+//			if(id != null){
+//				result.get(0).setId(((MemberVO) session.getAttribute("memberinfo")).getId());
+//			}
+			return result;
+
+		}
 
 	//수정할 댓글 내용 가져오기
 	@RequestMapping("/getrepl.do")

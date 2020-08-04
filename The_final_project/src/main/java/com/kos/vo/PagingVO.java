@@ -13,14 +13,34 @@ public class PagingVO {
 	private int cntPage=5; 			// 보여질 페이징 수
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
 	private String searchword="";
+	private int boardno;
+	private String b_boardname;
 
 	// gettger setter 
 	 
+
+
+
+	public String getB_boardname() {
+		return b_boardname;
+	}
+
+	public void setB_boardname(String b_boardname) {
+		this.b_boardname = b_boardname;
+	}
+
 	public PagingVO(){
 		
 	}  
 	
-	
+	public int getBoardno() {
+		return boardno;
+	}
+
+
+	public void setBoardno(int boardno) {
+		this.boardno = boardno;
+	}
 	public String getSearchword() {
 		return searchword;
 	}
@@ -171,7 +191,7 @@ public class PagingVO {
 	// DB 쿼리에서 사용할 start, end값 계산
 	public void calcStartEnd(int nowPage, int cntPerPage) {
 		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage - 1);
+		setStart(getEnd() - cntPerPage + 1);
 	}
 
 }

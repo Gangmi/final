@@ -2,13 +2,18 @@ package com.kos.service;
 
 import java.util.List;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kos.dao.BoardDao;
 
 import com.kos.vo.BoardVO;
+import com.kos.vo.PagingVO;
 import com.kos.vo.PlantVO;
 import com.kos.vo.UploadImageVO;
 
@@ -51,10 +56,7 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
-	public List<BoardVO> viewBoardRepl(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return dao.viewBoardRepl(vo);
-	}
+	
 
 	@Override
 	public int updateBoard(BoardVO vo) {
@@ -84,8 +86,25 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	public BoardVO getRepl(BoardVO vo) {
-		System.out.println("service");
+
 		return dao.getRepl(vo);
 	}
+	
+	
+	
+	public List<BoardVO> viewBoardRepl(BoardVO vo) {
+		//댓글의 총 갯수를 가져온다.
+		int replnum = dao.viewBoardReplCount(vo);
+		//댓글 페이징할떄 필요한 값들을 넣어준다.
+		
+		PagingVO page = new PagingVO(replnum, vo.getNowpage(), vo.getViewing_replcount());
+		//게시판 이름과 게시글번호 
+		page.setB_boardname(vo.getB_boardname());
+		page.setBoardno(vo.getBoardno());
+		List<BoardVO> result = dao.viewBoardRepl(page);
+		result.get(0).setNowpage(page.getLastPage());//페이징 버튼 만들 떄 필요
+		return result;
+	}
+	
 
 }

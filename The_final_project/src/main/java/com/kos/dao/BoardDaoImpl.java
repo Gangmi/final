@@ -114,10 +114,13 @@ public class BoardDaoImpl implements BoardDao {
 		System.out.println("board.writerepl");
 		mybatis.insert("board.writerepl", vo);
 	}
+	public int viewBoardReplCount(BoardVO vo) {
+		return mybatis.selectOne("board.viewBoardReplCount", vo);
+	}
 	//댓글 가져오기
-	public List<BoardVO> viewBoardRepl(BoardVO vo) {
-		// TODO Auto-generated method stub
-
+	public List<BoardVO> viewBoardRepl(PagingVO vo) {
+		System.out.println(vo.getStart()+"!");
+		System.out.println(vo.getEnd());
 		return mybatis.selectList("board.viewBoardRepl", vo);
 	}
 	//댓글삭제
@@ -132,9 +135,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	public BoardVO getRepl(BoardVO vo) {
-		System.out.println("board.getRepl");
 		BoardVO result = mybatis.selectOne("board.getRepl", vo);
-		System.out.println(result+"|||||||||||dapImpl");
 		return result;
 
 	}

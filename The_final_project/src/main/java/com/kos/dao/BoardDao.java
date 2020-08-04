@@ -3,6 +3,7 @@ package com.kos.dao;
 import java.util.List;
 
 import com.kos.vo.BoardVO;
+import com.kos.vo.PagingVO;
 import com.kos.vo.UploadImageVO;
 
 public interface BoardDao {
@@ -21,11 +22,13 @@ public interface BoardDao {
 
 	public void writeRepl(BoardVO vo);
 
-	public List<BoardVO> viewBoardRepl(BoardVO vo);
+	public List<BoardVO> viewBoardRepl(PagingVO page);
 
 	public void delRepl(BoardVO vo);
 
 	public void modifyRepl(BoardVO vo);
 
 	public BoardVO getRepl(BoardVO vo);
+
+	public int viewBoardReplCount(BoardVO vo);
 }

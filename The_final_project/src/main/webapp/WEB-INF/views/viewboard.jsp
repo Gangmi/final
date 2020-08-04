@@ -1,3 +1,4 @@
+<%@page import="javax.swing.text.Document"%>
 <%@page import="com.kos.vo.MemberVO"%>
 <%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -60,7 +61,7 @@ if (session.getAttribute("memberinfo") != null) {
 						<%=result.getBoardView()%></p>
 					<div id="replinfosec">
 
-						<i class="fas fa-comment"></i> <span>댓글</span> <br> <br>
+						<i class="fas fa-comment"></i> <span>댓글</span>    <span id="replNumber"></span> <br> <br>
 
 
 						<i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span><%=result.getBoardLike()%></span>&nbsp;&nbsp;
@@ -132,7 +133,7 @@ if (session.getAttribute("memberinfo") != null) {
 	<!-- 댓글 입력창 -->
    <form id="commentInsertForm" name="commentInsertForm" >
     <div class="row d-flex justify-content-center mt-100 mb-100">
-      
+      	<!-- 게시판이름과 게시판글번호 를 폼으로 넘김 -->
  		<input type="hidden" name="b_boardname" value="<%=boardname%>">
  		<input type="hidden" name="boardno" value="<%=boardno%>">     
         <div class="col-lg-6">
@@ -163,7 +164,9 @@ if (session.getAttribute("memberinfo") != null) {
       </div>
 	</div>
 	<!-- 댓글 끝 -->
-
+	<div class="replpaging" id="replpaging">
+			
+	</div> 
 		
 	</section>
 	
