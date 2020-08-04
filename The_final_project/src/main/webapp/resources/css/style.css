@@ -395,8 +395,11 @@ ul, ol {
 }
 .menu-item .nav-menu {
 	text-align: right;
+	
 }
+/*전체 네비게이션바 위치 조정하는곳  */
 .menu-item .nav-menu .mainmenu {
+	margin-top:35px;
 	display: inline-block;
 }
 .menu-item .nav-menu .mainmenu li {
