@@ -43,6 +43,10 @@ public class BoardController {
 	public ModelAndView getBoardList(ModelAndView mv, BoardVO vo) {
 		// 게시판 글을 읽어오기 위한 코딩
 		System.out.println(vo.getSearchword()+"emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
+		
+		//해당하는게시판 공지사항 불러오기
+		
+		//게시판 내용 불러오기
 		List<BoardVO> result = service.getBoardList(vo);
 		
 		//검색어 검색이 있다면
