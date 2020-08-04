@@ -48,6 +48,7 @@
         /*항목 전체 div  */
         .main_btn{
         margin-top: 100px;
+        height: 800px;
        
         }
 
@@ -112,20 +113,22 @@
        
         
             <div class="free">
-                <button>
+                <button  onclick="location.href='/updateAccount.do'">
                     <img src="/resources/old/img/free_grey.png" alt="free">
                 </button>
                 <p><a href="/updateAccount.do">회원 정보 수정</a></p>
             </div>
 
             <div class="tip">
-                <button>
-                    <img src="/resources/old/img/tip_grey.png" alt="tip">
+                <button onclick="location.href='/farmer-application.do'">
+        
+                  <img src="/resources/old/img/tip_grey.png" alt="tip"/>
+                    
                 </button>
                 <p><a href="/farmer-application.do">농부신청 관리</a></p>
             </div>
 
-            <div class="share">
+            <div class="share" onclick="location.href='/smartfarm-application.do'">
                 <button>
                     <img src="/resources/old/img/share_grey.png" alt="share">
                 </button>

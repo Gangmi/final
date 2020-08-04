@@ -127,7 +127,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			%>
 			
 			
-				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=nowstartpage-1%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
+				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
 			<%
 			
 			} 

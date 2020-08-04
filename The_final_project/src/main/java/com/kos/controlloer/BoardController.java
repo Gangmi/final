@@ -403,7 +403,24 @@ public class BoardController {
 		return null;
 	}
 	
+
+	//글에 좋아요 를 눌렀을 때
+	@RequestMapping(value= "/likebad.do")
+	@ResponseBody
+	public String likeBad(BoardVO vo) {
+		
+		//실행된 결과 확인
+		if(service.likeOrBad(vo)) {
+			return "success";
+			
+			
+			
+		}else {
+			return "false";
+		}
+			
 	
+	}
 	
 	
 	

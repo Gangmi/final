@@ -192,7 +192,7 @@
 	
 	<!-- 좋아요 싫어요를 했다는 표시  -->
 	<insert id="insertLikeBad" parameterType="board">
-	insert into likebad_manage (boardno,writeno,id) values(${b_boardname},${boardno},#{id})
+	insert into likebad_manage (boardno,writeno,id,likebad) values(${b_boardname},${boardno},#{id},#{confirmnum})
 	
 	
 	

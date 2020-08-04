@@ -95,6 +95,7 @@
                 	</div>
                     <button class="btn btn-success" id = "searchMyWeather">우리동네 날씨</button><br/>
             </div>
+            <hr/>
             
             
 			

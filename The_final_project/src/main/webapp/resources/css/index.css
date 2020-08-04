@@ -64,6 +64,13 @@ margin-left: 50px;
 @media only screen and (max-width:1202px){
 	
 	
+	#allboards{
+	
+	height: 2000px !important;
+	text-align: center;
+	}
+	
+	
 	/*모든 div에 추가  */
    #allboards div div{
    margin-left: auto ;
@@ -108,7 +115,7 @@ margin-left: 50px;
 
 #allboards{
 	
-	height: 1500px;
+	height: 1300px;
 	text-align: center;
 	
 }
