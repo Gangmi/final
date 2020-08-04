@@ -29,7 +29,6 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 
 	<!-- Hero Section Begin -->
-	
 
 	<section class="hero-section">
 		<div class="container">
@@ -40,7 +39,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			if(request.getAttribute("searchword")!=null){
 				String searchword=(String)request.getAttribute("searchword");
 			%>
-			<h4><%=searchword%></h4>
+			<h4>"<%=searchword%>" 검색결과</h4>
 			<%
 			} 
 			%>
@@ -60,6 +59,36 @@ String boardname = (String) request.getAttribute("b_boardname");
 					</thead>
 					
 					<tbody>
+					<%
+						if ((Integer)request.getAttribute("confirm")==1) {
+							
+							List<BoardVO> notice =(List<BoardVO>) request.getAttribute("notice");
+							
+							
+							for (BoardVO vo : notice) {
+							// 시간 나누기
+							String[] dat=vo.getRegdate().split(" ");
+							vo.setRegdate(dat[0]);
+					%>
+						<tr>
+							<td width="130" id="bno">공지</td>
+
+
+							<td width="659" class="titles"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>">[공지] <%=vo.getTitle()%></a></td>
+
+							<td width="180"><%=vo.getNickname()%></td>
+							<td width="180"><%=vo.getRegdate()%></td>
+							<td width="188"><%=vo.getBoardView()%></td>
+						</tr>
+					<%
+							}	
+					%>
+					<%
+						}
+					%>
+					
+					
+					
 					<%
 						if ((Integer)request.getAttribute("confirm")==1) {
 							
@@ -85,11 +114,9 @@ String boardname = (String) request.getAttribute("b_boardname");
 							}	
 					%>
 					<%
-						}else{
-					%>
-					<%
 						}
 					%>
+					
 					
 					
 					</tbody>
@@ -99,26 +126,45 @@ String boardname = (String) request.getAttribute("b_boardname");
 			<!--페이징 부분  -->
 			<div class="container" id="pager">
 			
+			
 			<%if((Integer)request.getAttribute("confirm")==1){ 
 				List<BoardVO> result =(List<BoardVO>)request.getAttribute("boardlist");
+				//현재 블록 정보를 가져옴(paging VO에서 계산된것을 Boardvo에 넣어서 가져왔음)	
+				int nowblock=result.get(0).getBlock();
+				//현재 화면에서 클라이언트가 보는 마지막 페이지
+				int nowlastpage=nowblock*5;
+				//현재 화면에서 클라이언트가 보는 첫페이지
+				int nowstartpage=nowlastpage-5+1;
 				
-				int pagelimit=0;
-				
-				//만약 전체페이지가 10보다 크면
-				if(result.get(0).getNowpage()>10){
-					//보여지는 페이지를 10페이지로 제한
-					pagelimit=10;
-				}else{
-					//아니라면, 가져온 페이지로 끝페이지를 지정
-					pagelimit=result.get(0).getNowpage();
+				//만약 현재 보이는 마지막 페이지가 총 페이지보다 크다면 (예를들면 현재 보이기로 예정된 페이지는 1블록이라서 5페이지 까지인데 , 3페이지까지밖에 없을 경우)
+				if(nowlastpage>result.get(0).getNowpage()){
+					//총페이지를 현재 보이는 최종 페이지로 결정한다.
+					nowlastpage=result.get(0).getNowpage();
 				}
-				for(int i=1; i<=pagelimit;i++){
+			%>
+			<!--만약 블록이 1보다 크다면  -->
+			<%if(nowblock>1){ %>
+			<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=nowstartpage-1%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button">이전으로</a>
+			<%} %>	
+			
+			<%	
+				for(int i=nowstartpage; i<=nowlastpage;i++){
+					//보여줄페이지 * 현재블럭수=> 현재의 마지막페이지
+					
+					//현재 마지막 페이지-보여주는 페이지+1 = 현재 블럭의 시작페이지
 			%>
 			
-				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
+			
+				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=nowstartpage-1%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
 			<%
-				} 
-			%>	
+			
+			} 
+			%>
+			<!-- 만약 전체 마지막 페이지가 현재 마지막 페이지보다 클 때  -->
+			<%if(result.get(0).getNowpage()>nowlastpage){ %>	
+			<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=nowlastpage+1%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button">다음으로</a>
+			<%} %>
+			
 			<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=result.get(0).getNowpage()%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button">끝으로</a>
 			<% 	
 				}

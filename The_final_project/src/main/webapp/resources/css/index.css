@@ -48,6 +48,7 @@ margin-left: 50px;
 	margin-top: 50px;
 	height: 500px;
 	display: block;
+	
 } 
 
 .downboards div{
@@ -55,23 +56,61 @@ margin-left: 50px;
 	width: 500px;
 	
 	margin-left: 45px;
-	margin-top: 50px;
+	
 	
 	
 }
+/*반응형  */
 @media only screen and (max-width:1202px){
 	
 	
-	
+	/*모든 div에 추가  */
    #allboards div div{
-   	text-align: center;
+   margin-left: auto ;
+   margin-right: auto ;
+   
+   float: none;
+   
+
+   
    }
+   /*위쪽 div에 추가  */
+   .upboards{
+   margin-bottom: 50px;
+   height: auto;
+   
+   }
+   
+   
+	.upboards div{
+	 margin-bottom: 50px;
+	
+	
+	}
+	
+	.downboards{
+	margin-bottom: 50px;
+	 height: auto;
+	
+	}
+	
+	.downboards div{
+	margin-bottom: 50px;
+	display: block;
+	
+	}
+   	#allboards{
+   	height: 2000px;
+   	}
+
+
+   
             
 }
 
 #allboards{
 	
-	height: 1000px;
+	height: 1500px;
 	text-align: center;
 	
 }
@@ -97,7 +136,9 @@ td a {
 	color: black;
 	 
 }
-/*반응형  */
+.spad{
+	padding-top: 0px !important;
+}
 
 
 

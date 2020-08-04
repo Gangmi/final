@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	getCommentList();
+	getPagingButton();
+	
+	function getPagingButton(){
+		
+	}
 	//댓글 입력을 누르면
 	$("#commentInsertBtn").click(function(){
 		 $.ajax({
@@ -12,7 +17,7 @@ $(document).ready(function() {
 		           
 		        },
 		        error:function(request,status,error){
-		            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		            alert("로그인 후 이용 가능합니다.");
 		       }
 		        
 		    });
@@ -162,18 +167,17 @@ $(document).ready(function() {
 		
 	});
 	
-	//댓글 목록 불러오기
-	function getCommentList(){
+	
+	$(document).on("click",".replpaginhbtn",function(evt){
+		var string=$(this).attr("id");
+		var replno=string.replace(/[^0-9]/g,'');
+		var html="";
+		var userid = $('#confirmsession').attr('value');
 		$.ajax({
 			type:'POST',
-			url : "/viewrepl.do",
-			data:$('#commentInsertForm').serialize(),
+			url : "/viewreplpage.do",
+			data:$('#commentInsertForm').serialize()+"&nowpage="+replno,
 			success : function(data){
-				var html =''; 
-				var cCnt = data.length;
-				var userid = $('#confirmsession').attr('value');
-				
-				
 				if(data.length>0){
 					
 					for(i=0; i<data.length; i++){
@@ -189,12 +193,64 @@ $(document).ready(function() {
 						if(userid == data[i].id){html+=" <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>"};
 						html+="						</div>"
 						html+="                </div>";
-						html+="            </div> <!-- Comment Row --> ";              
-						html+="        </div> <!-- Card -->";
-
-					
+						html+="            </div> <!-- Comment Row --> ";    
+						html+="        </div> <!-- Card -->";	
 						
 					}
+				$("#repl").html(html);
+			}
+			}
+			,error:function(request,status,error){
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+		});
+	});
+	
+	//댓글 목록 불러오기
+	function getCommentList(){
+		$.ajax({
+			type:'POST',
+			url : "/viewrepl.do",
+			data:$('#commentInsertForm').serialize(),
+			success : function(data){
+				var html =''; 
+				var html2='';
+				var cCnt = data.length;
+				var userid = $('#confirmsession').attr('value');//화면에 저장되어있는 아이디를 가져옴
+				
+				
+				if(data.length>0){
+					
+					for(i=0; i<data.length; i++){
+
+						html+="        <div class='contain comment-widgets' id="+data[i].replno+">";
+						html+="            <!-- Comment Row -->";
+						html+="            <div class='d-flex flex-row comment-row m-t-0'>";
+						html+="                <div class='p-2'><img src='https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg' alt='user' width='40' class='rounded-circle'></div>";
+						html+="                <div class='comment-text w-100'>";
+						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data[i].contents+" </span>";
+						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span> ";
+						//접속한 유저와 같아야 수정 취소 버튼이 나온다.	
+						if(userid == data[i].id){html+=" <button type='button' id=modify"+data[i].replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data[i].replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>"}else{};
+						html+="						</div>"
+						html+="                </div>";
+						html+="            </div> <!-- Comment Row --> ";    
+						html+="        </div> <!-- Card -->";	
+						
+					}
+					
+					var pagelimit=0;
+					if(data[0].nowpage>10){
+						pagelimit=10;
+					}else{
+						pagelimit=data[0].nowpage;
+					}
+					for(var i=1; i<=data[0].nowpage;i++){
+				
+					html2+="<a class='btn btn-info replpaginhbtn' id='pages"+i+"' role='button'>"+i+"</a>";
+					} 	
+					html2+="<a class='btn btn-info replpaginhbtn' id='last"+pagelimit+"' role='button'>끝으로</a>";
+				
 					
 				}else{
 					html+="        <div class='comment-widgets' >";
@@ -208,11 +264,13 @@ $(document).ready(function() {
 					html+="            </div> <!-- Comment Row --> ";              
 					html+="        </div> <!-- Card -->"; 
 				}
-				$("#cCnt").html(cCnt);
+				$("#replNumber").html(cCnt);
 	            $("#repl").html(html);
+	            $("#replpaging").html(html2);
 			},
 			error:function(request,status,error){
-	            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//	            alert($('#commentInsertForm').serialize());
 	       }
 		
 		});

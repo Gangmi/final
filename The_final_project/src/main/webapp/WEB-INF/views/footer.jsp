@@ -15,7 +15,7 @@
 								<a href="#"> <img src="img/footer-logo.png" alt="">
 								</a>
 							</div>
-							<p>
+							 <p>
 								sns를 통해 여름지기의 정보들을 공유 해 보세요!
 							</p>
 							<div class="fa-social">
@@ -24,7 +24,7 @@
 									class="fa fa-tripadvisor"></i></a> <a href="#"><i
 									class="fa fa-instagram"></i></a> <a href="#"><i
 									class="fa fa-youtube-play"></i></a>
-							</div>
+							</div> 
 						</div>
 					</div>
 					<div class="col-lg-3 offset-lg-1">

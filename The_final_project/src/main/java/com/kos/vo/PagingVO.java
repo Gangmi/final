@@ -13,18 +13,56 @@ public class PagingVO {
 	private int cntPage=5; 			// 보여질 페이징 수
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
 	private String searchword="";
-	
+
+	private int boardno;
+	private String b_boardname;
+
+	public int getTotalblock() {
+		return totalblock;
+	}
+
+	public void setTotalblock(int totalblock) {
+		this.totalblock = totalblock;
+	}
+
+	public int getNowblock() {
+		return nowblock;
+	}
+
+	public void setNowblock(int nowblock) {
+		this.nowblock = nowblock;
+	}
+
 	private int totalblock;
 	private int nowblock;
 	
 
+
 	// gettger setter 
 	 
+
+
+
+	public String getB_boardname() {
+		return b_boardname;
+	}
+
+	public void setB_boardname(String b_boardname) {
+		this.b_boardname = b_boardname;
+	}
+
 	public PagingVO(){
 		
 	}  
 	
-	
+	public int getBoardno() {
+		return boardno;
+	}
+
+
+	public void setBoardno(int boardno) {
+		this.boardno = boardno;
+	}
 	public String getSearchword() {
 		return searchword;
 	}
@@ -123,7 +161,7 @@ public class PagingVO {
 		this.cntPerPage = cntPerPage;
 
 		calcLastPage(getTotal(), getCntPerPage());
-		// calcStartEndPage(getNowpage(), cntPage);
+		calcStartEndPage(getNowpage(), cntPage);
 		calcStartEnd(getNowpage(), getCntPerPage());
 	}
 	// DB 쿼리에서 사용할 start, end값 계산
@@ -139,7 +177,17 @@ public class PagingVO {
 
 	// 보여지기 시작페이지 수 계산 [1] [2] [3] [4] [5] >>
 	public void calcStartEndPage(int nowPage, int cntPage) {
-	//현재 페이지와 블록당보여줄 페이지수 전체 카운트, 페이지당 보여줄 갯수
+		//현재 페이지와 블록당보여줄 페이지수 전체 카운트, 페이지당 보여줄 갯수
+	
+		//전체 블록 계산
+		totalblock=(int)Math.ceil(((double)lastPage/(double)cntPage));
+		
+		//현재 페이지를 보여줄 페이지로 나눈 값을 올림하면 현재 블록
+		nowblock=(int)Math.ceil((double)nowPage/(double)cntPage);
+	
+	
+	}
+
 	
 		
 		
@@ -169,9 +217,6 @@ public class PagingVO {
 		
 		
 		
-		
-	}
-
 	
 
 }

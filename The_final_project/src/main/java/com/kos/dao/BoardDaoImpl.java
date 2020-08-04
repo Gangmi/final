@@ -48,6 +48,7 @@ public class BoardDaoImpl implements BoardDao {
 		// nowpage멤버변수를 이용해서 total page를 저장
 		if (result.size() > 0) {
 			result.get(0).setNowpage(page.getLastPage());
+			result.get(0).setBlock(page.getNowblock());
 		}
 
 		return result;
@@ -67,7 +68,7 @@ public class BoardDaoImpl implements BoardDao {
 
 		// 게시판 이름 가져오기
 		hs.put("boardname", vo.getB_boardname());
-
+		System.out.println(vo.getB_boardname());
 		// 저장될 글번호 가져오기
 		int writeno = mybatis.selectOne("board.getNextNum", hs);
 		hs.put("writeno", writeno);
@@ -116,30 +117,26 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	//댓글 작성
 	public void writeRepl(BoardVO vo) {
-		System.out.println("board.writerepl");
 		mybatis.insert("board.writerepl", vo);
 	}
+	public int viewBoardReplCount(BoardVO vo) {
+		return mybatis.selectOne("board.viewBoardReplCount", vo);
+	}
 	//댓글 가져오기
-	public List<BoardVO> viewBoardRepl(BoardVO vo) {
-		// TODO Auto-generated method stub
-
+	public List<BoardVO> viewBoardRepl(PagingVO vo) {
 		return mybatis.selectList("board.viewBoardRepl", vo);
 	}
 	//댓글삭제
 	public void delRepl(BoardVO vo) {
-		System.out.println("board.delRepl");
 		mybatis.delete("board.deleterepl2", vo);
 	}
 	//댓글수정
 	public void modifyRepl(BoardVO vo) {
-		System.out.println("board.modifyRepl");
 		mybatis.update("board.modifyRepl", vo);
 	}
 
 	public BoardVO getRepl(BoardVO vo) {
-		System.out.println("board.getRepl");
 		BoardVO result = mybatis.selectOne("board.getRepl", vo);
-		System.out.println(result+"|||||||||||dapImpl");
 		return result;
 
 	}

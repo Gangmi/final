@@ -309,7 +309,9 @@
 	</section>
 	
 	<!-- About Us Section End -->
+	<div class="foot">
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=85ca856139e74206389aacd96ce85ab6&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){

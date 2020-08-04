@@ -133,3 +133,14 @@ body {
 .textarea {
     resize: none
 }
+
+.replpaging{
+	text-align: center;
+}
+.answer{
+	float: right;
+}
+
+.question{
+	display: inline;
+}
