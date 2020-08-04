@@ -199,7 +199,7 @@ public class BoardController {
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);
-		vo.setViewing_count(10);
+		vo.setViewing_count(8);
 		
 		
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
@@ -265,7 +265,7 @@ public class BoardController {
 
 
 	}
-	//댓글 목록
+	//댓글 목록 
 		@RequestMapping("/viewreplpage.do")
 		@ResponseBody
 		public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {

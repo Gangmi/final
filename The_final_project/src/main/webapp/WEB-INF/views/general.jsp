@@ -29,7 +29,6 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 
 	<!-- Hero Section Begin -->
-	
 
 	<section class="hero-section">
 		<div class="container">
@@ -40,7 +39,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			if(request.getAttribute("searchword")!=null){
 				String searchword=(String)request.getAttribute("searchword");
 			%>
-			<h4><%=searchword%></h4>
+			<h4>"<%=searchword%>" 검색결과</h4>
 			<%
 			} 
 			%>
