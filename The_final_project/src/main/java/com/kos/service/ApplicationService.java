@@ -41,4 +41,8 @@ public class ApplicationService {
 		}
 		return applicationVO;
 	}
+	
+	public int SmartFarApplicatingTotalCount() {
+		return applicationDao.smartFarmApplicationSelectCount();
+	}
 }

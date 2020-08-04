@@ -28,4 +28,7 @@ public class ApplicationDao {
 	public List<SmartFarmApplicationVO> smartFarmApplicationSelect(SmartFarmApplicationVO applicationVO){
 		return mybatis.selectList("Aplication.SmartFarmSelect", applicationVO);
 	}
+	public int smartFarmApplicationSelectCount() {
+		return mybatis.selectOne("Aplication.SmartFarmSelectTotalCount");
+	}
 }

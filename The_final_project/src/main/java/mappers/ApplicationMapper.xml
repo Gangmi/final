@@ -32,4 +32,8 @@
 		</if>
 		order by apply_date DESC
 	</select>
+	
+	<select id="SmartFarmSelectTotalCount" resultType="int">
+		select count(*) count FROM smart_farm_certificate	
+	</select>
 </mapper>

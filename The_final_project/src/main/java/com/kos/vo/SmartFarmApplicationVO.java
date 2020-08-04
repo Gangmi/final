@@ -6,6 +6,13 @@ public class SmartFarmApplicationVO {
 	private String applyDate;
 	private String startDate;
 	private String dueDate;
+	private String approveDate;
+	public String getApproveDate() {
+		return approveDate;
+	}
+	public void setApproveDate(String approveDate) {
+		this.approveDate = approveDate;
+	}
 	public int getNo() {
 		return no;
 	}
