@@ -49,7 +49,7 @@
 				<form action="/write.do" method="post"
 					id="frm" enctype="multipart/form-data">
 					<%-- <input type="hidden" name="boardname" value="<%=boardname%>"/> --%>
-					<input type="hidden" id="form-boarname" name="b_boardname"/>
+					<input type="hidden" id="form-boarname" name="b_boardname" value="<%=boardname%>"/>
 					<label for="title">제목</label>
 					<input type="text" name="title" id="title"/>
 					<textarea name="contents" id="editor"></textarea>
