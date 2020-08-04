@@ -144,7 +144,10 @@ td a {
 .spad{
 	padding-top: 0px !important;
 }
-
+#divide{
+	margin-top: 90px;
+	margin-bottom: 90px;
+}
 
 
 

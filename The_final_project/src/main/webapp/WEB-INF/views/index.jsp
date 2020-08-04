@@ -207,6 +207,7 @@
 	</div>
 	
 	<div class="container downboards">
+	<hr id="divide"/>
 			<div class="freeboard">
 			<h2>농사in 게시판</h2>
 			<table class="table table-hover table-condensed">
@@ -251,10 +252,15 @@
 			<div id="more">
 						<a href="/callboard.do?b_boardname=nongsain">더보기+</a>
 					</div>
+					
+					
 			
 	
 		</div>
+		
+		
 		<div class="tipboard">
+		
 			<h2>분양게시판</h2>
 			<table class="table table-hover table-condensed">
 					<thead>
