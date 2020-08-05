@@ -21,25 +21,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 <script type="text/javascript">
 
-// if (!event.target.matches('.dropbtn')) {
 
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-
-/* function myFunction(evt) {
-	alert(evt)
-    var array=document.getElementsByClassName("dropdown-content");
-  
-    
-//     .classList.toggle("show");
-} */
 	
 
 </script>
@@ -51,7 +33,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<input type="hidden" id="confirmsession" value="<%=session.getAttribute("memberinfo")%>"></input>
 	<input type="hidden" id="dropopen" value="false">
-
+	
 
 
 
@@ -129,7 +111,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 					 		 <a  class="dropbtn"><%=vo.getNickname()%></a>
 							  <div id="myDropdown" class="dropdown-content">
 							    <a href="#"><%=vo.getNickname()%></a>
-							    <a href="#">Link 2</a>
+							    <a href="#" class="oneonone"><%=vo.getId()%></a>
 							    <a href="#">Link 3</a>
 							  </div>
 							</div>

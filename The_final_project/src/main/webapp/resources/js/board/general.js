@@ -34,6 +34,10 @@ $(document).ready(function (event) {
 
 		
 	})
+	//대화
+	$('.oneonone').click(function(){
+		requestChat($(this).text());
+	})
 	
 	
 	
