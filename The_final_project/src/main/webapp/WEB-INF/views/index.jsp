@@ -44,7 +44,7 @@
 
 				<div class="col-lg-6">
 					<div class="hero-text">
-						<span>종합 농업 커뮤니티</span>
+						<h3>종합 농업 커뮤니티</h3>
 						<h1>여름지기  </h1>
 						
 						<!--
@@ -95,6 +95,7 @@
                 	</div>
                     <button class="btn btn-success" id = "searchMyWeather">우리동네 날씨</button><br/>
             </div>
+            <hr/>
             
             
 			
@@ -206,6 +207,7 @@
 	</div>
 	
 	<div class="container downboards">
+	<hr id="divide"/>
 			<div class="freeboard">
 			<h2>농사in 게시판</h2>
 			<table class="table table-hover table-condensed">
@@ -250,10 +252,15 @@
 			<div id="more">
 						<a href="/callboard.do?b_boardname=nongsain">더보기+</a>
 					</div>
+					
+					
 			
 	
 		</div>
+		
+		
 		<div class="tipboard">
+		
 			<h2>분양게시판</h2>
 			<table class="table table-hover table-condensed">
 					<thead>

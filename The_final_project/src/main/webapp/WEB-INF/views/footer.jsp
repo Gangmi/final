@@ -12,19 +12,10 @@
 					<div class="col-lg-4">
 						<div class="ft-about">
 							<div class="logo">
-								<a href="#"> <img src="img/footer-logo.png" alt="">
+								<a href="#"> <img src="/resources/img/mainlogo.png" alt="">
 								</a>
 							</div>
-							<!-- <p>
-								sns를 통해 여름지기의 정보들을 공유 해 보세요!
-							</p>
-							<div class="fa-social">
-								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-									class="fa fa-twitter"></i></a> <a href="#"><i
-									class="fa fa-tripadvisor"></i></a> <a href="#"><i
-									class="fa fa-instagram"></i></a> <a href="#"><i
-									class="fa fa-youtube-play"></i></a>
-							</div> -->
+							
 						</div>
 					</div>
 					<div class="col-lg-3 offset-lg-1">
@@ -100,5 +91,25 @@
 	<script src="/resources/js/jquery.slicknav.js"></script>
 	<script src="/resources/js/owl.carousel.min.js"></script>
 	<script src="/resources/js/main.js"></script>
+	<script type="text/javascript">
+	var url = "ws://192.168.0.11:8080/chat/${sessionScope.memberinfo.id}";
+	var ws;
+
+		 if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
+             console.log("WebSocket is already opened.");
+		 }else{
+			 ws = new WebSocket(url);
+		}
+		 ws.onopen = function(e) {
+	            console.log(e);
+	            console.log("소켓 접속 성공");
+	        }
+		 ws.onclose = function(e) {
+	            if (e.type == "close") {
+	            	console.log("소켓 종료");
+	            }
+	        }
+
+	</script>
 </body>
 </html>

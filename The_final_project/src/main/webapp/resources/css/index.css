@@ -30,7 +30,7 @@
 .upboards div{
 	float:left;
 	width: 500px;
-	margin-left: 45px;
+	
 	
 	
 	
@@ -55,13 +55,28 @@ margin-left: 50px;
 	float:left;
 	width: 500px;
 	
-	margin-left: 45px;
+	
 	
 	
 	
 }
+/*게시판 위치 세부 조정  */
+.freeboard{
+	margin-left: 10px;
+}
+.tipboard{
+	
+	margin-left: 125px;
+}
 /*반응형  */
 @media only screen and (max-width:1202px){
+	
+	
+	#allboards{
+	
+	height: 2000px !important;
+	text-align: center;
+	}
 	
 	
 	/*모든 div에 추가  */
@@ -105,10 +120,12 @@ margin-left: 50px;
    
             
 }
-
+.hero-text h4{
+	font-family: 
+}
 #allboards{
 	
-	height: 1500px;
+	height: 1300px;
 	text-align: center;
 	
 }
@@ -137,7 +154,10 @@ td a {
 .spad{
 	padding-top: 0px !important;
 }
-
+#divide{
+	margin-top: 90px;
+	margin-bottom: 90px;
+}
 
 
 

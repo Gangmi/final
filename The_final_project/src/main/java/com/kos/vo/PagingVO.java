@@ -13,6 +13,25 @@ public class PagingVO {
 	private int cntPage=5; 			// 보여질 페이징 수
 	private String boardname;		// 페이지당 게시물 검색시 필요한 게시판 이름
 	private String searchword="";
+	private String plantcate;
+	private String planttitles;
+	
+	
+	public String getPlantcate() {
+		return plantcate;
+	}
+
+	public void setPlantcate(String plantcate) {
+		this.plantcate = plantcate;
+	}
+
+	public String getPlanttitles() {
+		return planttitles;
+	}
+
+	public void setPlanttitles(String planttitles) {
+		this.planttitles = planttitles;
+	}
 
 	private int boardno;
 	private String b_boardname;

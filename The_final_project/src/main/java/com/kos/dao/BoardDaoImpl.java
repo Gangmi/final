@@ -309,6 +309,7 @@ public class BoardDaoImpl implements BoardDao {
 		//업데이트 되었다면, 해당 아이디가 좋아요 / 싫어요를 눌렀다는 db에 insert
 		}else {
 			vo.setB_boardname(BoardVO.getBoardnoByBoardname(vo));
+			
 			int updateManage=mybatis.insert("board.insertLikeBad", vo);
 			
 			//만약 매니지 테이블에 insert실패시
