@@ -28,10 +28,17 @@ td a:hover{
 	color: black;
 	text-decoration: underline;
 }
+.newicon{
+	width: 15px;
+	height: 15px;
+}
 
 #bno {
 	color: gray;
 	
+}
+#writeboard{
+	margin-bottom: 10px;
 }
 
 #boardtable th{

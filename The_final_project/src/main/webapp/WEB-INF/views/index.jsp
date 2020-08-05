@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.kos.vo.BoardVO"%>
+<%@page import="java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -109,6 +110,7 @@
 		
 			<div class="freeboard">
 				<h2>자유게시판</h2>
+			
 				<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
@@ -123,8 +125,6 @@
 						if((Integer)request.getAttribute("free_boardcon")!=0){
 							
 							List<BoardVO> result =(List<BoardVO>)request.getAttribute("free_board");
-							
-							
 							for (BoardVO vo : result) {
 							// 시간 나누기
 							String[] dat=vo.getRegdate().split(" ");
@@ -135,7 +135,10 @@
 							<td  id="bno"><%=vo.getBoardno()%></td>
 
 
-							<td class="titles"><a href="viewboard.do?b_boardname=free_board&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+							<td class="titles"><a href="viewboard.do?b_boardname=free_board&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a>
+							
+							
+							</td>
 
 							<td ><%=vo.getNickname()%></td>
 							<td ><%=vo.getRegdate()%></td>
@@ -157,6 +160,7 @@
 		
 			<div class="tipboard">
 				<h2>팁게시판</h2>
+				
 				<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
