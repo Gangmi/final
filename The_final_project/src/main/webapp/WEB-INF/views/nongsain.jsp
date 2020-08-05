@@ -16,6 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/board/boardrepl.js"></script>
+<script src="/resources/js/board/nongsain.js"></script>
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
 <link rel="stylesheet" href="/resources/css/boardcss/repl.css">
@@ -54,6 +55,7 @@ if (session.getAttribute("memberinfo") != null) {
 				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
 				<input type="hidden" id="bname"
 					value="<%=(String) request.getAttribute("boardname")%>">
+				<input type="hidden" id="boardno" value="<%=result.getNickname()%>">
 				<!-- 게시판이름  -->
 				<a href=callboard.do?b_boardname=free_board><%=BoardVO.changeword((String) request.getAttribute("boardname"))%>></a>
 
@@ -87,23 +89,13 @@ if (session.getAttribute("memberinfo") != null) {
 			<div class=container id=contents>
 				<%=result.getContents()%>
 				
-				
 				<div  id="likebad">
 
-
-			<br>
-			<br>
-
-
-
-
-		</div>
-				
-				
+					<br>
+					<br>
+				</div>				
 			</div>
-			<!--하단 버튼 부분  -->
-			
-		
+			<!--하단 버튼 부분  -->		
 		</div>
 		
 		
@@ -118,7 +110,6 @@ if (session.getAttribute("memberinfo") != null) {
 			</div>
 		</div>
 
-<div>
 	
  	<%
 
@@ -130,46 +121,35 @@ if (session.getAttribute("memberinfo") != null) {
 	소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button>
 	</div>
 	
-	<%-- <div class="write-title">
-		<h3>글쓰기</h3>
-		<label>게시판 선택</label>
-			<div class="top_menu">
-				<div class="search_box">
-					<select id="boardselect">
-						<option value="free_board" <%if(boardname.equals("free_board")){ %>selected="selected"<%} %> >자유시게판</option>
-						<option value="tip_board"<%if(boardname.equals("tip_board")){ %>selected="selected"<%} %>>팁게시판</option>
-						<option value="parcel_board"<%if(boardname.equals("parcel_board")){ %>selected="selected"<%} %>>분양시게판</option>
-						<option <%if(boardname.equals("free_board")){ %>selected="selected"<%} %>>장터시게판</option>
-						<option value="nongsain" <%if(boardname.equals("nongsain")){ %>selected="selected"<%} %>>농사 IN 시게판</option>
-					</select>
-				</div>
-				
-			</div>
-		</div> --%>
 		<section class="whole-write-section">
-		
+		<input id="boardname" type="hidden" value=<%=boardname%>>
 		<div class="">
-			<div class="main_box">
+			<div class="main_box  writeAnswer">
 			
-				<form action="/write.do" method="post"
+				<form action="/writeAnswer.do" method="post"
 					id="frm" enctype="multipart/form-data">
 					<%-- <input type="hidden" name="boardname" value="<%=boardname%>"/> --%>
-					<input type="hidden" id="form-boarname" name="b_boardname" value="<%=boardname%>"/>
-					<label for="title">제목</label>
-					<input type="text" name="title" id="title"/>
+					<input type="hidden" id="form-boarname" name="b_boardname" value="in_repl"/>
+					<input type="hidden" name="boardno" value="<%=boardno%>">  
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript"> 
 					</script>
-					<button class="btn btn-success" type="submit" id="savebutton">확인</button>
-					<a href="callboard.do?b_boardname=<%=boardname%>" class="btn btn-primary" id="cancelwrite" role="button">취소</a>
+					<button class="btn btn-success" type="" id="">확인</button>
+					<a href="#" class="btn btn-primary" id="cancelwrite" role="button">취소</a>
 					
 				</form>
 			</div>
 		</div>
 	</section>
-	
-	<!-- 댓글 입력창 -->
-   <div class="container" id="board">
+ 	<%
+ 	List<BoardVO> answer = null;
+	if (request.getAttribute("Answer") != null) {
+		answer = (List<BoardVO>)request.getAttribute("Answer");
+	}
+	for(BoardVO vo:answer){
+	%> 
+	<!-- 답글 -->
+      <div class="container" id="board">
 			<!--현재 게시판 표시  -->
 			<div id="boardname" class="container">
 
@@ -188,36 +168,25 @@ if (session.getAttribute("memberinfo") != null) {
 			<!--글제목부분  -->
 			<div class="" id="title">
 
-				<h2>A      <%=result.getTitle()%></h2>
-				<input type="hidden" id="writer" value="<%=result.getId()%>">
-				<p class="nick"><%=result.getNickname()%></p>
-				<p class="regdate"><%=result.getRegdate()%></p>
+				<h2>A      </h2>
+				<input type="hidden" id="writer" value="<%=vo.getId()%>">
+				<p class="nick"><%=vo.getNickname()%></p>
+				<p class="regdate"><%=vo.getRegdate()%></p>
 
 			</div>
-
-
 			<!--글내용  -->
 			<div class=container id=contents>
-				<%=result.getContents()%>
-				
-				
+				<%=vo.getContents()%>
 				<div  id="likebad">
 
-
-			<br>
-			<br>
-
-
-
-
-		</div>
-				
-				
+						<br>
+						<br>
+				</div>				
 			</div>
 			<!--하단 버튼 부분  -->
-			
-		
+	
 		</div>
+		<%} %>
     </form>
     <!-- 댓글 입력 끝 -->
     <!--댓글목록 시작 -->

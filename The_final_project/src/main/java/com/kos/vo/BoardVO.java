@@ -219,6 +219,12 @@ public class BoardVO implements Board {
 			break;
 			case "tip_board" : result="2";
 			break;
+			case "parcel_board" : result="3";
+	        break;
+	        case "nongsain" : result="4";
+	        break;
+	        case "in_repl" : result="5";
+	        break;
 		}
 		return result;
 	}

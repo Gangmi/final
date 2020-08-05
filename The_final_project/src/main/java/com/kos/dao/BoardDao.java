@@ -36,5 +36,7 @@ public interface BoardDao {
 
 	public int updateLikeBad(BoardVO vo) throws Exception;
 
+	public List<BoardVO> AnswerList(BoardVO vo);
+
 
 }
