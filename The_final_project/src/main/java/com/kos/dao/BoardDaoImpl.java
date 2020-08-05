@@ -69,9 +69,11 @@ public class BoardDaoImpl implements BoardDao {
 		// 게시판 이름 가져오기
 		hs.put("boardname", vo.getB_boardname());
 		System.out.println(vo.getB_boardname());
+		
 		// 저장될 글번호 가져오기
 		int writeno = mybatis.selectOne("board.getNextNum", hs);
 		hs.put("writeno", writeno);
+				
 
 		// 저장상태가 바뀔 이미지가 있는지 확인
 		List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
@@ -83,9 +85,45 @@ public class BoardDaoImpl implements BoardDao {
 		// 글 저장
 		System.out.println(vo.getTitle());
 		System.out.println(vo.getContents());
-		mybatis.insert("board.writeboard", vo);
+		if(vo.getB_boardname().equals("in_repl")) {
+			mybatis.insert("board.writeAnswer", vo);
+		}else {
+			mybatis.insert("board.writeboard", vo);
+		}
+		
 
 	}
+//	@Override
+//	public void writeBoard(BoardVO vo) {
+//		HashMap hs = new HashMap();
+//
+//		// 게시판 분기 나누기
+//		int boardno = 0;
+//		if (vo.getB_boardname().equals("free_board")) {
+//			boardno = 1;
+//		}
+//		hs.put("boardno", boardno);
+//
+//		// 게시판 이름 가져오기
+//		hs.put("boardname", vo.getB_boardname());
+//		System.out.println(vo.getB_boardname());
+//		// 저장될 글번호 가져오기
+////		int writeno = mybatis.selectOne("board.getNextNum", hs); 필요 없다
+////		hs.put("writeno", writeno);
+//
+//		// 저장상태가 바뀔 이미지가 있는지 확인
+//		List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
+//
+//		// 저장상태 바꿀 이미지가 있다면, update함
+//		if (result.size() > 0) {
+//			mybatis.update("notemp", hs);
+//		}
+//		// 글 저장
+//		System.out.println(vo.getTitle());
+//		System.out.println(vo.getContents());
+//		mybatis.insert("board.writeboard", vo);
+//
+//	}
 
 	@Override
 	public BoardVO viewBoard(BoardVO vo) {
@@ -101,7 +139,10 @@ public class BoardDaoImpl implements BoardDao {
 	public void storeImage(UploadImageVO imgvo) {
 		HashMap hs = new HashMap();
 		hs.put("boardname", imgvo.getBoardname());
-		
+		System.out.println(imgvo.getBoardname()+"이미지저장");
+		System.out.println(imgvo.getBoardno()+"게시글번호");
+		System.out.println(imgvo.getWriteno()+"다음글번호");
+		System.out.println(imgvo.getImgName()+"이미지이름");
 		// 만약 글을 새로쓰는것이면, 다음에 해당 게시판에 들어갈 글번호 부르기
 		if (imgvo.getWriteno() == 0) {
 			int writeno = mybatis.selectOne("board.getNextNum", hs);
@@ -268,6 +309,7 @@ public class BoardDaoImpl implements BoardDao {
 		//업데이트 되었다면, 해당 아이디가 좋아요 / 싫어요를 눌렀다는 db에 insert
 		}else {
 			vo.setB_boardname(BoardVO.getBoardnoByBoardname(vo));
+			
 			int updateManage=mybatis.insert("board.insertLikeBad", vo);
 			
 			//만약 매니지 테이블에 insert실패시
@@ -285,7 +327,11 @@ public class BoardDaoImpl implements BoardDao {
 		
 	}
 	
-	
+	public List<BoardVO> AnswerList(BoardVO vo){
+		List<BoardVO> result = mybatis.selectList("board.AnswerList", vo);
+		return result;
+		
+	}
 
 	
 	

@@ -64,8 +64,8 @@ if (session.getAttribute("memberinfo") != null) {
 						<i class="fas fa-comment"></i> <span>댓글</span>    <span id="replNumber"></span> <br> <br>
 
 
-						<i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span><%=result.getBoardLike()%></span>&nbsp;&nbsp;
-						<i class="fas fa-thumbs-down"></i> <span>싫어요</span> <span><%=result.getBoardBad()%></span>
+						<i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span id="countlike"><%=result.getBoardLike()%></span>&nbsp;&nbsp;
+						<i class="fas fa-thumbs-down"></i> <span>싫어요</span> <span id="countbad"><%=result.getBoardBad()%></span>
 
 					</div>
 				</div>

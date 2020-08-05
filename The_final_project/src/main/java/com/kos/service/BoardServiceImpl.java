@@ -139,4 +139,9 @@ public class BoardServiceImpl implements BoardService {
 		return true;
 
 	}
+
+	public List<BoardVO> AnswerList(BoardVO vo) {
+		List<BoardVO> result = dao.AnswerList(vo);
+		return result;
+	}
 }

@@ -1,4 +1,14 @@
-$(document).ready(function () {
+$(document).ready(function (event) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//글쓰기 버튼을 클릭했을 때
 	$('#writeboard').click(function(){
 		var confirm=$('#confirmsession').val();
@@ -10,5 +20,10 @@ $(document).ready(function () {
 		
 		window.location.href="writeboard.do?b_boardname="+$('#boardname').val();
 	})
+	
+	
+	
+	
+	
 	
 });

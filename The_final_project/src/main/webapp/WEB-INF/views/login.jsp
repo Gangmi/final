@@ -36,7 +36,7 @@
 		<br>
         <div class="btn1">
             <a href="#"><button class="btn btn-success" type="submit">로그인</button></a>
-            <a href="#"><button class="btn btn-success" type="submit">회원가입</button></a>
+            <a role="button" href="/sign_up.do" class="btn btn-success" type="submit">회원가입</a>
         </div>
 	</form>
 	<br><br><br><br><br>	

@@ -99,7 +99,12 @@
 		update ${b_boardname} set title=#{title},contents=#{contents} where boardno=#{boardno}
 	</update>
 	
-
+	<!--댓글 저장 -->
+	<insert id="writeAnswer" parameterType="board">
+		insert into
+		${b_boardname}(boardno,id,contents,is_selected)
+		values(#{boardno},#{id},#{contents},0)
+	</insert>
 	<!--댓글 저장 -->
 	<insert id="writerepl" parameterType="board">
 		insert into
@@ -192,13 +197,16 @@
 	
 	<!-- 좋아요 싫어요를 했다는 표시  -->
 	<insert id="insertLikeBad" parameterType="board">
-	insert into likebad_manage (boardno,writeno,id) values(${b_boardname},${boardno},#{id})
+	insert into likebad_manage (boardno,writeno,id,likebad) values(${b_boardname},${boardno},#{id},#{confirmnum})
 	
 	
 	
 	</insert>
 	
-	
+	<!-- 농사인 답변리스트 가져오기 -->
+	<select id="AnswerList" parameterType="board" resultType="board">
+	select * from in_repl where boardno = ${boardno}
+	</select>
 		
 	
 </mapper>

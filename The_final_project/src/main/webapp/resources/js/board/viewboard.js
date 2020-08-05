@@ -43,6 +43,7 @@ $(document).ready(function() {
 	
 	// 좋아요를 클릭했을 때
 	$('.fa-thumbs-up').click(function(){
+		
 		var boardname=$('#bname').val();
 		var boardno=$('#boardno').val();
 		var nowid=$('#confirmsession').val();
@@ -64,6 +65,7 @@ $(document).ready(function() {
 			success: function(data) { 
 				if(data=="success"){
 					alert("좋아요를 누르셨습니다.")
+					$('#countlike').text(($('#countlike').text()*1)+1)
 					
 					}else{
 					alert("이미 좋아요/싫어요를 누르셨습니다.")
@@ -79,6 +81,7 @@ $(document).ready(function() {
 	
 	
 	$('.fa-thumbs-down').click(function(){
+	
 		var boardname=$('#bname').val();
 		var boardno=$('#boardno').val();
 		var nowid=$('#confirmsession').val();
@@ -100,7 +103,8 @@ $(document).ready(function() {
 			success: function(data) { 
 				if(data=="success"){
 					alert("싫어요를 누르셨습니다.")
-					
+						
+					$('#countbad').text(($('#countbad').text()*1)+1)
 					}else{
 					alert("이미 좋아요/싫어요를 누르셨습니다.")
 					}

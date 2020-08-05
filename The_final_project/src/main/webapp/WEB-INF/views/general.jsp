@@ -18,6 +18,28 @@ String boardname = (String) request.getAttribute("b_boardname");
 <title></title>
 <%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
+<script type="text/javascript">
+
+if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+
+function myFunction() {
+
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+</script>
+
+
 </head>
 <body>
 	<input id="boardname" type="hidden" value="<%=boardname%>">
@@ -76,18 +98,37 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 							<td width="659" class="titles"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
 
-							<td width="180"><%=vo.getNickname()%></td>
+							<td width="180">
+							<div class="dropdown">
+					
+					 		 <a  onclick="myFunction()" class="dropbtn"><%=vo.getNickname()%></a>
+							  <div id="myDropdown" class="dropdown-content">
+							    <a href="#"><%=vo.getNickname()%></a>
+							    <a href="#">Link 2</a>
+							    <a href="#">Link 3</a>
+							  </div>
+							</div>
+							</td>
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
 					<%
-							}	
+						}	
 					%>
 					<%
 						}else{
 					%>
 					<%
 						}
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					%>
 					
 					
@@ -127,7 +168,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			%>
 			
 			
-				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=nowstartpage-1%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
+				<a class="btn btn-info" href="callboard.do?b_boardname=<%=boardname%>&nowpage=<%=i%><%if(request.getAttribute("searchword")!=null){ %>&searchword=<%=(String)request.getAttribute("searchword")%><%}%>" id="pages" role="button"><%=i%></a>
 			<%
 			
 			} 
