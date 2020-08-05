@@ -3,16 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Plant">
 
-	<!-- 1~30번째 까지의 리스트를 가져오는 쿼리 -->
+	<!-- 1~50번째 까지의 리스트를 가져오는 쿼리 -->
 	<select id="selectPlant" parameterType="paging" resultType="plant">
-		select f.* from (
-		select @ROWNUM := @ROWNUM + 1 AS ROWNUM, plant_id,plant_cate,plant_titles from plant_information.plant ,(SELECT @ROWNUM := 0 )TMP) as f
-		where f.ROWNUM<![CDATA[>=]]>${start} and f.ROWNUM<![CDATA[<=]]>${end}
+		select * 
+		from (	select  @ROWNUM := @ROWNUM + 1 AS ROWNUM, f.plant_id , f.plant_cate,f.plant_titles 
+	  				from (	select plant_id, plant_cate, plant_titles 
+	              			from plant ,(SELECT @ROWNUM := 0 ) TMP <if test="searchword!=null"> where plant_titles=#{searchword}</if>
+	              			) as f 
+				where 1=1 <if test="plantcate!=null"> AND plant_cate=#{plantcate}</if>) as s where ROWNUM between ${start} and ${end}
+	</select>
+                 
+	<!--해당 사전의 전체 게시물 갯수 쿼리 -->       
+	<select id="getPlantCount" parameterType="plant" resultType="int">    
+		select count(*) from plant where 1=1 <if test="searchword!=null"> and plant_titles=#{searchword}</if><if test="plantcate!=null"> and plant_cate=#{plantcate}</if>
 	</select> 
+	              
+	<!-- 식물정보 가져오는 쿼리 -->       
+	<select id="getPlantInfo" parameterType="plant" resultType="plant">       
+		select plant_info   
+		from plant      
+		where plant_id=${plantid}      
+	</select>       
  
-	<!--해당 사전의 전체 게시물 갯수 쿼리 --> 
-	<select id="getPlantCount" parameterType="plant" resultType="int">
-		select count(*) from plant_information.plant
-	</select>    
-	
-</mapper>         
+</mapper>                      

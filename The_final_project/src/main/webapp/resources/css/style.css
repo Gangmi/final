@@ -381,7 +381,7 @@ ul, ol {
 	transition: all 0.3s;
 }
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
-	color: #dfa974;
+	color: #446633;
 }
 .menu-item {
 	position: relative;
@@ -420,7 +420,7 @@ ul, ol {
 	visibility: visible;
 }
 .menu-item .nav-menu .mainmenu li a {
-	font-size: 16px;
+	font-size: 17px;
 	color: #19191a;
 	margin-right: 42px;
 	font-weight: 500;
@@ -430,6 +430,7 @@ ul, ol {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+	font-weight: 300;
 }
 .menu-item .nav-menu .mainmenu li a:after {
 	position: absolute;
@@ -473,8 +474,9 @@ ul, ol {
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
 }
+/*드롭다운 색  */
 .menu-item .nav-menu .mainmenu li .dropdown li a:hover {
-	color: #dfa974;
+	color: #2A3820;
 }
 .menu-item .nav-menu .mainmenu li .dropdown li a:after {
 	display: none;
@@ -483,11 +485,21 @@ ul, ol {
 	display: inline-block;
 	margin-left: 43px;
 	padding: 27px 0px;
+	 
 }
 .menu-item .nav-menu .nav-right i {
 	font-size: 16px;
 	color: #19191a;
 	cursor: pointer;
+}
+.nav-right a{
+	color:#446633;
+	font-size:17px;
+	
+	
+	font-weight: bold;
+	margin-left: 10px;
+	
 }
 .canvas-open {
 	display: none;

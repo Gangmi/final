@@ -44,7 +44,7 @@
 
 				<div class="col-lg-6">
 					<div class="hero-text">
-						<span>종합 농업 커뮤니티</span>
+						<h3>종합 농업 커뮤니티</h3>
 						<h1>여름지기  </h1>
 						
 						<!--
