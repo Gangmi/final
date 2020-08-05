@@ -375,6 +375,14 @@ public class BoardController {
 						
 						if (vo.getBoardname().equals("free_board")) {
 							vo.setBoardno(BoardVO.FREE_BOARD);
+						}else if(vo.getBoardname().equals("tip_board")) {
+							vo.setBoardno(BoardVO.TIP_BOARD);
+						}else if(vo.getBoardname().equals("parcel_board")) {
+							vo.setBoardno(BoardVO.PARCEL_BOARD);
+						}else if(vo.getBoardname().equals("nongsain")) {
+							vo.setBoardno(BoardVO.NONGSAIN);
+						}else if(vo.getBoardname().equals("in_repl")) {
+							vo.setBoardno(BoardVO.IN_REPL);
 						}
 
 						vo.setImgName(fileName);

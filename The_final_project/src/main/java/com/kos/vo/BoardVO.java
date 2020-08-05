@@ -57,7 +57,7 @@ public class BoardVO implements Board {
 	private int nowpage=1;
 	
 	//현재 보여지는 게시물수 기본값 30
-	private int viewing_count=30;
+	private int viewing_count=15;
 	private int viewing_replcount=10;
 
 	
@@ -218,6 +218,12 @@ public class BoardVO implements Board {
 			case "free_board" : result="1"; 
 			break;
 			case "tip_board" : result="2";
+			break;
+			case "parcel_board" : result="3";
+			break;
+			case "nongsain" : result="4";
+			break;
+			case "in_repl" : result="5";
 			break;
 		}
 		return result;
