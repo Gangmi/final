@@ -1,4 +1,4 @@
-ï»¿package com.kos.controlloer;
+package com.kos.controlloer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,58 +38,58 @@ public class BoardController {
 	@Autowired
 	BoardServiceImpl service;
 
-	// ê²Œì‹œíŒ ë“¤ì–´ì˜¤ë©´
+	// °Ô½ÃÆÇ µé¾î¿À¸é
 	@RequestMapping("/callboard.do")
 	public ModelAndView getBoardList(ModelAndView mv, BoardVO vo) {
-		// ê²Œì‹œíŒ ê¸€ì„ ì½ì–´ì˜¤ê¸° ìœ„í•œ ì½”ë”©
+		// °Ô½ÃÆÇ ±ÛÀ» ÀĞ¾î¿À±â À§ÇÑ ÄÚµù
 		System.out.println(vo.getSearchword()+"emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
 		List<BoardVO> result = service.getBoardList(vo);
 		
-		//ê²€ìƒ‰ì–´ ê²€ìƒ‰ì´ ìˆë‹¤ë©´
+		//°Ë»ö¾î °Ë»öÀÌ ÀÖ´Ù¸é
 		
 		if(!vo.getSearchword().equals("")) {
-			System.out.println("ê²€ìƒ‰ì–´ê°€ ìˆë‹¤.");
+			System.out.println("°Ë»ö¾î°¡ ÀÖ´Ù.");
 			mv.addObject("searchword", vo.getSearchword());
 		}
 		
 		mv.setViewName("general");
-		mv.addObject("b_boardname", vo.getB_boardname()); // ê²Œì‹œíŒì´ë¦„ì¶”ê°€
+		mv.addObject("b_boardname", vo.getB_boardname()); // °Ô½ÃÆÇÀÌ¸§Ãß°¡
 
-		// ë‹¤ìŒ í˜ì´ì§€ë¡œ ë„˜ê¸¸ ë¦¬ìŠ¤íŠ¸ê°€ ì œëŒ€ë¡œ ë°›ì•„ì™€ ì¡ŒëŠ”ì§€ í™•ì¸
+		// ´ÙÀ½ ÆäÀÌÁö·Î ³Ñ±æ ¸®½ºÆ®°¡ Á¦´ë·Î ¹Ş¾Æ¿Í Á³´ÂÁö È®ÀÎ
 		if (result.size() > 0) {
-			mv.addObject("boardlist", result); // ë°›ì•„ì˜¨ ê²Œì‹œíŒ ê²Œì‹œë¬¼
-			mv.addObject("confirm", 1); // ê°’ì´ ì œëŒ€ë¡œ ë„˜ì–´ê°„ê²ƒì„ í‘œí˜„
+			mv.addObject("boardlist", result); // ¹Ş¾Æ¿Â °Ô½ÃÆÇ °Ô½Ã¹°
+			mv.addObject("confirm", 1); // °ªÀÌ Á¦´ë·Î ³Ñ¾î°£°ÍÀ» Ç¥Çö
 
 			return mv;
 
 		} else {
-			// ì œëŒ€ë¡œ ë“¤ì–´ì˜¤ì§€ ì•Šì•˜ë‹¤ë©´
+			// Á¦´ë·Î µé¾î¿ÀÁö ¾Ê¾Ò´Ù¸é
 			mv.addObject("confirm", 0);
 			return mv;
 		}
 
 	}
 
-	// ê¸€ì“°ê¸° í˜ì´ì§€ ìš”ì²­ì´ ë“¤ì–´ì™”ì„ ë•Œ
+	// ±Û¾²±â ÆäÀÌÁö ¿äÃ»ÀÌ µé¾î¿ÔÀ» ¶§
 	@RequestMapping("/writeboard.do")
 	public ModelAndView callWritePage(ModelAndView mv, BoardVO vo) {
-		// ë‹¤ìŒí˜ì´ì§€ ì§€ì •
+		// ´ÙÀ½ÆäÀÌÁö ÁöÁ¤
 		
 		mv.setViewName("writeboard");
 
-		// í˜„ì¬ ê²Œì‹œíŒì˜ ì´ë¦„ ì „ë‹¬
+		// ÇöÀç °Ô½ÃÆÇÀÇ ÀÌ¸§ Àü´Ş
 		mv.addObject("b_boardname", vo.getB_boardname());
 		return mv;
 	}
 
-	// ê¸€ì“¸ ë•Œ
+	// ±Û¾µ ¶§
 	@RequestMapping("/write.do")
 	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
-		System.out.println(vo.getTitle() + "ì œëª©");
-		System.out.println(vo.getContents() + "ë‚´ìš©##############");
-		// ì„ì‹œë¡œ ì•„ì´ë”” ì§€ì • ->ë‚˜ì¤‘ì— ì§€ìš°ê¸°
+		System.out.println(vo.getTitle() + "Á¦¸ñ");
+		System.out.println(vo.getContents() + "³»¿ë##############");
+		// ÀÓ½Ã·Î ¾ÆÀÌµğ ÁöÁ¤ ->³ªÁß¿¡ Áö¿ì±â
 
 		// vo.setId("kim");
 		System.out.println(vo.getB_boardname());
@@ -99,40 +99,81 @@ public class BoardController {
 		} else {
 			PrintWriter out = response.getWriter();
 
-			out.println("<script>alert('ì„¸ì…˜ì´ ë§Œë£Œë˜ê±°ë‚˜ ë¡œê·¸ì¸ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.'); location.href='index.do';</script>");
+			out.println("<script>alert('¼¼¼ÇÀÌ ¸¸·áµÇ°Å³ª ·Î±×ÀÎ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.'); location.href='index.do';</script>");
 			mv.setViewName("redirect:/login.do");
 			return mv;
 		}
 
 		System.out.println(vo.getB_boardname());
 
-		// ì‚¬ìš©ìê°€ ì‘ì„±í•œ ê¸€ ë° ì •ë³´ ì „ë‹¬
+		// »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ ±Û ¹× Á¤º¸ Àü´Ş
 
 		service.writeBoard(vo);
-		System.out.println("ì…ë ¥í•˜ê³  ëŒì•„ì˜´");
+		System.out.println("ÀÔ·ÂÇÏ°í µ¹¾Æ¿È");
 
-		// ë„˜ê¸°ê¸°
+		// ³Ñ±â±â
 		mv.setViewName("redirect:/callboard.do?b_boardname=" + vo.getB_boardname());
 		return mv;
 	}
+	
 
-	// ê¸€ì½ì„ ë–„
+		@RequestMapping("/writeAnswer.do")
+		@ResponseBody
+		public ModelAndView writeAnswer(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
+				throws Exception {
+			response.setContentType("text/html; charset=UTF-8");
+			System.out.println(vo.getB_boardname()+ "°Ô½ÃÆÇÀÌ¸§||||");
+			System.out.println(vo.getContents() + "³»¿ë||||");
+			System.out.println(vo.getBoardno()+"±Û¹øÈ£||||");
+			System.out.println(vo.getId()+"¾ÆÀÌµğ||||");
+			// ÀÓ½Ã·Î ¾ÆÀÌµğ ÁöÁ¤ ->³ªÁß¿¡ Áö¿ì±â
+
+			// vo.setId("kim");
+//			ReplNameVO re = new ReplNameVO(vo);
+//			vo.setB_boardname(re.changeName());
+			MemberVO info = (MemberVO) session.getAttribute("memberinfo");
+			if (!info.getId().isEmpty()) {
+				vo.setId(info.getId());
+			} else {
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>alert('¼¼¼ÇÀÌ ¸¸·áµÇ°Å³ª ·Î±×ÀÎ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.'); location.href='index.do';</script>");
+				mv.setViewName("redirect:/login.do");
+				return mv;
+			}
+			vo.setId(vo.getId());
+			System.out.println(vo.getId()+"¾ÆÀÌµğ||||");
+			System.out.println(vo.getB_boardname());
+
+			// »ç¿ëÀÚ°¡ ÀÛ¼ºÇÑ ±Û ¹× Á¤º¸ Àü´Ş
+
+			service.writeBoard(vo);
+			System.out.println("ÀÔ·ÂÇÏ°í µ¹¾Æ¿È");
+
+			// ³Ñ±â±â
+			mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+			
+			return mv;
+		}
+
+	// ±ÛÀĞÀ» ‹š
 	@RequestMapping("/viewboard.do")
 	public ModelAndView viewBoard(ModelAndView mv, BoardVO vo) {
 //		if(vo.getB_boardname()==null) {
 //			vo.setB_boardname("free_board");
 //		}
-		System.out.println("ë“¤ì–´ì˜´");
+		System.out.println("µé¾î¿È");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
 
 		BoardVO result = service.viewBoard(vo);
-		// ë‹‰ë„¤ì„ ì¶”ê°€
+		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
+		// ´Ğ³×ÀÓ Ãß°¡
 		result.setNickname(vo.getNickname());
 
 		// System.out.println(result.getTitle()+"######################");
-		System.out.println(result.getBoardView() + "ë·°ì¹´ìš´íŠ¸");
-		// ë‹¤ìŒ í˜ì´ì§€ ì§€ì •
+		System.out.println(result.getBoardView() + "ºäÄ«¿îÆ®");
+		// ´ÙÀ½ ÆäÀÌÁö ÁöÁ¤
 		if(vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
 		}else {
@@ -140,28 +181,29 @@ public class BoardController {
 		}
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
+		mv.addObject("Answer",Answer);
 
 		return mv;
 
 	}
 
-	// ê¸€ ìˆ˜ì • ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ
+	// ±Û ¼öÁ¤ ¹öÆ°À» ´­·¶À» ¶§
 	@RequestMapping("/modifyboard.do")
 	public ModelAndView modifyBoard(ModelAndView mv, BoardVO vo, HttpSession session, HttpServletResponse response)
 			throws Exception {
-		// ë§Œì•½ ì„¸ì…˜ì´ ì—†ë‹¤ë©´,
+		// ¸¸¾à ¼¼¼ÇÀÌ ¾ø´Ù¸é,
 		if (session.getAttribute("memberinfo") == null) {
 			PrintWriter out = response.getWriter();
 
-			out.println("<script>alert('ì„¸ì…˜ì´ ë§Œë£Œë˜ê±°ë‚˜ ë¡œê·¸ì¸ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.'); location.href='index.do';</script>");
+			out.println("<script>alert('¼¼¼ÇÀÌ ¸¸·áµÇ°Å³ª ·Î±×ÀÎ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.'); location.href='index.do';</script>");
 			mv.setViewName("redirect:/login.do");
 			return mv;
 		}
-		// ê¸€ ê°€ì ¸ì˜¤ê¸°
+		// ±Û °¡Á®¿À±â
 		BoardVO result = service.viewBoard(vo);
 
-		// ë‹¤ìŒì— ê°ˆ í˜ì´ì§€ ì§€ì • ë° parameter ì„¸íŒ…
-		System.out.println(vo.getB_boardname() + "ì´ê²Œ ì•ˆë‚˜ì˜¤ëŠ”ê±¸ê¹Œ?");
+		// ´ÙÀ½¿¡ °¥ ÆäÀÌÁö ÁöÁ¤ ¹× parameter ¼¼ÆÃ
+		System.out.println(vo.getB_boardname() + "ÀÌ°Ô ¾È³ª¿À´Â°É±î?");
 		mv.setViewName("modifyboard");
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
@@ -170,23 +212,23 @@ public class BoardController {
 	}
 
 	
-	//ê¸€ìˆ˜ì • ì™„ë£Œ ë²„íŠ¼ì´ ëˆŒë ¸ì„ë•Œ
+	//±Û¼öÁ¤ ¿Ï·á ¹öÆ°ÀÌ ´­·ÈÀ»¶§
 	@RequestMapping("/updateboard.do")
 	public ModelAndView updateBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
-		System.out.println("updateboard ë“¤ì–´ì˜´");
+		System.out.println("updateboard µé¾î¿È");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
 		System.out.println(vo.getTitle());
 		System.out.println(vo.getContents());
 		
-		//ìˆ˜ì •ëœ ë‚´ìš©ìœ¼ë¡œ ê²Œì‹œíŒ ì—…ë°ì´íŠ¸ ì¿¼ë¦¬ ë‚ ë¦¬ê¸°
+		//¼öÁ¤µÈ ³»¿ëÀ¸·Î °Ô½ÃÆÇ ¾÷µ¥ÀÌÆ® Äõ¸® ³¯¸®±â
 		int result = service.updateBoard(vo);
 		
-		//ì¿¼ë¦¬ ë‚ ë¦¬ê³  ë°›ì•„ì˜¨ ê²°ê³¼ê°€ 0ì´ìƒ(ì •ìƒì ìœ¼ë¡œ ìˆ˜ì •ë˜ì—ˆë‹¤ë©´)
+		//Äõ¸® ³¯¸®°í ¹Ş¾Æ¿Â °á°ú°¡ 0ÀÌ»ó(Á¤»óÀûÀ¸·Î ¼öÁ¤µÇ¾ú´Ù¸é)
 		if (result > 0) {
 			PrintWriter out = response.getWriter();
 
-			out.println("<script>alert('ìˆ˜ì •ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.'); </script>");
+			out.println("<script>alert('¼öÁ¤ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.'); </script>");
 		}
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
@@ -196,26 +238,26 @@ public class BoardController {
 	@RequestMapping("/index.do")
 	public ModelAndView getAllBoardList(ModelAndView mv,HttpServletRequest request) {
 		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
-		//ì „ì²´ ê²Œì‹œíŒì˜ ê¸€ë“¤ì„ ê²€ìƒ‰í•´ì„œ indexë¡œ ë„˜ê²¨ì¤€ë‹¤.
+		//ÀüÃ¼ °Ô½ÃÆÇÀÇ ±ÛµéÀ» °Ë»öÇØ¼­ index·Î ³Ñ°ÜÁØ´Ù.
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);
 		vo.setViewing_count(8);
 		
 		
-		//ëª¨ë“  ê²Œì‹œíŒì˜ dbëª…ì„ ê°€ì ¸ì™€ì„œ ë°˜ë³µë¬¸ìœ¼ë¡œ ëŒë ¤ ìµœê·¼ 10ê°œì˜ ê²Œì‹œë¬¼ì„ ê°€ì ¸ì˜¨ë‹¤.
+		//¸ğµç °Ô½ÃÆÇÀÇ db¸íÀ» °¡Á®¿Í¼­ ¹İº¹¹®À¸·Î µ¹·Á ÃÖ±Ù 10°³ÀÇ °Ô½Ã¹°À» °¡Á®¿Â´Ù.
 		for(String row:vo.allBoardList()) {
 			
-			//ê²Œì‹œíŒì´ë¦„ì„ ì„¸íŒ…í•œë‹¤.
+			//°Ô½ÃÆÇÀÌ¸§À» ¼¼ÆÃÇÑ´Ù.
 			vo.setB_boardname(row);
 			
-			//ì„¸íŒ…ëœ ê²Œì‹œíŒì— ìˆëŠ” ê²ƒë“¤ì„ ê°€ì ¸ì˜¨ë‹¤.
+			//¼¼ÆÃµÈ °Ô½ÃÆÇ¿¡ ÀÖ´Â °ÍµéÀ» °¡Á®¿Â´Ù.
 			Object rawboard =service.getBoardList(vo);
 			
-			//ë°›ì•„ì˜¨ ë°ì´í„°ê°€ ìˆìœ¼ë©´
+			//¹Ş¾Æ¿Â µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é
 			if(rawboard!=null) {
 				mv.addObject(row,rawboard);
 				mv.addObject(row+"con", 1);
-			//ë§Œì•½ ì—†ë‹¤ë©´	
+			//¸¸¾à ¾ø´Ù¸é	
 			}else {
 				mv.addObject(row+"con", 0);
 			}
@@ -232,7 +274,7 @@ public class BoardController {
 	
 	
 	
-	//ëŒ“ê¸€ ì‘ì„±
+	//´ñ±Û ÀÛ¼º
 	@RequestMapping("/writerepl.do")
 	@ResponseBody
 	public String writeRepl( BoardVO vo,HttpSession session) {
@@ -242,7 +284,7 @@ public class BoardController {
 		vo.setB_boardname(re.changeName());
 		vo.setId(((MemberVO) session.getAttribute("memberinfo")).getId());
 
-		// ëŒ“ê¸€ ì €ì¥
+		// ´ñ±Û ÀúÀå
 		service.writeRepl(vo);
 
 		return "success";
@@ -252,7 +294,7 @@ public class BoardController {
 	
 	
 	
-	//ëŒ“ê¸€ ëª©ë¡
+	//´ñ±Û ¸ñ·Ï
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
 	public List<BoardVO> viewRepl(BoardVO vo,HttpSession session) {
@@ -265,7 +307,7 @@ public class BoardController {
 
 
 	}
-	//ëŒ“ê¸€ ëª©ë¡ 
+	//´ñ±Û ¸ñ·Ï 
 		@RequestMapping("/viewreplpage.do")
 		@ResponseBody
 		public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
@@ -277,7 +319,7 @@ public class BoardController {
 
 		}
 
-	//ìˆ˜ì •í•  ëŒ“ê¸€ ë‚´ìš© ê°€ì ¸ì˜¤ê¸°
+	//¼öÁ¤ÇÒ ´ñ±Û ³»¿ë °¡Á®¿À±â
 	@RequestMapping("/getrepl.do")
 	@ResponseBody
 	public BoardVO getRepl(BoardVO vo) {
@@ -290,7 +332,7 @@ public class BoardController {
 		return result;
 
 	}
-	//ëŒ“ê¸€ ì‚­ì œ
+	//´ñ±Û »èÁ¦
 	@RequestMapping("/delrepl.do")
 	@ResponseBody
 	public void delRepl(BoardVO vo) {
@@ -303,7 +345,7 @@ public class BoardController {
 
 
 	
-	//ëŒ“ê¸€ ìˆ˜ì •
+	//´ñ±Û ¼öÁ¤
 	@RequestMapping("/modifyrepl.do")
 	@ResponseBody
 	public void modifyRepl(BoardVO vo) {
@@ -314,7 +356,7 @@ public class BoardController {
 
 
 
-	// ì´ë¯¸ì§€ ì—…ë¡œë“œì—ì„œ ì‚¬ìš©í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
+	// ÀÌ¹ÌÁö ¾÷·Îµå¿¡¼­ »ç¿ëÇÏ´Â ÄÁÆ®·Ñ·¯
 	@RequestMapping(value = "/imageUpload.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
@@ -331,36 +373,40 @@ public class BoardController {
 		MultipartFile file = multiFile.getFile("upload");
 		System.out.println(file + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		System.out.println(vo.getBoardname());
-		// íŒŒì¼ì´ ìˆëŠ”ì§€ í™•ì¸
+		// ÆÄÀÏÀÌ ÀÖ´ÂÁö È®ÀÎ
 		if (file != null) {
-			// íŒŒì¼ì´ë¦„ì´ ì—†ëŠ”ì§€ í™•ì¸
+			// ÆÄÀÏÀÌ¸§ÀÌ ¾ø´ÂÁö È®ÀÎ
 			if (file.getSize() > 0 && StringUtils.isNotBlank(file.getName())) {
 
 				if (file.getContentType().toLowerCase().startsWith("image/")) {
 					try {
-						// íŒŒì¼ì´ë¦„ ê°€ì ¸ì˜¤ê¸°
+						// ÆÄÀÏÀÌ¸§ °¡Á®¿À±â
 						String fileName = file.getName();
-						// íŒŒì¼ê°€ì ¸ì˜¤ê¸°
+						// ÆÄÀÏ°¡Á®¿À±â
 						byte[] bytes = file.getBytes();
-						// ì €ì¥ê²½ë¡œ ì§€ì •
+						// ÀúÀå°æ·Î ÁöÁ¤
 						String uploadPath = req.getRealPath("/")
 								+ "resources\\uploadimage";
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
 						System.out.println(uploadPath);
-						// ë””ë ‰í† ë¦¬ ë§Œë“¦
+						System.out.println(vo.getBoardname()+"ÀÌ¹ÌÁöÀúÀå");
+						System.out.println(vo.getBoardno()+"°Ô½Ã±Û¹øÈ£");//¾È³ª¿È
+						System.out.println(vo.getWriteno()+"´ÙÀ½±Û¹øÈ£");//¾È³ª¿È
+						System.out.println(vo.getImgName()+"ÀÌ¹ÌÁöÀÌ¸§");
+						// µğ·ºÅä¸® ¸¸µê
 						File uploadFile = new File(uploadPath);
 
-						// ì—…ë¡œë“œí•˜ëŠ” íŒŒì¼ì˜ ê²½ë¡œê°€ ì—†ìœ¼ë©´ ë§Œë“ ë‹¤
+						// ¾÷·ÎµåÇÏ´Â ÆÄÀÏÀÇ °æ·Î°¡ ¾øÀ¸¸é ¸¸µç´Ù
 						if (!uploadFile.exists()) {
 							uploadFile.mkdirs();
 						}
 
-						// íŒŒì¼ì´ë¦„ ëœë¤ìƒì„±
+						// ÆÄÀÏÀÌ¸§ ·£´ı»ı¼º
 						fileName = UUID.randomUUID().toString();
 
-						// íŒŒì¼ ì €ì¥ê²½ë¡œì§€ì •ë° ì €ì¥
+						// ÆÄÀÏ ÀúÀå°æ·ÎÁöÁ¤¹× ÀúÀå
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
@@ -369,27 +415,27 @@ public class BoardController {
 						resp.setContentType("text/html");
 						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
 						System.out.println(fileUrl);
-						// ì´ë¯¸ì§€ íŒŒì¼ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ê¸°ìœ„í•œ service í˜¸ì¶œ ë¶€ë¶„
+						// ÀÌ¹ÌÁö ÆÄÀÏÀÇ »óÅÂ¸¦ ÀúÀåÇÏ±âÀ§ÇÑ service È£Ãâ ºÎºĞ
 
-						// ê° ê²Œì‹œíŒì— ë”°ë¼ì„œ ë¶„ê¸°ë¥¼ ë‚˜ëˆ”
+						// °¢ °Ô½ÃÆÇ¿¡ µû¶ó¼­ ºĞ±â¸¦ ³ª´®
 						
-						if (vo.getBoardname().equals("free_board")) {
-							vo.setBoardno(BoardVO.FREE_BOARD);
-						}else if(vo.getBoardname().equals("tip_board")) {
-							vo.setBoardno(BoardVO.TIP_BOARD);
-						}else if(vo.getBoardname().equals("parcel_board")) {
-							vo.setBoardno(BoardVO.PARCEL_BOARD);
-						}else if(vo.getBoardname().equals("nongsain")) {
-							vo.setBoardno(BoardVO.NONGSAIN);
-						}else if(vo.getBoardname().equals("in_repl")) {
-							vo.setBoardno(BoardVO.IN_REPL);
-						}
+						 if (vo.getBoardname().equals("free_board")) {
+		                     vo.setBoardno(BoardVO.FREE_BOARD);
+		                  }else if(vo.getBoardname().equals("tip_board")) {
+		                     vo.setBoardno(BoardVO.TIP_BOARD);
+		                  }else if(vo.getBoardname().equals("parcel_board")) {
+		                     vo.setBoardno(BoardVO.PARCEL_BOARD);
+		                  }else if(vo.getBoardname().equals("nongsain")) {
+		                     vo.setBoardno(BoardVO.NONGSAIN);
+		                  }else if(vo.getBoardname().equals("in_repl")) {
+		                     vo.setBoardno(BoardVO.IN_REPL);
+		                  }
 
 						vo.setImgName(fileName);
 						service.storeImage(vo);
-						// json ë°ì´í„°ë¡œ ë“±ë¡
+						// json µ¥ÀÌÅÍ·Î µî·Ï
 						// {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
-						// ì´ëŸ° í˜•íƒœë¡œ ë¦¬í„´ì´ ë‚˜ê°€ì•¼í•¨.
+						// ÀÌ·± ÇüÅÂ·Î ¸®ÅÏÀÌ ³ª°¡¾ßÇÔ.
 						json.addProperty("uploaded", 1);
 						json.addProperty("fileName", fileName);
 						json.addProperty("url", fileUrl);
@@ -412,12 +458,12 @@ public class BoardController {
 	}
 	
 
-	//ê¸€ì— ì¢‹ì•„ìš” ë¥¼ ëˆŒë €ì„ ë•Œ
+	//±Û¿¡ ÁÁ¾Æ¿ä ¸¦ ´­·¶À» ¶§
 	@RequestMapping(value= "/likebad.do")
 	@ResponseBody
 	public String likeBad(BoardVO vo) {
 		
-		//ì‹¤í–‰ëœ ê²°ê³¼ í™•ì¸
+		//½ÇÇàµÈ °á°ú È®ÀÎ
 		if(service.likeOrBad(vo)) {
 			return "success";
 			
@@ -444,12 +490,12 @@ public class BoardController {
 	
 	
 	
-	//ê¸€ì‚­ì œì‹œ
+	//±Û»èÁ¦½Ã
 	@RequestMapping("/deleteboard.do")
 	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
 		
 		service.deleteBoard(vo);
-		System.out.println("ëŒ“ê¸€ì‚­ì œ ë‚˜ì˜´+^^^^^^^^^^^^^^^^");
+		System.out.println("´ñ±Û»èÁ¦ ³ª¿È+^^^^^^^^^^^^^^^^");
 		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;

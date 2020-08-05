@@ -6,5 +6,6 @@ public interface Board {
 	public static final int PARCEL_BOARD=3;
 	public static final int NONGSAIN=4;
 	public static final int IN_REPL=5;
+
 	
 }
