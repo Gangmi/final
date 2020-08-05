@@ -7,11 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Plant</title>
 <!-- css -->
 <link rel="stylesheet" href="/resources/css/plant.css" type="text/css">
-
-<%   
+<!-- CSS , JS -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%
 	List<PlantVO> plant = (List<PlantVO>) request.getAttribute("plantlist");
 %>
 </head>
@@ -19,11 +23,11 @@
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<section class="hero-section">
-		<div class="container">
-			<h2>식물사전</h2> 
+		<!-- <div class="container"> -->
+			<h2>식물사전</h2>
 
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder=""
-				title="Type in a name">
+			<input type="text" id="myInput" placeholder="검색어를 입력하세요">
+			<button class="btn btn-success" id="search" type="submit">검색</button>
 
 			<div class="tab">
 				<button class="tablinks" onclick="openCity(event, 'gymnosperms')">겉씨식물</button>
@@ -32,47 +36,57 @@
 				<button class="tablinks" onclick="openCity(event, 'Bryophyte')">선태식물</button>
 				<button class="tablinks" onclick="openCity(event, 'algae')">조류</button>
 				<button class="tablinks" onclick="openCity(event, 'gunru')">균류</button>
-				<button class="tablinks" onclick="openCity(event, 'Plant guitar')">기타식물</button>
+				<button class="tablinks" onclick="openCity(event, 'Plantguitar')">식물기타</button>
 			</div>
 
+			<%
+				for(PlantVO vo : plant){
+			%>
 			<div id="gymnosperms" class="tabcontent">
-				<h3>gymnosperms</h3>
-				<p>겉씨식물(나자식물)은 꽃이 피지 않고, 밑씨에서 발달한 종자가 나출되는 식물군으로, 종자가 심피에 의해
-					둘러싸여 있는 속씨식물(피자식물)과 상대되는 분류군이다. 과거 속씨식물의 진화 전 단계로만 여겨졌던 겉씨식물은 유전자
-					염기서열을 계통분석한 결과 속씨식물의 자매군임이 밝혀졌다. 겉씨식물의 영어 명칭 gymnosperms의 어원은
-					‘gymnos(naked) + sperma(seed)'로서 "종자가 감싸는 구조로 덮여서 보호되지 않고 노출되어 있다"는
-					뜻으로 배주가 심피로 둘러싸이지 않았기 때문에 붙여진 이름이다.</p>
-			</div>
+				<tr>
+					<td><a href="plant.do?plantcate=겉씨식물">겉씨식물</a></td>
+				</tr>
+			</div> 
 
 			<div id="Angiospermae" class="tabcontent">
-				<h3>Angiospermae</h3>
-				<p>속씨식물은 꽃이라는 생식구조를 갖고, 꽃이 피어 열매를 맺고 그 속에 씨앗이 들어 있는 식물군으로 피자식물
-					또는 현화식물 이라고도 하며, 겉씨식물(나자식물)의 자매군이다. 속씨식물은 밑씨가 심피에 둘러싸여 있어 수정된 후
-					씨앗으로 발달할 때 외부로 나출되지 않고 열매 안에서 보호되는 구조를 갖는 특징을 갖는다.</p>
+				<tr>
+					<td><a href="plant.do?plantcate=속씨식물">속씨식물</a></td>
+				</tr>
 			</div>
 
 			<div id="Pteridophyta" class="tabcontent">
-				<h3>Pteridophyta</h3>
-				<p>관다발식물(tracheophyta) 중에서 꽃이 피지 않고 포자로 번식하는 종류에 대한 총칭.</p>
+				<tr>
+					<td><a href="plant.do?plantcate=양치식물">양치식물</a></td>
+				</tr>
 			</div>
 
 			<div id="Bryophyte" class="tabcontent">
-				<h3>Bryophyte</h3>
-				<p>선류(蘚類)·태류(苔類)를 포함하여 약 2만 3000종으로 이루어진 최초로 육상생활에 적응한 식물군으로 흔히
-					이끼식물이라고 한다. 분류학상으로는 양치식물 가깝지만, 특별한 통도조직은 발달해 있지 않고 엽록체가 있어 독립영양생활을
-					한다. 형태학상 줄기·잎의 구별이 있거나, 편평한 엽상체로서 조직의 분화는 적고 헛뿌리가 있다. 무성세대와 유성세대를
-					거친다</p>
+				<tr>
+					<td><a href="plant.do?plantcate=선태식물">선태식물</a></td>
+				</tr>
 			</div>
 
 			<div id="algae" class="tabcontent">
-				<h3>algae</h3>
-				<p>포자식물의 한 종류로 바다속에서 사는 식물(미역 등이 있다)</p>
+				<tr>
+					<td><a href="plant.do?plantcate=조류">조류</a></td>
+				</tr>  
 			</div>
- 
+
 			<div id="gunru" class="tabcontent">
-				<h3>gunru</h3>
-				<p>포자 식무르이 한 종류로 곰팡이 같은 것</p>
-			</div>
+				<tr>
+					<td><a href="plant.do?plantcate=군류">군류</a></td>
+				</tr>  
+			</div> 
+			
+			<div id="Plantguitar" class="tabcontent">
+				<tr>
+					<td><a href="plant.do?plantcate=식물기타">식물기타</a></td>
+				</tr>  
+			</div>  
+ 
+			<%
+				}
+			%>
 			<div>
 				<table id="myTable">
 					<tr class="header">
@@ -83,37 +97,46 @@
 					</tr>
 
 					<%
-						for (PlantVO vo : plant) { 
+						for (PlantVO vo : plant) {
 					%>
-					<tr> 
-						<td><%=vo.getPlantId()%></td>
-						<td><%=vo.getPlantCate()%></td>
-						<td><img
-							src="/resources/img/plant/겉씨img/<%=vo.getPlantTitles()%>.jpg">
-						</td>
-						<td><%=vo.getPlantTitles()%></td> 
 
-					</tr> 
+					<tr>
+						<td><%=vo.getPlantid()%></td>
+						<td><%=vo.getPlantcate()%></td>
+						<td><img
+							src="/resources/img/plant/<%=vo.getPlantcate()%>/<%=vo.getPlanttitles()%>.jpg">
+						</td>
+						<td><a value="<%=vo.getPlanttitles()%>"
+							href="viewplant.do?plantid=<%=vo.getPlantid()%>"><%=vo.getPlanttitles()%></td>
+					</tr>
+
 					<%
 						}
 					%>
-
-					<!--페이징 부분  --> 
-					<div class="paging">
-						<%
-							if ((Integer) request.getAttribute("confirm") == 1) {
-							int result = plant.get(0).getNowpage();
-							for (int i = 1; i <= result; i++) {
-						%>   
-				 		    
-							<a href="plant.do?nowpage=<%=i%>"><%="[ " + i + " ]"%></a>
-						<%    
-								}    
-							}     
-						%>     
-					</div>    
 				</table>
-			</div>  
+				<!--페이징 부분  -->
+				<div class="paging"> 
+					<%
+						if ((Integer) request.getAttribute("confirm") == 1) { 
+						List<PlantVO> result = (List<PlantVO>) request.getAttribute("plantlist");
+						int pagelimit = 0;
+						if (result.get(0).getNowpage() > 10) {
+							pagelimit = 10;  
+						} else {
+							pagelimit = result.get(0).getNowpage();
+						}
+						for (int i = 1; i <= pagelimit; i++) { 
+					%>
+					<a class="btn btn-info" href="plant.do?nowpage=<%=i%><%if(request.getAttribute("plantcate")!=null){ %>&plantcate=<%=(String)request.getAttribute("plantcate")%><%}%>" id="pages" role="button"><%=i%></a>
+					<%   
+						}    
+					%>  
+					<a class="btn btn-info" href="plant.do?nowpage=<%=plant.get(0).getNowpage()%>" id="pages" role="button">끝으로</a>
+					<%
+						}
+					%>
+				</div>
+			</div>
 	</section>
 
 	<!-- footer -->

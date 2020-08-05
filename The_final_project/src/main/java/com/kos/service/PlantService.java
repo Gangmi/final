@@ -7,6 +7,8 @@ import com.kos.vo.PlantVO;
 
 public interface PlantService {
 	 
-	public List<PlantVO> selectPlant(PagingVO vo); 
-}    
-       
+	public List<PlantVO> selectPlant(PagingVO vo);  
+	public int getPlantCount(PagingVO vo);
+	public PlantVO getPlantInfo(PlantVO vo);
+}     
+                   
