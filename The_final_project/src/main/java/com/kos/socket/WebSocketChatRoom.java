@@ -19,39 +19,55 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-@ServerEndpoint(value="/chatroom/{userId}")
+@ServerEndpoint(value="/chatroom/{roomId}/{userId}")
 public class WebSocketChatRoom {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
     //왜 static 으로 만들었을까?
-    static HashMap<String, Session> messageUserList = new HashMap<String, Session>();
-    
+    static HashMap<String, HashMap<String,Session>> roomList = new HashMap<String, HashMap<String,Session>>();
     //서버 접속시
     @OnOpen
-    public void onOpen(Session session, @PathParam("userId") String userId) {
+    public void onOpen(Session session, @PathParam("roomId") String roomId, @PathParam("userId") String userId) {
         //@PathParam 은 웹소켓에서 사용하는 @PathVariables        
         //1. userId 가 중복되는지 확인
-    	if(messageUserList.get(userId) != null) {
-            logger.info("중복 발생");
-        }else{//중복이 아닐 경우
-            messageUserList.put(userId, session);       
-        }
+    	synchronized (roomList) {
+    		if(roomList.get(roomId) == null) {
+        		roomList.put(roomId, new HashMap<String, Session>());
+        	}else {
+        		logger.info("roomId 중복(에러아님)");
+        	}
+        	
+        	if(roomList.containsKey(roomId)) {
+        		if(roomList.get(roomId).get(userId)!= null) {
+        			logger.info(roomId+" "+userId+"중복");
+        		}else {
+        			roomList.get(roomId).put(userId, session);
+    			}
+        	}else {
+        		roomList.remove(roomId);
+        	}
+		}
+    	
     }
     //서버 종료시
     @OnClose
-    public void onClose(Session session) {            
+    public void onClose(Session session,@PathParam("roomId")String roomId ) {            
         String val = session.getId();//종료한 sessionId 확인
-        
-        Set<String>keys =  messageUserList.keySet();
+        HashMap<String, Session> room=roomList.get(roomId);
+        Set<String>keys =  room.keySet();
         for(String key : keys) {        
-            if(val.equals(messageUserList.get(key).getId())) {
+            if(val.equals(room.get(key).getId())) {
                 logger.info("close userId : "+key);
-                messageUserList.remove(key, session);
-                logger.info("현재 접속자 : "+messageUserList.size());
-                broadCast("{\"header\":{\"users\":[],\"cmd\":\"close\",\"sender\":\""+key+"\"},\"body\":{\"msg\":\" "+key+"님이 종료하셨습니다.\"}}");
+                room.remove(key, session);
+                logger.info("현재 접속자 : "+room.size());
+                broadCast("{\"header\":{\"users\":[],\"cmd\":\"close\",\"sender\":\""+key+"\",\"roomid\":\""+roomId+"\"},\"body\":{\"msg\":\" "+key+"님이 종료하셨습니다.\"}}", roomId);
             }
         } 
         try {
         	session.close();
+        	if(room.isEmpty()) {
+        		roomList.remove(roomId);
+        		System.out.println("room is empty");
+        	}
         }
         catch (Exception e) {
 		}
@@ -59,8 +75,9 @@ public class WebSocketChatRoom {
     
     //메시지 수신시
     @OnMessage
-    public void onMessage(String msg, Session session) {
+    public void onMessage(String msg, Session session,@PathParam("roomId")String roomId) {
     	System.out.println(msg);
+    	HashMap<String, Session> roomUserList=roomList.get(roomId);
     	JSONParser jsonParser = new JSONParser();
     	try {
     	JSONObject object = (JSONObject)jsonParser.parse(msg);
@@ -68,7 +85,7 @@ public class WebSocketChatRoom {
     	JSONArray users = (JSONArray) header.get("users");
     	List userlist = new ArrayList();
     	for(int i = 0; i< users.size();i++) {
-    		Session tmp = (Session) messageUserList.get(users.get(i));
+    		Session tmp = (Session) roomUserList.get(users.get(i));
     		tmp.getBasicRemote().sendText(msg);
     	}
       
@@ -88,13 +105,14 @@ public class WebSocketChatRoom {
     }
     
     //메시지 전체 전송
-    private void broadCast(String text){
-        logger.info("to "+messageUserList.size()+" : "+text);
-        Set<String>keys =  messageUserList.keySet();
+    private void broadCast(String text,@PathParam("roomId")String roomId){
+    	HashMap<String, Session> roomUserList=roomList.get(roomId);
+        logger.info("to "+roomUserList.size()+" : "+text);
+        Set<String>keys =  roomUserList.keySet();
         try {            
             for(String key : keys) {
                 logger.info("key : "+key);
-                Session session = messageUserList.get(key);    
+                Session session = roomUserList.get(key);    
                 session.getBasicRemote().sendText(text);
             }
         } catch (IOException e) {

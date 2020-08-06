@@ -146,6 +146,7 @@
 		console.log(webSocket);
 		webSocket.onopen = function(e) {
             console.log(e);
+          
         }
 		webSocket.onclose = function(e) {
 	    	if (e.type == "close") {
@@ -160,6 +161,8 @@
 				if(data.cmd == 'request'){
 					if(data.user.includes('${memberinfo.id}')){
 						requestView(data.host,e.data);
+					}else if (data.host=="${memberinfo.id}"){
+						new_window(e.data);
 					}
 				}
 			} catch(e){}
@@ -181,18 +184,9 @@
 				console.log(data.json);
 				webSocket.send(data.json);
 				
-				var form_ = $('<form>');
-				var input_ = $('<input>');
-				new_window();
-				form_.attr({'method':'post','action':'chatroom.do','target':'chatroom'+(--count)});
-				input_.attr({'type':'hidden','name':'chatHeader','value':data.json});
-				
-				form_.append(input_);
-				$('body').append(form_);
-				form_.submit();
 			}
 		}
-
+		
 		function requestView(requestid,header){
 			var div_ = $('<div>');
 			var p_ = $('<p>');
@@ -213,8 +207,7 @@
 			form_.append(button_);
 			form_.append(button1_);
 			button_.click(function(){
-				form_.attr({'method':'post','action':'chatroom.do','target':'chatroom'+count});
-				new_window();
+				new_window($(this).siblings().eq(0).val());
 				form_.submit();
 				$(this).parent().parent().remove();
 			});
@@ -230,8 +223,17 @@
 			$('body').append(div_);
 			
 		}
-		function new_window(){
+		function new_window(data){
+			var form_ = $('<form>');
+			var input_ = $('<input>');
+			
+			form_.attr({'method':'post','action':'chatroom.do','target':'chatroom'+count});
+			input_.attr({'type':'hidden','name':'chatHeader','value':data});
 			console.log(window.open('', 'chatroom'+(count++), 'width=530, height=535,toolbar=no,menubar=no,location=no,status=no,fullscreen=no'));
+			form_.append(input_);
+			$('body').append(form_);
+			form_.submit();
+			form_.remove();
 		}
 
 		

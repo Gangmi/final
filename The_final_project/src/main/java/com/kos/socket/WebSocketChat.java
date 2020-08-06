@@ -3,6 +3,7 @@ package com.kos.socket;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -12,6 +13,9 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +60,27 @@ public class WebSocketChat {
     //메시지 수신시
     @OnMessage
     public void onMessage(String msg, Session session) {
-        broadCast(msg);
+    	JSONParser jsonParser = new JSONParser();
+    	JSONObject jsonObject=null;
+    	try {
+			jsonObject = (JSONObject)jsonParser.parse(msg);
+			String cmd = (String)jsonObject.get("cmd");
+			JSONArray userlist = (JSONArray)jsonObject.get("user");
+			if(cmd.equals("request")) {
+				UUID roomnumber= UUID.randomUUID();
+				jsonObject.put("roomid",roomnumber.toString());
+				for(int i=0; i<userlist.size();i++) {
+					messageUserList.get((String)userlist.get(i)).getBasicRemote().sendText(jsonObject.toString());
+				}
+				session.getBasicRemote().sendText(jsonObject.toString());
+			}else {
+				broadCast(msg);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			broadCast(msg);
+		}
+        
     }
     
     //에러 발생시
