@@ -22,7 +22,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 <script type="text/javascript">
 
 
-	
+
 
 </script>
 
