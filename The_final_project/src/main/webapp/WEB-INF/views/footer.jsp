@@ -42,7 +42,7 @@
    box-shadow: 2px 2px 2px ;
    
 }
-        .btn{
+        .chat-btn{
             margin-top: 80px;
             width: 30%;
             height: 50px;
@@ -141,7 +141,7 @@
 	<sec:authorize access="isAuthenticated()">
 	<script type="text/javascript">
 		var count = 0;
-		var URL = "ws://192.168.0.11:8080/chat/"
+		var URL = "ws://192.168.0.50:8080/chat/"
 		var webSocket = new WebSocket(URL+"${memberinfo.id}");
 		console.log(webSocket);
 		webSocket.onopen = function(e) {
@@ -217,8 +217,8 @@
 			
 			
 			div_.addClass("request_msg");
-			button_.addClass("btn btn-success");
-			button1_.addClass("btn btn-success");
+			button_.addClass("btn btn-success chat-btn");
+			button1_.addClass("btn btn-success chat-btn");
 			p_.html(requestid+" 님께서 1:1 대화를 요청하셨습니다.");
 			$('body').append(div_);
 			

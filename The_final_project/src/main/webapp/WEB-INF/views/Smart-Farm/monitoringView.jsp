@@ -6,29 +6,30 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Keat </title>
+    <title>  </title>
     
     <link rel="stylesheet" href="/resources/css/Smart-Farm/style.css">
-   
+   	
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
-	<div id="talk">
+	<!-- <div id="talk">
 		<div class="chat">
 			<button>
 				<img src="/resources/img/talk-1.png">
 			</button>
 		</div>
-	</div>
+	</div> -->
 
 	<div id="main">
-		<p>나의 스파트 팜</p>
+		<h2>나의 스마트 팜</h2>
 	
 		<div class="cctv_box">
 			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div>
+			
+			<div class="btn">
 			<p>경기도 여주시 금사면 금품2로 485 루돌프 농장</p>
 			<p>031-884-6554</p>
-			<div class="btn">
 				<div class="btn1">
 					<button type="button" id="givewater"><img src="/resources/img/15159159.png">
 						<p>물주기</p>
