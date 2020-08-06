@@ -78,7 +78,7 @@ margin-left: 50px;
 }
 /*표 색 바꾸기  */
 th{
-	
+	background-color: lightgray;
 }
 /*반응형  */
 @media only screen and (max-width:1202px){
