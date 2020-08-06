@@ -146,7 +146,7 @@
 		console.log(webSocket);
 		webSocket.onopen = function(e) {
             console.log(e);
-            requestChat("jun97");
+          
         }
 		webSocket.onclose = function(e) {
 	    	if (e.type == "close") {
