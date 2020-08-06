@@ -114,7 +114,7 @@
   crossorigin="anonymous"></script>
 <script type="text/javascript">
 	var URL = "ws://192.168.0.11:8080/chatroom/";
-	var webSocket = new WebSocket(URL+"${memberinfo.id}");
+	var webSocket = new WebSocket(URL+"${roomid}"+"/"+"${memberinfo.id}");
 	console.log(webSocket);
 	webSocket.onopen = function(e) {
         console.log(e);
@@ -203,6 +203,7 @@
 		header_ = JSON.parse('${users}');
 		header_.cmd = "message";
 		header_.sender = "${memberinfo.id}";
+		header_.roomid = "${roomid}";
 		data_.header = header_;
 		data_.body = body_;
 		body_.msg = msg;

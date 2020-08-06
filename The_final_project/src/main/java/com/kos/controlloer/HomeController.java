@@ -45,13 +45,14 @@ public class HomeController {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject receive_header;
 		JSONArray jsonUserList = null;
-		String cmd="" , host="";
+		String cmd="" , host="", roomId="";
 		ArrayList userList = new ArrayList();
 		try {
 			receive_header = (JSONObject)jsonParser.parse(header);
 			cmd = (String)receive_header.get("cmd");
 			host = (String)receive_header.get("host");
 			jsonUserList = (JSONArray)receive_header.get("user");
+			roomId = (String)receive_header.get("roomid");
 			if(jsonUserList!=null) {
 				jsonUserList.add(host);
 			}
@@ -63,6 +64,8 @@ public class HomeController {
 		System.out.println(users.toString());
 		mo.setViewName("chatroom");
 		mo.addObject("users",users);
+		mo.addObject("roomid",roomId);
+		mo.addObject("host",host);
 		return mo;
 	}
 }
