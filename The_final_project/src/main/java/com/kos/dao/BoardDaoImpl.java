@@ -259,7 +259,7 @@ public class BoardDaoImpl implements BoardDao {
 		//이 메소드가 정상적으로 실행되었는지 확인하기위한 변수
 		int isItOk=1;
 		//board data base에 저장된 좋아요 싫어요를 업데이트
-		int result=mybatis.update("board.updateLikeBad",vo);
+		int result=mybatis.update("board.updateLikeBad",vo); 
 		
 		//만약 업데이트 되지 않았다면 예외를 던져 롤백처리
 		if(result==0) {
@@ -283,11 +283,17 @@ public class BoardDaoImpl implements BoardDao {
 		return isItOk;
 		
 		
-		
+		 
 	}
-	
-	
 
+	@Override
+	public List<BoardVO> writerview(BoardVO vo) {
+		System.out.println("===> mybatis writerview() 호출");  
+		return mybatis.selectList("board.writerview", vo);   
+	}   
+	     
+	 
+ 
 	
 	
 }

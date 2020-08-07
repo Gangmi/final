@@ -44,14 +44,14 @@ public class BoardController {
 		// 게시판 글을 읽어오기 위한 코딩
 		System.out.println(vo.getSearchword()+"emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
 		List<BoardVO> result = service.getBoardList(vo);
-		
+
 		//검색어 검색이 있다면
-		
+
 		if(!vo.getSearchword().equals("")) {
 			System.out.println("검색어가 있다.");
 			mv.addObject("searchword", vo.getSearchword());
 		}
-		
+
 		mv.setViewName("general");
 		mv.addObject("b_boardname", vo.getB_boardname()); // 게시판이름추가
 
@@ -74,7 +74,7 @@ public class BoardController {
 	@RequestMapping("/writeboard.do")
 	public ModelAndView callWritePage(ModelAndView mv, BoardVO vo) {
 		// 다음페이지 지정
-		
+
 		mv.setViewName("writeboard");
 
 		// 현재 게시판의 이름 전달
@@ -119,9 +119,9 @@ public class BoardController {
 	// 글읽을 떄
 	@RequestMapping("/viewboard.do")
 	public ModelAndView viewBoard(ModelAndView mv, BoardVO vo) {
-//		if(vo.getB_boardname()==null) {
-//			vo.setB_boardname("free_board");
-//		}
+		//		if(vo.getB_boardname()==null) {
+		//			vo.setB_boardname("free_board");
+		//		}
 		System.out.println("들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
@@ -169,7 +169,7 @@ public class BoardController {
 		return mv;
 	}
 
-	
+
 	//글수정 완료 버튼이 눌렸을때
 	@RequestMapping("/updateboard.do")
 	public ModelAndView updateBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
@@ -178,10 +178,10 @@ public class BoardController {
 		System.out.println(vo.getBoardno());
 		System.out.println(vo.getTitle());
 		System.out.println(vo.getContents());
-		
+
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateBoard(vo);
-		
+
 		//쿼리 날리고 받아온 결과가 0이상(정상적으로 수정되었다면)
 		if (result > 0) {
 			PrintWriter out = response.getWriter();
@@ -191,8 +191,8 @@ public class BoardController {
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
-	
-	
+
+
 	@RequestMapping("/index.do")
 	public ModelAndView getAllBoardList(ModelAndView mv,HttpServletRequest request) {
 		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
@@ -200,38 +200,38 @@ public class BoardController {
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);
 		vo.setViewing_count(8);
-		
-		
+
+
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
 		for(String row:vo.allBoardList()) {
-			
+
 			//게시판이름을 세팅한다.
 			vo.setB_boardname(row);
-			
+
 			//세팅된 게시판에 있는 것들을 가져온다.
 			Object rawboard =service.getBoardList(vo);
-			
+
 			//받아온 데이터가 있으면
 			if(rawboard!=null) {
 				mv.addObject(row,rawboard);
 				mv.addObject(row+"con", 1);
-			//만약 없다면	
+				//만약 없다면	
 			}else {
 				mv.addObject(row+"con", 0);
 			}
-			
-			
+
+
 		}
-		
+
 		mv.setViewName("index");
-		
+
 		return mv;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	//댓글 작성
 	@RequestMapping("/writerepl.do")
 	@ResponseBody
@@ -248,10 +248,10 @@ public class BoardController {
 		return "success";
 
 	}
-	
-	
-	
-	
+
+
+
+
 	//댓글 목록
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
@@ -266,22 +266,22 @@ public class BoardController {
 
 	}
 	//댓글 목록 
-		@RequestMapping("/viewreplpage.do")
-		@ResponseBody
-		public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
-			ReplNameVO re = new ReplNameVO(vo);
-			vo.setB_boardname(re.changeName());
-			List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
+	@RequestMapping("/viewreplpage.do")
+	@ResponseBody
+	public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
+		ReplNameVO re = new ReplNameVO(vo);
+		vo.setB_boardname(re.changeName());
+		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
 
-			return result;
+		return result;
 
-		}
+	}
 
 	//수정할 댓글 내용 가져오기
 	@RequestMapping("/getrepl.do")
 	@ResponseBody
 	public BoardVO getRepl(BoardVO vo) {
-		
+
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 
@@ -299,10 +299,10 @@ public class BoardController {
 
 	}
 
-	
 
 
-	
+
+
 	//댓글 수정
 	@RequestMapping("/modifyrepl.do")
 	@ResponseBody
@@ -319,12 +319,12 @@ public class BoardController {
 	@ResponseBody
 	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
 			UploadImageVO vo) throws Exception {
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
@@ -372,7 +372,7 @@ public class BoardController {
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
 						// 각 게시판에 따라서 분기를 나눔
-						
+
 						if (vo.getBoardname().equals("free_board")) {
 							vo.setBoardno(BoardVO.FREE_BOARD);
 						}
@@ -402,73 +402,122 @@ public class BoardController {
 		}
 		return null;
 	}
-	
+
 
 	//글에 좋아요 를 눌렀을 때
 	@RequestMapping(value= "/likebad.do")
 	@ResponseBody
 	public String likeBad(BoardVO vo) {
-		
+
 		//실행된 결과 확인
 		if(service.likeOrBad(vo)) {
 			return "success";
-			
-			
-			
+
+
+
 		}else {
 			return "false";
 		}
-			
-	
+
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//글삭제시
 	@RequestMapping("/deleteboard.do")
 	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
-		
+
 		service.deleteBoard(vo);
 		System.out.println("댓글삭제 나옴+^^^^^^^^^^^^^^^^");
 		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+
+
+
+
+
+
+
+
+
+
+
+	//내가 쓴 글 보기
+	@RequestMapping("/writerview.do")
+	public ModelAndView writerview(ModelAndView mv) {
+		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
+		BoardVO vo = new BoardVO();
+		vo.setNowpage(1);
+		vo.setViewing_count(8); 
+ 
+
+		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
+		for(String row:vo.allBoardList()) {
+
+			//게시판이름을 세팅한다.
+			vo.setB_boardname(row);
+
+			//세팅된 게시판에 있는 것들을 가져온다.
+			Object rawboard =service.writerview(vo);
+
+			//받아온 데이터가 있으면  
+			if(rawboard!=null) {
+				mv.addObject(row,rawboard);
+				mv.addObject(row+"con", 1);
+				//만약 없다면	
+			}else {
+				mv.addObject(row+"con", 0);
+			}
+
+
+		}
+
+		mv.setViewName("index");
+
+		return mv;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,10 +16,10 @@
 
 		select f.*
 		from(SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM,
-		T.*
+		T.* 
 		FROM (
 		select * 
-		from (
+		from ( 
 		select
 		f.boardno,f.title,f.contents,f.regdate,f.id,f.board_view,<if test='!boardname.equals("nongsain")'>f.board_like,f.board_bad,</if>m.nickname
 		from ${boardname}  as f join member as m on f.id=m.id <if test="searchword!=null"> WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%') </if>) as T, (SELECT @ROWNUM := 0 ) TMP order by regdate desc) as T ORDER BY regdate desc)
@@ -196,9 +196,12 @@
 	
 	
 	
-	</insert>
-	
-	
-		
-	
+	</insert> 
+	 
+	 
+	<!-- 내가 쓴 글 가져오기 --> 
+	<select id="writerview" parameterType="board" resultType="board"> 
+	select * from ${b_boardname} <if test="id!=null">where id=#{id}</if>
+	</select>      
+	   
 </mapper>

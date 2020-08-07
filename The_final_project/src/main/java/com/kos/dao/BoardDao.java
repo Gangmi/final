@@ -28,13 +28,14 @@ public interface BoardDao {
 
 	public void modifyRepl(BoardVO vo);
 
-	public BoardVO getRepl(BoardVO vo);
-
+	public BoardVO getRepl(BoardVO vo); 
+ 
 	public int viewBoardReplCount(BoardVO vo);
 
 	public int detectLikeOrBad(BoardVO vo);
 
 	public int updateLikeBad(BoardVO vo) throws Exception;
 
-
+	public List<BoardVO> writerview(BoardVO vo);
+   
 }

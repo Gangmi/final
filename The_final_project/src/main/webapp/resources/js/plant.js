@@ -1,24 +1,12 @@
-//테이블 검색
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
+//테이블 검색 
+$(function(){
+	$("#search").click(function(){
+		var url="/plant.do?searchword="+$('#myInput').val()
+		window.location.href= url;
+	})  
+})      
 
-//탭 script -> 탭 눌렀을 시 정보가 바뀜
+//탭 script -> 탭 눌렀을 시 정보가 바뀜  
 function openCity(evt, cityName) {
 	  var i, tabcontent, tablinks;
 	  tabcontent = document.getElementsByClassName("tabcontent");
@@ -31,4 +19,5 @@ function openCity(evt, cityName) {
 	  }
 	  document.getElementById(cityName).style.display = "block";
 	  evt.currentTarget.className += " active";
-	}
+	} 
+     

@@ -56,7 +56,7 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
-	
+	 
 
 	@Override
 	public int updateBoard(BoardVO vo) {
@@ -127,16 +127,20 @@ public class BoardServiceImpl implements BoardService {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace(); 
 			}
 			
 			
-		//누른적이 있다면,
-		}else {
+		//누른적이 있다면, 
+		}else { 
 			return false;
 		}
 		//정상적으로 다 됐다면
-		return true;
+		return true; 
+ 
+	} 
 
-	}
+	public List<BoardVO> writerview(BoardVO vo) {
+		return dao.writerview(vo);  
+	}   
 }

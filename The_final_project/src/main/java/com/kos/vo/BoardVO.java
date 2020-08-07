@@ -178,10 +178,10 @@ public class BoardVO implements Board {
 	public static String changeword(String name) {
 		String result="";
 		System.out.println(name);
-		if (name.equals("free_board")){
-			result="자유게시판";
+		if (name.equals("free_board")){ 
+			result="자유게시판"; 
 		}
-		
+		 
 		if (name.equals("tip_board")){
 			result="팁게시판";
 		}
