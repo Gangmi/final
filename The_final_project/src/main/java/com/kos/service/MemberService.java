@@ -37,7 +37,12 @@ public class MemberService {
 		}
 		return result;
 	}
-	
+	public String getProfileImg(MemberVO memberVO) {
+		String img = memberDao.memberProfileImg(memberVO);
+		if(img==null)
+			return "";
+		return img;
+	}
 	public MemberVO checkID(MemberVO memberVo) {
 		List<MemberVO> idList=memberDao.memberSelect(memberVo);
 		if(idList.isEmpty())

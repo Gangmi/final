@@ -139,6 +139,7 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
+
 	// 답글 목록
 	public List<BoardVO> AnswerList(BoardVO vo) {
 		List<BoardVO> result = dao.AnswerList(vo);
@@ -156,12 +157,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	public int updateAnswer(BoardVO vo) {
-		// TODO Auto-generated method stub
-		System.out.println(vo.getB_boardname() + "서비스");
-		System.out.println(vo.getContents() + "서비스");
-		System.out.println(vo.getBoardno() + "서비스");
-		return dao.updateAnswer(vo);
-	}
+      
+      return dao.updateAnswer(vo);
+   }
 
 	public List<BoardVO> writerview(BoardVO vo) {
 		return dao.writerview(vo);
@@ -211,5 +209,23 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateProfile(vo);
 		
 	}
+
+
+ 
+
+	public void updateCheteck(BoardVO vo) {
+		 dao.updateCheteck(vo); 	
+	}
+
+
+	public BoardVO AnswerCheteck(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return dao.AnswerCheteck(vo);
+	}
+
+	public void cancleCheteck(BoardVO vo) {
+		// TODO Auto-generated method stub
+		 dao.cancleCheteck(vo);
+	}   
 
 }

@@ -3,8 +3,12 @@ $(document).ready(function () {
 	$('.main_box').hide();
 		//답변저장 버튼 누르면 답변창 감추기
 		$('#answer').click(function(){
-
-			$('.main_box').show();
+			if($('#confirmsession').val()!=null){
+				$('.main_box').show();
+			}else{
+				alert("로그인 후 입력 가능합니다.");
+			}
+			
 			});
 		//답변하기 버튼 누르면 답변창 보이기
 		$('#savebutton').click(function(){
@@ -46,8 +50,26 @@ $(document).ready(function () {
 
 		});
 		
+		//저장버튼을 누르면 수정하던 거 보이게 하기
 		$('#store').on("click",function(){
-//			$('#replno').attr("value","");
 			$("#"+replno).show();
 		});
+		
+		$('.answer').on("click",function(){
+			var string=$(this).attr("id");
+			var replno=string.replace(/[^0-9]/g,'');
+			var boardno = $("#boardno").val();
+			var boardname=$('#bname').val();
+			window.location.href="updateCheteck.do?b_boardname=nongsain&replno="+replno+"&boardno="+boardno;
+		});
+		
+		$('.cancleCheteck').on("click",function(){
+			var string=$(this).attr("id");
+			var replno=string.replace(/[^0-9]/g,'');
+			var boardno = $("#boardno").val();
+			var boardname=$('#bname').val();
+			var nic = $('#nick').val();
+			window.location.href="cancleCheteck.do?b_boardname=nongsain&replno="+replno+"&boardno="+boardno+"&nickname="+nic;
+		});
+		
 });

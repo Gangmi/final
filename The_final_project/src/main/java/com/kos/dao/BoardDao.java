@@ -46,6 +46,12 @@ public interface BoardDao {
 
    public int updateAnswer(BoardVO vo);
 
+   public void updateCheteck(BoardVO vo);
+
+   public BoardVO AnswerCheteck(BoardVO vo);
+
+   public void cancleCheteck(BoardVO vo);
+
 public String isThereProfile(UploadImageVO vo);
 
 public void updateProfile(UploadImageVO vo);
