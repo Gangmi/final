@@ -38,7 +38,13 @@ public interface BoardDao {
 
 	public List<BoardVO> AnswerList(BoardVO vo);
 
+
 	public void storeProfile(UploadImageVO vo);
+
+
+	public void deleteAnswer(BoardVO vo) throws Exception;
+
+	public int updateAnswer(BoardVO vo);
 
 
 
