@@ -40,7 +40,7 @@ public class PlantDaoImpl implements PlantDao {
 		return mybatis.selectOne("plant.getPlantInfo",vo);
 	}
     
-}                 
+}                  
 	      
    
     

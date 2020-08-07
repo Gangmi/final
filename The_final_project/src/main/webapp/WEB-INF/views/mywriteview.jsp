@@ -13,7 +13,7 @@
  
 <%
 	//게시판 값 받아오는 곳 
-String boardname = (String) request.getAttribute("b_boardname");
+String boardname = (String) request.getAttribute("b_boardname"); 
 %>
 <title>내가 쓴 글</title>
 <%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
@@ -32,21 +32,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 	<section class="hero-section">
 		<div class="container">
-		
-			<h3><%=BoardVO.changeword(boardname)%></h3>
-			<br />
-			<%
-			if(request.getAttribute("searchword")!=null){
-				String searchword=(String)request.getAttribute("searchword");
-			%>
-			<h4>"<%=searchword%>" 검색결과</h4>
-			<%
-			}   
-			%> 
-			<div class="table-wrapper">
-			<div class="writebtn">
-			<button class="btn btn-success" id="writeboard">글쓰기</button> 
-			</div>
+			<div class="table-wrapper"> 
 				<table class="table table-hover table-condensed" id="boardtable">
 					<thead>
 						<tr>
@@ -142,19 +128,8 @@ String boardname = (String) request.getAttribute("b_boardname");
 				}
 			%>
 			</div> 
-		</div>
-		<div class="search_area">
-		
-			<form action="callboard.do">
-				<input type="hidden" name="b_boardname" value="<%=boardname%>">
-				
-				<input type="text" name="searchword" class="" placeholder="검색어를 입력 해 주세요"></input>		
-				<button type="submit" class="btn btn-success">검색</button>
-			</form>
-			
-		</div>
-			
-	</section>
+		</div> 
+	</section> 
 	
 	<!-- footer  -->
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
