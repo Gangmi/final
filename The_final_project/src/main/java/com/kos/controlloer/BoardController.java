@@ -35,6 +35,7 @@ import com.kos.vo.UploadImageVO;
 
 @Controller
 public class BoardController {
+
 	@Autowired
 	BoardServiceImpl service;
 
@@ -116,17 +117,58 @@ public class BoardController {
 		return mv;
 	}
 
+
+	@RequestMapping("/writeAnswer.do")
+	@ResponseBody
+	public ModelAndView writeAnswer(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
+			throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		System.out.println(vo.getB_boardname()+ "게시판이름||||");
+		System.out.println(vo.getContents() + "내용||||");
+		System.out.println(vo.getBoardno()+"글번호||||");
+		System.out.println(vo.getId()+"아이디||||");
+		// 임시로 아이디 지정 ->나중에 지우기
+
+		// vo.setId("kim");
+		//         ReplNameVO re = new ReplNameVO(vo);
+		//         vo.setB_boardname(re.changeName());
+		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
+		if (!info.getId().isEmpty()) {
+			vo.setId(info.getId());
+		} else {
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>alert('세션이 만료되거나 로그인 상태가 아닙니다.'); location.href='index.do';</script>");
+			mv.setViewName("redirect:/login.do");
+			return mv;
+		}
+		vo.setId(vo.getId());
+		System.out.println(vo.getId()+"아이디||||");
+		System.out.println(vo.getB_boardname());
+
+		// 사용자가 작성한 글 및 정보 전달
+
+		service.writeBoard(vo);
+		System.out.println("입력하고 돌아옴");
+
+		// 넘기기
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+
+		return mv;
+	}
+
 	// 글읽을 떄
 	@RequestMapping("/viewboard.do")
 	public ModelAndView viewBoard(ModelAndView mv, BoardVO vo) {
-		//		if(vo.getB_boardname()==null) {
-		//			vo.setB_boardname("free_board");
-		//		}
+		//      if(vo.getB_boardname()==null) {
+		//         vo.setB_boardname("free_board");
+		//      }
 		System.out.println("들어옴");
 		System.out.println(vo.getB_boardname());
 		System.out.println(vo.getBoardno());
 
 		BoardVO result = service.viewBoard(vo);
+		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
 		// 닉네임 추가
 		result.setNickname(vo.getNickname());
 
@@ -140,6 +182,7 @@ public class BoardController {
 		}
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
+		mv.addObject("Answer",Answer);
 
 		return mv;
 
@@ -199,7 +242,7 @@ public class BoardController {
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);
-		vo.setViewing_count(8);
+		vo.setViewing_count(5);
 
 
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
@@ -215,7 +258,7 @@ public class BoardController {
 			if(rawboard!=null) {
 				mv.addObject(row,rawboard);
 				mv.addObject(row+"con", 1);
-				//만약 없다면	
+				//만약 없다면   
 			}else {
 				mv.addObject(row+"con", 0);
 			}
@@ -295,7 +338,7 @@ public class BoardController {
 	@ResponseBody
 	public void delRepl(BoardVO vo) {
 
-		service.delRepl(vo);		
+		service.delRepl(vo);      
 
 	}
 
@@ -308,7 +351,7 @@ public class BoardController {
 	@ResponseBody
 	public void modifyRepl(BoardVO vo) {
 
-		service.modifyRepl(vo);		
+		service.modifyRepl(vo);      
 
 	}
 
@@ -349,6 +392,10 @@ public class BoardController {
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
 						System.out.println(uploadPath);
+						System.out.println(vo.getBoardname()+"이미지저장");
+						System.out.println(vo.getBoardno()+"게시글번호");//안나옴
+						System.out.println(vo.getWriteno()+"다음글번호");//안나옴
+						System.out.println(vo.getImgName()+"이미지이름");
 						// 디렉토리 만듦
 						File uploadFile = new File(uploadPath);
 
@@ -375,6 +422,14 @@ public class BoardController {
 
 						if (vo.getBoardname().equals("free_board")) {
 							vo.setBoardno(BoardVO.FREE_BOARD);
+						}else if(vo.getBoardname().equals("tip_board")) {
+							vo.setBoardno(BoardVO.TIP_BOARD);
+						}else if(vo.getBoardname().equals("parcel_board")) {
+							vo.setBoardno(BoardVO.PARCEL_BOARD);
+						}else if(vo.getBoardname().equals("nongsain")) {
+							vo.setBoardno(BoardVO.NONGSAIN);
+						}else if(vo.getBoardname().equals("in_repl")) {
+							vo.setBoardno(BoardVO.IN_REPL);
 						}
 
 						vo.setImgName(fileName);
@@ -447,16 +502,131 @@ public class BoardController {
 		return mv;
 	}
 
+	//답글 삭제
+	@RequestMapping("/deleteAnswer.do")
+	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo) {
+		//      System.out.println(vo.get+"!!!!");//안가져와짐
+		System.out.println(vo.getB_boardname()+"!!!!");
+		System.out.println(vo.getBoardno()+"!!!!");
+		ReplNameVO re = new ReplNameVO(vo);
+		vo.setB_boardname(re.changeName());
+		service.deleteAnswer(vo);
+		System.out.println("답글삭제 ^^^^^^^^^^^^^^^^");
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		return mv;
+	}
+
+
+	//글수정 완료 버튼이 눌렸을때
+	@RequestMapping("/updateAnswer.do")
+	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
+		System.out.println("updateAnswer 들어옴");
+		System.out.println(vo.getB_boardname());
+		System.out.println(vo.getBoardno());
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getContents());
+
+		//수정된 내용으로 게시판 업데이트 쿼리 날리기
+		int result = service.updateAnswer(vo);
+
+		//쿼리 날리고 받아온 결과가 0이상(정상적으로 수정되었다면)
+		if (result > 0) {
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>alert('수정이 완료 되었습니다.'); </script>");
+		}
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		return mv;
+	}
+
+
+	//프로필 사진 업로드시 사용
+	@RequestMapping(value = "/profile-up.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String profileup(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
+			UploadImageVO vo) throws Exception {
+
+		JsonObject json = new JsonObject();
+		PrintWriter printWriter = null;
+		OutputStream out = null;
+		MultipartFile file = multiFile.getFile("upload");
+
+		System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		System.out.println(vo.getId());
 
 
 
+		// 파일이 있는지 확인
+		if (file != null) {
+			// 파일이름이 없는지 확인
+			if (file.getSize() > 0 && StringUtils.isNotBlank(file.getName())) {
 
+				if (file.getContentType().toLowerCase().startsWith("image/")) {
+					try {
+						// 파일이름 가져오기
+						String fileName = file.getName();
+						// 파일가져오기
+						byte[] bytes = file.getBytes();
+						// 저장경로 지정
+						String uploadPath = req.getRealPath("/")
+								+ "resources\\profileimg";
+						// String uploadPath =
+						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
+						System.out.println(uploadPath);
+						// 디렉토리 만듦
+						File uploadFile = new File(uploadPath);
 
+						// 업로드하는 파일의 경로가 없으면 만든다
+						if (!uploadFile.exists()) {
+							uploadFile.mkdirs();
+						}
 
+						// 파일이름 랜덤생성
+						fileName = UUID.randomUUID().toString();
 
+						// 파일 저장경로지정및 저장
+						uploadPath = uploadPath + "/" + fileName;
+						out = new FileOutputStream(new File(uploadPath));
+						out.write(bytes);
 
+						printWriter = resp.getWriter();
+						resp.setContentType("text/html");
+						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
+						System.out.println(fileUrl);
+						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
+						// 각 게시판에 따라서 분기를 나눔
+						//                  
+						//                  if (vo.getBoardname().equals("free_board")) {
+						//                     vo.setBoardno(BoardVO.FREE_BOARD);
+						//                  }
+						//
+						vo.setImgName(fileName);
+						service.storeProfile(vo);
+						// json 데이터로 등록
+						// {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
+						// 이런 형태로 리턴이 나가야함.
+						//                  json.addProperty("uploaded", 1);
+						//                  json.addProperty("fileName", fileName);
+						//                  json.addProperty("url", fileUrl);
+
+						printWriter.println(json);
+					} catch (IOException e) {
+						e.printStackTrace();
+					} finally {
+						if (out != null) {
+							out.close();
+						}
+						if (printWriter != null) {
+							printWriter.close();
+						}
+					}
+				}
+			}
+		} 
+		return "updateAccount";
+	}
 
 	//내가 쓴 글 보기
 	@RequestMapping("/writerview.do")
@@ -465,7 +635,7 @@ public class BoardController {
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);
 		vo.setViewing_count(8); 
- 
+
 
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
 		for(String row:vo.allBoardList()) {
@@ -491,10 +661,10 @@ public class BoardController {
 		mv.setViewName("index");
 
 		return mv;
-	}
+	} 
+
+
 }
-
-
 
 
 

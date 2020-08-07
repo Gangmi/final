@@ -24,7 +24,7 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<section class="hero-section">
 		<div class="plantdiv">
- 
+  
 			<h2>여름지기 식물사전</h2> 
 		<div class="inputandbtn">
 			<input type="text" id="myInput" placeholder="검색어를 입력하세요">
@@ -118,8 +118,8 @@
 				<%
 						}
 					%>
-			</div>
-		</div>
+			</div> 
+		</div> 
 	</section>
 
 	<!-- footer -->

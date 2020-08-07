@@ -6,7 +6,7 @@ public class PagingVO {
 	private int startpage; 			// 시작 페이지
 	private int endpage; 			// 끝 페이지
 	private int total; 				// 게시글 총 갯수
-	private int cntPerPage = 30; 	// 페이지당 글 갯수
+	private int cntPerPage = 15; 	// 페이지당 글 갯수
 	private int lastPage; 			// 마지막 페이지
 	private int start; 				// SQL 검색시 시작
 	private int end; 				// SQL 검색시 끝
@@ -24,15 +24,15 @@ public class PagingVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+ 
 	public String getPlantcate() {
 		return plantcate; 
 	}
-
+		
 	public void setPlantcate(String plantcate) {
 		this.plantcate = plantcate;
 	}
- 
+
 	public String getPlanttitles() {
 		return planttitles;
 	}
@@ -40,7 +40,7 @@ public class PagingVO {
 	public void setPlanttitles(String planttitles) {
 		this.planttitles = planttitles;
 	}
-
+ 
 	private int boardno;
 	private String b_boardname;
 

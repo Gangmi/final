@@ -18,7 +18,9 @@ public class PlantServiceImpl implements PlantService{
 	@Override 
 	public List<PlantVO> selectPlant(PagingVO vo) {
 		
-		int total = dao.getPlantCount(vo); 
+		//전체 갯수가 몇개인지 불러옴
+		int total = dao.getPlantCount(vo);
+		
 		System.out.println("토탈갯수"+total);	//330
 		PagingVO page = new PagingVO(total, vo.getNowpage(), vo.getCntPerPage());
 		if(vo.getSearchword()!=null) {
@@ -44,7 +46,7 @@ public class PlantServiceImpl implements PlantService{
 		return result;        
 	} 
 	 
-	@Override 
+	@Override
 	public int getPlantCount(PagingVO vo) {
 		return dao.getPlantCount(vo);
 	}

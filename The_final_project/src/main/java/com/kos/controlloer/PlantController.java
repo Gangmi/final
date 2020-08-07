@@ -25,53 +25,43 @@ public class PlantController {
 		System.out.println("plantlist 들어옴");
 		System.out.println(vo);
 		System.out.println("-------------");
-		System.out.println(vo.getSearchword());
-		System.out.println("-------------");
-		System.out.println(vo.getPlanttitles());
-		System.out.println("-------------");
-		System.out.println(vo.getPlantcate());
-		System.out.println("-------------");
-		System.out.println(vo.getNowpage());
-		System.out.println("-------------");
-		System.out.println(vo.getStart());
-		System.out.println("-------------");
-		System.out.println(vo.getEnd());
-		System.out.println("-------------");
 
-		if (vo.getNowpage() == 0) {
-			vo.setNowpage(1);
+		if(vo.getNowpage()==0) {   
+			vo.setNowpage(1);   
 		} 
-
-		// 검색어 검색이 있다면
-		if (!vo.getSearchword().equals("")) {
+		
+		//검색어 검색이 있다면   
+		if(!vo.getSearchword().equals("")) {
 			System.out.println("검색어가 있다.");
 			mv.addObject("searchword", vo.getSearchword());
-		}
-
-		// 탭마다 카테고리가 null이 아니면 보여줌
-		if(vo.getPlantcate()!=null) { 
-			System.out.println("카테고리가 있다");
-			mv.addObject("plantcate",vo.getPlantcate()); 
-		}
-		 
-		List<PlantVO> list = (List<PlantVO>) service.selectPlant(vo);
-		System.out.println("가져오냐?");
-		System.out.println(list);
-		mv.setViewName("plant");
-
-		// 다음 페이지로 넘길 리스트가 제대로 받아와 졌는지 확인
-		if (list.size() > 0) {
+		} 
+		
+		// 탭마다 카테고리가 null이 아니면 보여줌 
+		if(vo.getPlantcate()!=null) {
+			System.out.println("카테고리가 있다"); 
+			mv.addObject("plantcate",vo.getPlantcate());
+		}  
+		
+		List<PlantVO> list = (List<PlantVO>)service.selectPlant(vo);
+		System.out.println("가져오냐?"); 
+		System.out.println(list); 
+		mv.setViewName("plant"); 	        
+		    
+		// 다음 페이지로 넘길 리스트가 제대로 받아와 졌는지 확인   
+		if (list.size() > 0) {  
 			mv.addObject("plantlist", list); // 받아온 게시판 게시물
 			mv.addObject("confirm", 1); // 값이 제대로 넘어간것을 표현
 
-			return mv;
-
-		} else {
+			return mv;   
+ 
+		} else {  
+ 
 			// 제대로 들어오지 않았다면
-			mv.addObject("confirm", 0);
+			mv.addObject("confirm", 0); 
 			return mv;
 		}
-	}
+	
+	} 
 
 	// DB에 저장되어있는 식물정보 데이터를 보여줌
 	@RequestMapping("viewplant.do")
@@ -84,3 +74,5 @@ public class PlantController {
 	}
 
 }
+
+

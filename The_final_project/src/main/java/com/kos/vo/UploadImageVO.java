@@ -6,6 +6,16 @@ public class UploadImageVO {
 	private int writeno;
 	private String imgName;
 	private String istemp;
+	private String id;
+	
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getBoardname() {
 		return boardname;
 	}

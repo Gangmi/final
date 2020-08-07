@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Plant">
+<mapper namespace="plant">
 
 	<!-- 1~50번째 까지의 리스트를 가져오는 쿼리 -->
 	<select id="selectPlant" parameterType="paging" resultType="plant">
@@ -10,9 +10,9 @@
 	  				from (	select plant_id, plant_cate, plant_titles 
 	              			from plant ,(SELECT @ROWNUM := 0 ) TMP <if test="searchword!=null"> WHERE plant_titles LIKE CONCAT('%', #{searchword}, '%') </if>
 	              			) as f 
-						where 1=1 <if test="plantcate!=null"> AND plant_cate=#{plantcate}</if>) as s where ROWNUM between ${start} and ${end}
-	</select> 
-                    
+				where 1=1 <if test="plantcate!=null"> AND plant_cate=#{plantcate}</if>) as s where ROWNUM between ${start} and ${end}
+	</select>
+                     
 	<!--해당 사전의 전체 게시물 갯수 쿼리 -->        
 	<select id="getPlantCount" parameterType="plant" resultType="int">    
 		select count(*) from plant where 1=1 <if test="plantcate!=null"> and plant_cate=#{plantcate}</if><if test="searchword!=null">and plant_titles LIKE CONCAT('%', #{searchword}, '%') </if>
@@ -25,4 +25,4 @@
 		where plant_id=${plantid}      
 	</select>         
  
-</mapper>                      
+</mapper>                       

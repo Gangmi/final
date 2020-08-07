@@ -20,6 +20,15 @@ BoardVO vo;
 		if(vo.getB_boardname().equals("tip_board")) {
 			boardno=2;
 		}
+		if(vo.getB_boardname().equals("parcel_board")) {
+			boardno=3;
+		}
+		if(vo.getB_boardname().equals("nongsain")) {
+			boardno=4;
+		}
+		if(vo.getB_boardname().equals("in_repl")) {
+			boardno=5;
+		}
 		hs.put("boardno",boardno);
 		
 		

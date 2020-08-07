@@ -2,10 +2,7 @@
 margin: 0;
 padding: 0;
 }
-img {
-display: block;
-border: none;
-}
+
 
 a {
 text-decoration: none;
@@ -26,6 +23,15 @@ float: left;
 width: 180px;
 float: left;
 }
+
+body,html{
+	
+	
+	
+}
+
+
+
 
 .header {
 width: 85.41%;
@@ -76,33 +82,70 @@ font-weight: bold;
 }
 
 #main {
-    width: 82%;
-    margin: 0 auto;
+    width: 100%;
+    height: 1050px;
+    margin-left:15%;
+    display: block;
+    
+   
 }
-
+.upper{
+	width: 70%;
+	height: 560px;
+	border-bottom: 3px solid lightgray;
+	float: left;
+	
+}
+.farm-info{
+	font-size:23px;
+	font-weight: bold;
+}
 .cctv_box {
     width: 60%;
-    overflow: hidden;
+    display: inline-block;
+  
+   
     float: left;
 }
 
 .btn {
-    width: 500px;
+	width:35%;
+	height:400px;
+  	display:inline-block;
     float: left;
-    margin-top: 30px;}
+    text-align: left;
+    text-align: unset !important;
+    margin-top: 50px;
+    margin-left: 5%;
+   
+    }
+.btn p{
+	margin-top: 0px !important;
+	font-size: 20px;
+	color: black;
+}    
 
-.cctv_box .btn1 {
+.btn1 {
+	margin-top:119px;
     float: left;
+    display: inline-block;
+}
+.btn2 {
+	margin-top:119px;
+	margin-left:5%;
+    float: left;
+    display: inline-block;
 }
 
 .btn button {
-    width: 150px;
+    width: 175px;
     height: 60px;
     background-color: #44526C;
     border: none;
     border-radius: 5px;
-    margin-right: 20px;
-    margin-bottom: 120px;
+    color: white;
+    font-size: 20px;
+   
 }
 
 .btn1 button p {
@@ -126,22 +169,24 @@ font-weight: bold;
 .btn img {
     width: 60px;
     height: 60px;
-    float: left;
+  
 }
 
-
+/*화면  */
 .cctv {
-    width: 800px;
-    height: 450px;
+    width: 100%;
+   
     border-radius: 10px;
     margin-top: 50px;
     margin-bottom: 30px;
+    float: left;
 }
-
+/*화면이미지  */
 .cctv img {
-    width: 800px;
-    height: 450px;
-    opacity: 0.5;
+    width: 100%;
+   	height: 430px;
+    
+    border: 1px solid;
     border-radius: 10px;
 }
 
@@ -197,19 +242,29 @@ border-radius: 10px;
 }
 
 .gauge-container {
-  padding: 20px;
+/*   padding: 20px; */
   margin-top: 80px;
-  display: inline-flex;
-  justify-content: space-around;
+  display: block;
+  width: 80%;
+  float:left;
+  height:300px;
+  margin-left: 7%;
+/*   justify-content: space-around; */
 }
 
 .gauge {
   background-image: -webkit-linear-gradient(50deg, #212629, #395467);
   background-image: -o-linear-gradient(50deg, #212629, #395467);
   background-image: linear-gradient(140deg, #212629, #395467);
-  
+ color:#395467;
   height: 220px;
   width: 300px;
+  float: left;
+  margin-left: 5%;
+  border-radius: 50px;
+}
+#temperature{
+	margin-left: 0px;
 }
 .gauge .dxg-range.dxg-background-range {
   fill: url(#gradientGauge);
@@ -259,6 +314,7 @@ border-radius: 10px;
   -webkit-transform: translate(0, -109px);
   transform: translate(0, -109px);
 }
+/*게이지 핀 색  */
 .gauge .dxg-value-indicator .dxg-spindle-hole {
   fill: #26323a;
 }

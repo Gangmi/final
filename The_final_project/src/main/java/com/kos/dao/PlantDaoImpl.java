@@ -23,7 +23,7 @@ public class PlantDaoImpl implements PlantDao {
 //		System.out.println(ok.get(1).getPlanttitles()); 
 //		return ok;  
 		System.out.println("찍히냐?"); 
-		System.out.println(vo.getPlanttitles());  
+		System.out.println(vo.getPlanttitles());   
 		System.out.println(vo.getPlantcate());
 		return mybatis.selectList("Plant.selectPlant", vo);
 	}         

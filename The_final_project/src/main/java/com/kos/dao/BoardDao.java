@@ -8,34 +8,44 @@ import com.kos.vo.UploadImageVO;
 
 public interface BoardDao {
 
-	public List<BoardVO> getBoardList(BoardVO vo);
+   public List<BoardVO> getBoardList(BoardVO vo);
 
-	public void writeBoard(BoardVO vo);
+   public void writeBoard(BoardVO vo);
 
-	public BoardVO viewBoard(BoardVO vo);
+   public BoardVO viewBoard(BoardVO vo);
 
-	public void storeImage(UploadImageVO imgvo);
+   public void storeImage(UploadImageVO imgvo);
 
-	public int updateBoard(BoardVO vo);
+   public int updateBoard(BoardVO vo);
 
-	public void deleteBoard(BoardVO vo)throws Exception;
+   public void deleteBoard(BoardVO vo)throws Exception;
 
-	public void writeRepl(BoardVO vo);
+   public void writeRepl(BoardVO vo);
 
-	public List<BoardVO> viewBoardRepl(PagingVO page);
+   public List<BoardVO> viewBoardRepl(PagingVO page);
 
-	public void delRepl(BoardVO vo);
+   public void delRepl(BoardVO vo);
 
-	public void modifyRepl(BoardVO vo);
+   public void modifyRepl(BoardVO vo);
 
-	public BoardVO getRepl(BoardVO vo); 
- 
-	public int viewBoardReplCount(BoardVO vo);
+   public BoardVO getRepl(BoardVO vo); 
 
-	public int detectLikeOrBad(BoardVO vo);
+   public int viewBoardReplCount(BoardVO vo);
 
-	public int updateLikeBad(BoardVO vo) throws Exception;
+   public int detectLikeOrBad(BoardVO vo);
 
-	public List<BoardVO> writerview(BoardVO vo);
+   public int updateLikeBad(BoardVO vo) throws Exception;
+
+   public List<BoardVO> AnswerList(BoardVO vo);
    
+   public List<BoardVO> writerview(BoardVO vo);
+
+   public void storeProfile(UploadImageVO vo);
+
+   public void deleteAnswer(BoardVO vo) throws Exception;
+
+   public int updateAnswer(BoardVO vo);
+
+
+
 }

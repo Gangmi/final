@@ -1,5 +1,15 @@
-$(document).ready(function () {
-	//글쓰기 버튼을 클릭했을 때
+$(document).ready(function (event) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 글쓰기 버튼을 클릭했을 때
 	$('#writeboard').click(function(){
 		var confirm=$('#confirmsession').val();
 		if(confirm=="null"){
@@ -10,5 +20,26 @@ $(document).ready(function () {
 		
 		window.location.href="writeboard.do?b_boardname="+$('#boardname').val();
 	})
+	
+	
+	// 이름클릭시 드롭박스 보이기
+
+
+
+	$('.dropbtn').click(function(evt){
+		
+		i =$(this).next();
+		$(this).next().toggle();
+		$('#dropopen').val('true');
+
+		
+	})
+	//대화
+	$('.oneonone').click(function(){
+		requestChat($(this).text());
+	})
+	
+	
+	
 	
 });
