@@ -3,242 +3,261 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
-	<!-- mybais 자료형 int/hashmap/string -->
+   <!-- mybais 자료형 int/hashmap/string -->
 
-	<!--해당 게시판의 전체 게시물 갯수 쿼리 -->
-	<select id="getBoardCount" parameterType="board" resultType="int">
-		select count(*) from ${b_boardname} <if test="searchword!=null">WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
-	</select>
-
-
-	<!--해당 게시판의 현재 조건에 따른 게시물 검색 -->
-	<select id="getBoardList" parameterType="paging" resultType="board">
-
-		select f.*
-		from(SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM,
-		T.*
-		FROM (
-		select * 
-		from (
-		select
-		f.boardno,f.title,f.contents,f.regdate,f.id,f.board_view,<if test='!boardname.equals("nongsain")'>f.board_like,f.board_bad,</if>m.nickname
-		from ${boardname}  as f join member as m on f.id=m.id <if test="searchword!=null"> WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%') </if>) as T, (SELECT @ROWNUM := 0 ) TMP order by regdate desc) as T ORDER BY regdate desc)
-		as f where f.ROWNUM<![CDATA[>=]]>${start} and f.ROWNUM<![CDATA[<=]]>${end}
-		
-		
+   <!--해당 게시판의 전체 게시물 갯수 쿼리 -->
+   <select id="getBoardCount" parameterType="board" resultType="int">
+      select count(*) from ${b_boardname} <if test="searchword!=null">WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
+   </select>
 
 
-	</select>
-	<!--게시글을 등록 -->
-	<insert id="writeboard" parameterType="board">
-		insert into ${b_boardname}
-		(title,contents,id)
-		values(#{title},#{contents},#{id})
+   <!--해당 게시판의 현재 조건에 따른 게시물 검색 -->
+   <select id="getBoardList" parameterType="paging" resultType="board">
 
-	</insert>
+      select f.*
+      from(SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM,
+      T.*
+      FROM (
+      select * 
+      from (
+      select
+      f.boardno,f.title,f.contents,f.regdate,f.id,f.board_view,<if test='!boardname.equals("nongsain")'>f.board_like,f.board_bad,</if>m.nickname
+      from ${boardname}  as f join member as m on f.id=m.id <if test="searchword!=null"> WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%') </if>) as T, (SELECT @ROWNUM := 0 ) TMP order by regdate desc) as T ORDER BY regdate desc)
+      as f where f.ROWNUM<![CDATA[>=]]>${start} and f.ROWNUM<![CDATA[<=]]>${end}
+      
+      
 
-	<!--조회수 올리기 -->
-	<update id="upviewcount" parameterType="board">
-		update ${b_boardname} set
-		board_view=board_view+1 where boardno = ${boardno}
 
-	</update>
+   </select>
+   <!--게시글을 등록 -->
+   <insert id="writeboard" parameterType="board">
+      insert into ${b_boardname}
+      (title,contents,id)
+      values(#{title},#{contents},#{id})
 
-	<!--게시글 읽기 -->
-	<select id="viewboard" parameterType="board" resultType="board">
-		<choose>
-			<when test="b_boardname eq 'nongsain'.toString()">
-				select
-				boardno,title,contents,regdate,id,board_view,seleted,select_date
-				from ${b_boardname} where boardno = ${boardno}
+   </insert>
 
-			</when>
+   <!--조회수 올리기 -->
+   <update id="upviewcount" parameterType="board">
+      update ${b_boardname} set
+      board_view=board_view+1 where boardno = ${boardno}
 
-			<otherwise>
-				select
-				boardno,title,contents,regdate,id,board_like,board_bad,board_view
-				from ${b_boardname} where boardno = ${boardno}
+   </update>
 
-			</otherwise>
-		</choose>
-	</select>
+   <!--게시글 읽기 -->
+   <select id="viewboard" parameterType="board" resultType="board">
+      <choose>
+         <when test="b_boardname eq 'nongsain'.toString()">
+            select
+            boardno,title,contents,regdate,id,board_view,seleted,select_date
+            from ${b_boardname} where boardno = ${boardno}
 
-	<!--다음게시물 번호 가져오기 -->
-	<select id="getNextNum" parameterType="hashmap" resultType="int">
-		SELECT AUTO_INCREMENT
+         </when>
 
-		FROM information_schema.tables
+         <otherwise>
+            select
+            boardno,title,contents,regdate,id,board_like,board_bad,board_view
+            from ${b_boardname} where boardno = ${boardno}
 
-		WHERE table_name = #{boardname}
+         </otherwise>
+      </choose>
+   </select>
 
-		AND table_schema = DATABASE();
-	</select>
+   <!--다음게시물 번호 가져오기 -->
+   <select id="getNextNum" parameterType="hashmap" resultType="int">
+      SELECT AUTO_INCREMENT
 
-	<!--이미지 상태 저장 -->
-	<insert id="imagestore" parameterType="img">
-		insert into
-		img_status(boardno,writeno,img_name,istemp)
-		values(#{boardno},#{writeno},#{imgName},0)
-	</insert>
+      FROM information_schema.tables
 
-	<!-- 글이 저장 될 때 업데이트가 될 이미지가 있는지 확인 -->
-	<select id="isthereimg" parameterType="hashmap" resultType="img">
-		select * from img_status where boardno=#{boardno} and
-		writeno=#{writeno}
-	</select>
+      WHERE table_name = #{boardname}
 
-	<!-- 글이 저장 될 떄 이미지 상태 업데이트 -->
-	<update id="notemp" parameterType="hashmap">
-		update img_status set istemp=1
-		where boardno=#{boardno} and
-		writeno=#{writeno}
+      AND table_schema = DATABASE();
+   </select>
 
-	</update>
-	
-	<update id="updateboard" parameterType="board">
-		update ${b_boardname} set title=#{title},contents=#{contents} where boardno=#{boardno}
-	</update>
-	
-	
-	<!--댓글 저장 -->
-	<insert id="writerepl" parameterType="board">
-		insert into
-		${b_boardname}(boardno,id,contents)
-		values(#{boardno},#{id},#{contents})
-	</insert>
+   <!--이미지 상태 저장 -->
+   <insert id="imagestore" parameterType="img">
+      insert into
+      img_status(boardno,writeno,img_name,istemp)
+      values(#{boardno},#{writeno},#{imgName},0)
+   </insert>
 
-	<!-- 댓글개수 가져오기 -->
-	<select id="viewBoardReplCount" parameterType="board" resultType="int">
-		select count(*) from ${b_boardname} where boardno = ${boardno}
-	</select>
-	<!-- 댓글 목록 가져오기 -->
-	<select id="viewBoardRepl" parameterType="paging" resultType="board">
-	select b.replno as replno,b.boardno as boardno,b.id as id,b.nickname as nickname,b.contents as contents,b.regdate as regdate
-	from(
-		select @rownum:=@rownum+1 as no,a.*
-		from
-		(select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
-		from member member inner join ${b_boardname} ${b_boardname}
-		ON member.id = ${b_boardname}.id
+   <!-- 글이 저장 될 때 업데이트가 될 이미지가 있는지 확인 -->
+   <select id="isthereimg" parameterType="hashmap" resultType="img">
+      select * from img_status where boardno=#{boardno} and
+      writeno=#{writeno}
+   </select>
+
+   <!-- 글이 저장 될 떄 이미지 상태 업데이트 -->
+   <update id="notemp" parameterType="hashmap">
+      update img_status set istemp=1
+      where boardno=#{boardno} and
+      writeno=#{writeno}
+
+   </update>
+   
+   <update id="updateboard" parameterType="board">
+      update ${b_boardname} set title=#{title},contents=#{contents} where boardno=#{boardno}
+   </update>
+   
+   
+   <!--댓글 저장 -->
+   <insert id="writerepl" parameterType="board">
+      insert into
+      ${b_boardname}(boardno,id,contents)
+      values(#{boardno},#{id},#{contents})
+   </insert>
+
+   <!-- 댓글개수 가져오기 -->
+   <select id="viewBoardReplCount" parameterType="board" resultType="int">
+      select count(*) from ${b_boardname} where boardno = ${boardno}
+   </select>
+   <!-- 댓글 목록 가져오기 -->
+   <select id="viewBoardRepl" parameterType="paging" resultType="board">
+   select b.replno as replno,b.boardno as boardno,b.id as id,b.nickname as nickname,b.contents as contents,b.regdate as regdate
+   from(
+      select @rownum:=@rownum+1 as no,a.*
+      from
+      (select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
+      from member member inner join ${b_boardname} ${b_boardname}
+      ON member.id = ${b_boardname}.id
         where boardno = ${boardno} and (@rownum :=0)=0
         ORDER BY ${b_boardname}.replno desc
         )as a
     )as b
-	where no<![CDATA[>=]]>${start} and no<![CDATA[<=]]>${end}
-	</select>  
-	
-	<!-- 수정할 댓글 가져오기 -->
-	<select id="getRepl" parameterType="board" resultType="board">
-		select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
-		from member member inner join ${b_boardname} ${b_boardname}
-		ON member.id = ${b_boardname}.id 
-		where ${b_boardname}.replno = ${replno} 
-	</select>
-	
-	<!--댓글 갯수 확인 쿼리  -->
-	<select id="countrepl" parameterType="board" resultType="int">
-	select count(*) from ${b_boardname} where boardno=${boardno}
-	</select>
-	
-	
-	<!-- 댓글전체삭제  -->
-	<delete id="deleterepl" parameterType="board">
-	delete from ${b_boardname} where boardno=${boardno}
-	
-	</delete>
-	
-	<!-- 댓글삭제  -->
-	<delete id="deleterepl2" parameterType="board">
-	delete from ${b_boardname} where replno=${replno}	
-	</delete>
-	
-	<!-- 댓글수정  -->
-	<delete id="modifyRepl" parameterType="board">
-	update ${b_boardname} set contents= #{contents},regdate= SYSDATE()  where replno=${replno}	
-	</delete>
-	
-	 <!--글삭제  -->
-	 
-	<delete id="deleteboard" parameterType="board">
-	delete from ${b_boardname} where boardno=${boardno}
-	
-	</delete>
-	
-	
-	
-	<!-- 이미지 테이블에서 게시글 관련 이미지 검색 -->
-	<select id="selectimg" parameterType="hashmap" resultType="img">
-	select * from img_status where boardno=${boardno} and writeno=${writeno}
-	
-	</select>
-	
-	<!--이미지 데이터 베이스 삭제--> 	
-	<delete id="deleteimage" parameterType="hashmap">
-	delete from img_status where boardno=${boardno} and writeno=${writeno}
-	
-	</delete>
-	
-	<!--좋아요 싫어요를 한 기록이 있는지 확인  -->
-	<select id="detectLikeOrBad" parameterType="board" resultType="int">
-	select count(*)
-	from likebad_manage
-	where boardno=#{b_boardname} and writeno=#{boardno} and id=#{id} 
-	
-	</select>
-	
-	<!--좋아요 싫어요 올리기  -->
-	<update id="updateLikeBad" parameterType="board">
-	update ${b_boardname} set <if test="confirmnum==1">board_like=board_like+1</if><if test="confirmnum==2">board_bad=board_bad+1</if>where boardno=#{boardno}
-	
-	</update>
-	
-	<!-- 좋아요 싫어요를 했다는 표시  -->
-	<insert id="insertLikeBad" parameterType="board">
-	insert into likebad_manage (boardno,writeno,id,likebad) values(${b_boardname},${boardno},#{id},#{confirmnum})
-	
-	
-	
-	</insert>
-	
-	<!--닶글 저장 -->
-	<insert id="writeAnswer" parameterType="board">
-		insert into
-		${b_boardname}(boardno,id,contents,is_selected)
-		values(#{boardno},#{id},#{contents},0)
-		
-		
-	</insert>
-	
-	<!-- 농사인 답변리스트 가져오기 -->
-	<select id="AnswerList" parameterType="board" resultType="board">
-	<!-- select * from in_repl where boardno = ${boardno} -->
+   where no<![CDATA[>=]]>${start} and no<![CDATA[<=]]>${end}
+   </select>  
+   
+   <!-- 수정할 댓글 가져오기 -->
+   <select id="getRepl" parameterType="board" resultType="board">
+      select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
+      from member member inner join ${b_boardname} ${b_boardname}
+      ON member.id = ${b_boardname}.id 
+      where ${b_boardname}.replno = ${replno} 
+   </select>
+   
+   <!--댓글 갯수 확인 쿼리  -->
+   <select id="countrepl" parameterType="board" resultType="int">
+   select count(*) from ${b_boardname} where boardno=${boardno}
+   </select>
+   
+   
+   <!-- 댓글전체삭제  -->
+   <delete id="deleterepl" parameterType="board">
+   delete from ${b_boardname} where boardno=${boardno}
+   
+   </delete>
+   
+   <!-- 댓글삭제  -->
+   <delete id="deleterepl2" parameterType="board">
+   delete from ${b_boardname} where replno=${replno}   
+   </delete>
+   
+   <!-- 댓글수정  -->
+   <delete id="modifyRepl" parameterType="board">
+   update ${b_boardname} set contents= #{contents},regdate= SYSDATE()  where replno=${replno}   
+   </delete>
+   
+    <!--글삭제  -->
+    
+   <delete id="deleteboard" parameterType="board">
+   delete from ${b_boardname} where boardno=${boardno}
+   
+   </delete>
+   
+   
+   
+   <!-- 이미지 테이블에서 게시글 관련 이미지 검색 -->
+   <select id="selectimg" parameterType="hashmap" resultType="img">
+   select * from img_status where boardno=${boardno} and writeno=${writeno}
+   
+   </select>
+   
+   <!--이미지 데이터 베이스 삭제-->    
+   <delete id="deleteimage" parameterType="hashmap">
+   delete from img_status where boardno=${boardno} and writeno=${writeno}
+   
+   </delete>
+   
+   <!--좋아요 싫어요를 한 기록이 있는지 확인  -->
+   <select id="detectLikeOrBad" parameterType="board" resultType="int">
+   select count(*)
+   from likebad_manage
+   where boardno=#{b_boardname} and writeno=#{boardno} and id=#{id} 
+   
+   </select>
+   
+   <!--좋아요 싫어요 올리기  -->
+   <update id="updateLikeBad" parameterType="board">
+   update ${b_boardname} set <if test="confirmnum==1">board_like=board_like+1</if><if test="confirmnum==2">board_bad=board_bad+1</if>where boardno=#{boardno}
+   
+   </update>
+   
+   <!-- 좋아요 싫어요를 했다는 표시  -->
+   <insert id="insertLikeBad" parameterType="board">
+   insert into likebad_manage (boardno,writeno,id,likebad) values(${b_boardname},${boardno},#{id},#{confirmnum})
+   
+   
+   
+   </insert>
+   
+   <!--닶글 저장 -->
+   <insert id="writeAnswer" parameterType="board">
+      insert into
+      ${b_boardname}(boardno,id,contents,is_selected)
+      values(#{boardno},#{id},#{contents},0)
+      
+      
+   </insert>
+   
+   <!-- 농사인 답변리스트 가져오기 -->
+   <select id="AnswerList" parameterType="board" resultType="board">
+   <!-- select * from in_repl where boardno = ${boardno} -->
 
-	select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
-	in_repl re INNER JOIN member me
-	on re.id = me.id
-	where boardno = ${boardno}
+   select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
+   in_repl re INNER JOIN member me
+   on re.id = me.id
+   where boardno = ${boardno}
+   
+   </select>
+      
+
+      
+   <insert id="insertprofile" parameterType="img">
+   insert into memberimg (id,imagename) values(#{id},#{imgName})   
+
+   
+   </insert>   
+      
+      
+      
+      
+      
+
+   <!-- 농사인 답글 삭제 -->
+   <delete id="deleteAnswer" parameterType="board">
+   delete from ${b_boardname} where replno=${replno}
+
+   
+   </delete>
+   
+   <!-- 이미지 테이블에서 답글 관련 이미지 검색 -->
+   <select id="selectimgAnswer" parameterType="hashmap" resultType="img">
+   select * from img_status where writeno=${writeno}
+   
+   </select>
+   
+   <!--답글 이미지 데이터 베이스 삭제-->    
+   <delete id="deleteimageAnswer" parameterType="hashmap">
+   delete from img_status where writeno=${writeno}
+   
+   </delete>
+   
+   	<!-- 내가 쓴 글 가져오기 --> 
+	<select id="writerview" parameterType="board" resultType="board"> 
+	select * from ${b_boardname} <if test="id!=null">where id=#{id}</if>
 	
-	</select>
-		
-
-		
-	<insert id="insertprofile" parameterType="img">
-	insert into memberimg (id,imagename) values(#{id},#{imgName})	
-
+	</select>     
 	
-	</insert>	
-		
-		
-		
-		
-		
-
-	<!-- 농사인 답글 삭제 -->
-	<delete id="deleteAnswer" parameterType="board">
-	delete from ${b_boardname} where replno=${replno}
-
-	
-	</delete>
 	
 	<!-- 이미지 테이블에서 답글 관련 이미지 검색 -->
 	<select id="selectimgAnswer" parameterType="hashmap" resultType="img">
@@ -257,4 +276,5 @@
 		update ${b_boardname} set contents=#{contents} where boardno=#{boardno}
 	</update>
 	
+
 </mapper>

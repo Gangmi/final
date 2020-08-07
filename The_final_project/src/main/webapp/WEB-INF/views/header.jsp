@@ -19,8 +19,11 @@
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 </head>
 <body>
+	<!-- 챗봇 연동 -->
+	<script id="embeddedChatbot" data-botId="Bdv56x" src="https://www.closer.ai/js/webchat.min.js"> </script>
+
 	<div id="preloder">
-        <div class="loader"></div>
+        <div class="loader"></div> 
     </div>
 	
 	<div class="offcanvas-menu-overlay"></div>
@@ -81,17 +84,27 @@
 			<li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
 		</ul>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="menu-item">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="">
 					<div class="logo">
 						<a href="/index.do"> <!--로고 들어가는섹션--> <img
 							src="/resources/img/mainlogo.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-10">
+		
+				<!--데스크탑 메뉴부분  -->
+				<div class="">
 					<div class="nav-menu">
 						<nav class="mainmenu">
 							<ul>
@@ -131,6 +144,8 @@
 						</div>
 					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 	</div>

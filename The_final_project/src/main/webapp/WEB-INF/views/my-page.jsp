@@ -139,8 +139,8 @@
                 <button>
                     <img src="/resources/old/img/market_grey.png" alt="market">
                 </button>
-                <p><a href="#">내가쓴 글 보기</a></p>
-            </div>
+                <p><a href="/writerview.do">내가쓴 글 보기</a></p>
+            </div> 
 
           
            
