@@ -90,21 +90,66 @@ document.addEventListener("click", () => {
     <div></div>
     <div></div>
 </div>
-	<!--전체 섹션  -->
+	
 	<section class="sidebar">
 	
 	</section>
-	
+	<!--전체 섹션  -->
 	<section class="mainsection">
 	
-	
-	
-	<div class="posting">
-	
-	
-	
-	</div>
-	
+		<!--섹션안에 구분선을 위한 div  -->
+		<div class="container postwrap">
+		
+		<!--진짜 포스팅이 들어가는 부분  -->
+			<div class="posting">
+			
+				<!--포스팅 헤더 부분  -->
+				<div class="headersep">
+					<div class="header-left">
+						<div class="titles">
+							<span>제목 제목</span>
+						</div>
+					</div>
+					<div class="header-right">
+						<div class="regdate">
+							<span>글쓴 날짜</span>
+						</div>
+						<div class="writerinfo">
+							<div class="profileimg">
+								<img>
+							</div>
+							<div class="writername">
+								<span>이름이름</span>
+							</div>	
+						
+						</div>
+					
+					</div>
+				</div>
+				<!--포스팅 헤더 부분  END-->
+				
+				<!-- 포스팅 이미지 부분  -->
+				<div class="imgwraper">
+					<div class="postimg">
+						<img src="/resources/img/hero/hero-2.jpg">
+					</div>
+				</div>
+				
+				<div class="contentswraper">
+					<div class="realcontents">
+					내용내용 내용내용
+					
+					</div>
+				
+				
+				</div>
+				
+			
+			
+			</div>
+		
+			
+		</div>
 	
 	
 	
@@ -118,7 +163,8 @@ document.addEventListener("click", () => {
 
 
 
-
+<div class="footerwrap">
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

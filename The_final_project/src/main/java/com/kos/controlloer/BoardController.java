@@ -60,7 +60,8 @@ public class BoardController {
 		if (result.size() > 0) {
 			mv.addObject("boardlist", result); // 받아온 게시판 게시물
 			mv.addObject("confirm", 1); // 값이 제대로 넘어간것을 표현
-
+			
+		
 			return mv;
 
 		} else {
@@ -677,6 +678,16 @@ public class BoardController {
 		public ModelAndView cancleCheteck(ModelAndView mv ,BoardVO vo) {
 			service.cancleCheteck(vo);
 			mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+			return mv;
+		}
+		
+		
+		@RequestMapping("/imgboard.do")
+		public ModelAndView imgboard(BoardVO vo, ModelAndView mv) {
+			
+			
+			mv.setViewName("imgboard");
+			
 			return mv;
 		}
 			

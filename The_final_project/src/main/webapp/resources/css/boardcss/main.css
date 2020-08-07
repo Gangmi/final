@@ -1,3 +1,10 @@
+@font-face{
+	font-family: "my";
+	src: url("../fonts/fogoFont/GodoB.otf");
+}
+
+
+
 /*전체 페이지  */
 body{
 	
@@ -11,22 +18,108 @@ body{
 .mainsection{
 	
 	width: 100%;
-	height: 1500px;
+	height: 100%;
 	text-align: center;
+	padding-bottom: 50px;
 }
+
+/* 컨테이너  */
+.mainsection .container {
+	background-color: #f4f4f4;
+	height: 100%;
+	border-top: 1px solid black;
+}
+
 /*안에 포스팅 섹션  */
 .posting{
 	
 	background-color:white;
-	width: 50%;
-	height: 100%;
+	width: 80%;
+	height: 80%;
 	margin-top: 5%;
 	margin-left:  auto;
 	margin-right:  auto;
 	border: 1px solid lightgray;
 }
 
-nav-item{
-	border-bottom: 1px solid black;
+.headersep{
+	border-bottom: 1px solid lightgray;
+	height:20%;
+	
+	vertical-align: middle;
 }
+
+
+.header-left{
+	width: 60%;
+	height:100%;
+	float: left;
+	
+	border-right: 1px solid lightgray;
+	
+}
+
+.header-right{
+	width: 40%;
+	height:100%;
+	float:left;
+	
+}
+
+.headersep span{
+	
+	
+	font-family: my;
+	font-weight: bold;
+}
+
+.header-left{
+	
+}
+/*제목  */
+.titles{
+	font-size: 30px;
+	margin-top: 8%;
+}
+/*글쓴날  */
+.regdate{
+	margin-top:8%;
+	font-size: 20px;
+}
+
+/*글쓴이  */
+.writername{
+	font-size: 20px;
+}
+
+
+.imgwraper{
+	margin-top: 3%;
+}
+.postimg{
+	margin: 0 auto;
+	width: 80%;
+	height: 30%;
+}
+.postimg img{
+	width: 100%;
+	height: 100%;
+}
+
+.contentswraper{
+	margin-top: 3%;
+	width: 100%;
+	height: 100%;
+	
+}
+
+.realcontents{
+	margin:0 auto;
+	width: 80%;
+	border: 1px solid lightgray;
+	
+}
+
+
+
 
