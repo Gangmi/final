@@ -372,8 +372,7 @@ public class BoardController {
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
-		System.out.println(file + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(vo.getBoardname());
+		
 		// 파일이 있는지 확인
 		if (file != null) {
 			// 파일이름이 없는지 확인
@@ -392,10 +391,7 @@ public class BoardController {
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
 						System.out.println(uploadPath);
-						System.out.println(vo.getBoardname()+"이미지저장");
-						System.out.println(vo.getBoardno()+"게시글번호");//안나옴
-						System.out.println(vo.getWriteno()+"다음글번호");//안나옴
-						System.out.println(vo.getImgName()+"이미지이름");
+					
 						// 디렉토리 만듦
 						File uploadFile = new File(uploadPath);
 
@@ -415,7 +411,7 @@ public class BoardController {
 						printWriter = resp.getWriter();
 						resp.setContentType("text/html");
 						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
-						System.out.println(fileUrl);
+						
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
 						// 각 게시판에 따라서 분기를 나눔
@@ -496,7 +492,7 @@ public class BoardController {
 	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
 
 		service.deleteBoard(vo);
-		System.out.println("댓글삭제 나옴+^^^^^^^^^^^^^^^^");
+		
 		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
@@ -552,8 +548,7 @@ public class BoardController {
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
 
-		System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(vo.getId());
+	
 			
 		//먼저 등록된 프사가 있는지 확인하고 삭제하는 서비스로 옮김
 		//사진이 있으면 true 

@@ -91,7 +91,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-8">
+				<div class="col-lg-7">
 					<div class="nav-menu">
 						<nav class="mainmenu">
 							<ul>
