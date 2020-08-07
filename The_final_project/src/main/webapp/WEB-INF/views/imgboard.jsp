@@ -126,12 +126,24 @@ document.addEventListener("click", () => {
 					
 					</div>
 				</div>
+				<!--포스팅 헤더 부분  END-->
 				
+				<!-- 포스팅 이미지 부분  -->
+				<div class="imgwraper">
+					<div class="postimg">
+						<img src="/resources/img/hero/hero-2.jpg">
+					</div>
+				</div>
 				
-				<div class="postimg">
+				<div class="contentswraper">
+					<div class="realcontents">
+					내용내용 내용내용
+					
+					</div>
+				
 				
 				</div>
-			
+				
 			
 			
 			</div>
