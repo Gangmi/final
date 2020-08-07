@@ -580,7 +580,7 @@ public class BoardController {
                   // 업로드하는 파일의 경로가 없으면 만든다
                   if (!uploadFile.exists()) {
                      uploadFile.mkdirs();
-                  }
+                  	}
 
                   // 파일이름 랜덤생성
                   fileName = UUID.randomUUID().toString();
