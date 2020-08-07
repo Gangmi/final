@@ -81,16 +81,16 @@
 		</ul>
 	</div>
 	<div class="menu-item">
-		<div class="container">
+		<div class="naviwrap">
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<div class="logo">
 						<a href="/index.do"> <!--로고 들어가는섹션--> <img
 							src="/resources/img/mainlogo.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-10">
+				<div class="col-lg-8">
 					<div class="nav-menu">
 						<nav class="mainmenu">
 							<ul>
@@ -123,10 +123,13 @@
 								<a href="/logout.do">로그아웃</a>&nbsp;&nbsp;
 								<a href=/my-page.do>마이페이지</a>
 							</sec:authorize>
-						</div>
-						<div class="nav-right search-switch">
+							<div class="nav-right search-switch">
 							<i class="icon_search"></i>
 						</div>
+							
+						</div>
+						
+						
 					</div>
 				</div>
 			</div>

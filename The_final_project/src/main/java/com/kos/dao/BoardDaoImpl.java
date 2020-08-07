@@ -18,111 +18,112 @@ import com.kos.vo.UploadImageVO;
 @Repository("BoardDao")
 public class BoardDaoImpl implements BoardDao {
 
-	@Autowired
-	private SqlSessionTemplate mybatis;
+   @Autowired
+   private SqlSessionTemplate mybatis;
 
-	@Override
-	public List<BoardVO> getBoardList(BoardVO vo) {
+   @Override
+   public List<BoardVO> getBoardList(BoardVO vo) {
 
-		// 전체 페이지수 구하기(vo board name)
+      // 전체 페이지수 구하기(vo board name)
 
-		// 해당 게시판 전체 게시물 갯수 구하기
-		int total = mybatis.selectOne("board.getBoardCount", vo);
-		System.out.println("토탈갯수"+total);
-		PagingVO page = new PagingVO(total, vo.getNowpage(), vo.getViewing_count());
-		if(vo.getSearchword()!=null) {
-			System.out.println("검색어로 조회 들어옴");
-			page.setSearchword(vo.getSearchword());
-		}
-		System.out.println(page.getSearchword());
-		System.out.println(page.getLastPage());
+      // 해당 게시판 전체 게시물 갯수 구하기
+      int total = mybatis.selectOne("board.getBoardCount", vo);
+      System.out.println("토탈갯수"+total);
+      PagingVO page = new PagingVO(total, vo.getNowpage(), vo.getViewing_count());
+      if(vo.getSearchword()!=null) {
+         System.out.println("검색어로 조회 들어옴");
+         page.setSearchword(vo.getSearchword());
+      }
+      System.out.println(page.getSearchword());
+      System.out.println(page.getLastPage());
 
-		// 현재페이지와 보여지는 갯수에따른 게시물 검색(hashmap)
-		page.setBoardname(vo.getB_boardname());
-		
-		System.out.println(page.getStart()+"시작페이지~~~~~~~~~~~");
-		System.out.println(page.getEnd());
-		
-		List<BoardVO> result = mybatis.selectList("board.getBoardList", page);
+      // 현재페이지와 보여지는 갯수에따른 게시물 검색(hashmap)
+      page.setBoardname(vo.getB_boardname());
+      
+      System.out.println(page.getStart()+"시작페이지~~~~~~~~~~~");
+      System.out.println(page.getEnd());
+      
+      List<BoardVO> result = mybatis.selectList("board.getBoardList", page);
 
-		// nowpage멤버변수를 이용해서 total page를 저장
-		if (result.size() > 0) {
-			result.get(0).setNowpage(page.getLastPage());
-			result.get(0).setBlock(page.getNowblock());
-		}
+      // nowpage멤버변수를 이용해서 total page를 저장
+      if (result.size() > 0) {
+         result.get(0).setNowpage(page.getLastPage());
+         result.get(0).setBlock(page.getNowblock());
+      }
 
-		return result;
+      return result;
 
-	}
+   }
 
-	@Override
-	public void writeBoard(BoardVO vo) {
-		HashMap hs = new HashMap();
+   @Override
+   public void writeBoard(BoardVO vo) {
+      HashMap hs = new HashMap();
 
-		// 게시판 분기 나누기
-		int boardno = 0;
-		if (vo.getB_boardname().equals("free_board")) {
-			boardno = 1;
-		}
-		hs.put("boardno", boardno);
+      // 게시판 분기 나누기
+      int boardno = 0;
+      if (vo.getB_boardname().equals("free_board")) {
+         boardno = 1;
+      }
+      hs.put("boardno", boardno);
 
-		// 게시판 이름 가져오기
-		hs.put("boardname", vo.getB_boardname());
-		System.out.println(vo.getB_boardname());
-		
-		// 저장될 글번호 가져오기
-		int writeno = mybatis.selectOne("board.getNextNum", hs);
-		hs.put("writeno", writeno);
-				
+      // 게시판 이름 가져오기
+      hs.put("boardname", vo.getB_boardname());
+      System.out.println(vo.getB_boardname());
+      
+      // 저장될 글번호 가져오기
+      int writeno = mybatis.selectOne("board.getNextNum", hs);
+      hs.put("writeno", writeno);
+            
 
-		// 저장상태가 바뀔 이미지가 있는지 확인
-		List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
+      // 저장상태가 바뀔 이미지가 있는지 확인
+      List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
 
-		// 저장상태 바꿀 이미지가 있다면, update함
-		if (result.size() > 0) {
-			mybatis.update("notemp", hs);
-		}
-		// 글 저장
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContents());
-		if(vo.getB_boardname().equals("in_repl")) {
-			mybatis.insert("board.writeAnswer", vo);
-		}else {
-			mybatis.insert("board.writeboard", vo);
-		}
-		
+      // 저장상태 바꿀 이미지가 있다면, update함
+      if (result.size() > 0) {
+         mybatis.update("notemp", hs);
+      }
+      // 글 저장
+      System.out.println(vo.getTitle());
+      System.out.println(vo.getContents());
+      if(vo.getB_boardname().equals("in_repl")) {
+         mybatis.insert("board.writeAnswer", vo);
+      }else {
+         mybatis.insert("board.writeboard", vo);
+      }
+      
 
-	}
-//	@Override
-//	public void writeBoard(BoardVO vo) {
-//		HashMap hs = new HashMap();
+   }
+//   @Override
+//   public void writeBoard(BoardVO vo) {
+//      HashMap hs = new HashMap();
 //
-//		// 게시판 분기 나누기
-//		int boardno = 0;
-//		if (vo.getB_boardname().equals("free_board")) {
-//			boardno = 1;
-//		}
-//		hs.put("boardno", boardno);
+//      // 게시판 분기 나누기
+//      int boardno = 0;
+//      if (vo.getB_boardname().equals("free_board")) {
+//         boardno = 1;
+//      }
+//      hs.put("boardno", boardno);
 //
-//		// 게시판 이름 가져오기
-//		hs.put("boardname", vo.getB_boardname());
-//		System.out.println(vo.getB_boardname());
-//		// 저장될 글번호 가져오기
-////		int writeno = mybatis.selectOne("board.getNextNum", hs); 필요 없다
-////		hs.put("writeno", writeno);
+//      // 게시판 이름 가져오기
+//      hs.put("boardname", vo.getB_boardname());
+//      System.out.println(vo.getB_boardname());
+//      // 저장될 글번호 가져오기
+////      int writeno = mybatis.selectOne("board.getNextNum", hs); 필요 없다
+////      hs.put("writeno", writeno);
 //
-//		// 저장상태가 바뀔 이미지가 있는지 확인
-//		List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
+//      // 저장상태가 바뀔 이미지가 있는지 확인
+//      List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
 //
-//		// 저장상태 바꿀 이미지가 있다면, update함
-//		if (result.size() > 0) {
-//			mybatis.update("notemp", hs);
-//		}
-//		// 글 저장
-//		System.out.println(vo.getTitle());
-//		System.out.println(vo.getContents());
-//		mybatis.insert("board.writeboard", vo);
+//      // 저장상태 바꿀 이미지가 있다면, update함
+//      if (result.size() > 0) {
+//         mybatis.update("notemp", hs);
+//      }
+//      // 글 저장
+//      System.out.println(vo.getTitle());
+//      System.out.println(vo.getContents());
+//      mybatis.insert("board.writeboard", vo);
 //
+
 //	}
 
 	@Override
@@ -203,7 +204,9 @@ public class BoardDaoImpl implements BoardDao {
 	public void deleteBoard(BoardVO vo) throws Exception {
 		
 		// mybatis.getSqlSessionFactory().openSession(false);
-
+		System.out.println(vo.getB_boardname()+" dao");
+			
+		
 		System.out.println("=============delete 시작===========");
 		String rawboardname = vo.getB_boardname();
 		// 댓글 검색 및 삭제를 위해 그에 맞는 이름으로 boardname을 변경
@@ -229,6 +232,7 @@ public class BoardDaoImpl implements BoardDao {
 		}
 
 		vo.setB_boardname(rawboardname);
+		
 		// 글을 삭제
 		int deletecon = mybatis.delete("deleteboard", vo);
 		// 만약 글이 삭제되지 않으면
@@ -332,7 +336,142 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 		
 	}
+	
+	@Transactional(rollbackFor={Exception.class})
+	public void deleteAnswer(BoardVO vo) throws Exception {
+		
+		// mybatis.getSqlSessionFactory().openSession(false);
+		System.out.println(vo.getB_boardname()+" dao");
+		System.out.println(vo.getBoardno());
+		System.out.println(vo.getReplno());
 
+		// 글을 삭제
+		System.out.println(vo.getB_boardname()+"  dao!");
+		int deletecon = mybatis.delete("deleteAnswer", vo);
+		// 만약 글이 삭제되지 않으면
+//		if (deletecon < 1) {
+//			throw new Exception();
+//		}
+
+		// 이미지 테이블의 해당 글 번호를 가진 이미지 정보를 가져옴
+		ImageDetectVO img = new ImageDetectVO(vo);
+		HashMap hs = img.detecting();
+		List<UploadImageVO> imginfo = mybatis.selectList("selectimgAnswer", hs);
+
+		// 만약 이미지가 있으면
+		if (imginfo.size() > 0) {
+			for (UploadImageVO row : imginfo) {
+				
+				String filePath = "D:\\springwork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\The_final_project\\resources\\uploadimage\\";
+
+				File deleteFile = new File(filePath+row.getImgName());
+
+				// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+				if (deleteFile.exists()) {
+
+					// 파일을 삭제합니다.
+					try {
+					deleteFile.delete();
+					}catch(Exception e){
+						
+					}
+					System.out.println("파일을 삭제하였습니다.");
+					
+					
+
+				} else {
+					System.out.println("파일이 존재하지 않습니다.");
+					
+				}
+				
+
+			}
+		}
+		// db이미지 기록 삭제
+		mybatis.delete("board.deleteimageAnswer",hs);
+		
+		
+		// 글삭제
+
+	}
+
+//	 게시판 글 수정시에
+		@Override
+		public int updateAnswer(BoardVO vo) {
+			// 게시판 정보를 통해서 해당 글의 이미지 정보를 찾기 위한 클래스
+			ImageDetectVO dec = new ImageDetectVO(vo);
+			System.out.println(vo.getReplno()+"  dao!!!!!!!!!");
+			System.out.println(vo.getContents()+"  dao!!!!!!!!!");
+			System.out.println(vo.getRegdate()+"  dao!!!!!!!!!");
+			HashMap hs = dec.detecting();
+			// 저장상태가 바뀔 이미지가 있는지 확인
+			List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
+
+			// 저장상태 바꿀 이미지가 있다면, update함
+			if (result.size() > 0) {
+				mybatis.update("notemp", hs);
+			}
+
+			return mybatis.update("board.updateAnswer", vo);
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void storeProfile(UploadImageVO vo) {
+		mybatis.insert("insertprofile", vo);
+	}
+	
+	@Override
+	public List<BoardVO> writerview(BoardVO vo) {
+		System.out.println("===> mybatis writerview() 호출");  
+		return mybatis.selectList("board.writerview", vo);   
+	}   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
+

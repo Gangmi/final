@@ -103,7 +103,7 @@ $(document).ready(function() {
 	}
 	
 	//수정에서 저장버튼을 누르면
-	$(document).on("click",".storeReplModify",function(evt){
+	 ("click",".storeReplModify",function(evt){
 			//보드이름에 따른 댓글 디비를 저장할 변수
 		
 			var b_boardname = $('input[name=b_boardname]').val();

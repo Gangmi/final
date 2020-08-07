@@ -15,7 +15,6 @@
 <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/resources/js/board/boardrepl.js"></script>
 <script src="/resources/js/board/nongsain.js"></script>
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
@@ -67,10 +66,6 @@ if (session.getAttribute("memberinfo") != null) {
 					<div id="replinfosec">
 
 						<i class="fas fa-comment"></i> <span>댓글</span>    <span id="replNumber"></span> <br> <br>
-
-
-						<%-- <i class="fas fa-thumbs-up"></i> <span>좋아요</span> <span><%=result.getBoardLike()%></span>&nbsp;&nbsp;
-						<i class="fas fa-thumbs-down"></i> <span>싫어요</span> <span><%=result.getBoardBad()%></span> --%>
 						
 					</div>
 				</div>
@@ -120,27 +115,29 @@ if (session.getAttribute("memberinfo") != null) {
 	<div class="container" id="board">
 	소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button>
 	</div>
-	
+ 	<div class="main_box"> 
 		<section class="whole-write-section">
 		<input id="boardname" type="hidden" value=<%=boardname%>>
 		<div class="">
-			<div class="main_box  writeAnswer">
+			<div >
 			
 				<form action="/writeAnswer.do" method="post"
 					id="frm" enctype="multipart/form-data">
-					<%-- <input type="hidden" name="boardname" value="<%=boardname%>"/> --%>
 					<input type="hidden" id="form-boarname" name="b_boardname" value="in_repl"/>
 					<input type="hidden" name="boardno" value="<%=boardno%>">  
+					<input type="hidden" name="replno" id="replno" value="">  
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript"> 
 					</script>
-					<button class="btn btn-success" type="" id="">확인</button>
-					<a href="#" class="btn btn-primary" id="cancelwrite" role="button">취소</a>
+					<button class="btn btn-success" type="submit" id="store">저장</button>
+					<a href="#" class="btn btn-primary" id="cancelwriteAnswer" role="button">취소</a>
 					
 				</form>
 			</div>
 		</div>
 	</section>
+ 	</div>
+ 	 
  	<%
  	List<BoardVO> answer = null;
 	if (request.getAttribute("Answer") != null) {
@@ -149,6 +146,7 @@ if (session.getAttribute("memberinfo") != null) {
 	for(BoardVO vo:answer){
 	%> 
 	<!-- 답글 -->
+	<div id="<%=vo.getReplno()%>">
       <div class="container" id="board">
 			<!--현재 게시판 표시  -->
 			<div id="boardname" class="container">
@@ -159,10 +157,11 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<!--조회수 표시  -->
 				<div class="pull-right" id="boardname_right">
-
+					<%if(vo.getId().equals(userid)){ %>
 					<div id="replinfosec">
 						<button class="btn btn-success answer" id="">채택하기</button>
 					</div>
+					<%} %>
 				</div>
 			</div>
 			<!--글제목부분  -->
@@ -176,7 +175,7 @@ if (session.getAttribute("memberinfo") != null) {
 			</div>
 			<!--글내용  -->
 			<div class=container id=contents>
-				<%=vo.getContents()%>
+				<div id="contents<%=vo.getReplno()%>"><%=vo.getContents()%></div>
 				<div  id="likebad">
 
 						<br>
@@ -186,12 +185,14 @@ if (session.getAttribute("memberinfo") != null) {
 			<!--하단 버튼 부분  -->
 	
 		</div>
+		<div class="container" id="button_container">
+			<button class="btn btn-primary modifyAnswer" id="modify<%=vo.getReplno()%>">수정</button>
+			<button class="btn btn-warning delAnswer" id="del<%=vo.getReplno()%>">삭제</button>
+		</div>
+	</div>
 		<%} %>
-    </form>
-    <!-- 댓글 입력 끝 -->
-    <!--댓글목록 시작 -->
+		
    
-	<!-- 댓글 끝 -->
 	
 		
 	</section>
