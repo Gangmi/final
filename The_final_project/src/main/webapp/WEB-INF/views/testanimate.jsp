@@ -89,6 +89,13 @@ document.addEventListener("click", () => {
     <div></div>
     <div></div>
 </div>
+ <form method="post" action="profile-up.do" enctype="multipart/form-data">
+         <label>파일:</label>
+         <input multiple="multiple" type="file" name="upload">
+         <input type="hidden" name="id" value="lettoncom1">
+         <input type="submit" value="upload">
+  </form>
+
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>

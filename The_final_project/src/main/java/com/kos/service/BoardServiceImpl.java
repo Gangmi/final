@@ -55,6 +55,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.writeRepl(vo);
 
 	}
+	
+	public void storeProfile(UploadImageVO vo) {
+		dao.storeProfile(vo); 
+	}
 
 	
 

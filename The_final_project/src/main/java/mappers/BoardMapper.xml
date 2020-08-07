@@ -208,5 +208,25 @@
 	select * from in_repl where boardno = ${boardno}
 	</select>
 		
+		
+	<insert id="insertprofile" parameterType="img">
+	insert into memberimg (id,imagename) values(#{id},#{imgName})	
+
+	
+	</insert>	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 </mapper>
