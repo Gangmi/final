@@ -99,12 +99,7 @@
 		update ${b_boardname} set title=#{title},contents=#{contents} where boardno=#{boardno}
 	</update>
 	
-	<!--댓글 저장 -->
-	<insert id="writeAnswer" parameterType="board">
-		insert into
-		${b_boardname}(boardno,id,contents,is_selected)
-		values(#{boardno},#{id},#{contents},0)
-	</insert>
+	
 	<!--댓글 저장 -->
 	<insert id="writerepl" parameterType="board">
 		insert into
@@ -169,6 +164,8 @@
 	
 	</delete>
 	
+	
+	
 	<!-- 이미지 테이블에서 게시글 관련 이미지 검색 -->
 	<select id="selectimg" parameterType="hashmap" resultType="img">
 	select * from img_status where boardno=${boardno} and writeno=${writeno}
@@ -203,10 +200,41 @@
 	
 	</insert>
 	
+	<!--닶글 저장 -->
+	<insert id="writeAnswer" parameterType="board">
+		insert into
+		${b_boardname}(boardno,id,contents,is_selected)
+		values(#{boardno},#{id},#{contents},0)
+		
+		
+	</insert>
+	
 	<!-- 농사인 답변리스트 가져오기 -->
 	<select id="AnswerList" parameterType="board" resultType="board">
-	select * from in_repl where boardno = ${boardno}
+	<!-- select * from in_repl where boardno = ${boardno} -->
+
+	select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
+	in_repl re INNER JOIN member me
+	on re.id = me.id
+	where boardno = ${boardno}
+	
 	</select>
 		
+	<!-- 농사인 답글 삭제 -->
+	<delete id="deleteAnswer" parameterType="board">
+	delete from ${b_boardname} where replno=${replno}
 	
+	</delete>
+	
+	<!-- 이미지 테이블에서 답글 관련 이미지 검색 -->
+	<select id="selectimgAnswer" parameterType="hashmap" resultType="img">
+	select * from img_status where writeno=${writeno}
+	
+	</select>
+	
+	<!--답글 이미지 데이터 베이스 삭제--> 	
+	<delete id="deleteimageAnswer" parameterType="hashmap">
+	delete from img_status where writeno=${writeno}
+	
+	</delete>
 </mapper>

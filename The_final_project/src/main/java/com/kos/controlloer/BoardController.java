@@ -501,11 +501,42 @@ public class BoardController {
 		return mv;
 	}
 	
+	//답글 삭제
+	@RequestMapping("/deleteAnswer.do")
+	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo) {
+//		System.out.println(vo.get+"!!!!");//안가져와짐
+		System.out.println(vo.getB_boardname()+"!!!!");
+		System.out.println(vo.getBoardno()+"!!!!");
+		ReplNameVO re = new ReplNameVO(vo);
+		vo.setB_boardname(re.changeName());
+		service.deleteAnswer(vo);
+		System.out.println("답글삭제 ^^^^^^^^^^^^^^^^");
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		return mv;
+	}
 	
 	
-	
-	
-	
+	//글수정 완료 버튼이 눌렸을때
+		@RequestMapping("/updateAnswer.do")
+		public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
+			System.out.println("updateAnswer 들어옴");
+			System.out.println(vo.getB_boardname());
+			System.out.println(vo.getBoardno());
+			System.out.println(vo.getTitle());
+			System.out.println(vo.getContents());
+			
+			//수정된 내용으로 게시판 업데이트 쿼리 날리기
+			int result = service.updateAnswer(vo);
+			
+			//쿼리 날리고 받아온 결과가 0이상(정상적으로 수정되었다면)
+			if (result > 0) {
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>alert('수정이 완료 되었습니다.'); </script>");
+			}
+			mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+			return mv;
+		}
 	
 	
 	

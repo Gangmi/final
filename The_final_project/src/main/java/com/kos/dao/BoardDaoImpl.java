@@ -203,7 +203,9 @@ public class BoardDaoImpl implements BoardDao {
 	public void deleteBoard(BoardVO vo) throws Exception {
 		
 		// mybatis.getSqlSessionFactory().openSession(false);
-
+		System.out.println(vo.getB_boardname()+" dao");
+			
+		
 		System.out.println("=============delete 시작===========");
 		String rawboardname = vo.getB_boardname();
 		// 댓글 검색 및 삭제를 위해 그에 맞는 이름으로 boardname을 변경
@@ -229,6 +231,7 @@ public class BoardDaoImpl implements BoardDao {
 		}
 
 		vo.setB_boardname(rawboardname);
+		
 		// 글을 삭제
 		int deletecon = mybatis.delete("deleteboard", vo);
 		// 만약 글이 삭제되지 않으면
@@ -332,7 +335,81 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 		
 	}
-
 	
+	@Transactional(rollbackFor={Exception.class})
+	public void deleteAnswer(BoardVO vo) throws Exception {
+		
+		// mybatis.getSqlSessionFactory().openSession(false);
+		System.out.println(vo.getB_boardname()+" dao");
+		System.out.println(vo.getBoardno());
+		System.out.println(vo.getReplno());
+
+		// 글을 삭제
+		System.out.println(vo.getB_boardname()+"  dao!");
+		int deletecon = mybatis.delete("deleteAnswer", vo);
+		// 만약 글이 삭제되지 않으면
+//		if (deletecon < 1) {
+//			throw new Exception();
+//		}
+
+		// 이미지 테이블의 해당 글 번호를 가진 이미지 정보를 가져옴
+		ImageDetectVO img = new ImageDetectVO(vo);
+		HashMap hs = img.detecting();
+		List<UploadImageVO> imginfo = mybatis.selectList("selectimgAnswer", hs);
+
+		// 만약 이미지가 있으면
+		if (imginfo.size() > 0) {
+			for (UploadImageVO row : imginfo) {
+				
+				String filePath = "D:\\springwork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\The_final_project\\resources\\uploadimage\\";
+
+				File deleteFile = new File(filePath+row.getImgName());
+
+				// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+				if (deleteFile.exists()) {
+
+					// 파일을 삭제합니다.
+					try {
+					deleteFile.delete();
+					}catch(Exception e){
+						
+					}
+					System.out.println("파일을 삭제하였습니다.");
+					
+					
+
+				} else {
+					System.out.println("파일이 존재하지 않습니다.");
+					
+				}
+				
+
+			}
+		}
+		// db이미지 기록 삭제
+		mybatis.delete("board.deleteimageAnswer",hs);
+		
+		
+		// 글삭제
+
+	}
+
+//	 게시판 글 수정시에
+		@Override
+		public int updateAnswer(BoardVO vo) {
+			// 게시판 정보를 통해서 해당 글의 이미지 정보를 찾기 위한 클래스
+			ImageDetectVO dec = new ImageDetectVO(vo);
+
+			HashMap hs = dec.detecting();
+			// 저장상태가 바뀔 이미지가 있는지 확인
+			List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
+
+			// 저장상태 바꿀 이미지가 있다면, update함
+			if (result.size() > 0) {
+				mybatis.update("notemp", hs);
+			}
+
+			return mybatis.update("board.updateboard", vo);
+		}
 	
 }

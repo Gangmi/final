@@ -139,9 +139,26 @@ public class BoardServiceImpl implements BoardService {
 		return true;
 
 	}
-
+	//답글 목록
 	public List<BoardVO> AnswerList(BoardVO vo) {
 		List<BoardVO> result = dao.AnswerList(vo);
 		return result;
 	}
+
+	public void deleteAnswer(BoardVO vo) {
+		System.out.println(vo.getB_boardname()+" 서비스");
+		System.out.println(vo.getBoardno()+" 서비스");
+		try {
+			dao.deleteAnswer(vo);
+		} catch (Exception e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public int updateAnswer(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return dao.updateAnswer(vo);
+	}
+
+	
 }
