@@ -392,6 +392,7 @@ padding-top: 30px;
 	
 	position: relative;
 	z-index: 9;
+	margin-top: 0px;
 }
 .menu-item .logo {
 	width:200px;
@@ -2385,6 +2386,7 @@ padding-top: 30px;
 }
 .col-lg-4{
 	padding-left: 15%;
+	padding-right: 0px;
 }
 
 

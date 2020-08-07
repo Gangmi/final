@@ -91,7 +91,13 @@ document.addEventListener("click", () => {
     <div></div>
 </div>
 	<!--전체 섹션  -->
+	<section class="sidebar">
+	
+	</section>
+	
 	<section class="mainsection">
+	
+	
 	
 	<div class="posting">
 	
