@@ -147,6 +147,12 @@ th{
 
 #todaydate{
 	font-weight: 500;
+	
+}
+@media only screen and (max-width:1190px){
+	#todaydate{
+	font-size: 32px;
+	}
 }
 
 table{

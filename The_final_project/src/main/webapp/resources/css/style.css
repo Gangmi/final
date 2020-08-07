@@ -218,10 +218,11 @@ p{
 .spacial-controls .search-switch {
 	display: block;
 	height: 100%;
-	padding-top: 30px;
+padding-top: 30px; 
 	background: #323232;
 	text-align: center;
 	cursor: pointer;
+	float: right;
 }
 .search-model {
 	display: none;
@@ -392,13 +393,17 @@ p{
 	z-index: 9;
 }
 .menu-item .logo {
+	width:200px;
+	
 	padding: 25px 0;
+	float: left;
 }
 .menu-item .logo a {
 	display: inline-block;
 }
 .menu-item .nav-menu {
-	text-align: right;
+	text-align: center;
+	
 	
 }
 /*전체 네비게이션바 위치 조정하는곳  */
@@ -426,7 +431,7 @@ p{
 .menu-item .nav-menu .mainmenu li a {
 	font-size: 17px;
 	color: #19191a;
-	margin-right: 42px;
+	margin-right: 40px;
 	font-weight: 500;
 	display: inline-block;
 	padding: 27px 0;
@@ -434,7 +439,7 @@ p{
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
-	font-weight: 300;
+	font-weight: 400;
 }
 .menu-item .nav-menu .mainmenu li a:after {
 	position: absolute;
@@ -487,8 +492,10 @@ p{
 }
 .menu-item .nav-menu .nav-right {
 	display: inline-block;
-	margin-left: 43px;
+	margin-left: 30px;
 	padding: 27px 0px;
+	
+
 	 
 }
 .menu-item .nav-menu .nav-right i {
@@ -2366,11 +2373,18 @@ p{
 
 
 /*추가 css  */
-.row{
-	width:100%;
-}	
+.naviwrap{
+	width: 100% !important;
+	margin-left: 0px;
+	margin-right: 0px;
+}
 
-
+.row img{
+	text-align: right;
+}
+.col-lg-4{
+	padding-left: 15%;
+}
 
 
 
