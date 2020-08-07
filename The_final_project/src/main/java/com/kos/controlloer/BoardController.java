@@ -543,7 +543,7 @@ public class BoardController {
 	//프로필 사진 업로드시 사용
 	@RequestMapping(value = "/profile-up.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String profileup(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
+	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
 			UploadImageVO vo) throws Exception {
 
 		JsonObject json = new JsonObject();
@@ -553,7 +553,9 @@ public class BoardController {
 
 		System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		System.out.println(vo.getId());
-
+			
+		
+		
 
 
 		// 파일이 있는지 확인
@@ -625,7 +627,8 @@ public class BoardController {
 				}
 			}
 		} 
-		return "updateAccount";
+		mv.setViewName("updateAccount");
+		return mv;
 	}
 
 	//내가 쓴 글 보기

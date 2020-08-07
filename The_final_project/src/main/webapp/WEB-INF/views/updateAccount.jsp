@@ -70,6 +70,20 @@ margin-top: 10px;
 	
 	<div class="formdiv">
 	<h3>회원 정보 수정</h3>
+	
+	<div>
+	
+	 <form method="post" action="profile-up.do" enctype="multipart/form-data">
+         <label>이미지 파일:</label>
+         <input multiple="multiple" type="file" name="upload">
+         <input type="hidden" name="id" value="lettoncom1">
+         <input type="submit" value="upload">
+  </form>
+	</div>
+	
+	
+	
+	
 	<form id="updateAccount" name="updateAccount" action="updateAccount_act.do"
 		method="post">
 		<div>
@@ -146,6 +160,7 @@ margin-top: 10px;
 
 
 		</div>
+
 		<div>
 			<button id="modifyinfo" class="btn btn-success" type="submit">변경하기</button>
 		</div>
