@@ -123,15 +123,7 @@ public class BoardController {
 	public ModelAndView writeAnswer(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
-		System.out.println(vo.getB_boardname()+ "게시판이름||||");
-		System.out.println(vo.getContents() + "내용||||");
-		System.out.println(vo.getBoardno()+"글번호||||");
-		System.out.println(vo.getId()+"아이디||||");
-		// 임시로 아이디 지정 ->나중에 지우기
-
-		// vo.setId("kim");
-		//         ReplNameVO re = new ReplNameVO(vo);
-		//         vo.setB_boardname(re.changeName());
+		
 		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
 		if (!info.getId().isEmpty()) {
 			vo.setId(info.getId());
@@ -143,13 +135,10 @@ public class BoardController {
 			return mv;
 		}
 		vo.setId(vo.getId());
-		System.out.println(vo.getId()+"아이디||||");
-		System.out.println(vo.getB_boardname());
 
 		// 사용자가 작성한 글 및 정보 전달
 
 		service.writeBoard(vo);
-		System.out.println("입력하고 돌아옴");
 
 		// 넘기기
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
@@ -169,6 +158,7 @@ public class BoardController {
 
 		BoardVO result = service.viewBoard(vo);
 		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
+		BoardVO AnswerCheteck = (BoardVO)service.AnswerCheteck(vo);
 		// 닉네임 추가
 		result.setNickname(vo.getNickname());
 
@@ -182,8 +172,10 @@ public class BoardController {
 		}
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
+		//답글 리스트 보냄
 		mv.addObject("Answer",Answer);
-
+		mv.addObject("AnswerCheteck",AnswerCheteck);
+		System.out.println(AnswerCheteck+" 왜 못가져오냐!!!");
 		return mv;
 
 	}
@@ -204,7 +196,6 @@ public class BoardController {
 		BoardVO result = service.viewBoard(vo);
 
 		// 다음에 갈 페이지 지정 및 parameter 세팅
-		System.out.println(vo.getB_boardname() + "이게 안나오는걸까?");
 		mv.setViewName("modifyboard");
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
@@ -505,13 +496,10 @@ public class BoardController {
 	//답글 삭제
 	@RequestMapping("/deleteAnswer.do")
 	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo) {
-		//      System.out.println(vo.get+"!!!!");//안가져와짐
-		System.out.println(vo.getB_boardname()+"!!!!");
-		System.out.println(vo.getBoardno()+"!!!!");
+
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		service.deleteAnswer(vo);
-		System.out.println("답글삭제 ^^^^^^^^^^^^^^^^");
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
 		return mv;
 	}
@@ -521,10 +509,6 @@ public class BoardController {
 	@RequestMapping("/updateAnswer.do")
 	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
 		System.out.println("updateAnswer 들어옴");
-		System.out.println(vo.getB_boardname()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getBoardno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getReplno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getContents()+" 글수정 컨트롤러--------");
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateAnswer(vo);
@@ -668,6 +652,31 @@ public class BoardController {
 	} 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//답글채택하기
+	@RequestMapping("/updateCheteck.do")
+	public ModelAndView updateCheteck(ModelAndView mv ,BoardVO vo) {
+		service.updateCheteck(vo);
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		return mv;
+	}
+	
+	//답글채택 취소하기
+		@RequestMapping("/cancleCheteck.do")
+		public ModelAndView cancleCheteck(ModelAndView mv ,BoardVO vo) {
+			service.cancleCheteck(vo);
+			mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+			return mv;
+		}
+			
 }
 
 

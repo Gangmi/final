@@ -216,7 +216,7 @@
    select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
    in_repl re INNER JOIN member me
    on re.id = me.id
-   where boardno = ${boardno}
+   where boardno = ${boardno} and is_selected=0
    
    </select>
       
@@ -265,5 +265,24 @@
 		update ${b_boardname} set contents=#{contents},regdate=SYSDATE() where replno=#{replno}
 	</update>
 	
+	<!-- 채택하기 -->
+	<update id="updateCheteck" parameterType="board">
+		update in_repl set is_selected=1 where replno=#{replno}
+	</update>
+	
+	<!-- 채택하기 -->
+	<update id="cancleCheteck" parameterType="board">
+		update in_repl set is_selected=0 where replno=#{replno}
+	</update>
+	
+	<!-- 농사인 답변채택된 리스트 가져오기 -->
+   <select id="AnswerCheteck" parameterType="board" resultType="board">
+
+   select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
+   in_repl re INNER JOIN member me
+   on re.id = me.id
+   where boardno = ${boardno} and is_selected=1
+   
+   </select>
 
 </mapper>
