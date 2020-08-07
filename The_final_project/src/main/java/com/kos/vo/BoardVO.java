@@ -18,10 +18,17 @@ public class BoardVO implements Board {
 	private String searchword="";
 	private int confirmnum;
 	private int block;
+	private int changestyle;
 	
 	
 	
 	
+	public int getChangestyle() {
+		return changestyle;
+	}
+	public void setChangestyle(int changestyle) {
+		this.changestyle = changestyle;
+	}
 	public int getBlock() {
 		return block;
 	}

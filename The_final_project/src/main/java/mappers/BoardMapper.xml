@@ -7,7 +7,7 @@
 
    <!--해당 게시판의 전체 게시물 갯수 쿼리 -->
    <select id="getBoardCount" parameterType="board" resultType="int">
-      select count(*) from ${b_boardname} <if test="searchword!=null">WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
+      select count(*) from ${b_boardname} where 1=1 <if test="searchword!=null">and title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
    </select>
 
 
