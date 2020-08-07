@@ -6,50 +6,55 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Keat </title>
+    <title>  </title>
     
     <link rel="stylesheet" href="/resources/css/Smart-Farm/style.css">
-   
+   	
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
-	<div id="talk">
+	<!-- <div id="talk">
 		<div class="chat">
 			<button>
 				<img src="/resources/img/talk-1.png">
 			</button>
 		</div>
-	</div>
+	</div> -->
 
 	<div id="main">
-		<p>나의 스파트 팜</p>
-	
+		<h2>나의 스마트 팜</h2>
+		<div class="upper">
 		<div class="cctv_box">
-			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div>
+<!-- 			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div> -->
+			<div class="cctv"><img src="/resources/img/test.jpg"></div>
+			
+		</div>
+	   <div class="btn">
+	   		<p class="farm-info">농장주소</p>
 			<p>경기도 여주시 금사면 금품2로 485 루돌프 농장</p>
+			<p class="farm-info">전화번호</p>
 			<p>031-884-6554</p>
-			<div class="btn">
+			<p class="farm-info">농장 개설일  </p>
+			<p>2020-08-01</p>
 				<div class="btn1">
 					<button type="button" id="givewater"><img src="/resources/img/15159159.png">
-						<p>물주기</p>
+						물주기
 					</button>
 				</div>
 	
 				<div class="btn2">
 					<button type="submit"><img src="/resources/img/1515151131313.png">
-						<p>수확하기</p>
+						수확하기
 					</button>
 				</div>
-			</div>
-		</div>
-	        
-	
+			</div>     
+	</div>
 	
 		<div class="gauge-container">
 			<div class="gauge" id="temperature"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<div class="gauge" id="humidity"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<div class="gauge" id="soil_humidity"></div>
-		</div>
+		</div> 
 	            
 	</div>
 

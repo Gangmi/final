@@ -1,6 +1,7 @@
 <%@page import="com.kos.vo.MemberVO"%>
 <%@page import="com.kos.vo.BoardVO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Calendar" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,13 +19,21 @@ String boardname = (String) request.getAttribute("b_boardname");
 <title></title>
 <%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
+<script type="text/javascript">
+
+
+
+
+</script>
+
+
 </head>
 <body>
 	<input id="boardname" type="hidden" value="<%=boardname%>">
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<input type="hidden" id="confirmsession" value="<%=session.getAttribute("memberinfo")%>"></input>
-
-
+	<input type="hidden" id="dropopen" value="false">
+	
 
 
 
@@ -64,6 +73,20 @@ String boardname = (String) request.getAttribute("b_boardname");
 							
 							List<BoardVO> result =(List<BoardVO>) request.getAttribute("boardlist");
 							
+							Calendar cal = Calendar.getInstance();
+							System.out.println(cal);
+							String year = String.valueOf(cal.get(Calendar.YEAR));
+							String month = String.valueOf(cal.get(Calendar.MONTH) + 1);
+							String date = String.valueOf(cal.get(Calendar.DATE));
+							if(Integer.parseInt(month)<10){
+								month="0"+String.valueOf(month);
+							}
+							if(Integer.parseInt(month)<10){
+								date="0"+String.valueOf(date);
+							}
+							
+							String nowdate=year+"-"+month+"-"+date;
+							
 							
 							for (BoardVO vo : result) {
 							// 시간 나누기
@@ -74,20 +97,45 @@ String boardname = (String) request.getAttribute("b_boardname");
 							<td width="130" id="bno"><%=vo.getBoardno()%></td>
 
 
-							<td width="659" class="titles"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a></td>
+							<td width="659" class="titles"><a href="viewboard.do?b_boardname=<%=boardname%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>"><%=vo.getTitle()%></a>
+							<%if(dat[0].equals(nowdate)){	
+							%>
+							<img class="newicon" src="/resources/img/ico_new.png">
+							<%} %>
+							
+							</td>
 
-							<td width="180"><%=vo.getNickname()%></td>
+							<td width="180">
+							<div class="dropdown">
+					
+					 		 <a  class="dropbtn"><%=vo.getNickname()%></a>
+							  <div id="myDropdown" class="dropdown-content">
+							    <a href="#"><%=vo.getNickname()%></a>
+							    <a href="#" class="oneonone"><%=vo.getId()%></a>
+							    <a href="#">Link 3</a>
+							  </div>
+							</div>
+							</td>
 							<td width="180"><%=vo.getRegdate()%></td>
 							<td width="188"><%=vo.getBoardView()%></td>
 						</tr>
 					<%
-							}	
+						}	
 					%>
 					<%
 						}else{
 					%>
 					<%
 						}
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					%>
 					
 					

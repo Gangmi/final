@@ -1,4 +1,4 @@
-﻿package com.kos.controlloer;
+package com.kos.controlloer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,6 +35,7 @@ import com.kos.vo.UploadImageVO;
 
 @Controller
 public class BoardController {
+
 	@Autowired
 	BoardServiceImpl service;
 
@@ -539,21 +540,120 @@ public class BoardController {
 		}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//프로필 사진 업로드시 사용
+   @RequestMapping(value = "/profile-up.do", method = RequestMethod.POST)
+   @ResponseBody
+   public String profileup(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
+         UploadImageVO vo) throws Exception {
+      
+      JsonObject json = new JsonObject();
+      PrintWriter printWriter = null;
+      OutputStream out = null;
+      MultipartFile file = multiFile.getFile("upload");
+     
+      System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      System.out.println(vo.getId());
+      
+      
+      
+      // 파일이 있는지 확인
+      if (file != null) {
+         // 파일이름이 없는지 확인
+         if (file.getSize() > 0 && StringUtils.isNotBlank(file.getName())) {
 
+            if (file.getContentType().toLowerCase().startsWith("image/")) {
+               try {
+                  // 파일이름 가져오기
+                  String fileName = file.getName();
+                  // 파일가져오기
+                  byte[] bytes = file.getBytes();
+                  // 저장경로 지정
+                  String uploadPath = req.getRealPath("/")
+                        + "resources\\profileimg";
+                  // String uploadPath =
+                  // "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
+
+                  System.out.println(uploadPath);
+                  // 디렉토리 만듦
+                  File uploadFile = new File(uploadPath);
+
+                  // 업로드하는 파일의 경로가 없으면 만든다
+                  if (!uploadFile.exists()) {
+                     uploadFile.mkdirs();
+                  }
+
+                  // 파일이름 랜덤생성
+                  fileName = UUID.randomUUID().toString();
+
+                  // 파일 저장경로지정및 저장
+                  uploadPath = uploadPath + "/" + fileName;
+                  out = new FileOutputStream(new File(uploadPath));
+                  out.write(bytes);
+
+                  printWriter = resp.getWriter();
+                  resp.setContentType("text/html");
+                  String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
+                  System.out.println(fileUrl);
+                  // 이미지 파일의 상태를 저장하기위한 service 호출 부분
+
+                  // 각 게시판에 따라서 분기를 나눔
+//                  
+//                  if (vo.getBoardname().equals("free_board")) {
+//                     vo.setBoardno(BoardVO.FREE_BOARD);
+//                  }
+//
+                  vo.setImgName(fileName);
+                  service.storeProfile(vo);
+                  // json 데이터로 등록
+                  // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
+                  // 이런 형태로 리턴이 나가야함.
+//                  json.addProperty("uploaded", 1);
+//                  json.addProperty("fileName", fileName);
+//                  json.addProperty("url", fileUrl);
+
+                  printWriter.println(json);
+               } catch (IOException e) {
+                  e.printStackTrace();
+               } finally {
+                  if (out != null) {
+                     out.close();
+                  }
+                  if (printWriter != null) {
+                     printWriter.close();
+                  }
+               }
+            }
+         }
+      }
+      return "updateAccount";
+   }
+	
+	
 }
+      
+      
+
+      
+    
+   
+   
+   
+    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+

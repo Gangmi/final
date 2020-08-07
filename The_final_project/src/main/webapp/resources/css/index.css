@@ -23,7 +23,7 @@
 /*인덱스의 게시판 표시 부분  */
  .upboards{
 	
-	height: 500px;
+	height: 400px;
 	
 } 
 
@@ -36,7 +36,10 @@
 	
 }
 th{
-	
+	board
+}
+.table thead th{
+	border-bottom : 0px solid #2A3820 !important; 
 }
 
 .tipboard{
@@ -45,7 +48,7 @@ margin-left: 50px;
 
 
 .downboards{
-	margin-top: 50px;
+	margin-top: 30px;
 	height: 500px;
 	display: block;
 	
@@ -63,10 +66,22 @@ margin-left: 50px;
 /*게시판 위치 세부 조정  */
 .freeboard{
 	margin-left: 10px;
+	
 }
 .tipboard{
 	
 	margin-left: 125px;
+}
+.freeboard h2{
+	margin-bottom: 20px;
+}
+
+.tipboard h2{
+	margin-bottom: 20px;
+}
+/*표 색 바꾸기  */
+th{
+	background-color: #e2eddf;
 }
 /*반응형  */
 @media only screen and (max-width:1202px){
@@ -125,7 +140,7 @@ margin-left: 50px;
 }
 #allboards{
 	
-	height: 1300px;
+	height: 1000px;
 	text-align: center;
 	
 }
@@ -155,8 +170,8 @@ td a {
 	padding-top: 0px !important;
 }
 #divide{
-	margin-top: 90px;
-	margin-bottom: 90px;
+	
+	margin-bottom: 50px;
 }
 
 
