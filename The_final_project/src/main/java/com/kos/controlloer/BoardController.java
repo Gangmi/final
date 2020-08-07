@@ -523,7 +523,7 @@ public class BoardController {
 		System.out.println("updateAnswer 들어옴");
 		System.out.println(vo.getB_boardname()+" 글수정 컨트롤러--------");
 		System.out.println(vo.getBoardno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getTitle()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getReplno()+" 글수정 컨트롤러--------");
 		System.out.println(vo.getContents()+" 글수정 컨트롤러--------");
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
