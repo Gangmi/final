@@ -54,19 +54,18 @@
 		</div>
 		<nav class="mainmenu mobile-menu">
 			<ul>
-				<li class="active"><a href="./index.html">Home</a></li>
-				<li><a href="./rooms.html">AboutUs</a></li>
+				<li class="active"><a href="/index.do">Home</a></li>
+				<li><a href="/about-us.do">AboutUs</a></li>
 				
-				<li><a href="./pages.html">게시판</a>
+				<li><a href="/callboard.do?b_boardname=free_board">게시판</a>
 					<ul class="dropdown">
-						<li><a href="./room-details.html">자유게시판</a></li>
-						<li><a href="#">tip 게시판</a></li>
-						<li><a href="#">장터게시판</a></li>
-						<li><a href="#">분양게시판</a></li>
-						<li><a href="#">농사in게시판</a></li>
+						<li><a href="/callboard.do?b_boardname=free_board">자유게시판</a></li>
+						<li><a href="/callboard.do?b_boardname=tip_board">tip 게시판</a></li>
+						<li><a href="/callboard.do?b_boardname=parcel_board">분양게시판</a></li>
+						<li><a href="/callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 					</ul></li>
-				<li><a href="./blog.html">식물사전</a></li>
-				<li><a href="./contact.html">제휴농장</a></li>
+				<li><a href="/plant.do?nowpage=1">식물사전</a></li>
+				<li><a href="/farm-map.do">제휴농장</a></li>
 			</ul>
 		</nav>
 		<div id="mobile-menu-wrap"></div>
@@ -100,24 +99,23 @@
 								<sec:authorize access="hasAuthority('ROLE_SMART_FARMER')">
 								<li><a href="/smartfarmer/monitoringView.do">스마트팜</a></li>
 								</sec:authorize>
-								<li><a href="./about-us.do">About Us</a></li>
-								<li><a href="#">게시판</a>
+								<li><a href="/about-us.do">About Us</a></li>
+								<li><a href="/callboard.do?b_boardname=free_board">게시판</a>
 									<ul class="dropdown">
-										<li><a href="callboard.do?b_boardname=free_board">자유게시판</a></li>
-										<li><a href="callboard.do?b_boardname=tip_board">팁게시판</a></li>
-										<li><a href="#">장터 게시판</a></li>
-										<li><a href="callboard.do?b_boardname=parcel_board">분양 게시판</a></li>
-										<li><a href="callboard.do?b_boardname=nongsain">농사in게시판</a></li>
+										<li><a href="/callboard.do?b_boardname=free_board">자유게시판</a></li>
+										<li><a href="/callboard.do?b_boardname=tip_board">팁게시판</a></li>
+										<li><a href="/callboard.do?b_boardname=parcel_board">분양 게시판</a></li>
+										<li><a href="/callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 									</ul></li>
 
-								<li><a href="plant.do?nowpage=1">식물사전</a></li>
+								<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 								<li><a href="/farm-map.do">제휴농장위치</a></li>
  
 							</ul>
 						</nav>
 						<div class="nav-right">
 							<sec:authorize access="isAnonymous()">
-								<a href="login.do">로그인</a> &nbsp;&nbsp;
+								<a href="/login.do">로그인</a> &nbsp;&nbsp;
 												<a href="/sign_up.do">회원가입</a>
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
