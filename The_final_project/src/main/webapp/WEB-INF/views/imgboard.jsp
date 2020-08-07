@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/boardcss/main.css" />
 <style type="text/css">
 #loader {
     position: fixed;
@@ -89,12 +90,27 @@ document.addEventListener("click", () => {
     <div></div>
     <div></div>
 </div>
- <form method="post" action="profile-up.do" enctype="multipart/form-data">
-         <label>파일:</label>
-         <input multiple="multiple" type="file" name="upload">
-         <input type="hidden" name="id" value="lettoncom1">
-         <input type="submit" value="upload">
-  </form>
+	<!--전체 섹션  -->
+	<section class="mainsection">
+	
+	<div class="posting">
+	
+	
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</section>
+
+		
+
+
 
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

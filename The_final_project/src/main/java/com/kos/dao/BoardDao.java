@@ -46,6 +46,10 @@ public interface BoardDao {
 
    public int updateAnswer(BoardVO vo);
 
+public String isThereProfile(UploadImageVO vo);
+
+public void updateProfile(UploadImageVO vo);
+
 
 
 }
