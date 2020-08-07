@@ -45,5 +45,7 @@ $(document).ready(function () {
 
 		});
 		
-		
+		$('#store').on("click",function(){
+			$("#"+replno).show();
+		});
 });

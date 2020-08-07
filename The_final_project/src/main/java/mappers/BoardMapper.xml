@@ -262,7 +262,7 @@
 	
 	<!-- 답글수정 -->
 	<update id="updateAnswer" parameterType="board">
-		update ${b_boardname} set contents=#{contents} where boardno=#{boardno}
+		update ${b_boardname} set contents=#{contents} where replno=#{replno}
 	</update>
 	
 
