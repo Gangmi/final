@@ -43,7 +43,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 		<div class="container">
 		
 			<h3><%=BoardVO.changeword(boardname)%></h3>
-			<br />
+			
 			<%
 			if(request.getAttribute("searchword")!=null){
 				String searchword=(String)request.getAttribute("searchword");
@@ -54,6 +54,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 			%>
 			<div class="table-wrapper">
 			<div class="writebtn">
+			<button class="btn btn-info" id="goimgboard">사진게시판</button>
 			<button class="btn btn-success" id="writeboard">글쓰기</button>
 			</div>
 				<table class="table table-hover table-condensed" id="boardtable">
@@ -105,14 +106,14 @@ String boardname = (String) request.getAttribute("b_boardname");
 							
 							</td>
 
-							<td width="180">
+							<td class="nick" width="180">
+							
 							<div class="dropdown">
-					
-					 		 <a  class="dropbtn"><%=vo.getNickname()%></a>
+							<a  class="dropbtn"><%=vo.getNickname()%></a>
 							  <div id="myDropdown" class="dropdown-content">
-							    <a href="#"><%=vo.getNickname()%></a>
-							    <a href="#" class="oneonone"><%=vo.getId()%></a>
-							    <a href="#">Link 3</a>
+<%-- 							    <a href="#"><%=vo.getNickname()%>의 프로필</a> --%>
+							    <a href="#" class="oneonone">1:1 대화요청</a>
+<!-- 							    <a href="#">Link 3</a> -->
 							  </div>
 							</div>
 							</td>

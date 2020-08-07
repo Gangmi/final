@@ -172,6 +172,10 @@ td a {
 	color: black;
 	 
 }
+td a:hover {
+	color: black !important;
+	text-decoration: underline !important; 
+}
 .spad{
 	padding-top: 0px !important;
 }
