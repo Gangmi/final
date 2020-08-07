@@ -251,4 +251,10 @@
 	delete from img_status where writeno=${writeno}
 	
 	</delete>
+	
+	<!-- 답글수정 -->
+	<update id="updateAnswer" parameterType="board">
+		update ${b_boardname} set contents=#{contents} where boardno=#{boardno}
+	</update>
+	
 </mapper>

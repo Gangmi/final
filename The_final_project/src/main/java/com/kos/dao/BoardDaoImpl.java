@@ -409,7 +409,7 @@ public class BoardDaoImpl implements BoardDao {
 				mybatis.update("notemp", hs);
 			}
 
-			return mybatis.update("board.updateboard", vo);
+			return mybatis.update("board.updateAnswer", vo);
 		}
 	
 	
