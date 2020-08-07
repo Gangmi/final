@@ -125,7 +125,7 @@ if (session.getAttribute("memberinfo") != null) {
 					id="frm" enctype="multipart/form-data">
 					<input type="hidden" id="form-boarname" name="b_boardname" value="in_repl"/>
 					<input type="hidden" name="boardno" value="<%=boardno%>">  
-					<input type="hidden"  id="replno" value="">  
+					<input type="hidden" name="replno" id="replno" value="">  
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript"> 
 					</script>
@@ -157,7 +157,7 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<!--조회수 표시  -->
 				<div class="pull-right" id="boardname_right">
-					<%if(vo.getId()==userid){ %>
+					<%if(vo.getId().equals(userid)){ %>
 					<div id="replinfosec">
 						<button class="btn btn-success answer" id="">채택하기</button>
 					</div>

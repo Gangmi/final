@@ -521,10 +521,10 @@ public class BoardController {
 	@RequestMapping("/updateAnswer.do")
 	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
 		System.out.println("updateAnswer 들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContents());
+		System.out.println(vo.getB_boardname()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getBoardno()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getReplno()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getContents()+" 글수정 컨트롤러--------");
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateAnswer(vo);
@@ -536,6 +536,7 @@ public class BoardController {
 			out.println("<script>alert('수정이 완료 되었습니다.'); </script>");
 		}
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		System.out.println("수정버튼 누르기이벤트 완료");
 		return mv;
 	}
 
@@ -543,7 +544,7 @@ public class BoardController {
 	//프로필 사진 업로드시 사용
 	@RequestMapping(value = "/profile-up.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String profileup(HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
+	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
 			UploadImageVO vo) throws Exception {
 
 		JsonObject json = new JsonObject();
@@ -553,7 +554,9 @@ public class BoardController {
 
 		System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		System.out.println(vo.getId());
-
+			
+		
+		
 
 
 		// 파일이 있는지 확인
@@ -625,7 +628,8 @@ public class BoardController {
 				}
 			}
 		} 
-		return "updateAccount";
+		mv.setViewName("updateAccount");
+		return mv;
 	}
 
 	//내가 쓴 글 보기

@@ -161,6 +161,9 @@ public class BoardServiceImpl implements BoardService {
 
    public int updateAnswer(BoardVO vo) {
       // TODO Auto-generated method stub
+	   System.out.println(vo.getB_boardname()+"서비스");
+	   System.out.println(vo.getContents()+"서비스");
+	   System.out.println(vo.getBoardno()+"서비스");
       return dao.updateAnswer(vo);
    }
 

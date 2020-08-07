@@ -32,6 +32,7 @@ $(document).ready(function () {
 			$('.cke_wysiwyg_frame').contents().find('p').html($('#contents'+replno+' p').html());//홀리 쓋
 			$('#replno').val(replno);
 			$('#frm').attr("action","/updateAnswer.do");
+			$('#replno').attr("value",replno);
 			$(".main_box").show();
 		});
 		
@@ -45,5 +46,8 @@ $(document).ready(function () {
 
 		});
 		
-		
+		$('#store').on("click",function(){
+//			$('#replno').attr("value","");
+			$("#"+replno).show();
+		});
 });
