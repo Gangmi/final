@@ -467,6 +467,19 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardVO> writerview(BoardVO vo) {
 		System.out.println("===> mybatis writerview() 호출");  
 		return mybatis.selectList("board.writerview", vo);   
+	}
+	//프로필사진이 있는지 확인하고 들고옴
+	@Override
+	public String isThereProfile(UploadImageVO vo) {
+		return mybatis.selectOne("isthereprofile", vo);
+		
+	}
+
+	//프로필사진이 있다면 update
+	@Override
+	public void updateProfile(UploadImageVO vo) {
+		mybatis.update("updateprofileimg", vo);
+		
 	}   
 	
 	

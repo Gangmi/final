@@ -236,7 +236,7 @@ public class BoardController {
 		vo.setViewing_count(5);
 
 
-		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
+		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 5개의 게시물을 가져온다.
 		for(String row:vo.allBoardList()) {
 
 			//게시판이름을 세팅한다.
@@ -363,8 +363,7 @@ public class BoardController {
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
-		System.out.println(file + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(vo.getBoardname());
+		
 		// 파일이 있는지 확인
 		if (file != null) {
 			// 파일이름이 없는지 확인
@@ -383,10 +382,7 @@ public class BoardController {
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
 						System.out.println(uploadPath);
-						System.out.println(vo.getBoardname()+"이미지저장");
-						System.out.println(vo.getBoardno()+"게시글번호");//안나옴
-						System.out.println(vo.getWriteno()+"다음글번호");//안나옴
-						System.out.println(vo.getImgName()+"이미지이름");
+					
 						// 디렉토리 만듦
 						File uploadFile = new File(uploadPath);
 
@@ -406,7 +402,7 @@ public class BoardController {
 						printWriter = resp.getWriter();
 						resp.setContentType("text/html");
 						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
-						System.out.println(fileUrl);
+						
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
 						// 각 게시판에 따라서 분기를 나눔
@@ -487,7 +483,7 @@ public class BoardController {
 	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
 
 		service.deleteBoard(vo);
-		System.out.println("댓글삭제 나옴+^^^^^^^^^^^^^^^^");
+		
 		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
@@ -526,7 +522,7 @@ public class BoardController {
 
 
 	//프로필 사진 업로드시 사용
-	@RequestMapping(value = "/profile-up.do", method = RequestMethod.POST)
+	@RequestMapping(value ="/profile-up.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
 			UploadImageVO vo) throws Exception {
@@ -536,11 +532,13 @@ public class BoardController {
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
 
-		System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(vo.getId());
+	
 			
-		
-		
+		//먼저 등록된 프사가 있는지 확인하고 삭제하는 서비스로 옮김
+		//사진이 있으면 true 
+		//없으면 false
+		boolean isthere=service.isThereProfile(vo);
+		mv.setViewName("updateAccount");
 
 
 		// 파일이 있는지 확인
@@ -577,8 +575,8 @@ public class BoardController {
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
 
-						printWriter = resp.getWriter();
-						resp.setContentType("text/html");
+						
+						
 						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
 						System.out.println(fileUrl);
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
@@ -589,31 +587,36 @@ public class BoardController {
 						//                     vo.setBoardno(BoardVO.FREE_BOARD);
 						//                  }
 						//
+						//이미지 파일 이름을 저장
 						vo.setImgName(fileName);
-						service.storeProfile(vo);
-						// json 데이터로 등록
-						// {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
-						// 이런 형태로 리턴이 나가야함.
-						//                  json.addProperty("uploaded", 1);
-						//                  json.addProperty("fileName", fileName);
-						//                  json.addProperty("url", fileUrl);
-
-						printWriter.println(json);
-					} catch (IOException e) {
-						e.printStackTrace();
-					} finally {
+						
+						//만약 사진이 없다면
+						if(!isthere) {
+							service.storeProfile(vo);
+							
+						//있다면	
+						}else {
+							service.updateProfile(vo);
+							
+						}
+						
+						//파일 닫기
 						if (out != null) {
 							out.close();
 						}
-						if (printWriter != null) {
-							printWriter.close();
-						}
-					}
+						
+						
+					
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					} 
 				}
 			}
-		} 
-		mv.setViewName("updateAccount");
+		}
+		
 		return mv;
+		
 	}
 
 	//내가 쓴 글 보기

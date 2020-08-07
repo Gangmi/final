@@ -52,6 +52,10 @@ public interface BoardDao {
 
    public void cancleCheteck(BoardVO vo);
 
+public String isThereProfile(UploadImageVO vo);
+
+public void updateProfile(UploadImageVO vo);
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.kos.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kos.vo.FarmerApplicationVO;
+import com.kos.vo.PagingVO;
 import com.kos.vo.SmartFarmApplicationVO;
 
 @Repository("ApplicationDao")
@@ -28,7 +30,17 @@ public class ApplicationDao {
 	public List<SmartFarmApplicationVO> smartFarmApplicationSelect(SmartFarmApplicationVO applicationVO){
 		return mybatis.selectList("Aplication.SmartFarmSelect", applicationVO);
 	}
-	public int smartFarmApplicationSelectCount() {
-		return mybatis.selectOne("Aplication.SmartFarmSelectTotalCount");
+	public List smartFarmApplicationSelect(SmartFarmApplicationVO applicationVO,PagingVO paging){
+		HashMap hashMap = new HashMap();
+		hashMap.put("applicate", applicationVO);
+		hashMap.put("paging", paging);
+		return mybatis.selectList("Aplication.SmartFarmSelectPage", hashMap);
+	}
+	public int smartFarmApplicationSelectCount(SmartFarmApplicationVO applicationVO) {
+		return mybatis.selectOne("Aplication.SmartFarmSelectTotalCount",applicationVO);
+	}
+	
+	public int smartFarmApplicationUpdate(SmartFarmApplicationVO applicationVO) {
+		return mybatis.update("Aplication.SmartFarmUpdate",applicationVO);
 	}
 }

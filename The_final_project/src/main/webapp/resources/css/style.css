@@ -389,6 +389,7 @@ padding-top: 30px;
 	color: #446633;
 }
 .menu-item {
+	
 	position: relative;
 	z-index: 9;
 }
@@ -2391,9 +2392,19 @@ padding-top: 30px;
 	width: 17px;
 	height: 17px;
 }
+.col-lg-7{
+	
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	
+}
 
 
 
+/* 전체 배경 색  */
+body{
+background-color: #f4f4f4;
+}
 
 
 

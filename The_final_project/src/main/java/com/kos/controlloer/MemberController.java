@@ -85,8 +85,10 @@ public class MemberController {
 		 */
 		memberVO = memberService.checkID(memberVO);
 		request.removeAttribute("loginfail");
-		// 세션에 member info 저
+		// 세션에 member info 저장
+		String profileImg =memberService.getProfileImg(memberVO);
 		session.setAttribute("memberinfo", memberVO);
+		session.setAttribute("profileimg", profileImg);
 		return view;
 	}
 

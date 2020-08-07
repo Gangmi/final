@@ -265,6 +265,7 @@
 		update ${b_boardname} set contents=#{contents},regdate=SYSDATE() where replno=#{replno}
 	</update>
 	
+
 	<!-- 채택하기 -->
 	<update id="updateCheteck" parameterType="board">
 		update in_repl set is_selected=1 where replno=#{replno}
@@ -284,5 +285,55 @@
    where boardno = ${boardno} and is_selected=1
    
    </select>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--프로필 사진이 있는지 확인하는 곳  -->
+	<select id="isthereprofile" parameterType="img" resultType="String">
+	select imagename from memberimg where id=#{id}
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	<insert id="updateprofileimg" parameterType="img">
+	update memberimg set imagename=#{imgName} where id=#{id}
+	
+	</insert>
+	
+	
+	
+	
+	
+	
+
 
 </mapper>

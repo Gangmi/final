@@ -8,4 +8,5 @@ public interface MemberDao {
 	public abstract int memberInsert(MemberVO memberVo);
 	public abstract List<MemberVO> memberSelect(MemberVO memberVo);
 	public abstract int memberUpdate(MemberVO memberVo);
+	public abstract String memberProfileImg(MemberVO memberVO);
 }

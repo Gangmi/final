@@ -27,5 +27,8 @@ public class MemberDaoImpl implements MemberDao {
 	public int memberUpdate(MemberVO memberVo) {
 		return mybatis.update("Member.update",memberVo);
 	}
+	public String memberProfileImg(MemberVO memberVO) {
+		return mybatis.selectOne("Member.profile",memberVO);
+	}
 
 }

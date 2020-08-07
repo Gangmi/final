@@ -37,4 +37,8 @@
 						
 		WHERE id=#{id}
 	</update>
+	
+	<select id="profile" parameterType="membervo" resultType="string">
+		SELECT imagename from memberimg where id = #{id}
+	</select>
 </mapper>
