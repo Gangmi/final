@@ -32,8 +32,46 @@
 		</if>
 		order by apply_date DESC
 	</select>
+	<select id="SmartFarmSelectPage" parameterType="hashmap" resultType="smartfarmapplicationvo">
+	select a.ROWNUM, a.no,a.id, DATE_FORMAT(a.apply_date, '%Y-%m-%d') apply_date, DATE_FORMAT(a.start_date,'%Y-%m-%d') start_date,DATE_FORMAT(a.due_date,'%Y-%m-%d') due_date,DATE_FORMAT(approve_date,'%y-%m-%d') approve_date 
+    from (SELECT @ROWNUM := @ROWNUM + 1 AS ROWNUM, f.* 
+		  from (select * 
+		  	    FROM smart_farm_certificate ORDER BY apply_date) f, (SELECT @ROWNUM:=0) TMP) a 
+	WHERE 1=1
+	<if test="applicate != null">
+		<if test="applicate.id !=null">
+			AND id=#{applicate.id}
+		</if>
+	 	<if test="applicate.approveDate== 'undefined'">
+			AND approve_date is null
+		</if>
+	</if>
 	
-	<select id="SmartFarmSelectTotalCount" resultType="int">
-		select count(*) count FROM smart_farm_certificate	
+	<if test="paging !=null">
+	 AND a.ROWNUM BETWEEN ${paging.start} AND ${paging.end}
+	</if>
+	
+	
 	</select>
+	<select id="SmartFarmSelectTotalCount" resultType="int">
+		select count(*) count FROM smart_farm_certificate a,member m
+		WHERE 1=1 and a.id=m.id 
+			<if test="id !=null">
+				AND a.id=#{id}
+			</if>
+		 	<if test="approveDate== 'undefined'">
+				AND approve_date is null
+			</if>
+	</select>
+	<update id="SmartFarmUpdate" parameterType="smartfarmapplicationvo">
+		UPDATE smart_farm_certificate set approve_date='${approveDate}'
+		<if test="startDate != null">
+		,start_date='${startDate}'
+		</if>
+		<if test="dueDate != null">
+		,due_date='${dueDate}'
+		</if>
+		WHERE id='${id}' AND DATE_FORMAT(apply_date,'%Y-%m-%d')='${applyDate}'
+	</update>
+	
 </mapper>

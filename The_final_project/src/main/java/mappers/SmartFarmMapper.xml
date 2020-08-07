@@ -4,23 +4,31 @@
 <mapper namespace="SmartFarm">
 
 	<select id="select" parameterType="smartfarmdevicevo" resultType="smartfarmdevicevo">
-		SELECT * FROM smart_farm where id =#{id}
-	</select>
-
-	<update id="update" parameterType="smartfarmdevicevo">
-		UPDATE smart_farm SET
+		SELECT * FROM smart_farm where 1=1
 		<if test="id!=null">
-			id=#{id}
+		 AND id=#{id}
 		</if>
-		<if test="regdate	">
+		<if test="regdate!=null">
+		AND regdate=#{regdate}
+		</if>
+	</select>
+	<update id="approve" parameterType="smartfarmdevicevo">
+		UPDATE smart_farm SET id=#{id},regdate=#{regdate} WHERE devicekey=#{devicekey}
+	</update>
+	<update id="update" parameterType="smartfarmdevicevo">
+		UPDATE smart_farm SET id=#{id}
+		<if test="regdate!=null">
 			,REGDATE=#{regdate}
 		</if>
-		<if test="sRentdate!=null">
+		<if test="Rentdate!=null">
 			,RENTDATE=#{rentdate}
 		</if>
-		<if test="sSupwater!=null">
+		<if test="Supwater!=null">
 			,WATERDATE=#{waterdate}
 		</if>
 		WHERE id=#{id}
 	</update>
+	<insert id="insert" parameterType="smartfarmdevicevo">
+		INSERT INTO smart_farm(devicekey) values(#{devicekey})
+	</insert>
 </mapper>  

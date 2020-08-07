@@ -45,9 +45,9 @@
 <body>	
     <div class="vertical-menu">
         <ul>
-            <li><a href="updateAccount.do">회원 정보 수정</a></li>
-            <li><a href="farmer-application.do">농부 권한 신청</a></li>
-            <li><a href="#">스마트 팜 신청</a></li>
+            <li><a href="/updateAccount.do">회원 정보 수정</a></li>
+            <li><a href="/farmer-application.do">농부 권한 신청</a></li>
+            <li><a href="/smartfarm-application.do">스마트 팜 신청</a></li>
         </ul>
     </div>
 </body>
