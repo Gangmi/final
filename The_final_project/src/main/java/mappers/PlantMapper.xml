@@ -21,7 +21,7 @@
 	<!-- 식물정보 가져오는 쿼리 -->         
 	<select id="getPlantInfo" parameterType="plant" resultType="plant">  
 		select plant_info    
-		from plant      
+		from plant       
 		where plant_id=${plantid}      
 	</select>         
  

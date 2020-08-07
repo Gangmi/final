@@ -10,9 +10,9 @@
 <title>project</title> 
 </head>
 <body>    
-	<jsp:forward page="index.do" />   
+	<jsp:forward page="index.do" />    
 </body>   
 </html>
        
        
-        
+         
