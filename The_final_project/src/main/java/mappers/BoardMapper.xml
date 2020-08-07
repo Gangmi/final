@@ -259,17 +259,6 @@
 	</select>     
 	
 	
-	<!-- 이미지 테이블에서 답글 관련 이미지 검색 -->
-	<select id="selectimgAnswer" parameterType="hashmap" resultType="img">
-	select * from img_status where writeno=${writeno}
-	
-	</select>
-	
-	<!--답글 이미지 데이터 베이스 삭제--> 	
-	<delete id="deleteimageAnswer" parameterType="hashmap">
-	delete from img_status where writeno=${writeno}
-	
-	</delete>
 	
 	<!-- 답글수정 -->
 	<update id="updateAnswer" parameterType="board">
