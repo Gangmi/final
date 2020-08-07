@@ -23,120 +23,103 @@
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<section class="hero-section">
-		<!-- <div class="container"> -->
-			<h2>식물사전</h2>
-
+		<div class="plantdiv">
+  
+			<h2>여름지기 식물사전</h2> 
+		<div class="inputandbtn">
 			<input type="text" id="myInput" placeholder="검색어를 입력하세요">
 			<button class="btn btn-success" id="search" type="submit">검색</button>
-
-			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'gymnosperms')">겉씨식물</button>
-				<button class="tablinks" onclick="openCity(event, 'Angiospermae')">속씨식물</button>
-				<button class="tablinks" onclick="openCity(event, 'Pteridophyta')">양치식물</button>
-				<button class="tablinks" onclick="openCity(event, 'Bryophyte')">선태식물</button>
-				<button class="tablinks" onclick="openCity(event, 'algae')">조류</button>
-				<button class="tablinks" onclick="openCity(event, 'gunru')">균류</button>
-				<button class="tablinks" onclick="openCity(event, 'Plantguitar')">식물기타</button>
+		</div>
+		<div class="tabdiv"> 
+			<div class="tab"> 
+				<a href="plant.do?plantcate=겉씨식물" class="btn" onclick="openCity(event, 'gymnosperms')" role="button">겉씨식물</a>
+				<a href="plant.do?plantcate=속씨식물" class="btn" onclick="openCity(event, 'Angiospermae')" role="button" >속씨식물</a>
+				<a href="plant.do?plantcate=양치식물" class="btn" onclick="openCity(event, 'Pteridophyta')" role="button">양치식물</a>
+				<a href="plant.do?plantcate=선태식물" class="btn" onclick="openCity(event, 'Bryophyte')" role="button">선태식물</a>
+				<a href="plant.do?plantcate=조류" class="btn" onclick="openCity(event, 'algae')" role="button">조류</a>
+				<a href="plant.do?plantcate=군류" class="btn" onclick="openCity(event, 'gunru')" role="button">군류</a>
+				<a href="plant.do?plantcate=식물기타" class="btn" onclick="openCity(event, 'Plantguitar')" role="button">식물기타</a>
 			</div>
-
-			<%
-				for(PlantVO vo : plant){
-			%>
-			<div id="gymnosperms" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=겉씨식물">겉씨식물</a></td>
-				</tr>
-			</div> 
-
-			<div id="Angiospermae" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=속씨식물">속씨식물</a></td>
-				</tr>
-			</div>
-
-			<div id="Pteridophyta" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=양치식물">양치식물</a></td>
-				</tr>
-			</div>
-
-			<div id="Bryophyte" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=선태식물">선태식물</a></td>
-				</tr>
-			</div>
-
-			<div id="algae" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=조류">조류</a></td>
-				</tr>  
-			</div>
-
-			<div id="gunru" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=군류">군류</a></td>
-				</tr>  
-			</div> 
-			
-			<div id="Plantguitar" class="tabcontent">
-				<tr>
-					<td><a href="plant.do?plantcate=식물기타">식물기타</a></td>
-				</tr>  
+		</div> 
+			<%   
+				for (PlantVO vo : plant) {
+			%> 
+			<div class="side_1">
+				<div class="main_left">
+					<div class="img">
+						<img src="/resources/img/plant/<%=vo.getPlantcate()%>/<%=vo.getPlanttitles()%>.jpg">
+					</div> 
+				</div>	
+				<div class="box_left">
+					<a href="viewplant.do?plantid=<%=vo.getPlantid()%>"><%=vo.getPlanttitles()%></a>
+					<p class="plantcate"><%=vo.getPlantcate()%></p>
+				</div> 
 			</div>  
- 
 			<%
-				}
-			%>
-			<div>
-				<table id="myTable">
-					<tr class="header">
-						<th style="width: 30%;">번호</th>
-						<th style="width: 30%;">카테고리</th>
-						<th style="width: 30%;">이미지</th>
-						<th style="width: 30%;">식물명</th>
-					</tr>
-
-					<%
-						for (PlantVO vo : plant) {
-					%>
-
-					<tr>
-						<td><%=vo.getPlantid()%></td>
-						<td><%=vo.getPlantcate()%></td>
-						<td><img
-							src="/resources/img/plant/<%=vo.getPlantcate()%>/<%=vo.getPlanttitles()%>.jpg">
-						</td>
-						<td><a value="<%=vo.getPlanttitles()%>"
-							href="viewplant.do?plantid=<%=vo.getPlantid()%>"><%=vo.getPlanttitles()%></td>
-					</tr>
-
-					<%
-						}
-					%>
-				</table>
-				<!--페이징 부분  -->
-				<div class="paging"> 
-					<%
-						if ((Integer) request.getAttribute("confirm") == 1) { 
+					}
+				%>
+			<!--페이징 부분  -->
+			<div class="page" id="pager">
+				<%
+						if ((Integer) request.getAttribute("confirm") == 1) {
 						List<PlantVO> result = (List<PlantVO>) request.getAttribute("plantlist");
-						int pagelimit = 0;
-						if (result.get(0).getNowpage() > 10) {
-							pagelimit = 10;  
-						} else {
-							pagelimit = result.get(0).getNowpage();
-						}
-						for (int i = 1; i <= pagelimit; i++) { 
-					%>
-					<a class="btn btn-info" href="plant.do?nowpage=<%=i%><%if(request.getAttribute("plantcate")!=null){ %>&plantcate=<%=(String)request.getAttribute("plantcate")%><%}%>" id="pages" role="button"><%=i%></a>
-					<%   
-						}    
-					%>  
-					<a class="btn btn-info" href="plant.do?nowpage=<%=plant.get(0).getNowpage()%>" id="pages" role="button">끝으로</a>
-					<%
+						//현재 블록 정보를 가져옴(paging VO에서 계산된것을 Boardvo에 넣어서 가져왔음)	
+						int nowblock = result.get(0).getBlock();
+						//현재 화면에서 클라이언트가 보는 마지막 페이지 
+						int nowlastpage = nowblock * 5;
+						//현재 화면에서 클라이언트가 보는 첫페이지
+						int nowstartpage = nowlastpage - 5 + 1;
+
+						//만약 현재 보이는 마지막 페이지가 총 페이지보다 크다면 (예를들면 현재 보이기로 예정된 페이지는 1블록이라서 5페이지 까지인데 , 3페이지까지밖에 없을 경우)
+						if (nowlastpage > result.get(0).getNowpage()) {
+							//총페이지를 현재 보이는 최종 페이지로 결정한다.
+							nowlastpage = result.get(0).getNowpage();
 						}
 					%>
-				</div>
-			</div>
+				<!--만약 블록이 1보다 크다면  -->
+				<%
+						if (nowblock > 1) {
+					%>
+				<a class="btn btn-info"
+					href="plant.do?nowpage=<%=nowstartpage - 1%><%if (request.getAttribute("searchword") != null) {%>&searchword=<%=(String) request.getAttribute("searchword")%><%}%><%if (request.getAttribute("plantcate") != null) {%>&plantcate=<%=(String) request.getAttribute("plantcate")%><%}%>"
+					id="pages" role="button"> < </a>
+				<%
+						}
+					%> 
+
+				<%
+						for (int i = nowstartpage; i <= nowlastpage; i++) {
+						//보여줄페이지 * 현재블럭수=> 현재의 마지막페이지
+
+						//현재 마지막 페이지-보여주는 페이지+1 = 현재 블럭의 시작페이지
+					%>
+
+
+				<a class="btn btn-info"
+					href="plant.do?nowpage=<%=i%><%if (request.getAttribute("searchword") != null) {%>&searchword=<%=(String) request.getAttribute("searchword")%><%}%><%if (request.getAttribute("plantcate") != null) {%>&plantcate=<%=(String) request.getAttribute("plantcate")%><%}%>"
+					id="pages" role="button"><%=i%></a>
+				<%
+						}
+					%>
+				<!-- 만약 전체 마지막 페이지가 현재 마지막 페이지보다 클 때  -->
+				<%
+						if (result.get(0).getNowpage() > nowlastpage) {
+					%>
+				<a class="btn btn-info"
+					href="plant.do?nowpage=<%=nowlastpage + 1%><%if (request.getAttribute("searchword") != null) {%>&searchword=<%=(String) request.getAttribute("searchword")%><%}%><%if (request.getAttribute("plantcate") != null) {%>&plantcate=<%=(String) request.getAttribute("plantcate")%><%}%>"
+					id="pages" role="button">></a>
+				<%
+						}
+					%>
+
+				<a class="btn btn-info"
+					href="plant.do?nowpage=<%=result.get(0).getNowpage()%><%if (request.getAttribute("searchword") != null) {%>&searchword=<%=(String) request.getAttribute("searchword")%><%}%><%if (request.getAttribute("plantcate") != null) {%>&plantcate=<%=(String) request.getAttribute("plantcate")%><%}%>"
+					id="pages" role="button">>></a>
+				<%
+						}
+					%>
+			</div> 
+		</div> 
 	</section>
 
 	<!-- footer -->
