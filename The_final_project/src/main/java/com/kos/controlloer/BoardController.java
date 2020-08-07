@@ -521,10 +521,10 @@ public class BoardController {
 	@RequestMapping("/updateAnswer.do")
 	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
 		System.out.println("updateAnswer 들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContents());
+		System.out.println(vo.getB_boardname()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getBoardno()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getTitle()+" 글수정 컨트롤러--------");
+		System.out.println(vo.getContents()+" 글수정 컨트롤러--------");
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateAnswer(vo);
@@ -536,6 +536,7 @@ public class BoardController {
 			out.println("<script>alert('수정이 완료 되었습니다.'); </script>");
 		}
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		System.out.println("수정버튼 누르기이벤트 완료");
 		return mv;
 	}
 

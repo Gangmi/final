@@ -400,7 +400,9 @@ public class BoardDaoImpl implements BoardDao {
 		public int updateAnswer(BoardVO vo) {
 			// 게시판 정보를 통해서 해당 글의 이미지 정보를 찾기 위한 클래스
 			ImageDetectVO dec = new ImageDetectVO(vo);
-
+			System.out.println(vo.getReplno()+"  dao!!!!!!!!!");
+			System.out.println(vo.getContents()+"  dao!!!!!!!!!");
+			System.out.println(vo.getRegdate()+"  dao!!!!!!!!!");
 			HashMap hs = dec.detecting();
 			// 저장상태가 바뀔 이미지가 있는지 확인
 			List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
