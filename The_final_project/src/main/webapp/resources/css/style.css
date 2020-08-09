@@ -72,7 +72,7 @@ p {
 	margin: 0 0 0 0;
 }
 img {
-	max-width: 100%;
+/* 	max-width: 100%; */
 }
 input:focus, select:focus, button:focus, textarea:focus {
 	outline: none;
@@ -1052,6 +1052,7 @@ padding-top: 30px;
 .aboutus-page-section {
 	padding-top: 0;
 	padding-bottom: 70px;
+	height: auto;
 }
 .about-page-text {
 	margin-bottom: 65px;
@@ -1067,7 +1068,7 @@ padding-top: 30px;
 .about-page-text .ap-title p {
 	font-size: 18px;
 	color: #707079;
-	line-height: 28px;
+	line-height: 52px;
 }
 .about-page-text .ap-services li {
 	list-style: none;
@@ -1081,7 +1082,7 @@ padding-top: 30px;
 }
 .about-page-services .ap-service-item {
 	position: relative;
-	height: 420px;
+	height: 220px;
 	border-radius: 5px;
 	margin-bottom: 30px;
 }
