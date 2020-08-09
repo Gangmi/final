@@ -3,17 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/boardcss/nongbuApply.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>
+<div class="main">
+  <div class="contents">
     <h1>농부 신청</h1>
-    <textarea readonly="readonly">
-    	파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.
-    	농업 경영체 증명서를 첨부해주시길바랍니다.
+ <p>  파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.</p>
+    	 <p> 농업 경영체 증명서를 첨부해주시길바랍니다.</p>
     	
-    </textarea>
+    	
+  
     <form action="/farmerApplication.do" method="post" name="form" enctype="multipart/form-data">
         <table>
             <caption></caption>
@@ -22,28 +25,28 @@
             	<col width="100">
             </colgroup>
             <tr>
-                <td>이름</td>
+                <td class="name">이름</td>
                 <td><input type="text" name="farmerName" value="${sessionScope.memberinfo.name }"/></td>
             </tr>
             <tr>
-            	<td>경작지 이름</td>
-            	<td><input type="text" name="farmlandCorporationName"/></td>
+            	<td class="name">경작지 이름</td>
+            	<td><input type="text" class="name" name="farmlandCorporationName"/></td>
            	</tr>
             <tr>
-                <td>농장 연락처</td>
+                <td class="name">농장 연락처</td>
                 <td><input type="tel" name="farmlandTel"/></td>
             </tr>
             <tr>
-                <td>경작지 주소</td>
+                <td class="name">경작지 주소</td>
                 <td><input type="text" name="farmlandAddress" readonly="readonly"><button id="find_postcode_btn" type="button">주소찾기</button></td>
                
             </tr>
             <tr>
-                <td>농업경영체 등록번호</td>
+                <td class="name">농업경영체 등록번호</td>
                 <td><input type="text" name="farmlandCorporationNumber"></td>
             </tr>
             <tr>
-                <td>첨부파일</td>
+                <td class="name">첨부파일</td>
                 <td><input type="file" accept="application/pdf,image/*" name="file1"></td>
             </tr>
             <tr>
@@ -52,7 +55,8 @@
         </table>
          <input type="hidden" name="farmerId" value="${sessionScope.memberinfo.id }">
     </form>
-   
+  </div>
+</div>
     <jsp:include page="./footer.jsp"></jsp:include>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
