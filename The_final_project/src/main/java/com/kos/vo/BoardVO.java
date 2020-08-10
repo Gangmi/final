@@ -18,10 +18,24 @@ public class BoardVO implements Board {
 	private String searchword="";
 	private int confirmnum;
 	private int block;
+	private int changestyle;
+	private String imagename="";
 	
 	
 	
 	
+	public String getImagename() {
+		return imagename;
+	}
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
+	}
+	public int getChangestyle() {
+		return changestyle;
+	}
+	public void setChangestyle(int changestyle) {
+		this.changestyle = changestyle;
+	}
 	public int getBlock() {
 		return block;
 	}
@@ -156,7 +170,7 @@ public class BoardVO implements Board {
 		this.total_board = total_board;
 	}
 	public int getNowpage() {
-		return nowpage;
+		return nowpage; 
 	}
 	public void setNowpage(int nowpage) {
 		this.nowpage = nowpage;
@@ -207,7 +221,7 @@ public class BoardVO implements Board {
 		
 		
 		
-		return list;
+		return list; 
 	}
 	//이름에 따라서 게시판의 번호를 가져오는 메소드
 	public static String getBoardnoByBoardname(BoardVO vo) {

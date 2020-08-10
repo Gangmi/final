@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.kos.vo.MemberVO"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
 
+<%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
+
+<style>
+ 
 
         
         section{
@@ -134,18 +138,18 @@
                 </button>
                 <p><a href="#">스마트팜 신청 관리</a></p>
             </div>
- 
-            <div class="market">
+  
+            <div class="market"> 
                 <button>
                     <img src="/resources/old/img/market_grey.png" alt="market">
-                </button>
-                <p><a href="/writerview.do">내가쓴 글 보기</a></p>
-            </div> 
-  
+                </button> 
+                <p><a href="/writerview.do?id=<%=mem.getId()%>">내가 쓴 글 보기</a></p>
+            </div>  
+    
            
            
         </section> 
-    
+
 <jsp:include page="./footer.jsp"/>
 </body>
 </html>

@@ -131,7 +131,6 @@ public class BoardDaoImpl implements BoardDao {
 		// 조회수올리기
 		mybatis.update("board.upviewcount", vo);
 		BoardVO result = mybatis.selectOne("board.viewboard", vo);
-		result.getBoardView();
 
 		return result;
 	}
@@ -395,14 +394,11 @@ public class BoardDaoImpl implements BoardDao {
 
 	}
 
-//	 게시판 글 수정시에
+//	 답글 수정
 		@Override
 		public int updateAnswer(BoardVO vo) {
 			// 게시판 정보를 통해서 해당 글의 이미지 정보를 찾기 위한 클래스
 			ImageDetectVO dec = new ImageDetectVO(vo);
-			System.out.println(vo.getReplno()+"  dao!!!!!!!!!");
-			System.out.println(vo.getContents()+"  dao!!!!!!!!!");
-			System.out.println(vo.getRegdate()+"  dao!!!!!!!!!");
 			HashMap hs = dec.detecting();
 			// 저장상태가 바뀔 이미지가 있는지 확인
 			List<UploadImageVO> result = mybatis.selectList("isthereimg", hs);
@@ -415,10 +411,21 @@ public class BoardDaoImpl implements BoardDao {
 			return mybatis.update("board.updateAnswer", vo);
 		}
 	
+		//채택하기
+		public void updateCheteck(BoardVO vo) {
+			mybatis.update("board.updateCheteck", vo);
+		}
 	
-	
-	
-	
+		//채택한 것만 가져오기
+		public BoardVO AnswerCheteck(BoardVO vo) {
+			return mybatis.selectOne("board.AnswerCheteck", vo);
+			
+		}
+		
+		//채택 취소하기
+		public void cancleCheteck(BoardVO vo) {
+			 mybatis.selectOne("board.cancleCheteck", vo);
+		}
 	
 	
 	
@@ -473,10 +480,21 @@ public class BoardDaoImpl implements BoardDao {
 	public void updateProfile(UploadImageVO vo) {
 		mybatis.update("updateprofileimg", vo);
 		
+	}
+	//사진포스팅을 가져오는 메소드
+	@Override
+	public List<BoardVO> getPost(PagingVO vo) {
+		
+		
+		
+		
+		return null;
 	}   
 	
 	
 	
+	 
+	 
 	
 	
 	

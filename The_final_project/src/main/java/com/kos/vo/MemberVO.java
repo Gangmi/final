@@ -13,6 +13,7 @@ public class MemberVO {
 	private int		point;
 	private String	birthDay;
 	private String 	signUpDate;
+	 
 	public String getEmail() {
 		return email;
 	}

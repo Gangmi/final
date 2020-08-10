@@ -15,33 +15,13 @@
 	<link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
 	<link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
-    <style>
-        #timer {
-            visibility:hidden;
-        }
-        #findId tr td {
-            text-align: center;
-            padding: 10px;
-            font-size: 1.2em;
-        }
-        
-        .find-container {
-            padding: 50px;
-            display: inline-block;
-            background-color: ivory;
-            width:auto;
-            text-align: center;
-            margin: auto;
-            border-radius: 50px;
-        }
-        .find-form form{
-            
-        }
-    </style>
+	
+	<link rel="stylesheet" href="/resources/css/login/find-id.css">
+    
 </head>
 <body>
     <div class="find-container">
-       <div><h2>아이디 찾기</h2></div>
+       <div class="title"><h2>아이디 찾기</h2></div>
        <div class="find-form">
         <form action="find_id_act.do" class=".form-inline" id="findId" method="post" target="result">
             <table class="">
@@ -58,7 +38,7 @@
                 <tr>
                     <td><label for="email">이메일</label></td>
                     <td><input type="email" class="form-control" name="email"/></td>
-                    <td><button id="certification" class="btn btn-info" type="button" >인증번호 받기</button>
+                    <td class="Certification"><button id="certification" class="btn btn-info" type="button" >인증번호 받기</button>
                     <span id="timer"><span id="min">03</span>:<span id="sec">00</span></span></td>
                 </tr>
                 <tr>
@@ -68,7 +48,7 @@
                 </tr>
                 <tr>
                    <td colspan="2">
-                       <button type="button" class="btn btn-success" id="btnFind" disabled>아이디 찾기</button>
+                       <button type="button" class="btn btn-info" id="btnFind" disabled>아이디 찾기</button>
                        <a href="find-pw.do">비밀번호 찾기</a>
                    </td>
                    <td><button type="button" class="btn btn-outline-primary" id="windowClose"> 닫기</button></td>
@@ -86,7 +66,7 @@
 	<script src="/resources/js/owl.carousel.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $("windowClose").click(function(){
+        $("#windowClose").click(function(){
 				window.close();
             });
         $("#btnFind").click(function (e){

@@ -12,7 +12,7 @@
 	<jsp:include page="./header.jsp"></jsp:include>
 	 <section class="hero-section">
         <div class="big-logo">
-		<a href="index.do"> <img src="/resources/img/mainlogo.png" alt="Logo"></a>
+		<a href="index.do"> <img src="/resources/img/logo3.png" alt="Logo"></a>
 	</div>
 	
 	<div class="container">

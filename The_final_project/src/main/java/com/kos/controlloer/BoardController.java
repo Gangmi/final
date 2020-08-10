@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,7 +61,8 @@ public class BoardController {
 		if (result.size() > 0) {
 			mv.addObject("boardlist", result); // 받아온 게시판 게시물
 			mv.addObject("confirm", 1); // 값이 제대로 넘어간것을 표현
-
+			
+		
 			return mv;
 
 		} else {
@@ -123,15 +125,7 @@ public class BoardController {
 	public ModelAndView writeAnswer(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
-		System.out.println(vo.getB_boardname()+ "게시판이름||||");
-		System.out.println(vo.getContents() + "내용||||");
-		System.out.println(vo.getBoardno()+"글번호||||");
-		System.out.println(vo.getId()+"아이디||||");
-		// 임시로 아이디 지정 ->나중에 지우기
-
-		// vo.setId("kim");
-		//         ReplNameVO re = new ReplNameVO(vo);
-		//         vo.setB_boardname(re.changeName());
+		
 		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
 		if (!info.getId().isEmpty()) {
 			vo.setId(info.getId());
@@ -143,13 +137,10 @@ public class BoardController {
 			return mv;
 		}
 		vo.setId(vo.getId());
-		System.out.println(vo.getId()+"아이디||||");
-		System.out.println(vo.getB_boardname());
 
 		// 사용자가 작성한 글 및 정보 전달
 
 		service.writeBoard(vo);
-		System.out.println("입력하고 돌아옴");
 
 		// 넘기기
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
@@ -168,7 +159,9 @@ public class BoardController {
 		System.out.println(vo.getBoardno());
 
 		BoardVO result = service.viewBoard(vo);
+		
 		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
+		BoardVO AnswerCheteck = (BoardVO)service.AnswerCheteck(vo);
 		// 닉네임 추가
 		result.setNickname(vo.getNickname());
 
@@ -182,8 +175,10 @@ public class BoardController {
 		}
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
+		//답글 리스트 보냄
 		mv.addObject("Answer",Answer);
-
+		mv.addObject("AnswerCheteck",AnswerCheteck);
+		System.out.println(AnswerCheteck+" 왜 못가져오냐!!!");
 		return mv;
 
 	}
@@ -204,7 +199,6 @@ public class BoardController {
 		BoardVO result = service.viewBoard(vo);
 
 		// 다음에 갈 페이지 지정 및 parameter 세팅
-		System.out.println(vo.getB_boardname() + "이게 안나오는걸까?");
 		mv.setViewName("modifyboard");
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
@@ -501,13 +495,10 @@ public class BoardController {
 	//답글 삭제
 	@RequestMapping("/deleteAnswer.do")
 	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo) {
-		//      System.out.println(vo.get+"!!!!");//안가져와짐
-		System.out.println(vo.getB_boardname()+"!!!!");
-		System.out.println(vo.getBoardno()+"!!!!");
+
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		service.deleteAnswer(vo);
-		System.out.println("답글삭제 ^^^^^^^^^^^^^^^^");
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
 		return mv;
 	}
@@ -517,10 +508,6 @@ public class BoardController {
 	@RequestMapping("/updateAnswer.do")
 	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
 		System.out.println("updateAnswer 들어옴");
-		System.out.println(vo.getB_boardname()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getBoardno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getReplno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getContents()+" 글수정 컨트롤러--------");
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateAnswer(vo);
@@ -541,12 +528,15 @@ public class BoardController {
 	@RequestMapping(value ="/profile-up.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
-			UploadImageVO vo) throws Exception {
-
+			UploadImageVO vo, HttpSession session) throws Exception {
+		System.out.println("프로필 업 들어옴");
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
+
+
+
 
 	
 			
@@ -585,7 +575,7 @@ public class BoardController {
 
 						// 파일이름 랜덤생성
 						fileName = UUID.randomUUID().toString();
-
+						session.setAttribute("profileimg", fileName);
 						// 파일 저장경로지정및 저장
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
@@ -637,44 +627,80 @@ public class BoardController {
 
 	//내가 쓴 글 보기
 	@RequestMapping("/writerview.do")
-	public ModelAndView writerview(ModelAndView mv) {
+	public 	ModelAndView writerview(ModelAndView mv,HttpServletRequest request, BoardVO vo) {
+		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
-		BoardVO vo = new BoardVO();
-		vo.setNowpage(1);
-		vo.setViewing_count(8); 
-
-
+		System.out.println(vo.getId());
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
-		for(String row:vo.allBoardList()) {
-
-			//게시판이름을 세팅한다.
-			vo.setB_boardname(row);
-
-			//세팅된 게시판에 있는 것들을 가져온다.
+		for(String row:vo.allBoardList()) {  
+			System.out.println(row);
+			//게시판이름을 세팅한다.     
+			vo.setB_boardname(row);    
+			//세팅된 게시판에 있는 것들을 가져온다. 
 			Object rawboard =service.writerview(vo);
-
-			//받아온 데이터가 있으면  
-			if(rawboard!=null) {
-				mv.addObject(row,rawboard);
-				mv.addObject(row+"con", 1);
-				//만약 없다면	
-			}else {
+			System.out.println(rawboard); 
+			//받아온 데이터가 있으면
+			if(rawboard!=null) {   
+				mv.addObject(row,rawboard);  
+				mv.addObject(row+"con", 1); 
+				//만약 없다면     
+			}else { 
 				mv.addObject(row+"con", 0);
 			}
 
 
-		}
-
-		mv.setViewName("index");
-
+		} 
+		mv.setViewName("writerview");  
 		return mv;
 	} 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//답글채택하기
+	@RequestMapping("/updateCheteck.do")
+	public ModelAndView updateCheteck(ModelAndView mv ,BoardVO vo) {
+		service.updateCheteck(vo);
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		return mv;
+	}
+	
+	//답글채택 취소하기
+		@RequestMapping("/cancleCheteck.do")
+		public ModelAndView cancleCheteck(ModelAndView mv ,BoardVO vo) {
+			service.cancleCheteck(vo);
+			mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+			return mv;
+		}
+		
+		//이미지 게시판으로 변경 요청이들어왔을 때
+		
+		@RequestMapping("/imgboard.do")
+		public ModelAndView imgboard(PagingVO vo, ModelAndView mv) {
+			
+			
+			//처음 들어왔을 떄 가서 3개의 포스팅을가져온다.
+			service.getPost(vo);
+			
+			
+			
+			
+			
+			
+			//돌아갈 곳 지
+			mv.setViewName("imgboard");
+			
+			return mv;
+		}
+			
 }
-
-
-
 
 
 

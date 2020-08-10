@@ -3,53 +3,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/nongbu/farmer-application-update.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>
- <jsp:include page="./side.jsp"></jsp:include>
-    <h1>농부 신청</h1>
-    <textarea readonly="readonly">
-    	파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.
-    	농업 경영체 증명서를 첨부해주시길바랍니다.
-    	
-    </textarea>
+
+<div class="main">
+  <div class="contents">
+  	
+    <h2 class="title">농부 정보수정</h2>
+    <div class="Explanation">
+ 		<p>  파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.</p>
+    	<p> 농업 경영체 증명서를 첨부해주시길바랍니다.</p>
+    </div>
     <form action="/farmerApplication.do" method="post" name="form" enctype="multipart/form-data">
         <table>
             <caption></caption>
             <tr>
-                <td>이름</td>
-                <td><input type="text" name="farmerName" value="${sessionScope.memberinfo.name }"/></td>
+                <td  class="name">이름</td>
+                <td><input type="text"  class="form-control" name="farmerName" value="${sessionScope.memberinfo.name }"/></td>
             </tr>
             <tr>
-            	<td>경작지 이름</td>
-            	<td><input type="text" name="farmlandCorporationName"/></td>
+            	<td  class="name">경작지 이름</td>
+            	<td ><input type="text"  class="form-control" name="farmlandCorporationName"/></td>
            	</tr>
             <tr>
-                <td>농장 연락처</td>
-                <td><input type="tel" name="farmlandTel"/></td>
+                <td  class="name">농장 연락처</td>
+                <td ><input type="tel"  class="form-control" name="farmlandTel"/></td>
             </tr>
             <tr>
-                <td>경작지 주소</td>
-                <td><input type="text" name="farmlandAddress"></td>
-                <td><button id="find_postcode_btn" type="button">주소찾기 ></button></td>
+                <td  class="name">경작지 주소</td>
+                <td><input type="text"  class="form-control" name="farmlandAddress"><button id="find_postcode_btn" class="btn btn-primary" type="button">주소찾기</button></td>
+
             </tr>
             <tr>
-                <td>농업경영체 등록번호</td>
-                <td><input type="text" name="farmlandCorporationNumber"></td>
+                <td  class="name">농업경영체 등록번호</td>
+                <td ><input type="text"  class="form-control" name="farmlandCorporationNumber"></td>
             </tr>
             <tr>
-                <td>첨부파일</td>
+                <td  class="name">첨부파일</td>
                 <td><input type="file" accept="application/pdf,image/*" name="file1"></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="신청"> </td>
+                <td colspan="2"><input class="btn btn-success" type="submit" value="신청"> </td>
             </tr>
         </table>
          <input type="hidden" name="farmerId" value="${sessionScope.memberinfo.id }">
     </form>
-   
+  </div>
+ </div> 
     <jsp:include page="./footer.jsp"></jsp:include>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>

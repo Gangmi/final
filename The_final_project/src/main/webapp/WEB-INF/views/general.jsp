@@ -11,7 +11,7 @@
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
 
-
+ 
 <%
 	//게시판 값 받아오는 곳
 String boardname = (String) request.getAttribute("b_boardname");
@@ -109,10 +109,12 @@ String boardname = (String) request.getAttribute("b_boardname");
 							<td class="nick" width="180">
 							
 							<div class="dropdown">
-							<a  class="dropbtn"><%=vo.getNickname()%></a>
+							<a  id="dropbt" class="dropbtn"><%=vo.getNickname()%></a>
 							  <div id="myDropdown" class="dropdown-content">
 <%-- 							    <a href="#"><%=vo.getNickname()%>의 프로필</a> --%>
-							    <a href="#" class="oneonone">1:1 대화요청</a>
+							    <a href="#" class="oneonone" value="">1:1 대화요청</a>
+							    <input type="hidden" id="userid" value="<%=vo.getId() %>"/>
+							    
 <!-- 							    <a href="#">Link 3</a> -->
 							  </div>
 							</div>

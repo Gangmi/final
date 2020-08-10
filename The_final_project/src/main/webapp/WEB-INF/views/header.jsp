@@ -17,8 +17,23 @@
 <link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+<style type="text/css">
+
+.logo img{
+width: 238px !important;
+
+
+}
+
+</style>
+
+
+
 </head>
 <body>
+	<!-- 챗봇 연동 -->
+	<script id="embeddedChatbot" data-botId="Bdv56x" src="https://www.closer.ai/js/webchat.min.js"> </script>
+	
 	<div id="preloder">
         <div class="loader"></div>
     </div>
@@ -55,7 +70,7 @@
 		<nav class="mainmenu mobile-menu">
 			<ul>
 				<li class="active"><a href="/index.do">Home</a></li>
-				<li><a href="/about-us.do">AboutUs</a></li>
+				<li><a href="/about-us.do">소개</a></li>
 				
 				<li><a href="/callboard.do?b_boardname=free_board">게시판</a>
 					<ul class="dropdown">
@@ -86,7 +101,7 @@
 				<div class="col-lg-4">
 					<div class="logo">
 						<a href="/index.do"> <!--로고 들어가는섹션--> <img
-							src="/resources/img/mainlogo.png" alt="">
+							src="/resources/img/logo3.png" alt="">
 						</a>
 					</div>
 				</div>
@@ -135,6 +150,7 @@
 			</div>
 		</div>
 	</div>
+	<hr class="divide"/>
 
 </body>
 </html>
