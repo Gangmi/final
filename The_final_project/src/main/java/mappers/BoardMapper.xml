@@ -250,20 +250,19 @@
    <delete id="deleteimageAnswer" parameterType="hashmap">
    delete from img_status where writeno=${writeno}
    
-   </delete>
-   
-   	<!-- 내가 쓴 글 가져오기 --> 
-	<select id="writerview" parameterType="board" resultType="board"> 
-	select * from ${b_boardname} <if test="id!=null">where id=#{id}</if>
-	
-	</select>     
-	
-	
+   </delete> 
 	
 	<!-- 답글수정 -->
 	<update id="updateAnswer" parameterType="board">
 		update ${b_boardname} set contents=#{contents},regdate=SYSDATE() where replno=#{replno}
 	</update>
+	
+	<!-- 내가 쓴 글 가져오기 --> 
+	<select id="writerview" parameterType="board" resultType="board"> 
+	select f.*, m.nickname from ${b_boardname} as f join member as m on f.id=m.id where f.id=#{id} order by regdate desc
+	  
+	</select>    
+	
 	
 
 	<!-- 채택하기 -->

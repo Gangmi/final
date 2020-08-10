@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -534,6 +535,9 @@ public class BoardController {
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
 
+
+
+
 	
 			
 		//먼저 등록된 프사가 있는지 확인하고 삭제하는 서비스로 옮김
@@ -623,36 +627,30 @@ public class BoardController {
 
 	//내가 쓴 글 보기
 	@RequestMapping("/writerview.do")
-	public ModelAndView writerview(ModelAndView mv) {
+	public 	ModelAndView writerview(ModelAndView mv,HttpServletRequest request, BoardVO vo) {
+		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
-		BoardVO vo = new BoardVO();
-		vo.setNowpage(1);
-		vo.setViewing_count(8); 
-
-
+		System.out.println(vo.getId());
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
-		for(String row:vo.allBoardList()) {
-
-			//게시판이름을 세팅한다.
-			vo.setB_boardname(row);
-
-			//세팅된 게시판에 있는 것들을 가져온다.
+		for(String row:vo.allBoardList()) {  
+			System.out.println(row);
+			//게시판이름을 세팅한다.     
+			vo.setB_boardname(row);    
+			//세팅된 게시판에 있는 것들을 가져온다. 
 			Object rawboard =service.writerview(vo);
-
-			//받아온 데이터가 있으면  
-			if(rawboard!=null) {
-				mv.addObject(row,rawboard);
-				mv.addObject(row+"con", 1);
-				//만약 없다면	
-			}else {
+			System.out.println(rawboard); 
+			//받아온 데이터가 있으면
+			if(rawboard!=null) {   
+				mv.addObject(row,rawboard);  
+				mv.addObject(row+"con", 1); 
+				//만약 없다면     
+			}else { 
 				mv.addObject(row+"con", 0);
 			}
 
 
-		}
-
-		mv.setViewName("index");
-
+		} 
+		mv.setViewName("writerview");  
 		return mv;
 	} 
 
@@ -700,9 +698,6 @@ public class BoardController {
 		}
 			
 }
-
-
-
 
 
 

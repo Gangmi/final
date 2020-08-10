@@ -31,6 +31,9 @@ width: 238px !important;
 
 </head>
 <body>
+	<!-- 챗봇 연동 -->
+	<script id="embeddedChatbot" data-botId="Bdv56x" src="https://www.closer.ai/js/webchat.min.js"> </script>
+	
 	<div id="preloder">
         <div class="loader"></div>
     </div>

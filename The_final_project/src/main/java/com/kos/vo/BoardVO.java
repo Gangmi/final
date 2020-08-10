@@ -170,7 +170,7 @@ public class BoardVO implements Board {
 		this.total_board = total_board;
 	}
 	public int getNowpage() {
-		return nowpage;
+		return nowpage; 
 	}
 	public void setNowpage(int nowpage) {
 		this.nowpage = nowpage;
@@ -221,7 +221,7 @@ public class BoardVO implements Board {
 		
 		
 		
-		return list;
+		return list; 
 	}
 	//이름에 따라서 게시판의 번호를 가져오는 메소드
 	public static String getBoardnoByBoardname(BoardVO vo) {
