@@ -56,8 +56,8 @@
 
          <otherwise>
             select
-            boardno,title,contents,regdate,id,board_like,board_bad,board_view
-            from ${b_boardname} where boardno = ${boardno}
+            b.boardno,b.title,b.contents,b.regdate,b.id,b.board_like,b.board_bad,b.board_view,m.imagename
+            from ${b_boardname} as b left outer join memberimg as m on b.id=m.id where boardno = ${boardno}
 
          </otherwise>
       </choose>

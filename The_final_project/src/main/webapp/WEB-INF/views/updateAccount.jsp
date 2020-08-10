@@ -62,6 +62,7 @@ margin-top: 10px;
 
 width: 80px;
 height: 80px;
+border: 1px solid black;
 
 }
 .updateprofile{
@@ -85,7 +86,7 @@ margin-top: 20px;
 
 
 </style>
-
+<%String profile=(String)session.getAttribute("profileimg"); %>
 
 </head>
 <body>
@@ -98,7 +99,7 @@ margin-top: 20px;
 	<span>현재 프로필사진</span>
 	
 	<div class="nowimg">
-	<img src="\resources\profileimg\eac15939-bc7b-4b90-a2c5-d9ead21c2a69">
+	<img src="\resources\profileimg\<%if(profile!=""){ %><%=profile%><%}else{%>my_page.png<%}%>">
 	
 	</div>
 	

@@ -158,6 +158,7 @@ public class BoardController {
 		System.out.println(vo.getBoardno());
 
 		BoardVO result = service.viewBoard(vo);
+		
 		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
 		BoardVO AnswerCheteck = (BoardVO)service.AnswerCheteck(vo);
 		// 닉네임 추가
@@ -526,8 +527,8 @@ public class BoardController {
 	@RequestMapping(value ="/profile-up.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
-			UploadImageVO vo) throws Exception {
-
+			UploadImageVO vo, HttpSession session) throws Exception {
+		System.out.println("프로필 업 들어옴");
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
@@ -570,7 +571,7 @@ public class BoardController {
 
 						// 파일이름 랜덤생성
 						fileName = UUID.randomUUID().toString();
-
+						session.setAttribute("profileimg", fileName);
 						// 파일 저장경로지정및 저장
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
@@ -692,7 +693,7 @@ public class BoardController {
 			
 			
 			
-			//돌아갈 곳 지정
+			//돌아갈 곳 지
 			mv.setViewName("imgboard");
 			
 			return mv;

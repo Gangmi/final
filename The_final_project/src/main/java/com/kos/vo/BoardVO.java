@@ -19,10 +19,17 @@ public class BoardVO implements Board {
 	private int confirmnum;
 	private int block;
 	private int changestyle;
+	private String imagename="";
 	
 	
 	
 	
+	public String getImagename() {
+		return imagename;
+	}
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
+	}
 	public int getChangestyle() {
 		return changestyle;
 	}
