@@ -14,11 +14,41 @@
             display: inline-block;
             vertical-align: middle;
         }
+        
+        #map{
+        margin:0 auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        
+        }
+        
+        .table{
+        margin-top:50px;
+        margin: 0 auto;
+        width: auto !important;
+        }
+        .tablewrap{
+        margin-top: 50px;
+        width: 80%;
+        text-align: center;
+        margin: 0 auto;
+        }
+        .partnerfarm{
+        margin:0 auto;
+        width: 80%;
+        
+        margin-top: 50px;
+        }
+        
 </style>
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
+	 <div class="partnerfarm">
+	<h3>제휴 농장</h3>
+	</div>
 	<div id="map" style="width:1000px;height:400px;"></div>
+	<div class="tablewrap">
 	<table class="table table-striped table-bordered table-hover table-sm farm-list">
 	    <colgroup>
 	        <col width="150px"/>
@@ -50,6 +80,7 @@
 	    </c:forEach>
 	    </tbody>
     </table>
+    </div>
 	<jsp:include page="./footer.jsp"/>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=85ca856139e74206389aacd96ce85ab6&libraries=services,clusterer,drawing"></script>
 	<script>
