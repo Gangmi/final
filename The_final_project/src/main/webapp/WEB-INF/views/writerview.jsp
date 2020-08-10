@@ -16,9 +16,13 @@
 	width: 45px;
 	height: 45px;
 	border-radius: 45px;
+	margin-top: 20px;
+	margin-right: 20px;;
 	float : left;
 }
 .name{
+	margin-top: 20px;
+	margin-right: 20px;;
 	float : left;
 }
 </style>
