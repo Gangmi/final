@@ -74,8 +74,9 @@ String profile=(String)session.getAttribute("profileimg");
 			</div>
 			<!--글제목부분  -->
 			<div class="" id="title">
-
+				<div class="titlewrap">
 				<h2><%=result.getTitle()%></h2>
+				</div>
 				<input type="hidden" id="writer" value="<%=result.getId()%>">
 				<div class="nickwrap">
 					
