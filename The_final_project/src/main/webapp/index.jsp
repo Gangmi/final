@@ -9,10 +9,10 @@
 <meta charset="UTF-8">
 <title>project</title> 
 </head>
-<body>    
+<body>     
 	<jsp:forward page="index.do" />    
 </body>   
 </html>
        
        
-         
+          

@@ -11,7 +11,7 @@
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
 
-
+ 
 <%
 	//게시판 값 받아오는 곳
 String boardname = (String) request.getAttribute("b_boardname");

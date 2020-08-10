@@ -156,7 +156,7 @@ public class BoardVO implements Board {
 		this.total_board = total_board;
 	}
 	public int getNowpage() {
-		return nowpage;
+		return nowpage; 
 	}
 	public void setNowpage(int nowpage) {
 		this.nowpage = nowpage;

@@ -460,10 +460,10 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardVO> writerview(BoardVO vo) {
 		System.out.println("===> mybatis writerview() 호출");  
 		return mybatis.selectList("board.writerview", vo);   
-	}   
+	}    
 	
-	
-	
+	 
+	 
 	
 	
 	

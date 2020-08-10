@@ -164,11 +164,12 @@ public class BoardServiceImpl implements BoardService {
 	   System.out.println(vo.getB_boardname()+"서비스");
 	   System.out.println(vo.getContents()+"서비스");
 	   System.out.println(vo.getBoardno()+"서비스");
-      return dao.updateAnswer(vo);
+      return dao.updateAnswer(vo); 
    }
-
+ 
+   @Override 
    public List<BoardVO> writerview(BoardVO vo) {
-		return dao.writerview(vo);  
+	   return dao.writerview(vo);
 	}   
    
 }
