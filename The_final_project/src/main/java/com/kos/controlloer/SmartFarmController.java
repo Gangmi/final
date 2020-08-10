@@ -26,18 +26,7 @@ public class SmartFarmController {
 	@Autowired
 	SmartFarmDeviceService smartFarmDeviceService;
 	@RequestMapping("/monitoringView.do")
-	public String test() {
-		return "/Smart-Farm/monitoringView";
-	}
-	
-	/*
-	 * monitoringView.jsp
-	 * 웹 브라우저 AJAX 자바스크립트로 1초단위로 서버에 센서 데이터 파일 내용(json) 수신
-	 *
-	 */
-	@ResponseBody
-	@RequestMapping(value = "/requestData.do",produces = "application/text; charset=utf8")
-	public String sendSensorData(HttpSession session,HttpServletRequest request) {
+	public String test(HttpSession session,Model model) {
 		StringBuffer msg = new StringBuffer();
 		//로그인에서 생성된 memberinfo session을 참조하여 id값을 DeviceVO에 저장 
 		MemberVO memberVo=(MemberVO) session.getAttribute("memberinfo");
@@ -48,6 +37,31 @@ public class SmartFarmController {
 		deviceVO=smartFarmDeviceService.seletDevice(deviceVO, 0);
 		try {
 			System.out.println(ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString());
+			model.addAttribute("deviceIp", "http:/"+ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString());
+		}catch (Exception e) {
+			model.addAttribute("deviceIp", "/resources/img/test.jpg");
+		}
+		return "/Smart-Farm/monitoringView";
+	}
+	
+	/*
+	 * monitoringView.jsp
+	 * 웹 브라우저 AJAX 자바스크립트로 1초단위로 서버에 센서 데이터 파일 내용(json) 수신
+	 *
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/requestData.do",produces = "application/text; charset=utf8")
+	public String sendSensorData(HttpSession session,HttpServletRequest request,Model model) {
+		StringBuffer msg = new StringBuffer();
+		//로그인에서 생성된 memberinfo session을 참조하여 id값을 DeviceVO에 저장 
+		MemberVO memberVo=(MemberVO) session.getAttribute("memberinfo");
+		SmartFarmDeviceVO deviceVO=new SmartFarmDeviceVO();
+		
+		deviceVO.setId(memberVo.getId());
+		//아이디를 통해 연결되있는 디바이스 키를 찾는다.
+		deviceVO=smartFarmDeviceService.seletDevice(deviceVO, 0);
+		try {
+			//System.out.println(ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString());
 		}catch (Exception e) {
 		
 		}

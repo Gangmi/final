@@ -1,6 +1,5 @@
 package com.kos.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,4 +16,10 @@ public class FarmDaoImpl implements FarmDao {
 		return mybatis.selectList("Farm.select",farmVO);
 	}
 
+	public int insertFarm(FarmVO farmVO) {
+		return mybatis.insert("Farm.insert",farmVO);
+	}
+	public int deleteFarm(FarmVO farmVO) {
+		return mybatis.delete("Farm.delete", farmVO);
+	}
 }

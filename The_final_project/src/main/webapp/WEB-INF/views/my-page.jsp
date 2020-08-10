@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page import="com.kos.vo.MemberVO"%>    
 <!DOCTYPE html>
 <html>
@@ -122,7 +123,7 @@
                 </button>
                 <p><a href="/updateAccount.do">회원 정보 수정</a></p>
             </div>
-
+			<sec:authorize access='!hasAuthority("ROLE_SMART_FARMER")'>
             <div class="tip">
                 <button onclick="location.href='/farmer-application.do'">
         
@@ -131,14 +132,15 @@
                 </button>
                 <p><a href="/farmer-application.do">농부신청 관리</a></p>
             </div>
-
+			</sec:authorize>
+			<sec:authorize access='!hasAuthority("ROLE_SMART_FARMER")'>
             <div class="share" onclick="location.href='/smartfarm-application.do'">
                 <button>
                     <img src="/resources/old/img/share_grey.png" alt="share">
                 </button>
                 <p><a href="#">스마트팜 신청 관리</a></p>
             </div>
-  
+  			</sec:authorize>
             <div class="market"> 
                 <button>
                     <img src="/resources/old/img/market_grey.png" alt="market">

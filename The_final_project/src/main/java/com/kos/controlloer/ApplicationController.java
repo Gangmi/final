@@ -70,7 +70,7 @@ public class ApplicationController {
 	public String pageview(
 			@RequestParam(value = "nowpage", required = false) String nowPage,
 			@RequestParam(value = "cntPerPage", required = false) String cntPerPage,
-			FarmerApplicationVO applicationVO, Model mo){
+			FarmerApplicationVO applicationVO, Model mo,HttpSession session){
 		if(applicationVO.equals("null")) {
 			mo.addAttribute("isPDateNull", "&processingDate=null");
 		}
@@ -80,7 +80,7 @@ public class ApplicationController {
 		if (nowPage == null) {
 			nowPage = "1";
 		}
-		
+		mo.addAttribute("imgPath",session.getServletContext().getRealPath("/resources/farmer_certificate"));
 		PagingVO pagingVO = new PagingVO(total, Integer.parseInt(nowPage), 20);
 		System.out.println(pagingVO.getStartpage());
 		System.out.println(pagingVO.getEndpage());
