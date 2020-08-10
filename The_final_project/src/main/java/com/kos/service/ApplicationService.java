@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kos.dao.ApplicationDao;
 import com.kos.dao.AuthorityDao;
+import com.kos.dao.FarmDao;
 import com.kos.dao.SmartFarmDeviceDao;
+import com.kos.vo.FarmVO;
 import com.kos.vo.FarmerApplicationVO;
 import com.kos.vo.PagingVO;
 import com.kos.vo.SmartFarmApplicationVO;
@@ -22,6 +24,9 @@ public class ApplicationService {
 	AuthorityDao authorityDao;
 	@Autowired
 	SmartFarmDeviceDao smartFarmDeviceDao;
+	@Autowired
+	FarmDao farmDao;
+	
 	@Transactional
 	public FarmerApplicationVO applyFarmer(FarmerApplicationVO applicationVO) throws Exception {
 		
@@ -94,7 +99,18 @@ public class ApplicationService {
 					throw new Exception();
 					
 				}else {
-					return 0;
+					FarmVO farmVO = new FarmVO();
+					farmVO.setFarmName(applicationVO.getFarmerName());
+					farmVO.setName(applicationVO.getFarmlandCorporationName());
+					farmVO.setId(applicationVO.getFarmerId());
+					farmVO.setAddress(applicationVO.getFarmlandAddress());
+					farmVO.setTel(applicationVO.getFarmlandTel());
+					result = farmDao.insertFarm(farmVO);
+					if(result<1)
+						throw new Exception();
+					else {
+						return 0;
+					}
 				}
 			}
 		}catch (Exception e) {
@@ -113,7 +129,18 @@ public class ApplicationService {
 				if(result <1) {
 					throw new Exception();
 				}else {
-					return 0;
+					FarmVO farmVO = new FarmVO();
+					farmVO.setFarmName(applicationVO.getFarmerName());
+					farmVO.setName(applicationVO.getFarmlandCorporationName());
+					farmVO.setId(applicationVO.getFarmerId());
+					farmVO.setAddress(applicationVO.getFarmlandAddress());
+					farmVO.setTel(applicationVO.getFarmlandTel());
+					result = farmDao.deleteFarm(farmVO);
+					if(result<1)
+						throw new Exception();
+					else {
+						return 0;
+					}
 				}
 			}
 		}catch (Exception e) {

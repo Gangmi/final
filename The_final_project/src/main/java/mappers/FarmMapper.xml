@@ -4,7 +4,7 @@
 <mapper namespace="Farm">
 
 	<select id="select" parameterType="farmvo" resultType="farmvo">
-		SELECT f.no no, f.address address, m.name name, f.name farm_name, f.tel tel 
+		SELECT f.no no,f.id id, f.address address, m.name name, f.name farm_name, f.tel tel 
 		from member m, farm_info f where f.id=m.id
 		<if test='name!=null'>
 		m.name = #{name}
@@ -19,5 +19,13 @@
 		f.address = #{address}
 		</if>
 	</select>
-	
+	<insert id="insert" parameterType="farmvo">
+	INSERT INTO farm_info(id,name,address,tel)
+	VALUES(#{id},#{name},#{address},#{tel})
+	</insert>
+	<delete id="delete" parameterType="farmvo">
+	<if test="id!=null and name !=null and address!= null">
+	DELETE FROM farm_info WHERE id=#{id} AND name=#{name} AND ADDRESS = #{address}
+	</if>
+	</delete>
 </mapper>

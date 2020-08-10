@@ -76,9 +76,9 @@ body:not(.hidden).reveal #loader>div {
         }
 
         .name_area {
-            width: 100%;
+            width: 80%;
             
-           
+           float:left;
             text-align: left;
             padding-top: 20px;
             padding-bottom: 20px;
@@ -116,7 +116,9 @@ body:not(.hidden).reveal #loader>div {
             width: 90%;
             display:inline-block;
             margin: 0 auto;
-            height: 73px;
+            height: 120px;
+            overflow:hidden;
+     		 text-overflow:ellipsis;
             
             
         }
@@ -137,7 +139,7 @@ body:not(.hidden).reveal #loader>div {
         
         
         .text{
-        margin-top: 20px;
+        margin-top: 45px;
         }
         .text p {
             width: 100%;
@@ -205,7 +207,7 @@ float: left;
 }
 
 .title_area p{
-font-size: 20px;
+font-size: 25px;
 color: black;
 font-weight: bold;
 
@@ -216,6 +218,22 @@ font-weight: bold;
 .date_area{
 width: 50%;
 float: left;
+}
+
+.count{
+width:15%;
+float: left;
+display: block;
+
+}
+
+.count p{
+margin-top: 55px !important;
+
+}
+.headwrap{
+height:85px;
+
 }
 
 
@@ -252,6 +270,9 @@ document.addEventListener("click", () => {
 
 
 	<section class="mainsection">
+	<br>
+	<br>
+	<h2><%=BoardVO.changeword((String)request.getAttribute("boardname"))%></h2>
 	<%
 	int i=0;
 	for (BoardVO vo : result){ 
@@ -262,11 +283,15 @@ document.addEventListener("click", () => {
 	<div class="verwrap" id="<%=i%>">
 	  <div class="ver_2">
              <div class="main_area">
-        <div class="name_area">
-        <img src="/resources/profileimg/<%if(vo.getImagename()!=""){%><%=vo.getImagename()%><%}else{%>my_page.png<%}%>"/>
-            
-            <h4><%=vo.getNickname() %></h4>
-        </div>
+        <div class="headwrap">     
+        	<div class="name_area">
+        		<img src="/resources/profileimg/<%if(vo.getImagename()!=""){%><%=vo.getImagename()%><%}else{%>my_page.png<%}%>"/>
+            	<h4><%=vo.getNickname() %></h4>
+        	</div>
+        	<div class="count">
+        		<p>조회수 <%=vo.getBoardView()%></p>
+        	</div>
+       	</div> 	
 		<div class="picturewrap">
         <div class="picture_area">
         	<%// 이미지 태그를 추출하기 위한 정규식.

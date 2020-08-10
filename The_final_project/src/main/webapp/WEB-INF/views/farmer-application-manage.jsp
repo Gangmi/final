@@ -50,7 +50,7 @@
                     <td><span name="cor_name">${application.farmlandCorporationName}</span></td>
                     <td><span name="cor_number">${application.farmlandCorporationNumber}</span></td>
                     <td><span name="tel">${application.farmlandTel}</span></td>
-                    <td><a href="/resource" target="_blank">${application.certificateImageUrl}</a></td>
+                    <td><a href="/resources/farmer_certificate/${application.certificateImageUrl}" target="_blank">${application.certificateImageUrl}</a></td>
                     <td><span name="apply_date">${application.applyDate}</span></td>
                     <td><span name="approve_date">${application.processingDate}</span></td>
                     <td><button class="approve_button"></button></td>
