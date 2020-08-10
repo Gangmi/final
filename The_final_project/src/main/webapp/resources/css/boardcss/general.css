@@ -7,6 +7,7 @@ tr th {
 	text-align: center;
 }
 #pager {
+	padding-top: 20px;
 	width: 100%;
 	text-align: center;
 }
@@ -39,6 +40,9 @@ td a:hover{
 }
 #writeboard{
 	margin-bottom: 10px;
+}
+#goimgboard{
+	margin-bottom:10px;
 }
 
 #boardtable th{
@@ -98,6 +102,7 @@ td a:hover{
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-size: 15px;
 }
 
 /* Change color of dropdown links on hover */
@@ -106,3 +111,26 @@ td a:hover{
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+
+.hero-section{
+	padding-top: 0px !important;
+	
+}
+
+.container{
+	
+/* 	border-top: 1px solid black; */
+}
+.container h3{
+	margin-top: 50px;
+	
+}
+
+.menu-item{
+	margin-top: 50px;
+}
+
+
+.table-wrapper{
+	margin-top: 0px !important;
+}

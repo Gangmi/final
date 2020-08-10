@@ -54,7 +54,7 @@ if (session.getAttribute("memberinfo") != null) {
 				<input type="hidden" id="boardno" value="<%=result.getBoardno()%>">
 				<input type="hidden" id="bname"
 					value="<%=(String) request.getAttribute("boardname")%>">
-				<input type="hidden" id="boardno" value="<%=result.getNickname()%>">
+				<input type="hidden" id="nick" value="<%=result.getNickname()%>">
 				<!-- 게시판이름  -->
 				<a href=callboard.do?b_boardname=free_board><%=BoardVO.changeword((String) request.getAttribute("boardname"))%>></a>
 
@@ -125,7 +125,7 @@ if (session.getAttribute("memberinfo") != null) {
 					id="frm" enctype="multipart/form-data">
 					<input type="hidden" id="form-boarname" name="b_boardname" value="in_repl"/>
 					<input type="hidden" name="boardno" value="<%=boardno%>">  
-					<input type="hidden" name="replno" id="replno" value="">  
+					<input type="hidden" name="replno" id="replno" value="0">  
 					<textarea name="contents" id="editor"></textarea>
 					<script type="text/javascript"> 
 					</script>
@@ -137,7 +137,58 @@ if (session.getAttribute("memberinfo") != null) {
 		</div>
 	</section>
  	</div>
- 	 
+ 	<%
+ 	BoardVO cheteckAnswer = null;
+	if (request.getAttribute("AnswerCheteck") != null) {
+		cheteckAnswer = (BoardVO)request.getAttribute("AnswerCheteck");
+	
+	
+	%> 
+ 	 <!-- 채택된 답글시작 -->
+ 	 <div id="<%=cheteckAnswer.getReplno()%>">
+      <div class="container" id="board">
+			<!--현재 게시판 표시  -->
+			<div id="boardname" class="container">
+
+				<input type="hidden" id="boardno" value="<%=cheteckAnswer.getBoardno()%>">
+				<input type="hidden" id="bname"
+					value="<%=(String) request.getAttribute("boardname")%>">
+
+				<!--조회수 표시  -->
+				<div class="pull-right" id="boardname_right">
+					<div id="replinfosec">
+						<button class="btn btn-success cancleCheteck" id="cancleCheteck<%=cheteckAnswer.getReplno()%>">채택 취소하기</button>
+					</div>
+					<div id="replinfosec">
+						<button class="btn btn-success " id="">채택된 답변!!!</button>
+					</div>
+					
+				</div>
+			</div>
+			<!--글제목부분  -->
+			<div class="" id="title">
+
+				<h2>A      </h2>
+				<input type="hidden" id="writer" value="<%=cheteckAnswer.getId()%>">
+				<p class="nick"><%=cheteckAnswer.getNickname()%></p>
+				<p class="regdate"><%=cheteckAnswer.getRegdate()%></p>
+
+			</div>
+			<!--글내용  -->
+			<div class=container id=contents>
+				<div id="contents<%=cheteckAnswer.getReplno()%>"><%=cheteckAnswer.getContents()%></div>
+				<div  id="likebad">
+
+						<br>
+						<br>
+				</div>				
+			</div>
+			<!--하단 버튼 부분  -->
+	
+		</div>
+	</div>
+	<%} %>
+	<!-- 채택된 답글 끝 -->
  	<%
  	List<BoardVO> answer = null;
 	if (request.getAttribute("Answer") != null) {
@@ -157,11 +208,13 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<!--조회수 표시  -->
 				<div class="pull-right" id="boardname_right">
-					<%if(vo.getId().equals(userid)){ %>
+				<%if (request.getAttribute("AnswerCheteck") == null){%>
+					<%if( result.getId().equals(userid)){  %>
 					<div id="replinfosec">
-						<button class="btn btn-success answer" id="">채택하기</button>
+						<button class="btn btn-success answer" id="che<%=vo.getReplno()%>">채택하기</button>
 					</div>
 					<%} %>
+				<%} %>
 				</div>
 			</div>
 			<!--글제목부분  -->
@@ -185,10 +238,12 @@ if (session.getAttribute("memberinfo") != null) {
 			<!--하단 버튼 부분  -->
 	
 		</div>
+		<%if(vo.getId().equals(userid)){ %>
 		<div class="container" id="button_container">
 			<button class="btn btn-primary modifyAnswer" id="modify<%=vo.getReplno()%>">수정</button>
 			<button class="btn btn-warning delAnswer" id="del<%=vo.getReplno()%>">삭제</button>
 		</div>
+		<% }%>
 	</div>
 		<%} %>
 		

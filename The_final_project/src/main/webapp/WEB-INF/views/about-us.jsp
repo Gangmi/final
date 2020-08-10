@@ -5,6 +5,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.ap-title{
+text-align: center;
+}
+.ap-title{
+	margin-top: 10px;
+}
+
+.ourvalue{
+text-align: center;
+}
+.ourvaluewrap{
+width: 100%;
+margin: 0 auto;
+margin-top: 50px;
+
+}
+.ourvaluewrap li {
+text-align: center;
+
+}
+
+.devsection{
+width:100%;
+
+}
+.developer{
+width:100%;
+margin: 0 auto;
+
+
+}
+.developer h3{
+
+
+text-align: center;
+
+}
+.photo img{
+width: 100%;
+
+
+}
+
+.km{
+width: 10%;
+
+}
+
+</style>
 </head>
 <body>
 <jsp:include page="./header.jsp"></jsp:include>
@@ -14,10 +64,38 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>About Us</h2>
-                        <div class="bt-option">
-                            <a href="redirect:index.jsp">Home</a>
-                            <span>About Us</span>
+                        <h2>사이트 소개</h2>
+                        <br>
+                        <br>
+                        
+<!--                         <div class="bt-option"> -->
+<!--                             <a href="redirect:index.jsp">Home</a> -->
+<!--                             <span>About Us</span> -->
+<!--                         </div> -->
+                    </div>
+                </div>
+            </div>
+             <div class="about-page-services">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ap-service-item set-bg" data-setbg="/resources/img/index/사진6.png">
+                            <div class="api-text">
+<!--                                 <h3>Restaurants Services</h3> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ap-service-item set-bg" data-setbg="/resources/img/index/사진3.png">
+                            <div class="api-text">
+<!--                                 <h3>Travel & Camping</h3> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ap-service-item set-bg" data-setbg="/resources/img/index/사진7.png">
+                            <div class="api-text">
+<!--                                 <h3>Event & Party</h3> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -31,116 +109,65 @@
         <div class="container">
             <div class="about-page-text">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="ap-title">
-                            <h2>Welcome To Sona.</h2>
-                            <p>Built in 1910 during the Belle Epoque period, this hotel is located in the center of
-                                Paris, with easy access to the city’s tourist attractions. It offers tastefully
-                                decorated rooms.</p>
+                            <h3>"여름지기"는 농부의 순우리말입니다.</h3>
+                            
+                            <br>
+                            <p>노하우가 중요한 농업에서 지식의 공유만큼 좋은 거름은 없다고 생각했습니다.</p>
+                            <p>하지만, 우리나라 농업 관련 커뮤니티들을 대부분 활성화 되어있지 않으며, 사용자의 이목을 끌 기능을 갖추지 못하고 있습니다.</p>
+                            <p>저희는 다양한 기능을 가진 강력한 커뮤니티 사이트가 필요하다고 생각했고 이 사이트를 개발하게 되었습니다. </p>
+                            
                         </div>
                     </div>
-                    <div class="col-lg-5 offset-lg-1">
+                    <div class="ourvaluewrap">
                         <ul class="ap-services">
-                            <li><i class="icon_check"></i> 20% Off On Accommodation.</li>
-                            <li><i class="icon_check"></i> Complimentary Daily Breakfast</li>
-                            <li><i class="icon_check"></i> 3 Pcs Laundry Per Day</li>
-                            <li><i class="icon_check"></i> Free Wifi.</li>
-                            <li><i class="icon_check"></i> Discount 20% On F&B</li>
+                            <li class="ourvalue"><h3>우리의 가치</h3> </li>
+                            <br>
+                            <li><i class="icon_check"></i> 스마트팜시스템을 이용한 원격 식물재배</li>
+                            <li><i class="icon_check"></i> 식물 사전 및 챗봇을 통한 정확한 정보 검색</li>
+                           <li><i class="icon_check"></i> 농사IN 시스템을 이용한 사용자 맞춤 Q&A</li>
+                            <li><i class="icon_check"></i> 두가지 모드의 게시판 제공으로 가독성 증가</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="about-page-services">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="resources/img/about/about-p1.jpg">
-                            <div class="api-text">
-                                <h3>Restaurants Services</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="resources/img/about/about-p2.jpg">
-                            <div class="api-text">
-                                <h3>Travel & Camping</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="resources/img/about/about-p3.jpg">
-                            <div class="api-text">
-                                <h3>Event & Party</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     </section>
+     
     <!-- About Us Page Section End -->
-
+<!--     <section class="devsection"> -->
+    	
+<!-- 	    <div class="developer"> -->
+<!-- 	    <h3>개발자</h3> -->
+<!-- 			<div class="km"> -->
+<!-- 				<div class="photo"> -->
+<!-- 					<img src="/resources/img/about/km.jpg"> -->
+<!-- 				</div> -->
+			
+			
+<!-- 			</div> -->
+<!-- 			<div class="mj"> -->
+			
+			
+<!-- 			</div> -->
+<!-- 			<div class="kt"> -->
+			
+			
+<!-- 			</div> -->
+<!-- 			<div class="jj"> -->
+			
+			
+<!-- 			</div> -->
+<!-- 		</div>	 -->
+<!-- 	</section>	 -->
     <!-- Video Section Begin -->
-    <section class="video-section set-bg" data-setbg="resources/img/video-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="video-text">
-                        <h2>Discover Our Hotel & Services.</h2>
-                        <p>It S Hurricane Season But We Are Visiting Hilton Head Island</p>
-                        <a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup"><img
-                                src="resources/img/play.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
     <!-- Video Section End -->
 
     <!-- Gallery Section Begin -->
-    <section class="gallery-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>Our Gallery</span>
-                        <h2>Discover Our Work</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="gallery-item set-bg" data-setbg="resources/img/gallery/gallery-1.jpg">
-                        <div class="gi-text">
-                            <h3>Room Luxury</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="gallery-item set-bg" data-setbg="resources/img/gallery/gallery-3.jpg">
-                                <div class="gi-text">
-                                    <h3>Room Luxury</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="gallery-item set-bg" data-setbg="resources/img/gallery/gallery-4.jpg">
-                                <div class="gi-text">
-                                    <h3>Room Luxury</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="gallery-item large-item set-bg" data-setbg="resources/img/gallery/gallery-2.jpg">
-                        <div class="gi-text">
-                            <h3>Room Luxury</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
  
 <jsp:include page="./footer.jsp"></jsp:include>
 </body>

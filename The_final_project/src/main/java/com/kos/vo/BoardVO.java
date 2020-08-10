@@ -18,10 +18,24 @@ public class BoardVO implements Board {
 	private String searchword="";
 	private int confirmnum;
 	private int block;
+	private int changestyle;
+	private String imagename="";
 	
 	
 	
 	
+	public String getImagename() {
+		return imagename;
+	}
+	public void setImagename(String imagename) {
+		this.imagename = imagename;
+	}
+	public int getChangestyle() {
+		return changestyle;
+	}
+	public void setChangestyle(int changestyle) {
+		this.changestyle = changestyle;
+	}
 	public int getBlock() {
 		return block;
 	}

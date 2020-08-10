@@ -33,12 +33,32 @@ $(document).ready(function (event) {
 		$('#dropopen').val('true');
 
 		
+		//드롭박스 숨김
+		
+
+		
 	})
+	
+//	$('body').not('.nick').click(function(e){
+//	
+//		alert();
+//		$('#myDropdown').hide(); 
+//		
+//	});
+	
+	
+	
+	
 	//대화
 	$('.oneonone').click(function(){
 		requestChat($(this).text());
 	})
 	
+	
+	//사진게시판을 눌렀을 때
+	$('#goimgboard').click(function(){
+		window.location.href="/imgboard.do?b_boardname="+$('#boardname').val();
+	})
 	
 	
 	

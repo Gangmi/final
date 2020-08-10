@@ -61,7 +61,8 @@ public class BoardController {
 		if (result.size() > 0) {
 			mv.addObject("boardlist", result); // 받아온 게시판 게시물
 			mv.addObject("confirm", 1); // 값이 제대로 넘어간것을 표현
-
+			
+		
 			return mv;
 
 		} else {
@@ -124,15 +125,7 @@ public class BoardController {
 	public ModelAndView writeAnswer(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
-		System.out.println(vo.getB_boardname()+ "게시판이름||||");
-		System.out.println(vo.getContents() + "내용||||");
-		System.out.println(vo.getBoardno()+"글번호||||");
-		System.out.println(vo.getId()+"아이디||||");
-		// 임시로 아이디 지정 ->나중에 지우기
-
-		// vo.setId("kim");
-		//         ReplNameVO re = new ReplNameVO(vo);
-		//         vo.setB_boardname(re.changeName());
+		
 		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
 		if (!info.getId().isEmpty()) {
 			vo.setId(info.getId());
@@ -144,13 +137,10 @@ public class BoardController {
 			return mv;
 		}
 		vo.setId(vo.getId());
-		System.out.println(vo.getId()+"아이디||||");
-		System.out.println(vo.getB_boardname());
 
 		// 사용자가 작성한 글 및 정보 전달
 
 		service.writeBoard(vo);
-		System.out.println("입력하고 돌아옴");
 
 		// 넘기기
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
@@ -169,7 +159,9 @@ public class BoardController {
 		System.out.println(vo.getBoardno());
 
 		BoardVO result = service.viewBoard(vo);
+		
 		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
+		BoardVO AnswerCheteck = (BoardVO)service.AnswerCheteck(vo);
 		// 닉네임 추가
 		result.setNickname(vo.getNickname());
 
@@ -183,8 +175,10 @@ public class BoardController {
 		}
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
+		//답글 리스트 보냄
 		mv.addObject("Answer",Answer);
-
+		mv.addObject("AnswerCheteck",AnswerCheteck);
+		System.out.println(AnswerCheteck+" 왜 못가져오냐!!!");
 		return mv;
 
 	}
@@ -205,7 +199,6 @@ public class BoardController {
 		BoardVO result = service.viewBoard(vo);
 
 		// 다음에 갈 페이지 지정 및 parameter 세팅
-		System.out.println(vo.getB_boardname() + "이게 안나오는걸까?");
 		mv.setViewName("modifyboard");
 		mv.addObject("boardname", vo.getB_boardname());
 		mv.addObject("board", result);
@@ -246,7 +239,7 @@ public class BoardController {
 		vo.setViewing_count(5);
 
 
-		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
+		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 5개의 게시물을 가져온다.
 		for(String row:vo.allBoardList()) {
 
 			//게시판이름을 세팅한다.
@@ -373,8 +366,7 @@ public class BoardController {
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
-		System.out.println(file + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(vo.getBoardname());
+		
 		// 파일이 있는지 확인
 		if (file != null) {
 			// 파일이름이 없는지 확인
@@ -393,10 +385,7 @@ public class BoardController {
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
 						System.out.println(uploadPath);
-						System.out.println(vo.getBoardname()+"이미지저장");
-						System.out.println(vo.getBoardno()+"게시글번호");//안나옴
-						System.out.println(vo.getWriteno()+"다음글번호");//안나옴
-						System.out.println(vo.getImgName()+"이미지이름");
+					
 						// 디렉토리 만듦
 						File uploadFile = new File(uploadPath);
 
@@ -416,7 +405,7 @@ public class BoardController {
 						printWriter = resp.getWriter();
 						resp.setContentType("text/html");
 						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
-						System.out.println(fileUrl);
+						
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
 						// 각 게시판에 따라서 분기를 나눔
@@ -497,7 +486,7 @@ public class BoardController {
 	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
 
 		service.deleteBoard(vo);
-		System.out.println("댓글삭제 나옴+^^^^^^^^^^^^^^^^");
+		
 		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
@@ -506,13 +495,10 @@ public class BoardController {
 	//답글 삭제
 	@RequestMapping("/deleteAnswer.do")
 	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo) {
-		//      System.out.println(vo.get+"!!!!");//안가져와짐
-		System.out.println(vo.getB_boardname()+"!!!!");
-		System.out.println(vo.getBoardno()+"!!!!");
+
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		service.deleteAnswer(vo);
-		System.out.println("답글삭제 ^^^^^^^^^^^^^^^^");
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
 		return mv;
 	}
@@ -522,10 +508,6 @@ public class BoardController {
 	@RequestMapping("/updateAnswer.do")
 	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
 		System.out.println("updateAnswer 들어옴");
-		System.out.println(vo.getB_boardname()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getBoardno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getReplno()+" 글수정 컨트롤러--------");
-		System.out.println(vo.getContents()+" 글수정 컨트롤러--------");
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateAnswer(vo);
@@ -543,21 +525,26 @@ public class BoardController {
 
 
 	//프로필 사진 업로드시 사용
-	@RequestMapping(value = "/profile-up.do", method = RequestMethod.POST)
+	@RequestMapping(value ="/profile-up.do", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
-			UploadImageVO vo) throws Exception {
-
+			UploadImageVO vo, HttpSession session) throws Exception {
+		System.out.println("프로필 업 들어옴");
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		MultipartFile file = multiFile.getFile("upload");
 
-		System.out.println( file.getName() + "%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		System.out.println(vo.getId());
 
 
 
+	
+			
+		//먼저 등록된 프사가 있는지 확인하고 삭제하는 서비스로 옮김
+		//사진이 있으면 true 
+		//없으면 false
+		boolean isthere=service.isThereProfile(vo);
+		mv.setViewName("updateAccount");
 
 
 		// 파일이 있는지 확인
@@ -588,14 +575,14 @@ public class BoardController {
 
 						// 파일이름 랜덤생성
 						fileName = UUID.randomUUID().toString();
-
+						session.setAttribute("profileimg", fileName);
 						// 파일 저장경로지정및 저장
 						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
 
-						printWriter = resp.getWriter();
-						resp.setContentType("text/html");
+						
+						
 						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
 						System.out.println(fileUrl);
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
@@ -606,31 +593,36 @@ public class BoardController {
 						//                     vo.setBoardno(BoardVO.FREE_BOARD);
 						//                  }
 						//
+						//이미지 파일 이름을 저장
 						vo.setImgName(fileName);
-						service.storeProfile(vo);
-						// json 데이터로 등록
-						// {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
-						// 이런 형태로 리턴이 나가야함.
-						//                  json.addProperty("uploaded", 1);
-						//                  json.addProperty("fileName", fileName);
-						//                  json.addProperty("url", fileUrl);
-
-						printWriter.println(json);
-					} catch (IOException e) {
-						e.printStackTrace();
-					} finally {
+						
+						//만약 사진이 없다면
+						if(!isthere) {
+							service.storeProfile(vo);
+							
+						//있다면	
+						}else {
+							service.updateProfile(vo);
+							
+						}
+						
+						//파일 닫기
 						if (out != null) {
 							out.close();
 						}
-						if (printWriter != null) {
-							printWriter.close();
-						}
-					}
+						
+						
+					
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					} 
 				}
 			}
-		} 
-		mv.setViewName("updateAccount");
+		}
+		
 		return mv;
+		
 	}
 
 	//내가 쓴 글 보기
@@ -660,7 +652,51 @@ public class BoardController {
 		} 
 		mv.setViewName("writerview");  
 		return mv;
+	} 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//답글채택하기
+	@RequestMapping("/updateCheteck.do")
+	public ModelAndView updateCheteck(ModelAndView mv ,BoardVO vo) {
+		service.updateCheteck(vo);
+		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+		return mv;
 	}
+	
+	//답글채택 취소하기
+		@RequestMapping("/cancleCheteck.do")
+		public ModelAndView cancleCheteck(ModelAndView mv ,BoardVO vo) {
+			service.cancleCheteck(vo);
+			mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
+			return mv;
+		}
+		
+		//이미지 게시판으로 변경 요청이들어왔을 때
+		
+		@RequestMapping("/imgboard.do")
+		public ModelAndView imgboard(BoardVO vo, ModelAndView mv) {
+			
+			
+			
+			
+			
+			
+			
+			//돌아갈 곳 지
+			mv.setViewName("imgboard");
+			
+			return mv;
+		}
+			
 }
 
 

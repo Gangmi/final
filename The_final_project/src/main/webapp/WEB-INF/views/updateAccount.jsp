@@ -58,11 +58,35 @@ margin-top: 10px;
 }
 
 
+.nowimg img{
+
+width: 80px;
+height: 80px;
+border: 1px solid black;
+
+}
+.updateprofile{
+display:block;
+
+margin-top: 10px;
+margin-bottom: 30px;
+
+}
+.updateprofile input{
+margin-top: 20px;
+
+}
+
+#updateAccount{
+
+
+}
+
 
 
 
 </style>
-
+<%String profile=(String)session.getAttribute("profileimg"); %>
 
 </head>
 <body>
@@ -71,14 +95,24 @@ margin-top: 10px;
 	<div class="formdiv">
 	<h3>회원 정보 수정</h3>
 	
-	<div>
+	<div class="updateprofile">
+	<span>현재 프로필사진</span>
 	
-	 <form method="post" action="profile-up.do" enctype="multipart/form-data">
+	<div class="nowimg">
+	<img src="\resources\profileimg\<%if(profile!=""){ %><%=profile%><%}else{%>my_page.png<%}%>">
+	
+	</div>
+	
+	 <form method="post" action="/profile-up.do" enctype="multipart/form-data">
          <label>이미지 파일:</label>
+         <div>
          <input multiple="multiple" type="file" name="upload">
          <input type="hidden" name="id" value="lettoncom1">
-         <input type="submit" value="upload">
-  </form>
+         </div>
+         <div>
+         <input class="btn btn-info" type="submit" value="업로드하기">
+         </div>
+  	</form>
 	</div>
 	
 	

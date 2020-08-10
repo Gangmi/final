@@ -7,7 +7,7 @@
 
    <!--해당 게시판의 전체 게시물 갯수 쿼리 -->
    <select id="getBoardCount" parameterType="board" resultType="int">
-      select count(*) from ${b_boardname} <if test="searchword!=null">WHERE title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
+      select count(*) from ${b_boardname} where 1=1 <if test="searchword!=null">and title LIKE CONCAT('%', #{searchword}, '%') or contents LIKE CONCAT('%', #{searchword}, '%')</if>
    </select>
 
 
@@ -56,8 +56,8 @@
 
          <otherwise>
             select
-            boardno,title,contents,regdate,id,board_like,board_bad,board_view
-            from ${b_boardname} where boardno = ${boardno}
+            b.boardno,b.title,b.contents,b.regdate,b.id,b.board_like,b.board_bad,b.board_view,m.imagename
+            from ${b_boardname} as b left outer join memberimg as m on b.id=m.id where boardno = ${boardno}
 
          </otherwise>
       </choose>
@@ -216,7 +216,7 @@
    select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
    in_repl re INNER JOIN member me
    on re.id = me.id
-   where boardno = ${boardno}
+   where boardno = ${boardno} and is_selected=0
    
    </select>
       
@@ -264,4 +264,75 @@
 	</select>    
 	
 	
+
+	<!-- 채택하기 -->
+	<update id="updateCheteck" parameterType="board">
+		update in_repl set is_selected=1 where replno=#{replno}
+	</update>
+	
+	<!-- 채택하기 -->
+	<update id="cancleCheteck" parameterType="board">
+		update in_repl set is_selected=0 where replno=#{replno}
+	</update>
+	
+	<!-- 농사인 답변채택된 리스트 가져오기 -->
+   <select id="AnswerCheteck" parameterType="board" resultType="board">
+
+   select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
+   in_repl re INNER JOIN member me
+   on re.id = me.id
+   where boardno = ${boardno} and is_selected=1
+   
+   </select>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--프로필 사진이 있는지 확인하는 곳  -->
+	<select id="isthereprofile" parameterType="img" resultType="String">
+	select imagename from memberimg where id=#{id}
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	<insert id="updateprofileimg" parameterType="img">
+	update memberimg set imagename=#{imgName} where id=#{id}
+	
+	</insert>
+	
+	
+	
+	
+	
+	
+
+
 </mapper>

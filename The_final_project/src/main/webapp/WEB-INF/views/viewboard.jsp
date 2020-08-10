@@ -24,7 +24,9 @@ String userid = "";
 if (session.getAttribute("memberinfo") != null) {
 	user = (MemberVO) session.getAttribute("memberinfo");
 	userid = user.getId();
+	
 }
+String profile=(String)session.getAttribute("profileimg");
 %>
 <meta charset="UTF-8">
 <title>project</title>
@@ -75,8 +77,11 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<h2><%=result.getTitle()%></h2>
 				<input type="hidden" id="writer" value="<%=result.getId()%>">
-				<p class="nick"><%=result.getNickname()%></p>
-				<p class="regdate"><%=result.getRegdate()%></p>
+				<div class="nickwrap">
+					
+					<p class="nick"><img src="/resources/profileimg/<%if(result.getImagename()!=""){%><%=result.getImagename()%><%}else{%>my_page.png<%}%>"/><%=result.getNickname()%></p>
+					<p class="regdate"><%=result.getRegdate()%></p>
+				</div>
 
 			</div>
 
