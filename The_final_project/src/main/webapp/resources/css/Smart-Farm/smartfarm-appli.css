@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.main{
+	height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+			
+}
+.contents{
+	height: 80%;
+	width: 60%;
+} 
+td{
+	padding-bottom:10px;
+	padding-right:10px;
+}
+
+table{
+	margin-bottom:10px;
+} 
+
+.button{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottom-20{
+	margin-bottom: 30px;
+}

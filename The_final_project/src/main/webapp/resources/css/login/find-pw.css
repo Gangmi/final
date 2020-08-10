@@ -1,0 +1,51 @@
+	body{
+    	display: flex;
+		align-items: center;
+		justify-content: center;
+    	}
+        #timer {
+            visibility:hidden;
+        }
+         tr td {
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+        
+        .find-container {
+            padding: 50px;
+            display: inline-block;
+            background-color: #ffffff;
+            width:auto;
+            text-align: center;
+            margin: auto;
+            border-radius: 30px;
+            box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .find-form form{
+            
+        }
+        .Certification {
+      		 display: flex;
+			align-items: center;
+			justify-content: center;
+        }
+        #btnFind{
+        margin-left:11% !important;
+        }
+        
+        .btn-outline-primary{
+        margin-top:0px;
+        }
+        
+        #goto_login{
+        margin-top:0px !important;
+        }
+        
+        .find_email{
+        padding-bottom:30px;
+        }
+        
+         .title{
+        margin-bottom:40px;
+        }

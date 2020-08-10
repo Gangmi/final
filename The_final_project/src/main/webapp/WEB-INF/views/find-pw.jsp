@@ -3,46 +3,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
+	<link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/flaticon.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+	
+	<link rel="stylesheet" href="/resources/css/login/find-pw.css">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Document</title>
-    <style>
-        #timer {
-            visibility:hidden;
-        }
-    </style>
+    
 </head>
 <body>
+	<div class="find-container">
     <form action="find_pw_act.do" id="findPw" method="post" target="result">
+    <div class="title"><h2>비밀번호 찾기</h2></div>
         <table>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="name"/></td>
+                <td><input type="text" class="form-control" name="name"/></td>
             </tr>
             <tr>
             	<td>아이디</td>
-            	<td><input type="text" name="id"/></td>
+            	<td><input type="text" class="form-control" name="id"/></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email"/></td>
-                <td>    <button id="certification" type="button" >인증번호 받기</button>
+                <td><input type="email" class="form-control" name="email"/></td>
+                <td>    <button class="btn btn-info" id="certification" type="button" >인증번호 받기</button>
                 <span id="timer"><span id="min">03</span>:<span id="sec">00</span></span></td>
             </tr>
             <tr>
                 <td>인증번호</td>
-                <td><input type="text" name="certification"/></td>
+                <td><input type="text" class="form-control" name="certification"/></td>
                 <td id="info"></td>
             </tr>
             <tr>
                <td colspan="2">
-                   <button type="button" id="btnFind" disabled>비밀번 찾기</button>
+                   <button type="button" class="btn btn-info" id="btnFind" disabled>비밀번호 찾기</button>
                </td>
                <td>
-               	   <button type="button" id="windowClose"> 닫기</button>
+               	   <button type="button" class="btn btn-outline-primary" id="windowClose"> 닫기</button>
                </td>
             </tr>
         </table>
     </form>
+    </div>
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<script src="/resources/js/jquery.magnific-popup.min.js"></script>
@@ -52,7 +63,7 @@
 	<script src="/resources/js/owl.carousel.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $("windowClose").click(function(){
+        $("#windowClose").click(function(){
 				window.close();
             });
         $("#btnFind").click(function (e){
