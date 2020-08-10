@@ -25,7 +25,7 @@
 
 <%
 	//게시판 값 받아오는 곳
-String boardname = (String) request.getAttribute("b_boardname");
+	String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title></title>
 <%
@@ -63,7 +63,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> 
 
 	<!-- Hero Section Begin -->
 

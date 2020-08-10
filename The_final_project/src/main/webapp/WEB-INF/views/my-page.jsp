@@ -142,7 +142,7 @@
             </div>
   			</sec:authorize>
             <div class="market"> 
-                <button>
+                <button onclick="location.href='/writerview.do'">
                     <img src="/resources/old/img/market_grey.png" alt="market">
                 </button> 
                 <p><a href="/writerview.do?id=<%=mem.getId()%>">내가 쓴 글 보기</a></p>
