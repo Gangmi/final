@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.main{
+	height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+			
+}
+/* .contents{
+	height: 80%;
+ padding-left:5%; 
+	width: 60%;
+}
+ */
+ 
+.name{
+ width: 30%;
+ } 
+  table {
+    width: 90%;
+    height: 450px;
+  }
+ textarea{
+  width: 100%;
+ }
+ 
+.title{
+
+	padding-bottom:50px;
+}
+.Explanation{
+	padding-bottom:30px;
+}
+/* .inputData{
+	width:40%;
+	padding-right:30%; 
+} */
+#find_postcode_btn{
+	margin-top:10px;
+	float: right;
+}

@@ -212,7 +212,14 @@ public class PagingVO {
 		//현재 페이지를 보여줄 페이지로 나눈 값을 올림하면 현재 블록
 		nowblock=(int)Math.ceil((double)nowPage/(double)cntPage);
 	
-	
+		setEndpage(((int)Math.ceil((double)nowPage / (double)cntPage)) * cntPage);
+		if (getLastPage() < getEndpage()) {
+			setEndpage(getLastPage());
+		}
+		setStartpage(getEndpage() - cntPage + 1);
+		if (getStartpage() < 1) {
+			setStartpage(1);
+		}
 	}
 
 	

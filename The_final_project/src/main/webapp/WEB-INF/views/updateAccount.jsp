@@ -94,6 +94,7 @@ margin-top: 20px;
 	
 	<div class="formdiv">
 	<h3>회원 정보 수정</h3>
+
 	
 	<div class="updateprofile">
 	<span>현재 프로필사진</span>
@@ -115,9 +116,7 @@ margin-top: 20px;
   	</form>
 	</div>
 	
-	
-	
-	
+
 	<form id="updateAccount" name="updateAccount" action="updateAccount_act.do"
 		method="post">
 		<div>
@@ -194,7 +193,6 @@ margin-top: 20px;
 
 
 		</div>
-
 		<div>
 			<button id="modifyinfo" class="btn btn-success" type="submit">변경하기</button>
 		</div>

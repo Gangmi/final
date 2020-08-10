@@ -4,16 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/flaticon.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/magnific-popup.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+	
+<link rel="stylesheet" href="/resources/css/login/find-pw.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-	회원님의 아이디는 ${find_email} 입니다.
+<div class="find-container">
+	<div class="find_email">
+		<h5>회원님의 아이디는 ${find_email} 입니다.</h5>
+	</div>
+	<button class="btn btn-info" id="goto_findPW">비밀번호 찾기</button>
+	<button class="btn btn-outline-primary" id="goto_login">닫기</button>
 </div>
-<button id="goto_findPW">비밀번호 찾기</button>
-<button id="goto_login">닫기</button>
-
 	<script src="/resources/js/jquery-3.3.1.min.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>
 	<script src="/resources/js/jquery.magnific-popup.min.js"></script>

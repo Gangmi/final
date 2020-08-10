@@ -4,8 +4,16 @@
 <mapper namespace="Role">
 
 <!-- mybais 자료형 int/hashmap/string -->
-	<insert id="insert" parameterType="hashmap">
+	<insert id="insert" parameterType="authorityvo">
 		INSERT INTO authority(id,role)
 					VALUES(#{id},#{role})
 	</insert>
+	<delete id="delete" parameterType="authorityvo">
+		<if test="id!= null and role !=null">
+			Delete from authority Where id = #{id} AND role = #{role}
+		</if>
+	</delete>
+	<select id="select" parameterType="String">
+		SELECT ROLE FROM authority where id= #{id}
+	</select>
 </mapper>

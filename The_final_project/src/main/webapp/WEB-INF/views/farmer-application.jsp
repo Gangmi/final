@@ -3,18 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/css/boardcss/nongbuApply.css">
+<link rel="stylesheet" href="/resources/css/nongbu/nongbuApply.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>
 <div class="main">
-  <div class="contents">
-    <h1>농부 신청</h1>
- <p>  파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.</p>
-    	 <p> 농업 경영체 증명서를 첨부해주시길바랍니다.</p>
-    	
+  <div class="col-md-6">
+  	
+    <h2 class="title">농부 신청</h2>
+    <div class="Explanation">
+ 		<p>  파일을 첨부하실 때에는 주민등록번호를 필히 가려주시길 바랍니다.</p>
+    	<p> 농업 경영체 증명서를 첨부해주시길바랍니다.</p>
+    </div>	
     	
   
     <form action="/farmerApplication.do" method="post" name="form" enctype="multipart/form-data">
@@ -24,33 +26,33 @@
             	<col>
             	<col width="100">
             </colgroup>
-            <tr>
+            <tr >
                 <td class="name">이름</td>
-                <td><input type="text" name="farmerName" value="${sessionScope.memberinfo.name }"/></td>
+                <td class="inputData"><input type="text" class="form-control" name="farmerName" value="${sessionScope.memberinfo.name }"/></td>
             </tr>
             <tr>
             	<td class="name">경작지 이름</td>
-            	<td><input type="text" class="name" name="farmlandCorporationName"/></td>
+            	<td class="inputData"><input type="text" class="name inputData form-control" name="farmlandCorporationName"/></td>
            	</tr>
             <tr>
                 <td class="name">농장 연락처</td>
-                <td><input type="tel" name="farmlandTel"/></td>
+                <td class="inputData"><input type="tel" class="form-control" name="farmlandTel"/></td>
             </tr>
             <tr>
                 <td class="name">경작지 주소</td>
-                <td><input type="text" name="farmlandAddress" readonly="readonly"><button id="find_postcode_btn" type="button">주소찾기</button></td>
+                <td class="inputData"><input type="text" class="form-control" name="farmlandAddress" readonly="readonly"><button class="btn btn-info" id="find_postcode_btn" type="button">주소찾기</button></td>
                
             </tr>
             <tr>
                 <td class="name">농업경영체 등록번호</td>
-                <td><input type="text" name="farmlandCorporationNumber"></td>
+                <td class="inputData"><input type="text" class="form-control" name="farmlandCorporationNumber"></td>
             </tr>
             <tr>
                 <td class="name">첨부파일</td>
                 <td><input type="file" accept="application/pdf,image/*" name="file1"></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="신청"> </td>
+                <td colspan="2"><input class="btn btn-success submitButton" type="submit" value="신청"> </td>
             </tr>
         </table>
          <input type="hidden" name="farmerId" value="${sessionScope.memberinfo.id }">
@@ -75,16 +77,22 @@
 				e.preventDefault();
 				if($('input[name="farmerName"]').val()==""){
 					alert("이름을 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandCorporationName"]').val()==""){
 					alert("경작지 이름을 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandTel"]').val()==""){
 					alert("농장 연락처를 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandAddress"]').val()==""){
 					alert("경작지 주소를 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandCorporationNumber"]').val()==""){
 					alert("농업경영체 등록번호를 작성해주세요.");
+					return false;
 				}else if(!$('input[name="file1"]').val()){
 					alert("파일을 첨부해주세요.");
+					return false;
 				}
 				$("form[name='form']").submit();
 			});

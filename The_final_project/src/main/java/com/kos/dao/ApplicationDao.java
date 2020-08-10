@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kos.vo.AuthorityVO;
 import com.kos.vo.FarmerApplicationVO;
 import com.kos.vo.PagingVO;
 import com.kos.vo.SmartFarmApplicationVO;
@@ -18,6 +19,17 @@ public class ApplicationDao {
 	
 	public int farmerApplicationInsert(FarmerApplicationVO applicationVO) {
 		return mybatis.insert("Aplication.FarmerInsert", applicationVO);
+	}
+	
+	//관리자페이지 신청서 리스트
+	public List<FarmerApplicationVO> farmerApplicationSelect(FarmerApplicationVO applicationVO, PagingVO pagingVO){
+		HashMap map = new HashMap();
+		map.put("application", applicationVO);
+		map.put("paging",pagingVO);
+		return mybatis.selectList("Aplication.FarmerSelectPage", map);
+	}
+	public int farmerApplicationCount(FarmerApplicationVO farmerApplicationVO) {
+		return mybatis.selectOne("Aplication.farmerCountPage",farmerApplicationVO);
 	}
 	
 	public List<FarmerApplicationVO> farmerApplicationSelect(FarmerApplicationVO applicationVO){
@@ -43,4 +55,14 @@ public class ApplicationDao {
 	public int smartFarmApplicationUpdate(SmartFarmApplicationVO applicationVO) {
 		return mybatis.update("Aplication.SmartFarmUpdate",applicationVO);
 	}
+	
+	public int farmerApplicationUpdate(FarmerApplicationVO applicationVO) {
+		return mybatis.update("Aplication.FarmerUpdate",applicationVO);
+	}
+	
+	public int farmerApplicationCancel(FarmerApplicationVO applicationVO) {
+		return mybatis.update("Aplication.FarmerCancel",applicationVO);
+	}
+	
+	
 }

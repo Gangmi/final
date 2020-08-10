@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,10 +42,15 @@ public class SmartFarmController {
 		//로그인에서 생성된 memberinfo session을 참조하여 id값을 DeviceVO에 저장 
 		MemberVO memberVo=(MemberVO) session.getAttribute("memberinfo");
 		SmartFarmDeviceVO deviceVO=new SmartFarmDeviceVO();
+		
 		deviceVO.setId(memberVo.getId());
 		//아이디를 통해 연결되있는 디바이스 키를 찾는다.
 		deviceVO=smartFarmDeviceService.seletDevice(deviceVO, 0);
+		try {
+			System.out.println(ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString());
+		}catch (Exception e) {
 		
+		}
 		String path = request.getRealPath("/new");
 		File folder = new File(path);
 		File sensordata = new File(path+"/sensor"+deviceVO.getDevicekey()+".txt");

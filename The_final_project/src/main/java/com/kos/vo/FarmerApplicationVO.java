@@ -99,7 +99,8 @@ public class FarmerApplicationVO {
                 dir.mkdirs(); 
             }
            
-			File f= new File(filePath+"/" + certificateImageUrl); //괄호 안에 진짜경로
+			File f= new File(filePath+"/" + certificateImageUrl);
+			System.out.println(filePath);//괄호 안에 진짜경로
 			try {
 				file.transferTo(f);
 			} catch (IOException e) {

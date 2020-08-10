@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 <style type="text/css">
 .vertical-menu {
-  	width: 200px;
+  	width: 150px;
 	
 	float:right;
- 	right: 100px;
-  	margin-right: 300px;
+/*  	right: 100px; */
+  	margin-right: 3%;
   	margin-top: 100px;
 }
 
@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>	
-    <div class="vertical-menu">
+    <div class=" vertical-menu">
         <ul>
             <li><a href="/updateAccount.do">회원 정보 수정</a></li>
             <li><a href="/farmer-application.do">농부 권한 신청</a></li>
