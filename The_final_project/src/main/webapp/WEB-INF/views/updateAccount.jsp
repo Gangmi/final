@@ -1,3 +1,4 @@
+<%@page import="com.kos.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -87,7 +88,7 @@ margin-top: 20px;
 
 </style>
 <%String profile=(String)session.getAttribute("profileimg"); %>
-
+<%MemberVO vo=(MemberVO)session.getAttribute("memberinfo"); %>
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
@@ -108,7 +109,7 @@ margin-top: 20px;
          <label>이미지 파일:</label>
          <div>
          <input multiple="multiple" type="file" name="upload">
-         <input type="hidden" name="id" value="lettoncom1">
+         <input type="hidden" name="id" value="<%=vo.getId()%>">
          </div>
          <div>
          <input class="btn btn-info" type="submit" value="업로드하기">

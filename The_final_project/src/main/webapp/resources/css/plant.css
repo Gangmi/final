@@ -137,7 +137,10 @@ h2{
 	height:400px;
 	margin-right: 22px; 
 	margin-bottom: 20px;
-	border-radius: 50px;
+	border-top-left-radius:50px !important;
+	border-top-right-radius:50px !important;
+	border-bottom-right-radius:0px !important;
+	border-bottom-left-radius:0px !important;
 	
 }
 .img{
@@ -152,7 +155,11 @@ h2{
 .img img{
 	height: 290px !important; 
 	 width: 100.5% !important; 
-	 border-radius: 50px !important;
+	 
+	border-top-left-radius:50px !important;
+	border-top-right-radius:50px !important;
+	border-bottom-right-radius:0px !important;
+	border-bottom-left-radius:0px !important;
 	
 	
 }
@@ -162,8 +169,8 @@ h2{
 }
 
 .page{ 
-	float: left; 
-	width:60%; 
+	
+	width:40%; 
 	display: inline-block; 
 	margin-bottom: 5%;	
 } 

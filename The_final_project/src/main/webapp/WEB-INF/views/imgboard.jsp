@@ -93,8 +93,9 @@ body:not(.hidden).reveal #loader>div {
         .name_area img {
             width: 45px;
             height: 45px;
+            border-radius:45px;
             float: left;
-            margin-left: 10px;
+            margin-left: 35px;
             margin-right: 10px;
             
         }
@@ -229,6 +230,7 @@ display: block;
 
 .count p{
 margin-top: 55px !important;
+text-align: right;
 
 }
 .headwrap{
