@@ -329,7 +329,22 @@
 	</insert>
 	
 	
+	<select id="getpost" parameterType="paging" resultType="board">
 	
+	select  *
+from
+(select  free.* 
+from
+(select  distinct f.boardno as boardno from ${boardname} as f join img_status as s  on f.boardno=s.writeno
+where s.boardno=1 ) as a
+ join ${boardname} as free on free.boardno=a.boardno)as temp 
+ left outer join memberimg as m on temp.id=m.id
+ join member on temp.id=member.id
+order by temp.regdate desc;
+	
+	
+	
+	</select>
 	
 	
 	

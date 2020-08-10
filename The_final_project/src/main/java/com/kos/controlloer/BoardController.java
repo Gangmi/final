@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -686,20 +688,23 @@ public class BoardController {
 		public ModelAndView imgboard(PagingVO vo, ModelAndView mv) {
 			
 			
-			//처음 들어왔을 떄 가서 3개의 포스팅을가져온다.
-			service.getPost(vo);
+			//처음 들어왔을 떄 가서 사진이 포함된 포스팅을 가져온다.
+			List<BoardVO> result=service.getPost(vo);
 			
 			
+			mv.addObject("boardname",vo.getBoardname());
 			
+			//가져온 데이터 전달
+			mv.addObject("imgpost",result);
 			
-			
-			
-			//돌아갈 곳 지
+			//돌아갈 곳 지정
 			mv.setViewName("imgboard");
 			
 			return mv;
 		}
-			
+		
+		
+		
 }
 
 

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.kos.vo.BoardVO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,21 +77,22 @@ body:not(.hidden).reveal #loader>div {
 
         .name_area {
             width: 100%;
-            height: 50px;
             
+           
             text-align: left;
             padding-top: 20px;
             padding-bottom: 20px;
         }
 
-        .name_area h3 {
+        .name_area h4 {
           margin-left: 10px;
           margin-top:8px;
+          font-family: "Cabin", sans-serif;
         }
 
         .name_area img {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             float: left;
             margin-left: 10px;
             margin-right: 10px;
@@ -102,8 +107,8 @@ body:not(.hidden).reveal #loader>div {
         }
 
         .picture_area img {
-            width: 100%;
-            height: 470px;
+            width: 100% !important;
+            height: 470px !important;
         
         }
 
@@ -111,6 +116,7 @@ body:not(.hidden).reveal #loader>div {
             width: 90%;
             display:inline-block;
             margin: 0 auto;
+            height: 73px;
             
             
         }
@@ -143,7 +149,7 @@ body:not(.hidden).reveal #loader>div {
     			-webkit-box-orient: vertical;
     		word-wrap:break-word; 
     		line-height: 1.2em;
-    		height: 3.6em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+    		 /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
         }
             
           
@@ -186,8 +192,30 @@ margin: 0 auto;
 
 .picturewrap{
 width:100%;
-margin-top: 40px;
 
+
+}
+
+.title_area{
+width: 50%;
+text-align: left;
+font-weight: bold;
+font-size: 20px;
+float: left;
+}
+
+.title_area p{
+font-size: 20px;
+color: black;
+font-weight: bold;
+
+}
+
+
+
+.date_area{
+width: 50%;
+float: left;
 }
 
 
@@ -204,13 +232,13 @@ document.addEventListener("click", () => {
 
 
 </script>
-<% %>
+<%List<BoardVO> result=(List<BoardVO>)request.getAttribute("imgpost"); %>
 
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-
+<input type="hidden" id="countpost"value="<%=result.size()%>">
 <div id="loader">
     <div></div>
     <div></div>
@@ -224,28 +252,56 @@ document.addEventListener("click", () => {
 
 
 	<section class="mainsection">
+	<%
+	int i=0;
+	for (BoardVO vo : result){ 
+		
 	
-	<div class="verwrap">
+	%>
+	
+	<div class="verwrap" id="<%=i%>">
 	  <div class="ver_2">
              <div class="main_area">
         <div class="name_area">
-            <img src="/resources/img/my_page.png">
-            <h3>lettoncom</h3>
+        <img src="/resources/profileimg/<%if(vo.getImagename()!=""){%><%=vo.getImagename()%><%}else{%>my_page.png<%}%>"/>
+            
+            <h4><%=vo.getNickname() %></h4>
         </div>
 		<div class="picturewrap">
         <div class="picture_area">
-            <img src="/resources/img/alexandre-valdivia-mMzaKVV-isQ-unsplash.jpg">
+        	<%// 이미지 태그를 추출하기 위한 정규식.
+        	Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+        	 
+        	// 추출할 내용.
+        	String content =vo.getContents();
+        	 
+        	// 내용 중에서 이미지 태그를 찾아라!
+        	Matcher match = pattern.matcher(content);
+        	 
+        	String imgTag = null;
+        	 
+			
+			while(match.find()){ // 이미지 태그를 찾았다면,,
+   				 imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
+   				 vo.setContents(vo.getContents().replace(imgTag, ""));
+			}
+        	  
+        	    
+        	 
+        	
+        	
+        	%>
+          <%=imgTag%>
         </div>
         </div>
 		<!--텍스트 부분  -->
         <div class="text_area">
-        	
-            <div class="date_area"><p>2020.20.20</p></div>
-           <div class="text"><p>What is Lorem Ipsum?
-               dustry'ersions of Lorem Ipsum.</p></div>
+        	<div class="title_area"><p><%=vo.getTitle() %></p></div>
+            <div class="date_area"><p><%=vo.getRegdate() %></p></div>
+           <div class="text"><%=vo.getContents() %></div>
         </div>
         <div class="more">
-        <a href="#">자세히..</a>
+        <a href="viewboard.do?b_boardname=<%=(String)request.getAttribute("boardname")%>&boardno=<%=vo.getBoardno()%>&nickname=<%=vo.getNickname()%>">자세히..</a>
         
         </div>
         
@@ -253,6 +309,12 @@ document.addEventListener("click", () => {
       </div>
       </div>
       
+      
+      <%
+      		i++;
+		} 
+		
+		%>
      
       
       </section>
