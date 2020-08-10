@@ -10,12 +10,14 @@
 <!-- 	<bean id="loginSuccessHandler"  class="com.kos.handler.LoginSuccessHandler"/> -->
 <!-- 	<bean id="loginFailureHandler"  class="com.kos.handler.LoginFailureHandler"/> -->
 	<sec:http auto-config="true" use-expressions="true">
-<!-- 		<sec:intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')"/> -->
+		<sec:intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')"/>
 <!-- 		<sec:intercept-url pattern="/farmer/**" access="hasAuthority('ROLE_FARMER')"/> -->
 		<sec:intercept-url pattern="/smartfarmer/**" access="hasAuthority('ROLE_SMART_FARMER')"/>
 <!-- 		<sec:intercept-url pattern="/user/**" access="hasAuthority('ROLE_USER')"/> -->
-<!-- 		<sec:intercept-url pattern="/login.do" access="isAnonymous()"/> -->
-<!-- 		<sec:intercept-url pattern="/sign_up.do" access="isAnonymous()"/> -->
+<!-- 		<sec:intercept-url pattern="/farmer-application.do" access="!hasAuthority('ROLE_FARMER')"/> -->
+<!-- 		<sec:intercept-url pattern="/smartfarm-application.do" access="!hasAuthority('ROLE_SMART_FARMER')"/> -->
+		<sec:intercept-url pattern="/login.do" access="isAnonymous()"/>
+		<sec:intercept-url pattern="/sign_up.do" access="isAnonymous()"/>
 		<sec:intercept-url pattern="/**" access="permitAll"/>
 		<!-- 인터셉트 할 url pattern(경로) access 접근 권한자 permitAll -> true -->
 		
@@ -43,7 +45,7 @@
 		<sec:session-management>
         	<sec:concurrency-control max-sessions="1"  expired-url="/login.do"/>
         </sec:session-management>
-        <sec:access-denied-handler error-page="/asd.do"/> 
+        <sec:access-denied-handler error-page="/error-403.do"/> 
 	</sec:http>
 
 

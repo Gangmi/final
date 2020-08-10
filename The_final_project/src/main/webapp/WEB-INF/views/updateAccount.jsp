@@ -58,29 +58,6 @@ margin-top: 10px;
 }
 
 
-.nowimg img{
-
-width: 80px;
-height: 80px;
-
-}
-.updateprofile{
-display:block;
-
-margin-top: 10px;
-margin-bottom: 30px;
-
-}
-.updateprofile input{
-margin-top: 20px;
-
-}
-
-#updateAccount{
-
-
-}
-
 
 
 
@@ -93,30 +70,6 @@ margin-top: 20px;
 	
 	<div class="formdiv">
 	<h3>회원 정보 수정</h3>
-	
-	<div class="updateprofile">
-	<span>현재 프로필사진</span>
-	
-	<div class="nowimg">
-	<img src="\resources\profileimg\eac15939-bc7b-4b90-a2c5-d9ead21c2a69">
-	
-	</div>
-	
-	 <form method="post" action="/profile-up.do" enctype="multipart/form-data">
-         <label>이미지 파일:</label>
-         <div>
-         <input multiple="multiple" type="file" name="upload">
-         <input type="hidden" name="id" value="lettoncom1">
-         </div>
-         <div>
-         <input class="btn btn-info" type="submit" value="업로드하기">
-         </div>
-  	</form>
-	</div>
-	
-	
-	
-	
 	<form id="updateAccount" name="updateAccount" action="updateAccount_act.do"
 		method="post">
 		<div>
@@ -193,7 +146,6 @@ margin-top: 20px;
 
 
 		</div>
-
 		<div>
 			<button id="modifyinfo" class="btn btn-success" type="submit">변경하기</button>
 		</div>

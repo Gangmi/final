@@ -26,11 +26,12 @@ public class ApplicationService {
 	public FarmerApplicationVO applyFarmer(FarmerApplicationVO applicationVO) throws Exception {
 		
 		int result = applicationDao.farmerApplicationInsert(applicationVO);
+	
 		if (result<1)
 		{
 			throw new Exception();
 		}else {
-			
+			System.out.println(applicationVO.getFarmerId());
 			applicationVO= applicationDao.farmerApplicationSelect(applicationVO).get(0);
 		}
 		return applicationVO;
@@ -65,7 +66,7 @@ public class ApplicationService {
 			if(result<1) {
 				throw new Exception();
 			}else {
-				int result1 = authorityDao.roleInsert(applicationVO.getId(), "ROLE_SMART_FARMER");
+				int result1 = authorityDao.roleInsert(applicationVO.getId(), authorityDao.ROLE_SMART_FARMER);
 				if(result1<1) {
 					throw new Exception();
 				}else {
@@ -78,5 +79,45 @@ public class ApplicationService {
 				}
 			}
 		}catch (Exception e) {e.printStackTrace();return -1;}
+	}
+	
+	@Transactional
+	public int farmerApprove(FarmerApplicationVO applicationVO) throws Exception {
+		try {
+			int result =  applicationDao.farmerApplicationUpdate(applicationVO);
+			System.out.println(result);
+			if(result <1) {
+				throw new Exception();
+			}else {
+				result=authorityDao.roleInsert(applicationVO.getFarmerId(), authorityDao.ROLE_FARMER);
+				if(result < 1) {
+					throw new Exception();
+					
+				}else {
+					return 0;
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace(); return -1;
+		}
+	}
+	
+	@Transactional
+	public int farmerCancel(FarmerApplicationVO applicationVO) throws Exception{
+		try {
+			int result = applicationDao.farmerApplicationCancel(applicationVO);
+			if(result < 1) {
+				throw new Exception();
+			}else {
+				result = authorityDao.roleDelete(applicationVO.getFarmerId(), authorityDao.ROLE_FARMER);
+				if(result <1) {
+					throw new Exception();
+				}else {
+					return 0;
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace(); return -1;
+		}
 	}
 }

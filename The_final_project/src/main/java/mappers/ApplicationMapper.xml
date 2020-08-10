@@ -25,6 +25,38 @@
 		</if>
 		order by apply_date DESC
 	</select>
+	<select id="FarmerSelectPage" parameterType="hashmap" resultType="farmerapplicationvo">
+		SELECT a.ROWNUM ROWNUM, a.no no,a.farmer_name farmer_name,a.farmer_id farmer_id,a.farmland_address farmland_address,a.farmland_corporation_name farmland_corporation_name,
+		a.farmland_tel farmland_tel,a.farmland_corporation_number farmland_corporation_number,a.certificate_image_url certificate_image_url,
+		DATE_FORMAT(a.apply_date,'%Y-%m-%d') apply_date,DATE_FORMAT(a.Processing_date,'%Y-%m-%d') Processing_date
+		FROM    (
+		            SELECT @ROWNUM:=@ROWNUM+1 ROWNUM,c.* 
+		            FROM farmer_certificate c, (SELECT @ROWNUM:=0) TMP 
+		            WHERE 1=1
+		            <if test="application != null">
+		        		<if test="application.processingDate!=null">
+			        		<if test="application.processingDate.equals('null')">
+			        			AND Processing_date is null
+			        		</if>
+		        		</if>
+					</if>
+		            ORDER BY no asc
+		        ) a WHERE 1=1 
+		        	<if test="paging !=null">
+		        	AND ROWNUM BETWEEN #{paging.start} AND #{paging.end}
+		        	</if>
+		        	
+	</select>
+	<select id="farmerCountPage" parameterType="farmerapplicationvo" resultType="int">
+		SELECT COUNT(*)
+		FROM farmer_certificate
+		WHERE 1=1
+		<if test="processingDate!=null">
+			<if test="processingDate.equals('null')">
+					AND Processing_date is null
+			</if>
+		</if>
+	</select>
 	<select id="SmartFarmSelect" parameterType="smartfarmapplicationvo" resultType="smartfarmapplicationvo">
 		SELECT * FROM smart_Farm_certificate WHERE 1=1
 		<if test="id != null">
@@ -64,7 +96,7 @@
 			</if>
 	</select>
 	<update id="SmartFarmUpdate" parameterType="smartfarmapplicationvo">
-		UPDATE smart_farm_certificate set approve_date='${approveDate}'
+		UPDATE smart_farm_certificate SET approve_date='${approveDate}'
 		<if test="startDate != null">
 		,start_date='${startDate}'
 		</if>
@@ -73,5 +105,34 @@
 		</if>
 		WHERE id='${id}' AND DATE_FORMAT(apply_date,'%Y-%m-%d')='${applyDate}'
 	</update>
-	
+	<update id="FarmerUpdate" parameterType="farmerapplicationvo">
+		UPDATE farmer_certificate SET Processing_date = DATE_FORMAT(now(),'%Y-%m-%d') WHERE 1=1
+		<if test="no!=0">
+		and no = #{no}
+		</if>
+		<if test="farmerName!=null">
+		and farmer_name=#{farmerName}
+		</if>
+		<if test="farmerId">
+		and farmer_id=#{farmerId}
+		</if>
+		<if test="applyDate">
+		and DATE_FORMAT(apply_date,'%Y-%m-%d')=DATE_FORMAT(#{applyDate},'%Y-%m-%d')
+		</if>
+	</update>
+	<update id="FarmerCancel" parameterType="farmerapplicationvo">
+		UPDATE farmer_certificate SET Processing_date =NULL WHERE 1=1
+		<if test="no!=0">
+		and no = #{no}
+		</if>
+		<if test="farmerName!=null">
+		and farmer_name=#{farmerName}
+		</if>
+		<if test="farmerId">
+		and farmer_id=#{farmerId}
+		</if>
+		<if test="applyDate">
+		and DATE_FORMAT(apply_date,'%Y-%m-%d')=DATE_FORMAT(#{applyDate},'%Y-%m-%d')
+		</if>
+	</update>
 </mapper>
