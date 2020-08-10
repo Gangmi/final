@@ -147,6 +147,7 @@ width: 238px !important;
 			</div>
 		</div>
 	</div>
+	<hr class="divide"/>
 
 </body>
 </html>

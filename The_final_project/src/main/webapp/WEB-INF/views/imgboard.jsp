@@ -82,6 +82,7 @@ body:not(.hidden).reveal #loader>div {
 
         .name_area h3 {
           margin-left: 10px;
+          margin-top:8px;
         }
 
         .name_area img {
@@ -108,7 +109,7 @@ body:not(.hidden).reveal #loader>div {
 
         .text_area {
             width: 90%;
-            
+            display:inline-block;
             margin: 0 auto;
             
             
@@ -124,7 +125,7 @@ body:not(.hidden).reveal #loader>div {
         .date_area p {
             width: 100%;
            text-align:right;
-           
+          
             margin-right:15px;
             font-size: 15px;}
         
@@ -189,6 +190,7 @@ margin-top: 40px;
 
 }
 
+
 </style>
 <script type="text/javascript">
 setTimeout(() => {
@@ -237,6 +239,7 @@ document.addEventListener("click", () => {
         </div>
 		<!--텍스트 부분  -->
         <div class="text_area">
+        	
             <div class="date_area"><p>2020.20.20</p></div>
            <div class="text"><p>What is Lorem Ipsum?
                dustry'ersions of Lorem Ipsum.</p></div>
@@ -250,33 +253,7 @@ document.addEventListener("click", () => {
       </div>
       </div>
       
-      <div class="verwrap">
-	  <div class="ver_2">
-             <div class="main_area">
-        <div class="name_area">
-            <img src="/resources/img/my_page.png">
-            <h3>lettoncom</h3>
-        </div>
-		<div class="picturewrap">
-        <div class="picture_area">
-            <img src="/resources/img/alexandre-valdivia-mMzaKVV-isQ-unsplash.jpg">
-        </div>
-        </div>
-		<!--텍스트 부분  -->
-        <div class="text_area">
-            <div class="date_area"><p>2020.20.20</p></div>
-           <div class="text"><p>What is Lorem Ipsum?
-               dustry'ersions of Lorem Ipsum.</p></div>
-        </div>
-        <div class="more">
-        <a href="#">자세히..</a>
-        
-        </div>
-        
-    </div>
-      </div>
-      </div>
-      
+     
       
       </section>
 

@@ -681,11 +681,18 @@ public class BoardController {
 			return mv;
 		}
 		
+		//이미지 게시판으로 변경 요청이들어왔을 때
 		
 		@RequestMapping("/imgboard.do")
 		public ModelAndView imgboard(BoardVO vo, ModelAndView mv) {
 			
 			
+			
+			
+			
+			
+			
+			//돌아갈 곳 지정
 			mv.setViewName("imgboard");
 			
 			return mv;
