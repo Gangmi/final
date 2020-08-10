@@ -56,8 +56,8 @@
 
          <otherwise>
             select
-            boardno,title,contents,regdate,id,board_like,board_bad,board_view
-            from ${b_boardname} where boardno = ${boardno}
+            b.boardno,b.title,b.contents,b.regdate,b.id,b.board_like,b.board_bad,b.board_view,m.imagename
+            from ${b_boardname} as b left outer join memberimg as m on b.id=m.id where boardno = ${boardno}
 
          </otherwise>
       </choose>
@@ -250,20 +250,19 @@
    <delete id="deleteimageAnswer" parameterType="hashmap">
    delete from img_status where writeno=${writeno}
    
-   </delete>
-   
-   	<!-- 내가 쓴 글 가져오기 --> 
-	<select id="writerview" parameterType="board" resultType="board"> 
-	select * from ${b_boardname} <if test="id!=null">where id=#{id}</if>
-	
-	</select>     
-	
-	
+   </delete> 
 	
 	<!-- 답글수정 -->
 	<update id="updateAnswer" parameterType="board">
 		update ${b_boardname} set contents=#{contents},regdate=SYSDATE() where replno=#{replno}
 	</update>
+	
+	<!-- 내가 쓴 글 가져오기 --> 
+	<select id="writerview" parameterType="board" resultType="board"> 
+	select f.*, m.nickname from ${b_boardname} as f join member as m on f.id=m.id where f.id=#{id} order by regdate desc
+	  
+	</select>    
+	
 	
 
 	<!-- 채택하기 -->

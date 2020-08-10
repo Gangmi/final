@@ -480,10 +480,21 @@ public class BoardDaoImpl implements BoardDao {
 	public void updateProfile(UploadImageVO vo) {
 		mybatis.update("updateprofileimg", vo);
 		
+	}
+	//사진포스팅을 가져오는 메소드
+	@Override
+	public List<BoardVO> getPost(PagingVO vo) {
+		
+		
+		
+		
+		return null;
 	}   
 	
 	
 	
+	 
+	 
 	
 	
 	

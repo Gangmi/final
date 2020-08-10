@@ -82,7 +82,6 @@ body:not(.hidden).reveal #loader>div {
 
         .name_area h3 {
           margin-left: 10px;
-          margin-top:8px;
         }
 
         .name_area img {
@@ -109,7 +108,7 @@ body:not(.hidden).reveal #loader>div {
 
         .text_area {
             width: 90%;
-            display:inline-block;
+            
             margin: 0 auto;
             
             
@@ -125,7 +124,7 @@ body:not(.hidden).reveal #loader>div {
         .date_area p {
             width: 100%;
            text-align:right;
-          
+           
             margin-right:15px;
             font-size: 15px;}
         
@@ -190,7 +189,6 @@ margin-top: 40px;
 
 }
 
-
 </style>
 <script type="text/javascript">
 setTimeout(() => {
@@ -204,7 +202,7 @@ document.addEventListener("click", () => {
 
 
 </script>
-<% %>
+
 
 <title>Insert title here</title>
 </head>
@@ -239,7 +237,6 @@ document.addEventListener("click", () => {
         </div>
 		<!--텍스트 부분  -->
         <div class="text_area">
-        	
             <div class="date_area"><p>2020.20.20</p></div>
            <div class="text"><p>What is Lorem Ipsum?
                dustry'ersions of Lorem Ipsum.</p></div>
@@ -253,15 +250,109 @@ document.addEventListener("click", () => {
       </div>
       </div>
       
-     
+      <div class="verwrap">
+	  <div class="ver_2">
+             <div class="main_area">
+        <div class="name_area">
+            <img src="/resources/img/my_page.png">
+            <h3>lettoncom</h3>
+        </div>
+		<div class="picturewrap">
+        <div class="picture_area">
+            <img src="/resources/img/alexandre-valdivia-mMzaKVV-isQ-unsplash.jpg">
+        </div>
+        </div>
+		<!--텍스트 부분  -->
+        <div class="text_area">
+            <div class="date_area"><p>2020.20.20</p></div>
+           <div class="text"><p>What is Lorem Ipsum?
+               dustry'ersions of Lorem Ipsum.</p></div>
+        </div>
+        <div class="more">
+        <a href="#">자세히..</a>
+        
+        </div>
+        
+    </div>
+      </div>
+      </div>
+      
       
       </section>
+<!-- 	<section class="sidebar"> -->
+	
+<!-- 	</section> -->
+<!-- 	<!--전체 섹션  --> -->
+<!-- 	<section class="mainsection"> -->
+	
+<!-- 		<!--섹션안에 구분선을 위한 div  --> -->
+<!-- 		<div class="container postwrap"> -->
+		
+<!-- 		<!--진짜 포스팅이 들어가는 부분  --> -->
+<!-- 			<div class="posting"> -->
+			
+<!-- 				포스팅 헤더 부분  -->
+<!-- 				<div class="headersep"> -->
+<!-- 					<div class="header-left"> -->
+<!-- 						<div class="titles"> -->
+<!-- 							<span>제목 제목</span> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="header-right"> -->
+<!-- 						<div class="regdate"> -->
+<!-- 							<span>글쓴 날짜</span> -->
+<!-- 						</div> -->
+<!-- 						<div class="writerinfo"> -->
+<!-- 							<div class="profileimg"> -->
+<!-- 								<img> -->
+<!-- 							</div> -->
+<!-- 							<div class="writername"> -->
+<!-- 								<span>이름이름</span> -->
+<!-- 							</div>	 -->
+						
+<!-- 						</div> -->
+					
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				포스팅 헤더 부분  END -->
+				
+<!-- 				포스팅 이미지 부분  -->
+<!-- 				<div class="imgwraper"> -->
+<!-- 					<div class="postimg"> -->
+<!-- 						<img src="/resources/img/hero/hero-2.jpg"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				
+<!-- 				<div class="contentswraper"> -->
+<!-- 					<div class="realcontents"> -->
+<!-- 					내용내용 내용내용 -->
+					
+<!-- 					</div> -->
+				
+				
+<!-- 				</div> -->
+				
+			
+			
+<!-- 			</div> -->
+		
+			
+<!-- 		</div> -->
+	
+	
+	
+	
+	
+	
+	
+<!-- 	</section> -->
+
+		
+
 
 
 <div class="footerwrap">
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </div>
-
-<script src="/resources/js/board/imgboard.js"></script>
 </body>
 </html>
