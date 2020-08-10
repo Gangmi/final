@@ -226,6 +226,21 @@ public class BoardServiceImpl implements BoardService {
    public void cancleCheteck(BoardVO vo) {
       // TODO Auto-generated method stub
        dao.cancleCheteck(vo);
-   }   
+   }
+
+public List<BoardVO> getPost(PagingVO vo) {
+	
+	//만약 세팅된 시작값이 없다면
+	if(vo.getStart()==0) {
+		vo.setStart(1);
+		vo.setEnd(3);
+	}
+	
+	
+	return dao.getPost(vo);
+	
+	
+	
+}   
 
 }

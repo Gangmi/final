@@ -56,6 +56,8 @@ public String isThereProfile(UploadImageVO vo);
 
 public void updateProfile(UploadImageVO vo);
 
+public List<BoardVO> getPost(PagingVO vo);
+
 
 
 }

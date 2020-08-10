@@ -53,7 +53,7 @@ $(document).ready(
 			// 사진게시판을 눌렀을 때
 			$('#goimgboard').click(
 					function() {
-						window.location.href = "/imgboard.do?b_boardname="
+						window.location.href = "/imgboard.do?boardname="
 								+ $('#boardname').val();
 					})
 

@@ -683,8 +683,11 @@ public class BoardController {
 		//이미지 게시판으로 변경 요청이들어왔을 때
 		
 		@RequestMapping("/imgboard.do")
-		public ModelAndView imgboard(BoardVO vo, ModelAndView mv) {
+		public ModelAndView imgboard(PagingVO vo, ModelAndView mv) {
 			
+			
+			//처음 들어왔을 떄 가서 3개의 포스팅을가져온다.
+			service.getPost(vo);
 			
 			
 			

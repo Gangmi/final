@@ -204,7 +204,7 @@ document.addEventListener("click", () => {
 
 
 </script>
-
+<% %>
 
 <title>Insert title here</title>
 </head>
