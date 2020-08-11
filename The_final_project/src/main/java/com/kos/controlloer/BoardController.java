@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -703,7 +704,33 @@ public class BoardController {
 			return mv;
 		}
 		
-		
+	
+		//관리자페이지 조회수 차트 
+		@RequestMapping("/admin.do")
+		public List<BoardVO> searchView(BoardVO vo){
+			List list = new ArrayList();
+			//전체 게시판의 글들을 검색해서 index로 넘겨준다. 
+			System.out.println(vo.getBoardView()); 
+			//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
+			int i=0;
+			for(String row:vo.allBoardList()) {   
+				System.out.println(row); 
+				//게시판이름을 세팅한다.     
+				vo.setB_boardname(row);    
+				//세팅된 게시판에 있는 것들을 가져온다. 
+				Object rawboard =service.searchView(vo);
+				System.out.println(rawboard); 
+				//받아온 데이터가 있으면
+				if(rawboard!=null) {   
+					list.add(i,rawboard);
+					i++;
+					//만약 없다면      
+				}else {   
+					
+				}
+			}
+			return list;
+		} 
 		
 		
 		@RequestMapping("/admin.do")

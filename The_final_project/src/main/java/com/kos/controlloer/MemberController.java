@@ -154,7 +154,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/certification-session.do", produces = "application/text; charset=utf8")
 	public String createCertificationSession(MemberVO memberVo, HttpSession session) {
-		String str = "";
+		String str = ""; 
 		try {
 			//기존세션에 인증키가 있으면 지우고 시작. 인증키가 중복이 되면 안
 			session.removeAttribute("certification");

@@ -263,7 +263,10 @@
 	  
 	</select>    
 	
-	
+	<!-- 일별 조회수 쿼리 -->
+	<select id="searchView" parameterType="board" resultType="board"> 
+		SELECT DATE(regdate) AS date, sum(board_view) as view from ${b_boardname} GROUP BY date
+	</select>
 
 	<!-- 채택하기 -->
 	<update id="updateCheteck" parameterType="board">

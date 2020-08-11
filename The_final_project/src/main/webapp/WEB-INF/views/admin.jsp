@@ -18,30 +18,7 @@
 
 <!-- 구글 그래프 스크립트 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
 
 <!--Custom Font-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -247,7 +224,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading"> 
-						Line Chart
+						일별 조회수
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle"
 								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
@@ -279,7 +256,9 @@
 						<div class="canvas-wrapper">
 							<!-- <canvas class="main-chart" id="line-chart" height="200"
 								width="600"></canvas> -->
+
 								 <div class="col-lg-12" id="curve_chart" style="width:100%; height: 500px"></div>
+
 						</div>
 					</div>
 				</div>
@@ -291,7 +270,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Bar Chart
+						스마트팜, 농부신청
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle"
 								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
@@ -333,7 +312,7 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Pie Chart
+						조회수,신청,검색 횟수
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle"
 								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
@@ -502,13 +481,13 @@
 	<script src="/resources/js/bootstrap-datepicker.js"></script>
 	<script src="/resources/js/custom.js"></script>
 	<script>
-		window.onload = function() {
-			var chart1 = document.getElementById("line-chart").getContext("2d");
+		/* window.onload = function() {
+			var chart1 = document.getElementById("line-chart").getContext("2d"); 
 			window.myLine = new Chart(chart1).Line(lineChartData, {
 				responsive : true,
 				scaleLineColor : "rgba(0,0,0,.2)",
 				scaleGridLineColor : "rgba(0,0,0,.05)",
-				scaleFontColor : "#c5c7cc"
+				scaleFontColor : "#c5c7cc" 
 			});
 			var chart2 = document.getElementById("bar-chart").getContext("2d");
 			window.myBar = new Chart(chart2).Bar(barChartData, {
@@ -542,7 +521,8 @@
 				scaleLineColor : "rgba(0,0,0,.2)",
 				segmentShowStroke : false
 			});
-		};
+		}; */ 
 	</script>
+	<script type="text/javascript" src="/resources/js/googleChart.js"></script>
 </body>
 </html>

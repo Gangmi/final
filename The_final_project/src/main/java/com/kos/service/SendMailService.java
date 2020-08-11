@@ -54,7 +54,7 @@ public class SendMailService {
 				return new PasswordAuthentication(user, password);
 			}
 		});
-	}
+	} 
 
 	public void sendMail(String target,String Subject, String Text) {
 		try {

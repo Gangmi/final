@@ -168,7 +168,7 @@ border-top: 0px solid white !important;
 			<div class="tipboard">
 				<h2>팁게시판</h2>
 				
-				<table class="table table-hover table-condensed">
+				<table style="table-layout: fixed" class="table table-hover table-condensed">
 						<thead>
 							<tr>
 							<th style="width:72px">글번호</th>
@@ -221,7 +221,7 @@ border-top: 0px solid white !important;
 	<hr id="divide"/>
 			<div class="freeboard">
 			<h2>농사in 게시판</h2>
-			<table class="table table-hover table-condensed">
+			<table style="table-layout: fixed" class="table table-hover table-condensed">
 					<thead>
 						<tr>
 							<th style="width:72px">글번호</th>
@@ -273,7 +273,7 @@ border-top: 0px solid white !important;
 		<div class="tipboard">
 		
 			<h2>분양게시판</h2>
-			<table class="table table-hover table-condensed">
+			<table style="table-layout: fixed" class="table table-hover table-condensed">
 					<thead>
 						<tr>
 						<th style="width:72px">글번호</th>
