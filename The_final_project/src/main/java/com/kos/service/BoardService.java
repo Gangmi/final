@@ -15,4 +15,6 @@ public interface BoardService {
 	public void deleteBoard(BoardVO vo);
 	public boolean likeOrBad(BoardVO vo);
 	public List<BoardVO> writerview(BoardVO vo); 
+	public List<BoardVO> adminChart(BoardVO vo); 
+
 }

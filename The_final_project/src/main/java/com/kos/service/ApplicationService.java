@@ -89,7 +89,10 @@ public class ApplicationService {
 	public List<SmartFarmApplicationVO> selectSmartFarmList(SmartFarmApplicationVO applicationVO) {
 		return applicationDao.selectSmartFarmList(applicationVO);
 		// TODO Auto-generated method stub
+
 	}
+
+
 
 	
 	@Transactional

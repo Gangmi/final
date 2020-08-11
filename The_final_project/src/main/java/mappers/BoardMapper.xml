@@ -263,7 +263,10 @@
 	  
 	</select>    
 	
-	
+	<!-- 일별 조회수 쿼리 -->
+	<select id="searchView" parameterType="board" resultType="board"> 
+		SELECT DATE(regdate) AS date, sum(board_view) as view from ${b_boardname} GROUP BY date
+	</select>
 
 	<!-- 채택하기 -->
 	<update id="updateCheteck" parameterType="board">
@@ -350,6 +353,9 @@ order by temp.regdate desc;
 	select f.board_view, m.nickname from ${b_boardname} as f join member as m on f.id=m.id where f.id=#{id} order by regdate desc
 	</select>
 	
+	 <select id="adminChart" parameterType="board" resultType="board"> 
+      SELECT DATE(regdate) AS date, sum(board_view) as view from ${b_boardname} GROUP BY date
+   </select>
 	
 
 
