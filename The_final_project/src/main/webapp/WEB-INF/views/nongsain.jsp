@@ -65,7 +65,7 @@ if (session.getAttribute("memberinfo") != null) {
 						<%=result.getBoardView()%></p>
 					<div id="replinfosec">
 
-						<i class="fas fa-comment"></i> <span>댓글</span>    <span id="replNumber"></span> <br> <br>
+						
 						
 					</div>
 				</div>
