@@ -35,9 +35,7 @@
 	
 	
 }
-th{
-	board
-}
+
 .table thead th{
 	border-bottom : 0px solid #2A3820 !important; 
 }
@@ -186,9 +184,8 @@ td a:hover {
 td{
 	text-overflow:ellipsis; 
 	overflow:hidden; 
-	white-space:nowrap;"
+	white-space:nowrap;
 
-	
 }
 
 

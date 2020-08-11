@@ -121,10 +121,10 @@ border-top: 0px solid white !important;
 				<table style="table-layout: fixed" class="table table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>글번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
+								<th style="width:72px">글번호</th>
+								<th style="width:282px">제목</th>
+								<th style="width:73px">작성자</th>
+								<th style="width:73px">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -171,10 +171,10 @@ border-top: 0px solid white !important;
 				<table class="table table-hover table-condensed">
 						<thead>
 							<tr>
-								<th>글번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
+							<th style="width:72px">글번호</th>
+								<th style="width:282px">제목</th>
+								<th style="width:73px">작성자</th>
+								<th style="width:73px">작성일</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -224,10 +224,10 @@ border-top: 0px solid white !important;
 			<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-							<th>글번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
+							<th style="width:72px">글번호</th>
+								<th style="width:282px">제목</th>
+								<th style="width:73px">작성자</th>
+								<th style="width:73px">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -276,10 +276,10 @@ border-top: 0px solid white !important;
 			<table class="table table-hover table-condensed">
 					<thead>
 						<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
+						<th style="width:72px">글번호</th>
+								<th style="width:282px">제목</th>
+								<th style="width:73px">작성자</th>
+								<th style="width:73px">작성일</th>
 						</tr>
 					</thead>
 					<tbody>
