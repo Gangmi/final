@@ -241,6 +241,12 @@ public List<BoardVO> getPost(PagingVO vo) {
 	
 	
 	
-}   
+}
+
+@Override
+public List<BoardVO> searchView(BoardVO vo) {
+	// TODO Auto-generated method stub
+	return dao.searchView(vo);
+}    
 
 }

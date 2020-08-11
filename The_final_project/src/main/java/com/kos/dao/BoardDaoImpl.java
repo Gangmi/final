@@ -493,6 +493,9 @@ public class BoardDaoImpl implements BoardDao {
 	}   
 	
 	
+	public List<BoardVO> searchView(BoardVO vo){
+		return mybatis.selectList("searchView", vo);
+	}
 	
 	 
 	 
