@@ -26,9 +26,11 @@
 		<div class="plantdiv">
   
 			<h2>여름지기 식물사전</h2> 
+			<div class="inputwrap">
 		<div class="inputandbtn">
 			<input type="text" id="myInput" placeholder="검색어를 입력하세요">
 			<button class="btn btn-success" id="search" type="submit">검색</button>
+		</div>
 		</div>
 		<div class="tabdiv"> 
 			<div class="tab"> 
@@ -41,6 +43,7 @@
 				<a href="plant.do?plantcate=식물기타" class="btn" onclick="openCity(event, 'Plantguitar')" role="button">식물기타</a>
 			</div>
 		</div> 
+		<div class="plantwraper">
 			<%   
 				for (PlantVO vo : plant) {
 			%> 
@@ -58,8 +61,10 @@
 			<%
 					}
 				%>
+				
+			</div>
 			<!--페이징 부분  -->
-			<div class="page" id="pager">
+						<div class="page" id="pager">
 				<%
 						if ((Integer) request.getAttribute("confirm") == 1) {
 						List<PlantVO> result = (List<PlantVO>) request.getAttribute("plantlist");
@@ -119,6 +124,8 @@
 						}
 					%>
 			</div> 
+			
+			
 		</div> 
 	</section>
 

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.wholewrap{
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+	
+}
+
+h3{
+	    font-size: 30px !important;
+    text-align: center;
+    margin-top: 80px  !important;
+}
+.nice-select {
+	    line-height: 25px !important;
+}
+
+td a{
+	vertical-align:middle;
+	color: black;
+	font-size: 20px;
+	
+}
+.plantname:hover{
+	color: black;
+	text-decoration: underline !important;
+}
