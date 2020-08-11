@@ -69,6 +69,7 @@ width: 238px !important;
 		</div>
 		<nav class="mainmenu mobile-menu">
 			<ul>
+			
 				<li class="active"><a href="/index.do">Home</a></li>
 				<li><a href="/about-us.do">소개</a></li>
 				
@@ -101,14 +102,14 @@ width: 238px !important;
 	<div class="menu-item">
 		<div class="naviwrap">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<div class="logo">
 						<a href="/index.do"> <!--로고 들어가는섹션--> <img
 							src="/resources/img/logo3.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-lg-8">
 					<div class="nav-menu">
 						<nav class="mainmenu">
 							<ul>
@@ -118,6 +119,7 @@ width: 238px !important;
 								<li><a href="/smartfarmer/monitoringView.do">스마트팜</a></li>
 								</sec:authorize>
 								<li><a href="/about-us.do">About Us</a></li>
+									<li><a href="/about-us.do">About Us</a></li>
 								<li><a href="/callboard.do?b_boardname=free_board">게시판</a>
 									<ul class="dropdown">
 										<li><a href="/callboard.do?b_boardname=free_board">자유게시판</a></li>
