@@ -118,8 +118,8 @@ width: 238px !important;
 								<sec:authorize access="hasAuthority('ROLE_SMART_FARMER')">
 								<li><a href="/smartfarmer/monitoringView.do">스마트팜</a></li>
 								</sec:authorize>
-								<li><a href="/about-us.do">About Us</a></li>
-									<li><a href="/about-us.do">About Us</a></li>
+								<li><a href="/about-us.do">사이트 소개</a></li>
+								<li><a href="/gardenList.do">식물 추천</a></li>
 								<li><a href="/callboard.do?b_boardname=free_board">게시판</a>
 									<ul class="dropdown">
 										<li><a href="/callboard.do?b_boardname=free_board">자유게시판</a></li>
