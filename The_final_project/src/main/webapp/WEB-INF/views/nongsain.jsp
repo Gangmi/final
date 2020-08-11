@@ -104,7 +104,6 @@ if (session.getAttribute("memberinfo") != null) {
 				<a href="callboard.do?b_boardname=<%=(String) request.getAttribute("boardname")%>" class="btn btn-success" role="button">목록으로</a>
 			</div>
 		</div>
-
 	
  	<%
 
@@ -113,7 +112,10 @@ if (session.getAttribute("memberinfo") != null) {
 	
 	%>
 	<div class="container" id="board">
-	소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button>
+	<%if(userid!=null){ %>소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button><%}else{%>
+	로그인 후 답변 가능합니다.
+	<%}	%>
+	
 	</div>
  	<div class="main_box"> 
 		<section class="whole-write-section">

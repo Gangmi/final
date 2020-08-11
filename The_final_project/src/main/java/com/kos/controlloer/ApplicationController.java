@@ -1,6 +1,7 @@
 package com.kos.controlloer;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kos.service.ApplicationService;
 import com.kos.vo.FarmerApplicationVO;
+import com.kos.vo.MemberVO;
 import com.kos.vo.SmartFarmApplicationVO;
 
 @Controller
@@ -46,5 +49,17 @@ public class ApplicationController {
 			return "500error";
 		}
 		return "farmer-application-success";
+	}
+	
+	
+	@RequestMapping("/smartfarm-application.do")
+	public ModelAndView SmartFarmApplicationVO(SmartFarmApplicationVO vo,ModelAndView mv,HttpSession session) {
+		vo.setId(((MemberVO) session.getAttribute("memberinfo")).getId());
+		System.out.println(vo.getId()+"asd");
+		List<SmartFarmApplicationVO> result = (List<SmartFarmApplicationVO>)service.selectSmartFarmList(vo);
+		mv.setViewName("smartfarm-application");
+		mv.addObject("result",result);
+		System.out.println(result+"스마트팜");
+		return mv;
 	}
 }

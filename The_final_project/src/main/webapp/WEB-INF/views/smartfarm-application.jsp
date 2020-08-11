@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.kos.vo.SmartFarmApplicationVO"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +38,7 @@
                     <td>
                         <label for="startDate">시작일</label>
                     </td>
-                    <td><input class="form-control" type="date" name="startDate"></td>
+                     <td><input class="form-control" type="date" name="startDate"></td>
                     <td>
                         <label for="dueDate">종료일</label>
                     </td>
@@ -49,23 +51,54 @@
                         <p>번호</p>
                     </th>
                     <th>
-                        <p>이름</p>
+                        <p>아이디</p>
                     </th>
                     <th>
-                        <p>농장위치</p>
+                        <p>신청일</p>
+                    </th>
+                    <th>
+                        <p>시작일</p>
+                    </th>
+                    <th>
+                        <p>종료일</p>
+                    </th>
+                    <th>
+                        <p>승인일</p>
                     </th>
                 </tr>
-                <tr>
-                <td>
-                1
-                </td>
-                <td>
-                	멍청이
-                </td>
-                <td>
-                  	니 마음속
-                </td>
-                </tr>
+           <%
+               //데이터 받아와서 for문 돌리기
+               if ((List<SmartFarmApplicationVO>)request.getAttribute("result") != null) {
+            	   List<SmartFarmApplicationVO> result = (List<SmartFarmApplicationVO>)request.getAttribute("result");
+				
+              
+               for(SmartFarmApplicationVO vo : result) {%>
+               <tr>
+	                <td>
+	                	<%=vo.getNo()%>
+	                </td>
+	                <td>
+	                	<%=vo.getId() %>
+	                </td>
+	                <td>
+	                  	<%=vo.getApplyDate() %>
+	                </td>
+	                <td>
+	                  	<%=vo.getDueDate() %>
+	                </td>
+	                <td>
+	                  	<%=vo.getStartDate() %>
+	                </td>
+	                <td>
+	                	<%if(vo.getApproveDate()==null){ %>
+	                	미승인
+	                	<%}else{ %>
+	                  	<%=vo.getApproveDate() %>
+	                  	<%}%>
+	                </td>
+               </tr>
+               <%} 
+               }%> 
 	 		</table>
            <!--  <textarea  class="form-control" name="" id="" cols=70 rows="20" readonly></textarea> -->
             <br>

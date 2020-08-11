@@ -79,4 +79,9 @@ public class ApplicationService {
 			}
 		}catch (Exception e) {e.printStackTrace();return -1;}
 	}
+	public List<SmartFarmApplicationVO> selectSmartFarmList(SmartFarmApplicationVO applicationVO) {
+		return applicationDao.selectSmartFarmList(applicationVO);
+		// TODO Auto-generated method stub
+		
+	}
 }

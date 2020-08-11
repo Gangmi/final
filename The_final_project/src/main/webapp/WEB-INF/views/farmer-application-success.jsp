@@ -14,7 +14,7 @@
     	<div class="contents">
 	    	<h2> ${sessionScope.memberinfo.id }님   ${sessionScope.application.no }번호로 신청이 완료 되었습니다.</h2>
 	    	<div class="button">
-	    	<a  href="/mypage.do"><button class="btn btn-success">My페이지로 가기</button></a>
+	    	<a  href="/my-page.do"><button class="btn btn-success">My페이지로 가기</button></a>
 	    	</div>
     	</div>
     </div>

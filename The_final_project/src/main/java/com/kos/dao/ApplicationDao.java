@@ -13,6 +13,7 @@ import com.kos.vo.SmartFarmApplicationVO;
 
 @Repository("ApplicationDao")
 public class ApplicationDao {
+	
 	@Autowired
 	SqlSessionTemplate mybatis;
 	
@@ -42,5 +43,10 @@ public class ApplicationDao {
 	
 	public int smartFarmApplicationUpdate(SmartFarmApplicationVO applicationVO) {
 		return mybatis.update("Aplication.SmartFarmUpdate",applicationVO);
+	}
+	
+	public List<SmartFarmApplicationVO> selectSmartFarmList(SmartFarmApplicationVO applicationVO){
+		System.out.println(applicationVO.getId());
+		return mybatis.selectList("Aplication.SmartFarmSelect",applicationVO);
 	}
 }
