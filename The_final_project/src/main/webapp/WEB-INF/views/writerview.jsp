@@ -11,13 +11,32 @@
 <!--게시판 페이지 기본 css  -->
 <link rel="stylesheet" href="/resources/css/boardcss/general.css">
 
+<style>
+.thumb img {
+	width: 45px;
+	height: 45px;
+	border-radius: 45px;
+	margin-top: 20px;
+	margin-right: 20px;;
+	float : left;
+}
+.name{
+	margin-top: 20px;
+	margin-right: 20px;;
+	float : left;
+}
+</style>
+
 <%
 	//게시판 값 받아오는 곳
-String boardname = (String) request.getAttribute("b_boardname");
+	String boardname = (String) request.getAttribute("b_boardname");
 %>
 <title></title>
 <%
 	MemberVO mem = (MemberVO) session.getAttribute("memberinfo");
+%>
+<%
+	String profile = (String) session.getAttribute("profileimg");
 %>
 
 <script type="text/javascript">
@@ -32,17 +51,23 @@ String boardname = (String) request.getAttribute("b_boardname");
 	<input type="hidden" id="confirmsession"
 		value="<%=session.getAttribute("memberid")%>"></input>
 	<input type="hidden" id="dropopen" value="false">
-	
+
 	<section class="aboutus-section spad">
 		<div class="container">
 			<div class="weather">
-                <br><br>
-                <h2 id="todaydate"></h2>
-                <h2> 내가 쓴 글  </h2>
-            </div>
-            <hr/>
-		</div> 
-	</section>
+				<br> <br>
+				<h2 id="todaydate"></h2>
+				<h2>내가 쓴 글</h2>
+			</div>
+			<hr />
+			<div class="thumb">
+				<img src="/resources/profileimg/<%if (profile != "") {%><%=profile%><%} else {%>my_page.png<%}%>" />
+				<div class="name">
+					<h2><%=mem.getName()%>(<%=mem.getId()%>)</h2>
+				</div>
+			</div>
+		</div>
+	</section> 
 
 	<!-- Hero Section Begin -->
 
@@ -67,7 +92,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 							if ((Integer) request.getAttribute("free_boardcon") == 1) {
 
 							List<BoardVO> result = (List<BoardVO>) request.getAttribute("free_board");
- 
+
 							Calendar cal = Calendar.getInstance();
 							System.out.println(cal);
 							String year = String.valueOf(cal.get(Calendar.YEAR));
@@ -87,7 +112,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 								String[] dat = vo.getRegdate().split(" ");
 								vo.setRegdate(dat[0]);
 						%>
-							
+
 						<tr>
 							<td width="130" id="bno"><%=vo.getBoardno()%></td>
 
@@ -112,7 +137,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 								</div>
 							</td>
 							<td width="180"><%=vo.getRegdate()%></td>
-							<td width="188"><%=vo.getBoardView()%></td> 
+							<td width="188"><%=vo.getBoardView()%></td>
 							<td width="188"><%=vo.getBoardLike()%></td>
 							<td width="188"><%=vo.getBoardBad()%></td>
 						</tr>
@@ -130,7 +155,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 							if ((Integer) request.getAttribute("tip_boardcon") == 1) {
 
 							List<BoardVO> result = (List<BoardVO>) request.getAttribute("tip_board");
- 
+
 							Calendar cal = Calendar.getInstance();
 							System.out.println(cal);
 							String year = String.valueOf(cal.get(Calendar.YEAR));
@@ -174,7 +199,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 								</div>
 							</td>
 							<td width="180"><%=vo.getRegdate()%></td>
-							<td width="188"><%=vo.getBoardView()%></td> 
+							<td width="188"><%=vo.getBoardView()%></td>
 							<td width="188"><%=vo.getBoardLike()%></td>
 							<td width="188"><%=vo.getBoardBad()%></td>
 						</tr>
@@ -236,7 +261,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 								</div>
 							</td>
 							<td width="180"><%=vo.getRegdate()%></td>
-							<td width="188"><%=vo.getBoardView()%></td> 
+							<td width="188"><%=vo.getBoardView()%></td>
 							<td width="188"><%=vo.getBoardLike()%></td>
 							<td width="188"><%=vo.getBoardBad()%></td>
 						</tr>
@@ -255,8 +280,8 @@ String boardname = (String) request.getAttribute("b_boardname");
 
 							List<BoardVO> result = (List<BoardVO>) request.getAttribute("parcel_board");
 
-							Calendar cal = Calendar.getInstance();  
-							System.out.println(cal); 
+							Calendar cal = Calendar.getInstance();
+							System.out.println(cal);
 							String year = String.valueOf(cal.get(Calendar.YEAR));
 							String month = String.valueOf(cal.get(Calendar.MONTH) + 1);
 							String date = String.valueOf(cal.get(Calendar.DATE));
@@ -264,7 +289,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 								month = "0" + String.valueOf(month);
 							}
 							if (Integer.parseInt(month) < 10) {
-								date = "0" + String.valueOf(date); 
+								date = "0" + String.valueOf(date);
 							}
 
 							String nowdate = year + "-" + month + "-" + date;
@@ -304,7 +329,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 						</tr>
 						<%
 							}
-						%> 
+						%>
 						<%
 							} else {
 						%>

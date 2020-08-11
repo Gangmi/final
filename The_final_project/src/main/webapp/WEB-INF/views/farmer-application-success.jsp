@@ -10,6 +10,7 @@
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>
+
      <div class="main">
     	<div class="contents">
 	    	<h2> ${sessionScope.memberinfo.id }님   ${sessionScope.application.no }번호로 신청이 완료 되었습니다.</h2>

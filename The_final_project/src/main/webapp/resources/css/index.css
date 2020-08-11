@@ -183,7 +183,13 @@ td a:hover {
 	
 	margin-bottom: 50px;
 }
+td{
+	text-overflow:ellipsis; 
+	overflow:hidden; 
+	white-space:nowrap;"
 
+	
+}
 
 
 

@@ -118,7 +118,7 @@ border-top: 0px solid white !important;
 			<div class="freeboard">
 				<h2>자유게시판</h2>
 			
-				<table class="table table-hover table-condensed">
+				<table style="table-layout: fixed" class="table table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>글번호</th>

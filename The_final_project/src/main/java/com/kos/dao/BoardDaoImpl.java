@@ -488,7 +488,8 @@ public class BoardDaoImpl implements BoardDao {
 		
 		
 		
-		return null;
+		
+		return mybatis.selectList("getpost", vo);
 	}   
 	
 	

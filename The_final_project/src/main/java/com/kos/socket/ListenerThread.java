@@ -48,6 +48,12 @@ public class ListenerThread extends Thread {
 		}
 		return instance;
 	}
+	public static ListenerThread getInstance() {
+		if (instance == null) {
+			instance = new ListenerThread();
+		}
+		return instance;
+	}
 
 	@Override
 	public void run() {

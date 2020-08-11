@@ -26,7 +26,7 @@
 		<div class="upper">
 		<div class="cctv_box">
 <!-- 			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div> -->
-			<div class="cctv"><img src="/resources/img/test.jpg"></div>
+			<div class="cctv"><img src="${deviceIp}"></div>
 			
 		</div>
 	   <div class="btn">

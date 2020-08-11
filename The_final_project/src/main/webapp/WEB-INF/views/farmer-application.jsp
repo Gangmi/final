@@ -77,16 +77,22 @@
 				e.preventDefault();
 				if($('input[name="farmerName"]').val()==""){
 					alert("이름을 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandCorporationName"]').val()==""){
 					alert("경작지 이름을 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandTel"]').val()==""){
 					alert("농장 연락처를 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandAddress"]').val()==""){
 					alert("경작지 주소를 작성해주세요.");
+					return false;
 				}else if($('input[name="farmlandCorporationNumber"]').val()==""){
 					alert("농업경영체 등록번호를 작성해주세요.");
+					return false;
 				}else if(!$('input[name="file1"]').val()){
 					alert("파일을 첨부해주세요.");
+					return false;
 				}
 				$("form[name='form']").submit();
 			});

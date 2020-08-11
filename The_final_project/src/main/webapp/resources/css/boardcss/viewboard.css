@@ -9,13 +9,13 @@
 
 /*제목  */
 #title{
-	height: auto;
+	height: 173px;
 	border-bottom: 1px solid #eee;
 	
 }
 
 #title h2{
-	font-size: 50px;
+	font-size: 32px !important;
 	font-weight: 400;
    
 }
@@ -39,7 +39,8 @@
 	}
 /*댓글 정보 표시 부분  */
 #replinfosec{
-	margin-top:80px;
+/* 	position: fixed; */
+	margin-top:110px;
 	display: inline;
 	font-size: 14px;
 	float:right;
@@ -117,6 +118,9 @@
 	
 }
 
+.titlewrap{
+	height: 76px !important;
+}
 
 
 

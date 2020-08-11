@@ -82,7 +82,7 @@ String boardname = (String) request.getAttribute("b_boardname");
 							if(Integer.parseInt(month)<10){
 								month="0"+String.valueOf(month);
 							}
-							if(Integer.parseInt(month)<10){
+							if(Integer.parseInt(date)<10){
 								date="0"+String.valueOf(date);
 							}
 							

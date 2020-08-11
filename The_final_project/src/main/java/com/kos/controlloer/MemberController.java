@@ -141,9 +141,9 @@ public class MemberController {
 		if (bCryptPasswordEncoder.matches(memberVo.getPassword(), searchVo.getPassword())) {
 			memberVo.setPassword(this.bCryptPasswordEncoder.encode(updatePW));
 			memberService.updateAccount(memberVo);
-			return "successPage";
+			return "updateAccount_success";
 		} else
-			return "failPage";
+			return "updateAccount_fail";
 
 	}
 

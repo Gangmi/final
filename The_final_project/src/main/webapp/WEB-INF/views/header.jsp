@@ -78,6 +78,9 @@ width: 238px !important;
 						<li><a href="/callboard.do?b_boardname=tip_board">tip 게시판</a></li>
 						<li><a href="/callboard.do?b_boardname=parcel_board">분양게시판</a></li>
 						<li><a href="/callboard.do?b_boardname=nongsain">농사in게시판</a></li>
+						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+ 						<li><a href="#">관리자</a></li>
+ 						</sec:authorize>
 					</ul></li>
 				<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 				<li><a href="/farm-map.do">제휴농장</a></li>
@@ -124,8 +127,10 @@ width: 238px !important;
 									</ul></li>
 
 								<li><a href="/plant.do?nowpage=1">식물사전</a></li>
-								<li><a href="/farm-map.do">제휴농장위치</a></li>
- 
+								<li><a href="/farm-map.do">제휴농장</a></li>
+ 								<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+ 								<li><a href="#">관리자</a></li>
+ 								</sec:authorize>
 							</ul>
 						</nav>
 						<div class="nav-right">
@@ -138,9 +143,9 @@ width: 238px !important;
 								<a href="/logout.do">로그아웃</a>&nbsp;&nbsp;
 								<a href=/my-page.do>마이페이지</a>
 							</sec:authorize>
-							<div class="nav-right search-switch">
-							<i class="icon_search"></i>
-						</div>
+<!-- 							<div class="nav-right search-switch"> -->
+<!-- 							<i class="icon_search"></i> -->
+<!-- 						</div> -->
 							
 						</div>
 						
