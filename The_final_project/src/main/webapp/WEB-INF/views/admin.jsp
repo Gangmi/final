@@ -11,6 +11,38 @@
 <link href="/resources/css/datepicker3.css" rel="stylesheet">
 <link href="/resources/css/styles.css" rel="stylesheet">
 
+
+	<link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
+
+	
+
+<!-- 구글 그래프 스크립트 -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 <!--Custom Font-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -245,8 +277,9 @@
 					</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="line-chart" height="200"
-								width="600"></canvas>
+							<!-- <canvas class="main-chart" id="line-chart" height="200"
+								width="600"></canvas> -->
+								 <div class="col-lg-12" id="curve_chart" style="width:100%; height: 500px"></div>
 						</div>
 					</div>
 				</div>

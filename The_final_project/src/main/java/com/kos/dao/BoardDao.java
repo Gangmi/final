@@ -58,6 +58,8 @@ public void updateProfile(UploadImageVO vo);
 
 public List<BoardVO> getPost(PagingVO vo);
 
+public List<BoardVO> adminChart(BoardVO vo);
+
 
 
 }

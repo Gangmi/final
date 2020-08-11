@@ -490,6 +490,12 @@ public class BoardDaoImpl implements BoardDao {
 		
 		
 		return mybatis.selectList("getpost", vo);
+	}
+
+	@Override
+	public List<BoardVO> adminChart(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("adminChart", vo);
 	}   
 	
 	

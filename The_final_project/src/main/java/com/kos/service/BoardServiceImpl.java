@@ -241,6 +241,11 @@ public List<BoardVO> getPost(PagingVO vo) {
 	
 	
 	
+}
+ 
+public List<BoardVO> adminChart(BoardVO vo) {
+	return dao.adminChart(vo);
+	
 }   
 
 }

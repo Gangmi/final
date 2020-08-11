@@ -705,6 +705,13 @@ public class BoardController {
 		
 		
 		
+		
+		@RequestMapping("/admin.do")
+		public ModelAndView adminChart(ModelAndView mv ,BoardVO vo) {
+			List<BoardVO> result = (List<BoardVO>)service.adminChart(vo);
+			mv.setViewName("admin");
+			return mv;
+		}
 }
 
 
