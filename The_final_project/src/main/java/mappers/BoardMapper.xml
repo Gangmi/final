@@ -346,6 +346,9 @@ order by temp.regdate desc;
 	
 	</select>
 	
+	<select id="">
+	select f.board_view, m.nickname from ${b_boardname} as f join member as m on f.id=m.id where f.id=#{id} order by regdate desc
+	</select>
 	
 	
 
