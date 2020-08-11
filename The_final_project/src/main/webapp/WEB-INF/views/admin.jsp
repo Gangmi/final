@@ -6,27 +6,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>admin</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="/resources/css/datepicker3.css" rel="stylesheet">
 <link href="/resources/css/styles.css" rel="stylesheet">
 
 
-	<link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/jquery-ui.min.css"
+	type="text/css">
 
-	
+
 
 <!-- 구글 그래프 스크립트 -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="/resources/js/googleChart.js"></script>
 
 
 <!--Custom Font-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
 <!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-</head> 
+</head>
 <body>
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
@@ -51,8 +58,8 @@
 									</a>
 									<div class="message-body">
 										<small class="pull-right">3 mins ago</small> <a href="#"><strong>John
-												Doe</strong> commented on <strong>your photo</strong>.</a> <br />
-										<small class="text-muted">1:24 pm - 25/03/2015</small>
+												Doe</strong> commented on <strong>your photo</strong>.</a> <br /> <small
+											class="text-muted">1:24 pm - 25/03/2015</small>
 									</div>
 								</div>
 							</li>
@@ -65,8 +72,8 @@
 									<div class="message-body">
 										<small class="pull-right">1 hour ago</small> <a href="#">New
 											message from <strong>Jane Doe</strong>.
-										</a> <br />
-										<small class="text-muted">12:27 pm - 25/03/2015</small>
+										</a> <br /> <small class="text-muted">12:27 pm -
+											25/03/2015</small>
 									</div>
 								</div>
 							</li>
@@ -202,7 +209,8 @@
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65">
+						<div class="easypiechart" id="easypiechart-orange"
+							data-percent="65">
 							<span class="percent">65%</span>
 						</div>
 					</div>
@@ -223,7 +231,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading"> 
+					<div class="panel-heading">
 						일별 조회수
 						<ul class="pull-right panel-settings panel-button-tab-right">
 							<li class="dropdown"><a class="pull-right dropdown-toggle"
@@ -245,8 +253,7 @@
 											</a></li>
 										</ul>
 									</li>
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 						<span
 							class="pull-right clickable panel-toggle panel-button-tab-left"><em
@@ -257,7 +264,8 @@
 							<!-- <canvas class="main-chart" id="line-chart" height="200"
 								width="600"></canvas> -->
 
-								 <div class="col-lg-12" id="curve_chart" style="width:100%; height: 500px"></div>
+							<div class="col-lg-12" id="curve_chart"
+								style="width: 100%; height: 500px"></div>
 
 						</div>
 					</div>
@@ -299,8 +307,10 @@
 					</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="bar-chart" height="200"
-								width="600"></canvas>
+							<!-- <canvas class="main-chart" id="bar-chart" height="200"
+								width="600"></canvas> -->
+							<div id="columnchart_material"
+								style="width: 800px; height: 500px;"></div>
 						</div>
 					</div>
 				</div>
@@ -521,7 +531,7 @@
 				scaleLineColor : "rgba(0,0,0,.2)",
 				segmentShowStroke : false
 			});
-		}; */ 
+		}; */
 	</script>
 	<script type="text/javascript" src="/resources/js/googleChart.js"></script>
 </body>

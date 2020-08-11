@@ -70,6 +70,10 @@ public class ApplicationDao {
 	public int farmerApplicationCancel(FarmerApplicationVO applicationVO) {
 		return mybatis.update("Aplication.FarmerCancel",applicationVO);
 	}
+
+	public List<FarmerApplicationVO> FarmerChart(FarmerApplicationVO applicationVO) {
+		return mybatis.selectList("Aplication.FarmerChart",applicationVO);
+	}
 	
 	
 

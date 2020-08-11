@@ -135,4 +135,9 @@
 		and DATE_FORMAT(apply_date,'%Y-%m-%d')=DATE_FORMAT(#{applyDate},'%Y-%m-%d')
 		</if>
 	</update>
+	 
+	<select id="FarmerChart" parameterType="farmerapplicationvo" resultType="farmerapplicationvo"> 
+		select count(*) as count from farmer_certificate where DATE_FORMAT(apply_date,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
+	</select> 
+	
 </mapper>

@@ -18,6 +18,14 @@ public class FarmerApplicationVO {
 	private MultipartFile file;
 	private String applyDate;
 	private String processingDate;
+	private int count;
+	
+	public int getCount() {
+		return count; 
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getApplyDate() {
 		return applyDate;
 	}

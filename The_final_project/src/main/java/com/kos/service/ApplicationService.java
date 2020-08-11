@@ -154,4 +154,8 @@ public class ApplicationService {
 		}
 
 	}
+	
+	public List<FarmerApplicationVO> FarmerChart(FarmerApplicationVO applicationVO){
+		return applicationDao.FarmerChart(applicationVO);
+	}
 }

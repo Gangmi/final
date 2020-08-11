@@ -1,5 +1,6 @@
 package com.kos.controlloer;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.kos.dao.ApplicationDao;
 import com.kos.dao.AuthorityDao;
 import com.kos.service.ApplicationService;
 import com.kos.vo.AuthorityVO;
+import com.kos.vo.BoardVO;
 import com.kos.vo.FarmerApplicationVO;
 import com.kos.vo.MemberVO;
 
@@ -43,7 +45,7 @@ public class ApplicationController {
 		vo.setFilePath(request.getSession().getServletContext().getRealPath("/resources/farmer_certificate"));
 		vo.setFile(file1);
 		try {
-			
+
 			session.setAttribute("application", service.applyFarmer(vo));
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -51,12 +53,12 @@ public class ApplicationController {
 		}
 		return "farmer-application-success";
 	}
-	
+
 	@RequestMapping(value = "/smart-farmApplication.do", method = RequestMethod.POST)
 	public String updatetest(SmartFarmApplicationVO vo,HttpSession session) {
 		System.out.println(vo.getId()+"asd");
 		try {
-			
+
 			session.setAttribute("application", service.applySmartFarm(vo));
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -64,9 +66,9 @@ public class ApplicationController {
 		}
 		return "farmer-application-success";
 	}
-	
 
-	
+
+
 	@RequestMapping("/smartfarm-application.do")
 	public ModelAndView SmartFarmApplicationVO(SmartFarmApplicationVO vo,ModelAndView mv,HttpSession session) {
 		vo.setId(((MemberVO) session.getAttribute("memberinfo")).getId());
@@ -90,7 +92,7 @@ public class ApplicationController {
 		if(applicationVO.equals("null")) {
 			mo.addAttribute("isPDateNull", "&processingDate=null");
 		}
-			System.out.println(applicationVO.getProcessingDate());
+		System.out.println(applicationVO.getProcessingDate());
 		int total= dao.farmerApplicationCount(applicationVO);
 		System.out.println(total);
 		if (nowPage == null) {
@@ -106,7 +108,7 @@ public class ApplicationController {
 		System.out.println("page size:"+list.size());
 		mo.addAttribute("applicationlist", list);
 		mo.addAttribute("paging", pagingVO);
-		
+
 		return"farmer-application-manage";
 	}
 	/*
@@ -137,7 +139,7 @@ public class ApplicationController {
 				}catch (Exception e) {
 					return_data.put("processingDate","");
 				}
-				
+
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -145,8 +147,8 @@ public class ApplicationController {
 		}
 		return return_data.toJSONString();
 	}
-	
-	
+
+
 	@ResponseBody
 	@RequestMapping(value = "/farmer-cancel-act.do" ,produces = "application/text; charset=utf8")
 	public String farmerCancel(FarmerApplicationVO applicationVO) {
@@ -180,7 +182,14 @@ public class ApplicationController {
 		}
 		return return_data.toJSONString();
 	}
-	
-	
 
+	//관리자페이지 스마트팜,농부신청 일별 신청 차트 
+	@ResponseBody
+	@RequestMapping(value ="/FarmerChart.do", method = RequestMethod.POST)
+	public List<FarmerApplicationVO> FarmerChart(FarmerApplicationVO applicationVO){
+		System.out.println("떳데이?"); 
+		List<FarmerApplicationVO> result = service.FarmerChart(applicationVO);
+		System.out.println(result+" !!!!!!!!!!!!!");
+		return result; 
+	} 
 }
