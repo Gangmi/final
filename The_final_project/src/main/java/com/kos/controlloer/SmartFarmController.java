@@ -31,13 +31,15 @@ public class SmartFarmController {
 		//로그인에서 생성된 memberinfo session을 참조하여 id값을 DeviceVO에 저장 
 		MemberVO memberVo=(MemberVO) session.getAttribute("memberinfo");
 		SmartFarmDeviceVO deviceVO=new SmartFarmDeviceVO();
-		
+	
 		deviceVO.setId(memberVo.getId());
 		//아이디를 통해 연결되있는 디바이스 키를 찾는다.
 		deviceVO=smartFarmDeviceService.seletDevice(deviceVO, 0);
+		System.out.println(deviceVO.getDevicekey());
 		try {
+			
 			System.out.println(ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString());
-			model.addAttribute("deviceIp", "http:/"+ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString());
+			model.addAttribute("deviceIp", "http:/"+ListenerThread.getInstance().getMapSock().get(deviceVO.getDevicekey()).getInetAddress().toString()+":8090/?action=stream");
 		}catch (Exception e) {
 			model.addAttribute("deviceIp", "/resources/img/test.jpg");
 		}
