@@ -137,7 +137,12 @@
 	</update>
 	 
 	<select id="FarmerChart" parameterType="farmerapplicationvo" resultType="farmerapplicationvo"> 
-		select count(*) as count from farmer_certificate where DATE_FORMAT(apply_date,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
+		<!-- select date(apply_date) as applyDate, count(*) as count from farmer_certificate where DATE_FORMAT(apply_date,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d') -->
+		 SELECT date(apply_date) as applyDate, COUNT(*) as count
+		 FROM farmer_certificate
+		 GROUP BY DATE_FORMAT(apply_date,'%Y-%m-%d')
 	</select> 
+	
+	
 	
 </mapper>

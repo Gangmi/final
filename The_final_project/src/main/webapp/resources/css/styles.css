@@ -79,7 +79,7 @@ input.form-control {
   border: 1px solid #f9243f; }
 
 .navbar-custom {
-  background: #222;
+  background: #C3E65A;
   height: 60px; }
 
 .navbar-header .navbar-brand {
@@ -91,7 +91,7 @@ input.form-control {
   padding-top: 18px; }
 
 .navbar-header .navbar-brand span {
-  color: #30a5ff; }
+  color:  #fff; }
 
 .navbar-toggle {
   background: rgba(255, 255, 255, 0.1);
@@ -785,12 +785,12 @@ a.label:hover, a.label:focus {
     width: 100%; } }
 .sidebar ul.nav a:hover, .sidebar ul.nav li.parent ul li a:hover {
   text-decoration: none;
-  background-color: #30a5ff;
+  background-color: #CFDF20;
   color: #fff; }
 
 .sidebar ul.nav .active a, .sidebar ul.nav li.parent a.active, .sidebar ul.nav .active > a:hover, .sidebar ul.nav li.parent a.active:hover, .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
   color: #fff;
-  background-color: #30a5ff; }
+  background-color:#CFDF20; }
 
 .sidebar ul.nav ul, .sidebar ul.nav ul li {
   list-style: none;

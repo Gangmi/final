@@ -61,6 +61,8 @@ public List<BoardVO> getPost(PagingVO vo);
 
 public List<BoardVO> adminChart(BoardVO vo);
 
+public BoardVO adminPieChart(BoardVO vo);
+
 
 
 }

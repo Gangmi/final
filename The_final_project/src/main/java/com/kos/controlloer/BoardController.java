@@ -717,12 +717,12 @@ public class BoardController {
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
 		int i=0;
 		for(String row:vo.allBoardList()) {   
-			System.out.println(row); 
+			
 			//게시판이름을 세팅한다.     
 			vo.setB_boardname(row);    
 			//세팅된 게시판에 있는 것들을 가져온다. 
 			Object rawboard =service.adminChart(vo);
-			System.out.println(rawboard); 
+			
 			//받아온 데이터가 있으면
 			if(rawboard!=null) {   
 				list.add(i,rawboard); 
@@ -734,6 +734,39 @@ public class BoardController {
 		}
 		return list;
 	} 
+	
+	
+	
+	//관리자페이지 조회수 차트 
+		@ResponseBody
+		@RequestMapping(value ="/adminPieChart.do", method = RequestMethod.POST)
+		public List adminPieChart(){
+			System.out.println("떳냐냐냐냔냐냐");
+			BoardVO vo = new BoardVO();
+			List list = new ArrayList();
+			//전체 게시판의 글들을 검색해서 index로 넘겨준다. 
+
+			//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
+			int i=0;
+			for(String row:vo.allBoardList()) {   
+
+				//게시판이름을 세팅한다.     
+				vo.setB_boardname(row);    
+				//세팅된 게시판에 있는 것들을 가져온다. 
+				Object rawboard =service.adminPieChart(vo);
+
+				//받아온 데이터가 있으면
+				if(rawboard!=null) {   
+					list.add(i,rawboard); 
+					i++;
+					//만약 없다면      
+				}else {   
+					System.out.println("오류");
+				}
+			}
+
+			return list;
+		} 
 
 }
 

@@ -263,11 +263,6 @@
 	  
 	</select>    
 	
-	<!-- 일별 조회수 쿼리 -->
-	<select id="searchView" parameterType="board" resultType="board"> 
-		SELECT DATE(regdate) AS date, sum(board_view) as view from ${b_boardname} GROUP BY date
-	</select>
-
 	<!-- 채택하기 -->
 	<update id="updateCheteck" parameterType="board">
 		update in_repl set is_selected=1 where replno=#{replno}
@@ -353,8 +348,40 @@ order by temp.regdate desc;
 	select f.board_view, m.nickname from ${b_boardname} as f join member as m on f.id=m.id where f.id=#{id} order by regdate desc
 	</select>
 	
+	<!-- 일별 조회수 쿼리 -->
 	<select id="adminChart" parameterType="board" resultType="board"> 
-      select date(regdate) as regdate, sum(board_view) as board_view from ${b_boardname} order by regdate
+      <!-- select date(regdate) as regdate, sum(board_view) as board_view from ${b_boardname} order by regdate -->
+   		<!-- SELECT DATE(regdate) AS regdate, sum(board_view) as boardView
+		FROM ${b_boardname}
+		GROUP BY DATE_FORMAT(regdate,'%Y-%m-%d') -->
+		SELECT a.date_ as regdate ,IFNULL((f.board_view),0) boardView
+		FROM(SELECT a.date_ymd date_ FROM (
+		        SELECT CURDATE() - INTERVAL (a.a + (10 * b.a) + (100 * c.a)) DAY as date_ymd FROM (
+		            SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+		            UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9
+		        ) AS a
+		        CROSS JOIN (
+		            SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+		            UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9
+		        ) AS b
+		        CROSS JOIN (
+		            SELECT 0 as a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+		            UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9
+		        ) AS c
+		    ) AS a
+		    WHERE 1 = 1
+		    AND a.date_ymd BETWEEN CONCAT(DATE_FORMAT(NOW(),'%Y-%m-'),'01') AND LAST_DAY(CONCAT(DATE_FORMAT(NOW(),'%Y-%m-'),'01'))
+		    ORDER BY a.date_ymd ASC
+		    )a  
+		    left outer join ${b_boardname} as f on DATE_FORMAT(f.regdate,'%Y-%m-%d')=a.date_
+		    group by a.date_
+		    order by a.date_
     </select>
+    
+    
+    
+    <select id="adminPieChart" parameterType="board" resultType="board"> 
+     select count(*) as boardView from ${b_boardname}
+     </select>
 
 </mapper>

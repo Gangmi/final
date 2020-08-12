@@ -496,13 +496,13 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardVO> adminChart(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return mybatis.selectList("adminChart", vo);
-	}   
-	
-	
-	public List<BoardVO> searchView(BoardVO vo){
-		return mybatis.selectList("searchView", vo);
 	}
-	
+
+	@Override
+	public BoardVO adminPieChart(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("adminPieChart", vo);
+	}   
 	 
 	 
 	
