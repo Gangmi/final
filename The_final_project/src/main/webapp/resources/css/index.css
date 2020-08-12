@@ -22,7 +22,9 @@
 
 /*인덱스의 게시판 표시 부분  */
  .upboards{
-	
+	margin-top: 30px;
+    height: 400px;
+    display: block;
 	
 } 
 

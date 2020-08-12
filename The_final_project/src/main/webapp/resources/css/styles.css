@@ -84,7 +84,7 @@ input.form-control {
 
 .navbar-header .navbar-brand {
   color: #fff;
-  font-size: 20px;
+  font-size: 25px;
   text-transform: uppercase;
   font-weight: 500;
   height: 60px;
@@ -878,7 +878,8 @@ h1.page-header {
 .easypiechart-panel {
   text-align: center;
   padding: 1px 0;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding-bottom: 25px; }
 
 .placeholder h2 {
   margin-bottom: 0px; }
@@ -1030,4 +1031,18 @@ p.back-link {
   text-align: center;
   margin-bottom: 20px;
   font-size: 12px;
+
   text-transform: uppercase; }
+
+.name{
+	margin-bottom: 10px;
+}
+
+.easypiechart canvas{
+	margin-top: 8px;
+}
+
+.easypiechart .percent{
+	margin-top: 24px;
+}
+

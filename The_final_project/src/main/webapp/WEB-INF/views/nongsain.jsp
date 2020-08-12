@@ -112,7 +112,8 @@ if (session.getAttribute("memberinfo") != null) {
 	
 	%>
 	<div class="container" id="board">
-	<%if(userid!=null){ %>소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button><%}else{%>
+	<%
+	if(!userid.equals("")){ %>소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button><%}else{%>
 	로그인 후 답변 가능합니다.
 	<%}	%>
 	

@@ -12,7 +12,7 @@ $(document).ready(function() {
 			google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(drawChart);
 
-			var a=[['data', 'free_board', 'tip_board', 'nongsain', 'parcel_board']];
+			var a=[['data', '자유게시판', '팁게시판', '농사in게시판', '분양게시판']];
 			for(var i=0; i<=data[0].length; i++){
 				a.push([data[0][i].regdate, data[0][i].boardView, data[1][i].boardView, data[2][i].boardView, data[3][i].boardView ])
 			}
@@ -21,7 +21,7 @@ $(document).ready(function() {
 				var data = google.visualization.arrayToDataTable(a);
 
 				var options = {
-						title: 'Company Performance',
+						title: '이번 달 일별 조회수',
 						curveType: 'function',
 						legend: { position: 'bottom' }
 				};
@@ -46,7 +46,7 @@ $(document).ready(function() {
 			google.charts.load('current', {'packages':['bar']});
 			google.charts.setOnLoadCallback(drawChart);
 
-			var a=[['applyDate', 'count']];
+			var a=[['신청날짜', '신청개수']];
 
 			for(var i=0; i<=data.length; i++){
 				a.push([data[i].applyDate, data[i].count])
@@ -57,8 +57,8 @@ $(document).ready(function() {
 
 				var options = {
 						chart: {
-							title: 'Company Performance',
-							subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+							title: '',
+							subtitle: '',
 						}
 				};
 
@@ -86,16 +86,16 @@ $(document).ready(function() {
 		      var a=[['Board', 'count']];
 		      
 		      
-		    	  a.push(['free_board',  data[0].boardView])
-		    	  a.push(['tip_board',  data[1].boardView])
-		    	  a.push(['nongsain',  data[2].boardView])
-		    	  a.push(['parcel_board',  data[3].boardView])
+		    	  a.push(['자유게시판',  data[0].boardView])
+		    	  a.push(['팁게시판',  data[1].boardView])
+		    	  a.push(['농사in게시판',  data[2].boardView])
+		    	  a.push(['분양게시판',  data[3].boardView])
 		      
 		      function drawChart() {
 		        var data = google.visualization.arrayToDataTable(a);
 
 		        var options = {
-		          title: 'My Daily Activities',
+		          title: '오늘 게시판 글 개수',
 		          is3D: true,
 		        };
 

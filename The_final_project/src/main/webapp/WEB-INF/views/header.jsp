@@ -82,9 +82,14 @@ width: 238px !important;
 						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
  						<li><a href="/admin.do">관리자</a></li>
  						</sec:authorize>
-					</ul></li>
+					</ul></li> 
+
+
 				<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 				<li><a href="/farm-map.do">제휴농장</a></li>
+				<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+ 				<li><a href="/admin.do">관리자</a></li>
+ 				</sec:authorize>
 			</ul>
 		</nav> 
 		<div id="mobile-menu-wrap"></div>
@@ -131,7 +136,7 @@ width: 238px !important;
 								<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 								<li><a href="/farm-map.do">제휴농장</a></li>
  								<sec:authorize access="hasAuthority('ROLE_ADMIN')">
- 								<li><a href="#">관리자</a></li>
+ 								<li><a href="/admin.do">관리자</a></li>
  								</sec:authorize>
 							</ul>
 						</nav>
