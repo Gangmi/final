@@ -147,8 +147,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	public void deleteAnswer(BoardVO vo) {
-		System.out.println(vo.getB_boardname() + " 서비스");
-		System.out.println(vo.getBoardno() + " 서비스");
+		
 		try {
 			dao.deleteAnswer(vo);
 		} catch (Exception e) { // TODO Auto-generated catch block

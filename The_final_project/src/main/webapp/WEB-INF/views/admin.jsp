@@ -44,7 +44,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>
+				
+				<a class="navbar-brand" href="#"><span>여름지기</span></a>
 				
 			</div>
 		</div>
@@ -70,11 +71,11 @@
 			
 			<li class="active"><a href="charts.html"><em
 					class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>
-			<li><a href="elements.html"><em class="fa fa-toggle-off">&nbsp;</em>
-					UI Elements</a></li>
+			<li><a href="/resources/admin-nexacro/index.html"><em class="fa fa-check-square-o">&nbsp;</em>
+					Smart Farm 승인페이지</a></li>
 			
-			<li><a href="index.do"><em class="fa fa-power-off">&nbsp;</em>
-					Logout</a></li>
+			<li><a href="index.do"><em class="fa fa-sign-out">&nbsp;</em>
+					메인페이지</a></li>
 		</ul>
 	</div>
 	<!--/.sidebar-->
@@ -277,167 +278,7 @@
 		
 		
 
-<!-- 
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						조회수,신청,검색 횟수
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle"
-								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 1
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 2
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 3
-											</a></li>
-										</ul>
-									</li>
-								</ul></li>
-						</ul>
-						<span
-							class="pull-right clickable panel-toggle panel-button-tab-left"><em
-							class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="pie-chart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Doughnut Chart
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle"
-								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 1
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 2
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 3
-											</a></li>
-										</ul>
-									</li>
-								</ul></li>
-						</ul>
-						<span
-							class="pull-right clickable panel-toggle panel-button-tab-left"><em
-							class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="doughnut-chart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		/.row
 
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Radar Chart
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle"
-								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 1
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 2
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 3
-											</a></li>
-										</ul>
-									</li>
-								</ul></li>
-						</ul>
-						<span
-							class="pull-right clickable panel-toggle panel-button-tab-left"><em
-							class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="radar-chart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Polar Area Chart
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle"
-								data-toggle="dropdown" href="#"> <em class="fa fa-cogs"></em>
-							</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 1
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 2
-											</a></li>
-											<li class="divider"></li>
-											<li><a href="#"> <em class="fa fa-cog"></em>
-													Settings 3
-											</a></li>
-										</ul>
-									</li>
-								</ul></li>
-						</ul>
-						<span
-							class="pull-right clickable panel-toggle panel-button-tab-left"><em
-							class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="polar-area-chart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12">
-				<p class="back-link">
-					Lumino Theme by <a href="https://www.medialoot.com">Medialoot</a>
-				</p>
-			</div>
-		</div> -->
-		<!--/.row-->
 	</div>
 	<!--/.main-->
 

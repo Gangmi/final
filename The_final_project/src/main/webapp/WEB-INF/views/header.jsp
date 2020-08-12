@@ -79,12 +79,14 @@ width: 238px !important;
 						<li><a href="/callboard.do?b_boardname=tip_board">tip 게시판</a></li>
 						<li><a href="/callboard.do?b_boardname=parcel_board">분양게시판</a></li>
 						<li><a href="/callboard.do?b_boardname=nongsain">농사in게시판</a></li>
-						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
- 						<li><a href="/admin.do">관리자</a></li>
- 						</sec:authorize>
+						
 					</ul></li>
+					
 				<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 				<li><a href="/farm-map.do">제휴농장</a></li>
+				<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+ 				<li><a href="/admin.do">관리자</a></li>
+ 				</sec:authorize>
 			</ul>
 		</nav> 
 		<div id="mobile-menu-wrap"></div>
@@ -131,7 +133,7 @@ width: 238px !important;
 								<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 								<li><a href="/farm-map.do">제휴농장</a></li>
  								<sec:authorize access="hasAuthority('ROLE_ADMIN')">
- 								<li><a href="#">관리자</a></li>
+ 								<li><a href="/admin.do">관리자</a></li>
  								</sec:authorize>
 							</ul>
 						</nav>
