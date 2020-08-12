@@ -67,7 +67,7 @@ public class SmartFarmController {
 		}catch (Exception e) {
 		
 		}
-		String path = request.getRealPath("/new");
+		String path = request.getSession().getServletContext().getRealPath("/new");
 		File folder = new File(path);
 		File sensordata = new File(path+"/sensor"+deviceVO.getDevicekey()+".txt");
 		if (!folder.exists()) {
@@ -109,7 +109,7 @@ public class SmartFarmController {
 		OutputStream temp;
 		try {
 			//map 에 저장되어있는 소켓을 deviceke로 찾아 데이터를 전송한다.
-			temp = ListenerThread.getInstance(request.getRealPath("/new")).getMapSock().get(deviceVO.getDevicekey()).getOutputStream();
+			temp = ListenerThread.getInstance(request.getSession().getServletContext().getRealPath("/new")).getMapSock().get(deviceVO.getDevicekey()).getOutputStream();
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(temp));
 			bw.write("/give water \r\n");
 			bw.flush();
