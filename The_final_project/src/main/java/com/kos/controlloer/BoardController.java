@@ -741,7 +741,7 @@ public class BoardController {
 		@ResponseBody
 		@RequestMapping(value ="/adminPieChart.do", method = RequestMethod.POST)
 		public List adminPieChart(){
-			System.out.println("떳냐냐냐냔냐냐");
+			
 			BoardVO vo = new BoardVO();
 			List list = new ArrayList();
 			//전체 게시판의 글들을 검색해서 index로 넘겨준다. 

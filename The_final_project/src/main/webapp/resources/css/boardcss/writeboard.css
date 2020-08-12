@@ -50,3 +50,12 @@
 	color: white;
 	
 }
+
+#board{
+	
+	padding: 10px;
+}
+
+#answer{
+	margin-top: 0px !important;
+}
