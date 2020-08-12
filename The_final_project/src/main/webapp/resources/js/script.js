@@ -105,10 +105,10 @@ $(function () {
     $('#soil_humidity').each(function (index, item) {
       let params = {
         initialValue: 10,
-        higherValue: 100,
+        higherValue: 1000,
         title: '토양 습도',
-        subtitle: '10 %',
-        tick: [0,10,20,30,40,50,60,70,80,90,100],
+        subtitle: '10',
+        tick: [0,100,200,300,400,500,600,700,800,900,1000],
         startValue: 0
       };
       let gauge = new GaugeChart(item, params);
@@ -146,7 +146,7 @@ $(function () {
 			        let randomNum = parseFloat(jsonData.soil_humidity);
 			        let gaugeElement = $(gauge._$element[0]);
 			
-			        gaugeElement.find('.dxg-title text').last().html(`${randomNum} %`);
+			        gaugeElement.find('.dxg-title text').last().html(`${randomNum}`);
 			        gauge.value(randomNum);
       			});
     		}
