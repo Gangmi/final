@@ -235,7 +235,7 @@ public class BoardController {
 
 	@RequestMapping("/index.do")
 	public ModelAndView getAllBoardList(ModelAndView mv,HttpServletRequest request) {
-		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
+		ListenerThread lt= ListenerThread.getInstance(request.getSession().getServletContext().getRealPath("/new"));
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
 		BoardVO vo = new BoardVO();
 		vo.setNowpage(1);
@@ -382,8 +382,7 @@ public class BoardController {
 						// 파일가져오기
 						byte[] bytes = file.getBytes();
 						// 저장경로 지정
-						String uploadPath = req.getRealPath("/")
-								+ "resources\\uploadimage";
+						String uploadPath = req.getSession().getServletContext().getRealPath("/resources/uploadimage");
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
@@ -407,7 +406,7 @@ public class BoardController {
 
 						printWriter = resp.getWriter();
 						resp.setContentType("text/html");
-						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
+						String fileUrl = req.getContextPath() + "/resources/uploadimage/" + fileName;
 
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
@@ -631,7 +630,6 @@ public class BoardController {
 	//내가 쓴 글 보기
 	@RequestMapping("/writerview.do")
 	public 	ModelAndView writerview(ModelAndView mv,HttpServletRequest request, BoardVO vo) {
-		ListenerThread lt= ListenerThread.getInstance(request.getRealPath("/new"));
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
 		System.out.println(vo.getId());
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
