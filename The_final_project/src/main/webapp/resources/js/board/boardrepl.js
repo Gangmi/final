@@ -94,7 +94,7 @@ $(document).ready(function() {
 				html+="        <div class='contain comment-widgets' id="+data.replno+">";
 				html+="            <!-- Comment Row -->";
 				html+="            <div class='d-flex flex-row comment-row m-t-0'>";
-				html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' class='rounded-circle'></div>";
+				html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' height='40' class='rounded-circle'></div>";
 				html+="                <div class='comment-text w-100'>";
 				html+="                    <p class='nickname' >"+data.nickname+"</p> ";
 				html+=" 						<textarea id=repl"+data.replno+" class='form-control ml-1 shadow-none textarea'>"+data.contents+"</textarea>";
@@ -166,7 +166,7 @@ $(document).ready(function() {
 				html+="        <div class='contain comment-widgets' id="+data.replno+">";
 				html+="            <!-- Comment Row -->";
 				html+="            <div class='d-flex flex-row comment-row m-t-0'>";
-				html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' class='rounded-circle'></div>";
+				html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' height='40' class='rounded-circle'></div>";
 				html+="                <div class='comment-text w-100'>";
 				html+="                    <p class='nickname' >"+data.nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data.contents+" </span>";
 				html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data.regdate+"</span> <button type='button' id=modify"+data.replno+" class='modifyRepl btn btn-cyan btn-sm'>수정</button> <button type='button' id=del"+data.replno+" class='delRepl btn btn-cyan btn-sm'>삭제</button></div>";
@@ -198,7 +198,7 @@ $(document).ready(function() {
 						
 						var image="";
 						if(data.imagename!=""){
-							image+=data.imagename;
+							image+=data[i].imagename;
 						}else{
 							image+="my_page.png";
 						}
@@ -206,7 +206,7 @@ $(document).ready(function() {
 						html+="        <div class='contain comment-widgets' id="+data[i].replno+">";
 						html+="            <!-- Comment Row -->";
 						html+="            <div class='d-flex flex-row comment-row m-t-0'>";
-						html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' class='rounded-circle'></div>";
+						html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' height='40' class='rounded-circle'></div>";
 						html+="                <div class='comment-text w-100'>";
 						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data[i].contents+" </span>";
 						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span> ";
@@ -246,7 +246,7 @@ $(document).ready(function() {
 						
 						var image="";
 						if(data.imagename!=""){
-							image+=data.imagename;
+							image+=data[i].imagename;
 						}else{
 							image+="my_page.png";
 						}
@@ -254,7 +254,7 @@ $(document).ready(function() {
 						html+="        <div class='contain comment-widgets' id="+data[i].replno+">";
 						html+="            <!-- Comment Row -->";
 						html+="            <div class='d-flex flex-row comment-row m-t-0'>";
-						html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' class='rounded-circle'></div>";
+						html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' height='40' class='rounded-circle'></div>";
 						html+="                <div class='comment-text w-100'>";
 						html+="                    <p class='nickname' >"+data[i].nickname+"</p> <span style='white-space: pre-line;' class='m-b-15 d-block'>"+data[i].contents+" </span>";
 						html+="                    <div class='comment-footer'> <span class='text-muted float-right'>"+data[i].regdate+"</span> ";
@@ -292,7 +292,7 @@ $(document).ready(function() {
 					html+="        <div class='comment-widgets' >";
 					html+="            <!-- Comment Row -->";
 					html+="            <div class='d-flex flex-row comment-row m-t-0'>";
-					html+="                <div class='p-2'><img src='/resources/profileimg/"+image+"' alt='user' width='40' class='rounded-circle'></div>";
+					html+="                <div class='p-2'></div>";
 					html+="                <div class='comment-text w-100'>";
 					html+="                    <h6 class='nickname font-medium'></h6> <span class='m-b-15 d-block'>등록된 댓글이 없습니다.</span>";
 					html+="                    <div class='comment-footer'> <span class='text-muted float-right'></span>";

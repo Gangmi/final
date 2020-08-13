@@ -144,3 +144,8 @@ body {
 .question{
 	display: inline;
 }
+.detgulImage{
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+}
