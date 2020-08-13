@@ -114,7 +114,7 @@
   crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-	var URL = "ws://192.168.0.50:8080/chatroom/";
+	var URL = "wss://192.168.0.50/chatroom/";
 	var webSocket = new WebSocket(URL+"${roomid}"+"/"+"${memberinfo.id}");
 
 

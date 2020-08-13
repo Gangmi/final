@@ -141,7 +141,7 @@
 	<sec:authorize access="isAuthenticated()">
 	<script type="text/javascript">
 		var count = 0;
-		var URL = "ws://192.168.0.50:8080/chat/"
+		var URL = "wss://192.168.0.50/chat/"
 		var webSocket = new WebSocket(URL+"${memberinfo.id}");
 		console.log(webSocket);
 		webSocket.onopen = function(e) {

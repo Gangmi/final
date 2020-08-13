@@ -43,8 +43,8 @@
 				</div>
 	
 				<div class="btn2">
-					<button type="submit"><img src="/resources/img/1515151131313.png">
-						수확하기
+					<button type="button" id="givelight"><img src="/resources/img/1515151131313.png">
+						라이트 켜기/끄기
 					</button>
 				</div>
 			</div>     

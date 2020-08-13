@@ -193,7 +193,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Transactional(rollbackFor={Exception.class})
-	public void deleteBoard(BoardVO vo) throws Exception {
+	public void deleteBoard(BoardVO vo,String filePath_) throws Exception {
 		
 		// mybatis.getSqlSessionFactory().openSession(false);
 	
@@ -238,7 +238,7 @@ public class BoardDaoImpl implements BoardDao {
 		if (imginfo.size() > 0) {
 			for (UploadImageVO row : imginfo) {
 				
-				String filePath = "D:\\springwork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\The_final_project\\resources\\uploadimage\\";
+				String filePath = filePath_;
 
 				File deleteFile = new File(filePath+row.getImgName());
 
@@ -325,7 +325,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	
 	@Transactional(rollbackFor={Exception.class})
-	public void deleteAnswer(BoardVO vo) throws Exception {
+	public void deleteAnswer(BoardVO vo,String filePath_) throws Exception {
 		
 		// mybatis.getSqlSessionFactory().openSession(false);
 	
@@ -345,7 +345,7 @@ public class BoardDaoImpl implements BoardDao {
 		if (imginfo.size() > 0) {
 			for (UploadImageVO row : imginfo) {
 				
-				String filePath = "D:\\springwork\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\The_final_project\\resources\\uploadimage\\";
+				String filePath = filePath_;
 
 				File deleteFile = new File(filePath+row.getImgName());
 

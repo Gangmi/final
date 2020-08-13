@@ -121,4 +121,29 @@ public class SmartFarmController {
 
 		return "물준다";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/givelight.do",produces = "application/text; charset=utf8")
+	public String giveLight(HttpSession session,HttpServletRequest request) {
+		//member 에 해당하는 devicekey를 가져온다.
+		MemberVO memberVo=(MemberVO) session.getAttribute("memberinfo");
+		SmartFarmDeviceVO deviceVO=new SmartFarmDeviceVO();
+		deviceVO.setId(memberVo.getId());
+		deviceVO=smartFarmDeviceService.seletDevice(deviceVO, 0);
+		//물을 주는 명령어를 전송한다.
+		OutputStream temp;
+		try {
+			//map 에 저장되어있는 소켓을 deviceke로 찾아 데이터를 전송한다.
+			temp = ListenerThread.getInstance(request.getSession().getServletContext().getRealPath("/new")).getMapSock().get(deviceVO.getDevicekey()).getOutputStream();
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(temp));
+			bw.write("/give light \r\n");
+			bw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		return "light";
+	}
 }
