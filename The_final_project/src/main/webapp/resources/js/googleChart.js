@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 //	$("#commentInsertBtn").click(function(){
 	//일별 조회수 구글차트 ajax
-	$.ajax({
+/*	$.ajax({
 		type:'POST',
 		url : "/adminChart.do",
 		success : function(data){  
@@ -30,6 +30,54 @@ $(document).ready(function() {
 
 				chart.draw(data, options);
 			}
+		},
+		error:function(request,status,error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});*/
+	
+	
+	$.ajax({
+		type:'POST',
+		url : "/adminChart.do",
+		success : function(data){  
+
+			 google.charts.load('current', {'packages':['line']});
+		     google.charts.setOnLoadCallback(drawChart);
+
+			var a=[];
+
+			for(var i=0; i<=data[0].length; i++){
+				
+				a.push([data[0][i].regdate, data[0][i].boardView, data[1][i].boardView, data[2][i].boardView, data[3][i].boardView ]);
+			}
+ 
+		
+			 function drawChart() {
+
+			      var data = new google.visualization.DataTable();
+			      data.addColumn('string', '날짜');
+			      data.addColumn('number', '자유게시판');
+			      data.addColumn('number', '팁게시판');
+			      data.addColumn('number', '농사in게시판');
+			      data.addColumn('number', '분양게시판');
+			      
+			      data.addRows(a);
+
+			        var options = {
+			          chart: {
+			            title: '이번 달 일별 조회수',
+			            subtitle: ''
+			          }
+			       
+			        };
+
+			        var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+			        chart.draw(data, google.charts.Line.convertOptions(options));
+			      }
+			 
+				
 		},
 		error:function(request,status,error){
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

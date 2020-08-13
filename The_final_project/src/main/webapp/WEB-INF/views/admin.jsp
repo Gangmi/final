@@ -179,7 +179,7 @@
 							<!-- <canvas class="main-chart" id="line-chart" height="200"
 								width="600"></canvas> -->
 
-							<div class="col-lg-12" id="curve_chart"
+							<div class="col-lg-12" id="linechart_material"
 								style="width: 100%; height: 500px"></div>
 
 						</div>

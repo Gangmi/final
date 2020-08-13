@@ -28,20 +28,17 @@ public class BoardDaoImpl implements BoardDao {
 
       // 해당 게시판 전체 게시물 갯수 구하기
       int total = mybatis.selectOne("board.getBoardCount", vo);
-      System.out.println("토탈갯수"+total);
+     
       PagingVO page = new PagingVO(total, vo.getNowpage(), vo.getViewing_count());
       if(vo.getSearchword()!=null) {
-         System.out.println("검색어로 조회 들어옴");
+        
          page.setSearchword(vo.getSearchword());
       }
-      System.out.println(page.getSearchword());
-      System.out.println(page.getLastPage());
+     
 
       // 현재페이지와 보여지는 갯수에따른 게시물 검색(hashmap)
       page.setBoardname(vo.getB_boardname());
       
-      System.out.println(page.getStart()+"시작페이지~~~~~~~~~~~");
-      System.out.println(page.getEnd());
       
       List<BoardVO> result = mybatis.selectList("board.getBoardList", page);
 
@@ -83,8 +80,7 @@ public class BoardDaoImpl implements BoardDao {
          mybatis.update("notemp", hs);
       }
       // 글 저장
-      System.out.println(vo.getTitle());
-      System.out.println(vo.getContents());
+    
       if(vo.getB_boardname().equals("in_repl")) {
          mybatis.insert("board.writeAnswer", vo);
       }else {
@@ -139,10 +135,7 @@ public class BoardDaoImpl implements BoardDao {
 	public void storeImage(UploadImageVO imgvo) {
 		HashMap hs = new HashMap();
 		hs.put("boardname", imgvo.getBoardname());
-		System.out.println(imgvo.getBoardname()+"이미지저장");
-		System.out.println(imgvo.getBoardno()+"게시글번호");
-		System.out.println(imgvo.getWriteno()+"다음글번호");
-		System.out.println(imgvo.getImgName()+"이미지이름");
+		
 		// 만약 글을 새로쓰는것이면, 다음에 해당 게시판에 들어갈 글번호 부르기
 		if (imgvo.getWriteno() == 0) {
 			int writeno = mybatis.selectOne("board.getNextNum", hs);
@@ -203,10 +196,7 @@ public class BoardDaoImpl implements BoardDao {
 	public void deleteBoard(BoardVO vo) throws Exception {
 		
 		// mybatis.getSqlSessionFactory().openSession(false);
-		System.out.println(vo.getB_boardname()+" dao");
-			
-		
-		System.out.println("=============delete 시작===========");
+	
 		String rawboardname = vo.getB_boardname();
 		// 댓글 검색 및 삭제를 위해 그에 맞는 이름으로 boardname을 변경
 		ReplNameVO re = new ReplNameVO(vo);
@@ -288,9 +278,7 @@ public class BoardDaoImpl implements BoardDao {
 	public int detectLikeOrBad(BoardVO vo) {
 		vo.setB_boardname((BoardVO.getBoardnoByBoardname(vo)));
 		
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
-		System.out.println(vo.getId());
+		
 		int result=mybatis.selectOne("detectLikeOrBad",vo);
 			
 		return result;
@@ -340,12 +328,8 @@ public class BoardDaoImpl implements BoardDao {
 	public void deleteAnswer(BoardVO vo) throws Exception {
 		
 		// mybatis.getSqlSessionFactory().openSession(false);
-		System.out.println(vo.getB_boardname()+" dao");
-		System.out.println(vo.getBoardno());
-		System.out.println(vo.getReplno());
-
+	
 		// 글을 삭제
-		System.out.println(vo.getB_boardname()+"  dao!");
 		int deletecon = mybatis.delete("deleteAnswer", vo);
 		// 만약 글이 삭제되지 않으면
 //		if (deletecon < 1) {
