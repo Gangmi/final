@@ -69,11 +69,12 @@
 		
 		<ul class="nav menu">
 			
-			<li class="active"><a href="charts.html"><em
+			<li class="active"><a href="/admin.do"><em
 					class="fa fa-bar-chart">&nbsp;</em> Charts</a></li>
 			<li><a href="/resources/admin-nexacro/index.html"><em class="fa fa-check-square-o">&nbsp;</em>
 					Smart Farm 승인페이지</a></li>
-			
+			<li><a href="/farmer-application-manage2.do"><em class="fa fa-check-square-o">&nbsp;</em>
+					농부권한 승인페이지</a></li>
 			<li><a href="index.do"><em class="fa fa-sign-out">&nbsp;</em>
 					메인페이지</a></li>
 		</ul>
