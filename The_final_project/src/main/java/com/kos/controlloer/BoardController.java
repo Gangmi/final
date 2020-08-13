@@ -485,9 +485,9 @@ public class BoardController {
 
 	//글삭제시
 	@RequestMapping("/deleteboard.do")
-	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo) {
+	public ModelAndView deleteboard(ModelAndView mv ,BoardVO vo,HttpServletRequest req) {
 
-		service.deleteBoard(vo);
+		service.deleteBoard(vo,req.getSession().getServletContext().getRealPath("/resources/uploadimage/"));
 
 		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
@@ -496,11 +496,11 @@ public class BoardController {
 
 	//답글 삭제
 	@RequestMapping("/deleteAnswer.do")
-	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo) {
+	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo,HttpServletRequest req) {
 
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
-		service.deleteAnswer(vo);
+		service.deleteAnswer(vo,req.getSession().getServletContext().getRealPath("/resources/uploadimage/"));
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
 		return mv;
 	}
@@ -545,7 +545,7 @@ public class BoardController {
 		//먼저 등록된 프사가 있는지 확인하고 삭제하는 서비스로 옮김
 		//사진이 있으면 true 
 		//없으면 false
-		boolean isthere=service.isThereProfile(vo);
+		boolean isthere=service.isThereProfile(vo,req.getSession().getServletContext().getRealPath("/resources/profileimg/"));
 		mv.setViewName("updateAccount");
 
 
@@ -562,7 +562,7 @@ public class BoardController {
 						byte[] bytes = file.getBytes();
 						// 저장경로 지정
 						String uploadPath = req.getRealPath("/")
-								+ "resources\\profileimg";
+								+ "resources/profileimg";
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
@@ -585,7 +585,7 @@ public class BoardController {
 
 
 
-						String fileUrl = req.getContextPath() + "\\resources\\uploadimage\\" + fileName;
+						String fileUrl = req.getContextPath() + "/resources/uploadimage/" + fileName;
 						System.out.println(fileUrl);
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
