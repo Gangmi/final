@@ -58,7 +58,7 @@
 					<div class="col-lg-4">
 						<div class="ft-about">
 							<div class="logo">
-								<a href="#"> <img src="/resources/img/logo3.png" alt="">
+								<a href="#"> <img src="/resources/img/footerLogo.jpg" alt="">
 								</a>
 							</div>
 							

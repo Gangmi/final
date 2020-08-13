@@ -84,7 +84,7 @@ public class ApplicationController {
 	 * 농부 권한 관리자페이지
 	 * farmer-application-manage.jsp
 	 */
-	@RequestMapping("/farmer-application-manage.do")
+	@RequestMapping("/farmer-application-manage2.do")
 	public String pageview(
 			@RequestParam(value = "nowpage", required = false) String nowPage,
 			@RequestParam(value = "cntPerPage", required = false) String cntPerPage,
@@ -109,7 +109,7 @@ public class ApplicationController {
 		mo.addAttribute("applicationlist", list);
 		mo.addAttribute("paging", pagingVO);
 
-		return"farmer-application-manage";
+		return"farmer-application-manage2";
 	}
 	/*
 	 * 농부허가관리(관리자 페이지)

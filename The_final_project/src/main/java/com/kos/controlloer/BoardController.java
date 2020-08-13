@@ -47,13 +47,13 @@ public class BoardController {
 	@RequestMapping("/callboard.do")
 	public ModelAndView getBoardList(ModelAndView mv, BoardVO vo) {
 		// 게시판 글을 읽어오기 위한 코딩
-		System.out.println(vo.getSearchword()+"emfdjdha$$$$$$$$$$$$$$$$$$$$$$$$");
+		
 		List<BoardVO> result = service.getBoardList(vo);
 
 		//검색어 검색이 있다면
 
 		if(!vo.getSearchword().equals("")) {
-			System.out.println("검색어가 있다.");
+			
 			mv.addObject("searchword", vo.getSearchword());
 		}
 
@@ -93,12 +93,11 @@ public class BoardController {
 	public ModelAndView writeBoard(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
-		System.out.println(vo.getTitle() + "제목");
-		System.out.println(vo.getContents() + "내용##############");
+		
 		// 임시로 아이디 지정 ->나중에 지우기
 
 		// vo.setId("kim");
-		System.out.println(vo.getB_boardname());
+		
 		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
 		if (!info.getId().isEmpty()) {
 			vo.setId(info.getId());
@@ -110,12 +109,12 @@ public class BoardController {
 			return mv;
 		}
 
-		System.out.println(vo.getB_boardname());
+		
 
 		// 사용자가 작성한 글 및 정보 전달
 
 		service.writeBoard(vo);
-		System.out.println("입력하고 돌아옴");
+	
 
 		// 넘기기
 		mv.setViewName("redirect:/callboard.do?b_boardname=" + vo.getB_boardname());
@@ -157,9 +156,7 @@ public class BoardController {
 		//      if(vo.getB_boardname()==null) {
 		//         vo.setB_boardname("free_board");
 		//      }
-		System.out.println("들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
+		
 
 		BoardVO result = service.viewBoard(vo);
 
@@ -168,8 +165,8 @@ public class BoardController {
 		// 닉네임 추가
 		result.setNickname(vo.getNickname());
 
-		// System.out.println(result.getTitle()+"######################");
-		System.out.println(result.getBoardView() + "뷰카운트");
+		
+		
 		// 다음 페이지 지정
 		if(vo.getB_boardname().equals("nongsain")) {
 			mv.setViewName("nongsain");
@@ -181,7 +178,7 @@ public class BoardController {
 		//답글 리스트 보냄
 		mv.addObject("Answer",Answer);
 		mv.addObject("AnswerCheteck",AnswerCheteck);
-		System.out.println(AnswerCheteck+" 왜 못가져오냐!!!");
+	
 		return mv;
 
 	}
@@ -213,11 +210,7 @@ public class BoardController {
 	//글수정 완료 버튼이 눌렸을때
 	@RequestMapping("/updateboard.do")
 	public ModelAndView updateBoard(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
-		System.out.println("updateboard 들어옴");
-		System.out.println(vo.getB_boardname());
-		System.out.println(vo.getBoardno());
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContents());
+	
 
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateBoard(vo);
@@ -386,7 +379,7 @@ public class BoardController {
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
-						System.out.println(uploadPath);
+						
 
 						// 디렉토리 만듦
 						File uploadFile = new File(uploadPath);
@@ -509,8 +502,7 @@ public class BoardController {
 	//글수정 완료 버튼이 눌렸을때
 	@RequestMapping("/updateAnswer.do")
 	public ModelAndView updateAnswer(ModelAndView mv, BoardVO vo,HttpServletResponse response) throws IOException {
-		System.out.println("updateAnswer 들어옴");
-
+		
 		//수정된 내용으로 게시판 업데이트 쿼리 날리기
 		int result = service.updateAnswer(vo);
 
@@ -521,7 +513,7 @@ public class BoardController {
 			out.println("<script>alert('수정이 완료 되었습니다.'); </script>");
 		}
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
-		System.out.println("수정버튼 누르기이벤트 완료");
+		
 		return mv;
 	}
 
@@ -531,7 +523,7 @@ public class BoardController {
 	@ResponseBody
 	public ModelAndView profileup(ModelAndView mv ,HttpServletRequest req, HttpServletResponse resp, MultipartHttpServletRequest multiFile,
 			UploadImageVO vo, HttpSession session) throws Exception {
-		System.out.println("프로필 업 들어옴");
+		
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
 		OutputStream out = null;
@@ -566,7 +558,7 @@ public class BoardController {
 						// String uploadPath =
 						// "C:\\Users\\Canon\\Documents\\GitHub\\final\\The_final_project\\src\\main\\webapp\\resources\\uploadimage";
 
-						System.out.println(uploadPath);
+					
 						// 디렉토리 만듦
 						File uploadFile = new File(uploadPath);
 
@@ -585,8 +577,10 @@ public class BoardController {
 
 
 
+
 						String fileUrl = req.getContextPath() + "/resources/uploadimage/" + fileName;
 						System.out.println(fileUrl);
+
 						// 이미지 파일의 상태를 저장하기위한 service 호출 부분
 
 						// 각 게시판에 따라서 분기를 나눔
@@ -631,15 +625,15 @@ public class BoardController {
 	@RequestMapping("/writerview.do")
 	public 	ModelAndView writerview(ModelAndView mv,HttpServletRequest request, BoardVO vo) {
 		//전체 게시판의 글들을 검색해서 index로 넘겨준다.
-		System.out.println(vo.getId());
+		
 		//모든 게시판의 db명을 가져와서 반복문으로 돌려 최근 10개의 게시물을 가져온다.
 		for(String row:vo.allBoardList()) {  
-			System.out.println(row);
+			
 			//게시판이름을 세팅한다.     
 			vo.setB_boardname(row);    
 			//세팅된 게시판에 있는 것들을 가져온다. 
 			Object rawboard =service.writerview(vo);
-			System.out.println(rawboard); 
+			
 			//받아온 데이터가 있으면
 			if(rawboard!=null) {   
 				mv.addObject(row,rawboard);  

@@ -151,7 +151,7 @@ String profile=(String)session.getAttribute("profileimg");
                     </div>
                 </div>
                 <div class="p-2">
-                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea id="comment" name="contents"  class="form-control ml-1 shadow-none textarea"></textarea></div>
+                    <div class="d-flex flex-row align-items-start"><img class="detgulImage"  src="/resources/profileimg/<%if(result.getImagename()!=""){%><%=result.getImagename()%><%}else{%>my_page.png<%}%>"/><textarea id="comment" name="contents"  class="form-control ml-1 shadow-none textarea"></textarea></div>
                     <div class="mt-2 text-right"><button id="commentInsertBtn" name="commentInsertBtn" class="btn btn-primary btn-sm shadow-none" type="button">댓글쓰기</button></div>
                 </div>
             </div>
