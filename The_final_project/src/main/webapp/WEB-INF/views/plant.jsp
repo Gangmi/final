@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Plant</title>
+<title>신기한 식물사전</title>
 <!-- css -->
 <link rel="stylesheet" href="/resources/css/plant.css" type="text/css">
 <!-- CSS , JS -->
