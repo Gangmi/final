@@ -71,11 +71,13 @@ if (session.getAttribute("memberinfo") != null) {
 				</div>
 			</div>
 			<!--글제목부분  -->
-			<div class="" id="title">				
+			<div class="nongsaintitle" id="title">				
 				<h2>Q     <%=result.getTitle()%></h2>
 				<input type="hidden" id="writer" value="<%=result.getId()%>">
-				<p class="nick"><%=result.getNickname()%></p>
-				<p class="regdate"><%=result.getRegdate()%></p>
+				<div class="nongsaAnswer">
+					<p class="nick"><img class="detgulImage"  src="/resources/profileimg/<%if(result.getImagename()!=""){%><%=result.getImagename()%><%}else{%>my_page.png<%}%>"/>&nbsp;&nbsp;&nbsp;<%=result.getNickname()%></p>
+					<p class="regdate"><%=result.getRegdate()%></p>
+				</div>
 
 			</div>
 
@@ -173,9 +175,10 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<h2>A      </h2>
 				<input type="hidden" id="writer" value="<%=cheteckAnswer.getId()%>">
-				<p class="nick"><%=cheteckAnswer.getNickname()%></p>
-				<p class="regdate"><%=cheteckAnswer.getRegdate()%></p>
-
+				<div class="nongsaAnswer">
+					<p class="nick"><img class="detgulImage"  src="/resources/profileimg/<%if(cheteckAnswer.getImagename()!=""){%><%=cheteckAnswer.getImagename()%><%}else{%>my_page.png<%}%>"/>&nbsp;&nbsp;&nbsp;<%=cheteckAnswer.getNickname()%></p>
+					<p class="regdate"><%=cheteckAnswer.getRegdate()%></p>
+				</div>
 			</div>
 			<!--글내용  -->
 			<div class=container id=contents>
@@ -225,7 +228,8 @@ if (session.getAttribute("memberinfo") != null) {
 
 				<h2>A      </h2>
 				<input type="hidden" id="writer" value="<%=vo.getId()%>">
-				<p class="nick"><%=vo.getNickname()%></p>
+				<div  class="nongsaAnswer"></div>
+				<p class="nick"><img class="detgulImage"  src="/resources/profileimg/<%if(vo.getImagename()!=""){%><%=vo.getImagename()%><%}else{%>my_page.png<%}%>"/>&nbsp;&nbsp;&nbsp;<%=vo.getNickname()%></p>
 				<p class="regdate"><%=vo.getRegdate()%></p>
 
 			</div>

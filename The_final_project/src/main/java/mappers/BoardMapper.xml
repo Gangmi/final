@@ -49,8 +49,9 @@
       <choose>
          <when test="b_boardname eq 'nongsain'.toString()">
             select
-            boardno,title,contents,regdate,id,board_view,seleted,select_date
-            from ${b_boardname} where boardno = ${boardno}
+            b.boardno,b.title,b.contents,b.regdate,b.id,b.board_view,b.seleted,b.select_date,m.imagename
+            from ${b_boardname} as b left outer join memberimg as m on b.id=m.id where boardno = ${boardno}
+
 
          </when>
 
@@ -227,13 +228,22 @@
    <select id="AnswerList" parameterType="board" resultType="board">
    <!-- select * from in_repl where boardno = ${boardno} -->
 
-   select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
+   <!-- select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
    in_repl re INNER JOIN member me
    on re.id = me.id
-   where boardno = ${boardno} and is_selected=0
+   where boardno = ${boardno} and is_selected=0 -->
+   
+   
+   select replno,boardno,b.id,contents,b.regdate,is_selected,nickname,imagename
+    from
+		(select re.replno as replno,re.boardno as boardno,re.id as id,re.contents as contents,re.regdate as regdate,re.is_selected as is_selected,me.nickname as nickname from 
+   		in_repl re INNER JOIN member me
+   		on re.id = me.id
+   		where boardno = ${boardno} and is_selected=0)
+   as b left outer join memberimg as m on b.id=m.id;
    
    </select>
-      
+
 
       
    <insert id="insertprofile" parameterType="img">
