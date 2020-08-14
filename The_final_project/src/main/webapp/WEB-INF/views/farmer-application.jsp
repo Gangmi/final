@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="/resources/css/nongbu/nongbuApply.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>농부 신청</title>
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>

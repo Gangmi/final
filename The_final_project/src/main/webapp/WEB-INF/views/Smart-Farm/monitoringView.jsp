@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>  </title>
+    <title>나의 스마트 팜 </title>
     
     <link rel="stylesheet" href="/resources/css/Smart-Farm/style.css">
    	

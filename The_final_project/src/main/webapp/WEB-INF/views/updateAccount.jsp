@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보 수정</title>
+<title>회원정보 수정</title>
 <style type="text/css">
 
 
@@ -94,7 +94,7 @@ margin-top: 20px;
 	<jsp:include page="./header.jsp"/>
 	
 	<div class="formdiv">
-	<h3>회원 정보 수정</h3>
+	<h3>회원정보 수정</h3>
 
 	
 	<div class="updateprofile">

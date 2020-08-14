@@ -66,7 +66,7 @@
 						<p class="plantcate"><%=vo.getPlantcate()%></p>
 					</div>
 				</div>
-				<%
+				<% 
 					}
 				%>
 

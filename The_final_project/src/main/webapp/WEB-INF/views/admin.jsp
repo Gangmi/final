@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>admin</title>
+<title>관리자 페이지</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="/resources/css/font-awesome.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/resources/css/jquery-ui.min.css"
 	type="text/css">
 
-
+ 
 
 <!-- 구글 그래프 스크립트 -->
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
@@ -45,7 +45,7 @@
 						class="icon-bar"></span>
 				</button>
 				
-				<a class="navbar-brand" href="#"><span>여름지기</span></a>
+				<a class="navbar-brand" href="/index.do"><span>여름지기</span></a>
 				
 			</div>
 		</div>

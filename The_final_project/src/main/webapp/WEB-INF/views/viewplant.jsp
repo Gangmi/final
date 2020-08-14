@@ -7,7 +7,7 @@
 <html>  
 <head> 
 <meta charset="UTF-8">
-<title>viewplant</title>  
+<title>식물 상세 정보</title>  
 <!-- css -->
 <link rel="stylesheet" href="/resources/css/plant.css" type="text/css">
  
@@ -16,11 +16,11 @@
 %> 
 </head>         
 <body>      
-	<!-- header -->   
+	<!-- header -->    
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
 	<section class="hero-section-info">
 		<div class="container"> 
-			<h2>식물 상세 정보</h2>    
+			<h2>식물 상세 정보</h2>     
 			<table id="myTable"> 
 				<tr class="header"> 
 					<th style="width: 30%;">식물정보</th>

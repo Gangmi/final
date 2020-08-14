@@ -31,7 +31,7 @@
 	//게시판 값 받아오는 곳
 	String boardname = (String) request.getAttribute("b_boardname");
 %>
-<title></title>
+<title>내가 쓴 글 보기</title>
 <%
 	MemberVO mem = (MemberVO) session.getAttribute("memberinfo");
 %>

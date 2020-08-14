@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/resources/css/Smart-Farm/smartfarm-appli.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>스마트팜 신청 관리</title>
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
