@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,6 @@
     
     <link rel="stylesheet" href="/resources/css/Smart-Farm/style.css">
    	
-</head>
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
@@ -29,11 +27,10 @@
 		<div class="upper">
 		<div class="cctv_box">
 <!-- 			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div> -->
-			<div class="cctv"><img src="http://192.168.0.98:8090/?action=stream"></div>
+			<div class="cctv"><img src="${deviceIp}"></div>
 			
 		</div>
 	   <div class="btn">
-
 	   		<div class="infowrap">
 		   		<p class="farm-info">농장주소</p>
 				<p>경기도 여주시 금사면 금품2로 485 루돌프 농장</p>
@@ -57,17 +54,18 @@
 						</button>
 					</div>
 				</div>	
-
-				
 			</div>     
 	</div>
+	<div class="tempinfo">
 	
-		<div class="gauge-container">
-			<div class="gauge" id="temperature"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="gauge" id="humidity"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="gauge" id="soil_humidity"></div>
-		</div> 
-	            
+	</div>
+		<div class="guagewrap">
+			<div class="gauge-container">
+				<div class="gauge" id="temperature"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="gauge" id="humidity"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="gauge" id="soil_humidity"></div>
+			</div> 
+		</div>            
 	</div>
 
 	<jsp:include page="../footer.jsp"/>

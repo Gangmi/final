@@ -33,7 +33,7 @@ $(function () {
           label: {
             font: {
               color: '#87959f',
-              size: 9,
+              size: 20,
               family: '"Open Sans", sans-serif' } } },
 
 
@@ -44,7 +44,7 @@ $(function () {
           font: {
             family: '"Open Sans", sans-serif',
             color: '#fff',
-            size: 10 },
+            size: 40 },
 
           subtitle: {
             text: this._subtitle,
@@ -52,7 +52,12 @@ $(function () {
               family: '"Open Sans", sans-serif',
               color: '#fff',
               weight: 700,
-              size: 28 } } },
+              size: 25 },
+              
+            	  
+              
+                      
+          } },
 
 
 
@@ -61,8 +66,8 @@ $(function () {
           let circle = currentGauge.find('.dxg-spindle-hole').clone();
           let border = currentGauge.find('.dxg-spindle-border').clone();
 
-          currentGauge.find('.dxg-title text').first().attr('y', 48);
-          currentGauge.find('.dxg-title text').last().attr('y', 28);
+          currentGauge.find('.dxg-title text').first().attr('y', 75);
+          currentGauge.find('.dxg-title text').last().attr('y', 35);
           currentGauge.find('.dxg-value-indicator').append(border, circle);
         } };
 
