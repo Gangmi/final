@@ -16,7 +16,7 @@
 	
 	<link rel="stylesheet" href="/resources/css/login/find-pw.css">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
+    <title>비밀번호 찾기</title>
     
 </head>
 <body>

@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/resources/css/nongbu/farmer-application-success.css">
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>농부신청완료</title>
 </head>
 <body>
  <jsp:include page="./header.jsp"></jsp:include>

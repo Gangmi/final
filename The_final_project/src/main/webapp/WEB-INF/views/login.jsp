@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/login/login.css">
-<title>Insert title here</title>
+<title>로그인</title>
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>

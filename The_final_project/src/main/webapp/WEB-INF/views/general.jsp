@@ -16,12 +16,12 @@
 	//게시판 값 받아오는 곳
 String boardname = (String) request.getAttribute("b_boardname");
 %>
-<title></title>
+<title><%=BoardVO.changeword(boardname)%></title>
 <%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
 <script type="text/javascript">
 
-
+ 
 
 
 </script>
