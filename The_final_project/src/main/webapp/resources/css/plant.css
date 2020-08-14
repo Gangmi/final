@@ -13,22 +13,37 @@
 	
 }
 
+/*식물사전 font-size 조절*/
 .box_left a{
 	color: #446633;
+	font-size: 27px;
 }
-	
+
+.box_left p{ 
+	font-size: 22px;
 }
+
+.infosize{
+	font-size: 20px;
+}
+/*-------------------*/
+
 
 .hero-section{
 	height: 3500px;
 	text-align: center;
 } 
 
+.hero-section-info{
+	height: 2700px;
+	text-align: center;
+} 
+
 .plantdiv{
-margin-left: 0%;
+	margin-left: 0%;
     margin: 0 auto;
     width: 80%;
-	height: 900px;
+	height: 900px; 
 }
 
 
@@ -115,7 +130,7 @@ h2{
   cursor: pointer;
  
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 /* Change background color of buttons on hover */
@@ -233,6 +248,5 @@ h2{
 	width: 100%;
 	
 }
-
 
 </style>

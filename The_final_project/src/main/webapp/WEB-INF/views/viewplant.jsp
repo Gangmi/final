@@ -18,15 +18,15 @@
 <body>      
 	<!-- header -->   
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include> 
-	<section class="hero-section">
+	<section class="hero-section-info">
 		<div class="container"> 
-			<h2>식물 상세 정보</h2>   
+			<h2>식물 상세 정보</h2>    
 			<table id="myTable"> 
 				<tr class="header"> 
 					<th style="width: 30%;">식물정보</th>
 				</tr> 
 				<tr>       
-					<td><%=plantinfo.getPlantinfo() %></td> 
+					<td class="infosize"><%=plantinfo.getPlantinfo() %></td> 
 				</tr>   
 			</table> 
 		</div>  
