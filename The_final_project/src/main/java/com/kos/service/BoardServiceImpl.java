@@ -114,7 +114,7 @@ public class BoardServiceImpl implements BoardService {
 		String rawBoardName = vo.getB_boardname();
 		// 먼저 좋아요 싫어요를 누른적이 있는지 검사
 		int result = dao.detectLikeOrBad(vo);
-		System.out.println("좋아요 싫어요 클릭한 적이 있음?" + result);
+	
 
 		// 누른적이 없다면 db업데이트를 시작
 		if (result == 0) {
