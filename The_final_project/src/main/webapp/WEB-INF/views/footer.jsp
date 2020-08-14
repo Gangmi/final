@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,7 +140,7 @@
 	<sec:authorize access="isAuthenticated()">
 	<script type="text/javascript">
 		var count = 0;
-		var URL = "wss://192.168.0.50/chat/"
+		var URL = "wss://115.91.88.227:60001/chat/"
 		var webSocket = new WebSocket(URL+"${memberinfo.id}");
 		console.log(webSocket);
 		webSocket.onopen = function(e) {
