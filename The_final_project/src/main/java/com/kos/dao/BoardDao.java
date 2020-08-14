@@ -18,7 +18,7 @@ public interface BoardDao {
 
    public int updateBoard(BoardVO vo);
 
-   public void deleteBoard(BoardVO vo)throws Exception;
+   public void deleteBoard(BoardVO vo,String filePath_)throws Exception;
 
    public void writeRepl(BoardVO vo);
 
@@ -42,7 +42,7 @@ public interface BoardDao {
 
    public void storeProfile(UploadImageVO vo);
 
-   public void deleteAnswer(BoardVO vo) throws Exception;
+   public void deleteAnswer(BoardVO vo,String filePath_) throws Exception;
 
    public int updateAnswer(BoardVO vo);
 

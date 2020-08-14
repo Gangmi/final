@@ -24,7 +24,7 @@ if (nexacro.Environment)
         nexacro._addService("font", "file", "./_resource_/_font_/", "session", null, "", "0", "0");
         nexacro._addService("Base", "form", "./Base/", "session", null, "", "0", "0");
         nexacro._addService("frame", "form", "./frame/", "session", null, "", "0", "0");
-        nexacro._addService("farm", "none", "http://localhost:8080/", "session", null, "", "0", "0");
+        nexacro._addService("farm", "none", "https://115.91.88.227:60001/", "session", null, "", "0", "0");
 
     	nexacro._component_uri = (nexacro._arg_compurl ? nexacro._arg_compurl : "./nexacro17lib/component/");
     	nexacro._theme_uri = "./_resource_/_theme_/";

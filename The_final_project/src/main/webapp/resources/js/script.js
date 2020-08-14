@@ -166,6 +166,17 @@ $(function () {
     	});
     });
 
+	$("#givelight").click(function(){
+			
+			$.ajax({
+	    		type:"GET",
+	    		url:"givelight.do",
+	    		datatype:"json",
+	    		contentType:'application/json;charset=UTF-8',
+	    		success:function(data){
+	    		}
+	    	});
+	    });
     $('#random').click(function () {
 
       $('.gauge').each(function (index, item) {

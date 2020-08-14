@@ -67,10 +67,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.updateBoard(vo);
 	}
 
-	public void deleteBoard(BoardVO vo) {
+	public void deleteBoard(BoardVO vo,String filePath) {
 
 		try {
-			dao.deleteBoard(vo);
+			dao.deleteBoard(vo,filePath);
 		} catch (Exception e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -114,7 +114,7 @@ public class BoardServiceImpl implements BoardService {
 		String rawBoardName = vo.getB_boardname();
 		// 먼저 좋아요 싫어요를 누른적이 있는지 검사
 		int result = dao.detectLikeOrBad(vo);
-		System.out.println("좋아요 싫어요 클릭한 적이 있음?" + result);
+	
 
 		// 누른적이 없다면 db업데이트를 시작
 		if (result == 0) {
@@ -146,10 +146,10 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
-	public void deleteAnswer(BoardVO vo) {
+	public void deleteAnswer(BoardVO vo,String filePath_) {
 		
 		try {
-			dao.deleteAnswer(vo);
+			dao.deleteAnswer(vo,filePath_);
 		} catch (Exception e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -165,7 +165,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 프로필 사진 이미지가 있는지 확인하고 삭제하는 메소드
-	public boolean isThereProfile(UploadImageVO vo) {
+	public boolean isThereProfile(UploadImageVO vo,String filePath_) {
 
 		// 먼저 아이디로 있는지부터 확인
 		String imagename = dao.isThereProfile(vo);
