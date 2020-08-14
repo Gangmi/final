@@ -22,6 +22,7 @@
 	</div> -->
 
 	<div id="main">
+	<br>
 		<h2>나의 스마트 팜</h2>
 		<div class="upper">
 		<div class="cctv_box">
@@ -30,23 +31,29 @@
 			
 		</div>
 	   <div class="btn">
-	   		<p class="farm-info">농장주소</p>
-			<p>경기도 여주시 금사면 금품2로 485 루돌프 농장</p>
-			<p class="farm-info">전화번호</p>
-			<p>031-884-6554</p>
-			<p class="farm-info">농장 개설일  </p>
-			<p>2020-08-01</p>
-				<div class="btn1">
-					<button type="button" id="givewater"><img src="/resources/img/15159159.png">
-						물주기
-					</button>
-				</div>
-	
-				<div class="btn2">
-					<button type="button" id="givelight"><img src="/resources/img/1515151131313.png">
-						라이트 켜기/끄기
-					</button>
-				</div>
+	   		<div class="infowrap">
+		   		<p class="farm-info">농장주소</p>
+				<p>경기도 여주시 금사면 금품2로 485 루돌프 농장</p>
+				<br>
+				<p class="farm-info">전화번호</p>
+				<p>031-884-6554</p>
+				<br>
+				<p class="farm-info">농장 개설일  </p>
+				<p>2020-08-01</p>
+			</div>
+				<div class="buttonwrap">
+					<div class="btn1">
+						<button type="button" id="givewater"><img src="/resources/img/15159159.png">
+							물주기
+						</button>
+					</div>
+		
+					<div class="btn2">
+						<button type="button" id="givelight"><img src="/resources/img/1515151131313.png">
+							라이트 켜기/끄기
+						</button>
+					</div>
+				</div>	
 			</div>     
 	</div>
 	
