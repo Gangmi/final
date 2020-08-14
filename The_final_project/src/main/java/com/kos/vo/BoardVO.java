@@ -200,10 +200,13 @@ public class BoardVO implements Board {
 			result="팁게시판";
 		}
 		
+		if (name.equals("parcel_board")){
+			result="분양게시판";
+		}
+		
 		if (name.equals("nongsain")){
 			result="농사in게시판";
 		}
-		
 		
 		
 		

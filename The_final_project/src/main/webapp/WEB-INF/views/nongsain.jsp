@@ -32,10 +32,11 @@ String userid = "";
 if (session.getAttribute("memberinfo") != null) {
 	user = (MemberVO) session.getAttribute("memberinfo");
 	userid = user.getId();
-}
-%>
+} 
+%> 
 <meta charset="UTF-8">
-<title>농사in</title>
+
+<title>농사in게시판</title> 
 
 </head>
 <body>

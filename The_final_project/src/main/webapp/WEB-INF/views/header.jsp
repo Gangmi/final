@@ -131,7 +131,7 @@ width: 238px !important;
 									<ul class="dropdown">
 										<li><a href="/callboard.do?b_boardname=free_board">자유게시판</a></li>
 										<li><a href="/callboard.do?b_boardname=tip_board">팁게시판</a></li>
-										<li><a href="/callboard.do?b_boardname=parcel_board">분양 게시판</a></li>
+										<li><a href="/callboard.do?b_boardname=parcel_board">분양게시판</a></li>
 										<li><a href="/callboard.do?b_boardname=nongsain">농사in게시판</a></li>
 									</ul></li>
 

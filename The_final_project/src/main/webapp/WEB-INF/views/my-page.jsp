@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 
 <%MemberVO mem=(MemberVO)session.getAttribute("memberinfo"); %>
 
@@ -121,7 +121,7 @@
                 <button  onclick="location.href='/updateAccount.do'">
                     <img src="/resources/old/img/free_grey.png" alt="free">
                 </button>
-                <p><a href="/updateAccount.do">회원 정보 수정</a></p>
+                <p><a href="/updateAccount.do">회원정보 수정</a></p>
             </div>
 			<sec:authorize access='!hasAuthority("ROLE_SMART_FARMER")'>
             <div class="tip">

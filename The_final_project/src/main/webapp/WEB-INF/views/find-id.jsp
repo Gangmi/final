@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Document</title>
+    <title>아이디 찾기</title>
 	<link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
 	<link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">

@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>제휴농장</title>
+
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
 <style>
         .farm-list {
