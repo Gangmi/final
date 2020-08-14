@@ -84,7 +84,9 @@ width: 238px !important;
  						</sec:authorize>
 					</ul></li> 
 
-
+				<sec:authorize access="hasAuthority('ROLE_SMART_FARMER')">
+				<li><a href="/smartfarmer/monitoringView.do">스마트팜</a></li>
+				</sec:authorize>
 				<li><a href="/plant.do?nowpage=1">식물사전</a></li>
 				<li><a href="/farm-map.do">제휴농장</a></li>
 				<sec:authorize access="hasAuthority('ROLE_ADMIN')">
