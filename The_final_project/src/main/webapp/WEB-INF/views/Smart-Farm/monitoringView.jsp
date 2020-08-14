@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 		<div class="upper">
 		<div class="cctv_box">
 <!-- 			<div class="cctv"><img src="/resources/img/xxxxxxxx.jpg"></div> -->
-			<div class="cctv"><img src="${deviceIp}"></div>
+			<div class="cctv"><img src="http://192.168.0.98:8090/?action=stream"></div>
 			
 		</div>
 	   <div class="btn">
@@ -44,7 +45,7 @@
 	
 				<div class="btn2">
 					<button type="button" id="givelight"><img src="/resources/img/1515151131313.png">
-						라이트 켜기/끄기
+						불 켜기/끄기
 					</button>
 				</div>
 			</div>     
