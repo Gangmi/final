@@ -120,10 +120,9 @@ if (session.getAttribute("memberinfo") != null) {
 	
 	%>
 	<div class="container" id="board">
-	<%
-	if(!userid.equals("")){ %>소중한 의견을 남겨주세요.   농부회원만 답변이 가능합니다.      <sec:authorize access="hasAuthority('ROLE_FARMER')">                   <button class="btn btn-success" id="answer">답변하기</button><%}else{%>
-	</sec:authorize>
-	<%}	%>
+	소중한 의견을 남겨주세요.   농부회원만 답변이 가능합니다.      <sec:authorize access="hasAuthority('ROLE_FARMER')">                   <button class="btn btn-success" id="answer">답변하기</button></sec:authorize>
+	
+	
 	
 	</div>
  	<div class="main_box"> 
