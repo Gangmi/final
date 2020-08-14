@@ -20,6 +20,11 @@
 <link rel="stylesheet" href="/resources/css/boardcss/viewboard.css">
 <link rel="stylesheet" href="/resources/css/boardcss/repl.css">
 <link rel="stylesheet" href="/resources/css/boardcss/writeboard.css">
+<style type="text/css">
+.nonsapage{
+height: auto !important;
+}
+</style>
 
 <%
 	MemberVO user = null;
@@ -30,6 +35,7 @@ if (session.getAttribute("memberinfo") != null) {
 } 
 %> 
 <meta charset="UTF-8">
+
 <title>농사in게시판</title> 
 
 </head>
@@ -45,7 +51,7 @@ if (session.getAttribute("memberinfo") != null) {
 	%>
 
 	<input type="hidden" id="confirmsession" value="<%=userid%>">
-	<section class="hero-section">
+	<section class="hero-section nonsapage">
 
 		<div class="container" id="board">
 			<!--현재 게시판 표시  -->
@@ -115,8 +121,8 @@ if (session.getAttribute("memberinfo") != null) {
 	%>
 	<div class="container" id="board">
 	<%
-	if(!userid.equals("")){ %>소중한 의견을 남겨주세요                            <button class="btn btn-success" id="answer">답변하기</button><%}else{%>
-	로그인 후 답변 가능합니다.
+	if(!userid.equals("")){ %>소중한 의견을 남겨주세요.   농부회원만 답변이 가능합니다.      <sec:authorize access="hasAuthority('ROLE_FARMER')">                   <button class="btn btn-success" id="answer">답변하기</button><%}else{%>
+	</sec:authorize>
 	<%}	%>
 	
 	</div>
