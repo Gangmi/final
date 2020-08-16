@@ -90,7 +90,9 @@ border-top: 0px solid white !important;
                 <h2 id="todaydate"></h2>
                 <h2> 현재 날씨 </h2>
 	                <div class="weather-icon">
+	                	<div class="iconwrap">
 	                    <img id='weather-icon' src="http://openweathermap.org/img/wn/01d@2x.png" alt="">
+	                    </div>
 	               		<div class="datesection" >
             				
             			</div>
@@ -350,15 +352,13 @@ border-top: 0px solid white !important;
 			   	}
 		});
 	 		$('.mainmenu ul li').find('a[href="/index.do"]').parent().addClass('active');
-
 	 		$("#searchMyWeather").on("click",function(){
 	 			geoFindMe();
-	 	 		});
+	 	 	});
 			function geoFindMe() {
 			    function success(position) {
 			        const latitude  = position.coords.latitude;
 			        const longitude = position.coords.longitude;
-
 			        $.ajax({
 			    		url: "https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=62b19ec9dfd3b8c39e0254dfb88e07c9",
 			    		type: "GET",
@@ -383,27 +383,19 @@ border-top: 0px solid white !important;
 							        }
 								}
 							}); 
-							
 			    			//-----------------------------------------
 			    	    }
 			    	});
 			    }
-
 			    function error() {
 			        alert(status.textContent = '위치를 찾을 수 없습니다.');
 			    }
-
 			    if(!navigator.geolocation) {
 			        alert(status.textContent = 'Geolocation is not supported by your browser');
 			      } else {
 			        navigator.geolocation.getCurrentPosition(success,error);
 			      }
-
 			}
-
-
-
-
 			//오늘 날짜 표시하기
 			var today=new Date();
 			var year=today.getFullYear();
@@ -429,22 +421,8 @@ border-top: 0px solid white !important;
 			default:
 				realday="요일정보를 가져올 수 없습니다."
 			}
-			
-			
 			var html=year+"년   "+(month+1)+"월   "+date+"일   "+realday
 			$('#todaydate').html(html);
-
-
-
-
-
-
-			
-
-
-
-
-			
 	});
 	
 	</script>

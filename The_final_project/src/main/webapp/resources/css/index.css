@@ -18,7 +18,12 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
+.iconwrap{
+	background-color: white;
+    width: 20%;
+    margin: 0 auto;
+    border-radius: 50px;
+}
 
 /*인덱스의 게시판 표시 부분  */
  .upboards{
