@@ -89,7 +89,7 @@ $(document).ready(function() {
 			success : function(data){
 				var html="";
 				var image="";
-				alert(data.imagename);
+			
 				if(data.imagename!=""){
 					image+=data.imagename;
 				}else{
