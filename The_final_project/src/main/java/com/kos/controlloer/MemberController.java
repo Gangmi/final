@@ -161,7 +161,7 @@ public class MemberController {
 			String ctfc = memberService.createCertification(memberVo);
 			session.setAttribute("certification", ctfc);
 			//인증키를 메일로 전송
-			sendMailService.setSendMailService("@gmail.com","");
+			sendMailService.setSendMailService("cozinessimh@gmail.com","coziness123!");
 			sendMailService.sendMail(memberVo.getEmail(), "이메일찾기 인증번호", ctfc);
 			//3분이 지나면 자동으로 인증세션을 지운다.
 			Timer timer = new Timer(true);
