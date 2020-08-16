@@ -8,7 +8,6 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@page import="com.kos.vo.BoardVO"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,10 +130,11 @@ String profile=(String)session.getAttribute("profileimg");
 <div>
 	
  	<%
+ 	
+
 
 	String boardname = (String) request.getParameter("b_boardname");
-	String boardno = (String) request.getParameter("boardno");
-	
+	String boardno = (String) request.getParameter("boardno"); 
 	%>
 	<!-- 댓글 입력창 -->
    <form id="commentInsertForm" name="commentInsertForm" >
@@ -151,7 +151,7 @@ String profile=(String)session.getAttribute("profileimg");
                     </div>
                 </div>
                 <div class="p-2">
-                    <div class="d-flex flex-row align-items-start"><img class="detgulImage"  src="/resources/profileimg/my_page.png"/><textarea id="comment" name="contents"  class="form-control ml-1 shadow-none textarea"></textarea></div>
+                    <div class="d-flex flex-row align-items-start"><img width='40' height='40' class='rounded-circle'src="\resources\profileimg\<%if(profile!=null){ %><%=profile%><%}else{%>my_page.png<%}%>"><textarea id="comment" name="contents"  class="form-control ml-1 shadow-none textarea"></textarea></div>
                     <div class="mt-2 text-right"><button id="commentInsertBtn" name="commentInsertBtn" class="btn btn-primary btn-sm shadow-none" type="button">댓글쓰기</button></div>
                 </div>
             </div>
