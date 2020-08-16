@@ -112,26 +112,14 @@
    <select id="viewBoardReplCount" parameterType="board" resultType="int">
       select count(*) from ${b_boardname} where boardno = ${boardno}
    </select>
+   
+
    <!-- 댓글 목록 가져오기 -->
-  <!--  <select id="viewBoardRepl" parameterType="paging" resultType="board">
-   select b.replno as replno,b.boardno as boardno,b.id as id,b.nickname as nickname,b.contents as contents,b.regdate as regdate
-   from(
-      select @rownum:=@rownum+1 as no,a.*
-      from
-      (select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
-      from member member inner join ${b_boardname} ${b_boardname}
-      ON member.id = ${b_boardname}.id
-        where boardno = ${boardno} and (@rownum :=0)=0
-        ORDER BY ${b_boardname}.replno desc
-        )as a
-    )as b 
-   where no<![CDATA[>=]]>${start} and no<![CDATA[<=]]>${end}
-   </select>   -->
    <select id="viewBoardRepl" parameterType="paging" resultType="board">
    select b.replno as replno,b.boardno as boardno,b.id as id,b.nickname as nickname,b.contents as contents,b.regdate as regdate,b.imagename as imagename
 	from(  
     select @rownum:=@rownum+1 as no,a.*
-    from(  select replno,boardno,m.id,nickname,contents,c.regdate,imagename     
+    from(  select replno,boardno,c.id,nickname,contents,c.regdate,imagename     
         from(select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
       			from member member inner join ${b_boardname} ${b_boardname}
      			 ON member.id = ${b_boardname}.id
@@ -144,12 +132,15 @@
    </select>  
    <!-- 수정할 댓글 가져오기 -->
    <select id="getRepl" parameterType="board" resultType="board">
-      select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
+    select replno,boardno,c.id as id,nickname,contents,c.regdate as regdate,imagename from
+      (select ${b_boardname}.replno,${b_boardname}.boardno,member.id,member.nickname,${b_boardname}.contents,${b_boardname}.regdate  
       from member member inner join ${b_boardname} ${b_boardname}
       ON member.id = ${b_boardname}.id 
-      where ${b_boardname}.replno = ${replno} 
+      where ${b_boardname}.replno = ${replno})
+        as c left outer join memberimg as m on c.id=m.id
    </select>
    
+
    <!--댓글 갯수 확인 쿼리  -->
    <select id="countrepl" parameterType="board" resultType="int">
    select count(*) from ${b_boardname} where boardno=${boardno}
@@ -307,7 +298,6 @@
    
    </select>
 
-	
 	
 	
 	

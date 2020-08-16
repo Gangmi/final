@@ -486,7 +486,9 @@ public class BoardDaoImpl implements BoardDao {
 	public BoardVO adminPieChart(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return mybatis.selectOne("adminPieChart", vo);
-	}   
+	}
+
+
 	 
 	 
 	

@@ -251,7 +251,9 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO adminPieChart(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return dao.adminPieChart(vo);
-	}   
+	}
+
+	
 
 
 }

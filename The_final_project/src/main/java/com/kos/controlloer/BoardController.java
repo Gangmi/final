@@ -121,13 +121,14 @@ public class BoardController {
 		return mv;
 	}
 
-
+	//답글 작성하기
 	@RequestMapping("/writeAnswer.do")
 	@ResponseBody
 	public ModelAndView writeAnswer(ModelAndView mv, BoardVO vo, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
-
+		
+		//
 		MemberVO info = (MemberVO) session.getAttribute("memberinfo");
 		if (!info.getId().isEmpty()) {
 			vo.setId(info.getId());
@@ -159,7 +160,7 @@ public class BoardController {
 		
 
 		BoardVO result = service.viewBoard(vo);
-
+		
 		List<BoardVO> Answer = (List<BoardVO>)service.AnswerList(vo);
 		BoardVO AnswerCheteck = (BoardVO)service.AnswerCheteck(vo);
 		// 닉네임 추가
@@ -270,7 +271,7 @@ public class BoardController {
 	@ResponseBody
 	public String writeRepl( BoardVO vo,HttpSession session) {
 
-
+		//게시판에 맞는 답글 db이름을 세팅하기
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		vo.setId(((MemberVO) session.getAttribute("memberinfo")).getId());
@@ -289,6 +290,7 @@ public class BoardController {
 	@RequestMapping("/viewrepl.do")
 	@ResponseBody
 	public List<BoardVO> viewRepl(BoardVO vo,HttpSession session) {
+		//게시판에 맞는 답글 db이름을 세팅하기
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
@@ -302,6 +304,7 @@ public class BoardController {
 	@RequestMapping("/viewreplpage.do")
 	@ResponseBody
 	public List<BoardVO> viewReplpage(BoardVO vo,HttpSession session) {
+		//게시판에 맞는 답글 db이름을 세팅하기
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 		List<BoardVO> result = (List<BoardVO>)service.viewBoardRepl(vo);
@@ -314,7 +317,7 @@ public class BoardController {
 	@RequestMapping("/getrepl.do")
 	@ResponseBody
 	public BoardVO getRepl(BoardVO vo) {
-
+		//게시판에 맞는 답글 db이름을 세팅하기
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
 
@@ -482,7 +485,7 @@ public class BoardController {
 
 		service.deleteBoard(vo,req.getSession().getServletContext().getRealPath("/resources/uploadimage/"));
 
-		//mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
+		//다시 원레 페이지로 돌아가기
 		mv.setViewName("redirect:/callboard.do?b_boardname="+vo.getB_boardname());
 		return mv;
 	}
@@ -490,10 +493,12 @@ public class BoardController {
 	//답글 삭제
 	@RequestMapping("/deleteAnswer.do")
 	public ModelAndView deleteAnswer(ModelAndView mv ,BoardVO vo,HttpServletRequest req) {
-
+		//게시판에 맞는 답글 db이름을 세팅하기
 		ReplNameVO re = new ReplNameVO(vo);
 		vo.setB_boardname(re.changeName());
+		
 		service.deleteAnswer(vo,req.getSession().getServletContext().getRealPath("/resources/uploadimage/"));
+		//다시 원레 페이지로 돌아가기
 		mv.setViewName("redirect:/viewboard.do?b_boardname=nongsain&boardno="+vo.getBoardno()+"&nickname="+vo.getNickname());
 		return mv;
 	}
@@ -759,6 +764,8 @@ public class BoardController {
 
 			return list;
 		} 
+		
+		
 
 }
 

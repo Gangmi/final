@@ -2,7 +2,11 @@ $(document).ready(function() {
 	getCommentList();
 	getPagingButton();
 	
+	
+	
+	
 	function getPagingButton(){
+		
 		
 	}
 	//댓글 입력을 누르면
@@ -85,6 +89,7 @@ $(document).ready(function() {
 			success : function(data){
 				var html="";
 				var image="";
+				alert(data.imagename);
 				if(data.imagename!=""){
 					image+=data.imagename;
 				}else{
@@ -109,7 +114,7 @@ $(document).ready(function() {
 	}
 	
 	//수정에서 저장버튼을 누르면
-	 ("click",".storeReplModify",function(evt){
+	$(document).on("click",".storeReplModify",function(evt){
 			//보드이름에 따른 댓글 디비를 저장할 변수
 		
 			var b_boardname = $('input[name=b_boardname]').val();
@@ -197,7 +202,7 @@ $(document).ready(function() {
 					for(i=0; i<data.length; i++){
 						
 						var image="";
-						if(data.imagename!=""){
+						if(data[i].imagename !=""){
 							image+=data[i].imagename;
 						}else{
 							image+="my_page.png";
@@ -238,14 +243,13 @@ $(document).ready(function() {
 				var html2='';
 				var cCnt = data.length;
 				var userid = $('#confirmsession').attr('value');//화면에 저장되어있는 아이디를 가져옴
-				
-				
+
 				if(data.length>0){
 					
 					for(i=0; i<data.length; i++){
 						
 						var image="";
-						if(data.imagename!=""){
+						if(data[i].imagename != ""){
 							image+=data[i].imagename;
 						}else{
 							image+="my_page.png";
@@ -282,12 +286,7 @@ $(document).ready(function() {
 					
 				}else{
 					
-					var image="";
-					if(data.imagename!=""){
-						image+=data.imagename;
-					}else{
-						image+="my_page.png";
-					}
+					
 					
 					html+="        <div class='comment-widgets' >";
 					html+="            <!-- Comment Row -->";
